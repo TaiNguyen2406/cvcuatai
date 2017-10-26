@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Config>
+  <cnstrInternet Server=".\SQLEXPRESS" Database="BAC" UsDb="sa" PwDb="" User="1898" Pw="xUHJ/USZYUg=" SavePw="False" />
+  <cnstrLan Server="192.168.1.109" Database="BAC" UsDb="baoan01" PwDb="N+1xGW5VZm9n4GTNL1WH0A==" User="9213" Pw="" SavePw="True" />
+  <cnstrLocal Server="." Database="BACTEST" UsDb="sa" PwDb="xUHJ/USZYUg=" User="9213" Pw="xUHJ/USZYUg=" SavePw="True" />
+  <cnType Value="3" />
+  <Server Value="BACBOSS\SQL2005" />
+  <Database Value="BAC" />
+  <UsDb Value="baoan01" />
+  <PwDb Value="L3p0XJPFRHM=" />
+  <User Value="1898" />
+  <Pw Value="lRE/NJlSVis=" />
+  <SavePw Value="True" />
+  <UrlExrate Value="http://www.vietcombank.com.vn/exchangerates/ExrateXML.aspx" />
+</Config>

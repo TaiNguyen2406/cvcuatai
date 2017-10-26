@@ -1,0 +1,421 @@
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.BonusSkins.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.Charts.v10.2.Core.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.CodeParser.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.Data.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.OfficeSkins.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.Tutorials.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.Utils.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraBars.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraEditors.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraGrid.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraLayout.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraNavBar.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraPrinting.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.Extensions.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraRichEdit.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraTreeList.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
+D:\BACSOFT\BACSOFT\obj\x86\Debug\QuanLyTaiSan.vbprojResolveAssemblyReference.cache
+D:\BACSOFT\BACSOFT\obj\x86\Debug\QuanLyTaiSan.vbproj.GenerateResource.Cache
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.BonusSkins.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Charts.v10.2.Core.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.CodeParser.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Data.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.OfficeSkins.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Tutorials.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Utils.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraBars.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraEditors.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraGrid.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraLayout.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraNavBar.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraPrinting.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.Extensions.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraRichEdit.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraTreeList.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\QuanLyTaiSan.vbprojResolveAssemblyReference.cache
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\QuanLyTaiSan.vbproj.GenerateResource.Cache
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.BonusSkins.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Charts.v10.2.Core.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.CodeParser.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Data.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.OfficeSkins.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Tutorials.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.Utils.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraBars.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraEditors.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraGrid.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraLayout.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraNavBar.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraPrinting.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraReports.v10.2.Extensions.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraRichEdit.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraTreeList.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.SpellChecker.v10.2.Core.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraCharts.v10.2.UI.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Core.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraScheduler.v10.2.Extensions.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraSpellChecker.v10.2.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\DevExpress.XtraVerticalGrid.v10.2.xml
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\QuanLyTaiSan.vbproj.GenerateResource.Cache
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.exe.config
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.exe
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.xml
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.pdb
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.exe
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.pdb
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.xml
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhansu.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.fMain.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCauHinh.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDangNhap.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmPhongBan.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.Resources.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmTaiSanHong.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmKhauHaoTaiSan.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinTaiSan.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSanHong.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.exe.licenses
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietTaiSan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.exe.config
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.exe
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.pdb
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.exe
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.pdb
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\BACSOFT.xml
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhansu.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.fMain.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCauHinh.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDangNhap.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmPhongBan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.Resources.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietTaiSan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmTaiSanHong.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmKhauHaoTaiSan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinTaiSan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSanHong.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.exe.licenses
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmWait.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmHangHoaXuatChoBac.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucKhauHao.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmWait.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucKhauHao.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmHangHoaXuatChoBac.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungTS.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdTS.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietCCDC.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungCCDC.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungTS.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdCCDC.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdTS.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCCDCHong.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemCCDCHong.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCCDCHong.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucPhanBoCCDC.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemCCDCHong.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucPhanBoCCDC.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmXuatTam.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuXuatTam.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemXuatTam.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSan.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhapLai.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNhapLai.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauXuatTam.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauNhapLai.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmPhanBoCCDCHeThong.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuPhu.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDanhSachYeuCauXuatTam.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDanhSachYeuCauXuatTam.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhapLai.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNhapLai.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemXuatTam.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauNhapLai.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauXuatTam.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuPhu.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmPhanBoCCDCHeThong.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSan.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuXuatTam.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmXuatTam.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChaoGia.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDSYCLamHQ.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuDaChaoGia.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuDaChaoGia.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmChaoGia.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDSYCLamHQ.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCNChaoGia.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCNChaoGia.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmQuyenTruyCap.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhanSu.resources
+D:\QuanLyTaiSan\BACSOFT\bin\x86\Debug\vi-VN\BACSOFT.resources.dll
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhmuc.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmMucdich.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhienvatlieu.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmXe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmBaoduongxe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmGiayToXe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuMuonXe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhanvaTraxe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemBaoduongxe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemGiayToXe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemHuhaixe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemsudungxe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.vi-VN.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\vi-VN\BACSOFT.resources.dll
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmBaocaoHuhaixe.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeNguoiSudung.resources
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeXeSudung.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\bin\x86\Debug\vi-VN\BACSOFT.resources.dll
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmBaocaoHuhaixe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeNguoiSudung.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeXeSudung.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhmuc.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmMucdich.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhienvatlieu.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmXe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmQuyenTruyCap.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhanSu.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmBaoduongxe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmGiayToXe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuMuonXe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmNhanvaTraxe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemBaoduongxe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemGiayToXe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemHuhaixe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmThemsudungxe.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.vi-VN.resources
+E:\cong viec\QuanLyTaiSan\BACSOFT\obj\x86\Debug\vi-VN\BACSOFT.resources.dll
+D:\QuanLyTaiSan\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauDi_DatHang.resources
+D:\BACSOFT\BACSOFT\bin\x86\Debug\BACSOFT.exe.config
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.exe
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.xml
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.pdb
+D:\BACSOFT\BACSOFT\bin\x86\Debug\BACSOFT.exe
+D:\BACSOFT\BACSOFT\bin\x86\Debug\BACSOFT.pdb
+D:\BACSOFT\BACSOFT\bin\x86\Debug\BACSOFT.xml
+D:\BACSOFT\BACSOFT\bin\x86\Debug\vi-VN\BACSOFT.resources.dll
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuDaChaoGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmBaocaoHuhaixe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeNguoiSudung.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongkeXeSudung.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhmuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmMucdich.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNhienvatlieu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.fMain.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDangNhap.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmQuyenTruyCap.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDanhSachYeuCauXuatTam.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChaoGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNChaoGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDSYCLamHQ.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNhapLai.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNhapLai.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemXuatTam.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauNhapLai.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauXuatTam.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauDi_DatHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCauHinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmPhongBan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.Resources.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmWait.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmVatTuPhu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhanSu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNhanSu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCCDCHong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietCCDC.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTietTaiSan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucPhanBoCCDC.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucKhauHao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmHangHoaXuatChoBac.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungCCDC.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTaiSanHong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmKhauHaoTaiSan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiSuDungTS.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemCCDCHong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdCCDC.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemNsdTS.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmPhanBoCCDCHeThong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinCCDC.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinTaiSan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemTaiSanHong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuXuatTam.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXuatTam.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmBaoduongxe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmGiayToXe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuMuonXe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNhanvaTraxe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemBaoduongxe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemGiayToXe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemHuhaixe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemsudungxe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichMuonXe.vi-VN.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.exe.licenses
+D:\BACSOFT\BACSOFT\obj\x86\Debug\vi-VN\BACSOFT.resources.dll
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongSo.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTinhTrangVT.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDuKienThanhToan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDatHang_PhanHoi.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinHaiQuan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinHaiQuan2.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXemAnh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNLichDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNoiDungDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDoiID.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmImport.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNKhachHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhapKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTachChaoGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemYeuCau.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNCongTrinhCanXuLy.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCongViec.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNYeuCauHoiGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNChiTieu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNangLuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNKhoaDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhomDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNoiDungDaoTao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmPhongBanThue.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmBoPhanTrongSo.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNBoPhan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNHinhThucTT.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNTrangThai.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmHeThongTaiKhoanThue.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmHeThongTaiKhoanThueDauKy.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmHinhThucTT.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmMucDichThuChi.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNganHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTaiKhoanNganHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTGGiaoHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTienTe.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmUpdateHeThongTaiKhoanThueDauKy.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmUpdateHeThongTkThue.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinPhu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXacNhanMatKhauEmail.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmIn.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptDiaChiGiaoHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptPhieuNhapKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptPhieuXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptPhieuXuatKhoGop.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmKetQuaXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChuyenGiaoKH.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNguoiGiaoDich.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNThongTinPhuKH.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCongNoThueDauKy.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmKhachHang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLichSuGiaoDich.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNguoiGiaoDich.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThayIDKH.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTongHopQuaTrinhGD.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCGCanXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmUpdateHdDauVao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmUpdateHoaDon.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXuatMuon.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinGiaBan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinGiaNhap.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauDen.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNoiDungThiCong.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXuLyYCCongTrinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNThamSoTinhTon.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmXuLyYeuCau.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauHoiGia.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmBaoCaoHangNgay.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChiTieu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNDiemQuyTrinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNDiemThiKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNDiemThiNangLuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNHDHangNgay.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhomChiTieu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhomKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNNhomNangLuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNYeuCauNoiBo.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNYeuCauNoiBoXL.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDanhMucNangLuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDiemQuyTrinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDiemThiKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmLNPhanBoTheoXK.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTHDiemQuyTrinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTHDiemQuyTrinhCu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTHDiemThiKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTHDiemThiNangLuc.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTieuChiBaoCao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTongHopDiemKyNang.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmYeuCauNoiBo.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptHoaDonGTGT.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.rptBangKeKemHoaDon.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmChonSoPhieu.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNChi2.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNQuaTrinhXuLy.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmDinhMucDiemCongTrinh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmFileLienQuan.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmGiaoViec.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmHoaDonDauVao.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmNhapThueHangDaNhap.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThemVatTuNhanh.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmThongTinCanXuat.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTimKiemNhapXuatKho.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmTongHopChiPhi.resources
+D:\BACSOFT\BACSOFT\obj\x86\Debug\BACSOFT.frmCNXuatKhoCT.resources

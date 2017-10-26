@@ -1,0 +1,655 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BACSOFT
+</name>
+</assembly>
+<members>
+<member name="P:BACSOFT.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Accept_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Accept_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.AddNew_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.AddNew_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.addRow_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.attachment_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Attachment_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Attachment_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.back_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.back_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BanHang_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BanHang_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Banner">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BaoCao_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BaoCao_BaoCaoKinhDoanh">
+	<summary>
+  Looks up a localized string similar to SET DATEFORMAT DMY
+DECLARE @TuNgay AS Datetime
+DECLARE @DenNgay AS Datetime
+DECLARE @TuNgayDK AS Datetime
+DECLARE @DenNgayDK AS Datetime
+SET @TuNgay= '{@TuNgay}'
+SET @DenNgay= '{@DenNgay}'
+
+
+DECLARE @tbKHTheoThang AS table
+(	
+	IDKhachHang int,
+	IDTakeCare int,
+	Thang Datetime,
+	Loai Nvarchar(2),
+	KHMoi bit
+)
+
+
+DECLARE @tbTieuChi AS table
+(
+	STT tinyint,
+	IDTieuChi  int,
+	NoiDung  nvarchar(250)
+)
+
+INSERT INTO @tbTieuChi (STT,IDTieuChi,NoiDung)
+SELECT 1,1, N'KH: Mới _ Tổng'
+union
+ [rest of string was truncated]";.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BCCongNo_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BCDoanhThu_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.BCNhapXuatTon_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.billing_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.block_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Book_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.bt_ThemDong">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.bt_Xoa">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.calc_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Calc_64">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.calendar_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.calendar_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Cancel_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.changeKey_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.ChaoGia_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.ChaoGia_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.chart_pie_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.chart_pie_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Checked">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.chuyenkhoan_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.chuyenkhoan_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.close_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.close_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Collapse_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.computer_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.computer_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Config_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Config_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.copy_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.copy_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Custom_Icon_Design_Pretty_Office_9_Edit_validated">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Customer_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Customers_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.database_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.database_161">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.database_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.dbPass_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.dbUser_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Delete_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Delete_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Delete_File_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.deleteRow_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Download_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Edit_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Edit_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.edit_validated_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Excel_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Excel_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Expand_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Favorite_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Favorite_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.file_manager_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.filter_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.filter_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Folder_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Folder_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.full_screen_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.gmail_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.gProduct_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.gProduct_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.GroupKey_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.GroupKey_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.help_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.help_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.home_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.home_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.house_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_181">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_241">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_242">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.invoice_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.KetQua_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Key_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.KyThuat_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.KyThuat_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.login_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.login_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Logo2">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Logo3">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.logout_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.logout_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.minimize_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.MuaHang_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.next_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.next_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.NhapHang_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.NhapHangTraLai_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Error_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Error_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_info_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_info_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Question_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Question_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Success_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Success_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Warning_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.noti_Warning_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.order">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.PhieuXuat_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Preview_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.print_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.print_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Process_Info_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.product_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.product_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.refresh_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.refresh_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Sale_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Save_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Save_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Save_AddNew_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Save_AddNew_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Search_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Search_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.split_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Start_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.Stop_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.ThuNo_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.thutien_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.thutien_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.TraNo_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.TSCD_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.UnCheck">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.unit_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.user_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.User_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.User_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.VatTu_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.warning_18">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:BACSOFT.My.Resources.Resources.warning_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:BACSOFT.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:BACSOFT.frmCNXuatKho.CapNhatPhanBoTamUng(System.String)">
+	<summary>
+ Tính giá trị phân bổ tạm ứng cho xuất kho
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:BACSOFT.Db.SqlHelper.testConnection">
+	<remarks>Đăng nhập server trả về connection</remarks>
+</member><member name="M:BACSOFT.frmCNNhapKho.CapNhatPhanBoTamUng(System.String)">
+	<summary>
+ Tính giá trị phân bổ tạm ứng cho xuất kho
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

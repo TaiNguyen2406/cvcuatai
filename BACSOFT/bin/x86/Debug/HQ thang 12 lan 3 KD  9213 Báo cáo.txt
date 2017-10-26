@@ -1,0 +1,6 @@
+﻿-Làm mới:
+Quản lý tài sản, công cụ, dụng cụ
+Khấu hao tài sản
+Phân bổ công cụ, dụng cụ
+-Cập nhật, sửa 
+Quản lý sử dụng xe

@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="txtTongHopCongNoPhaiTra.EditValue" xml:space="preserve">
+    <value>
+DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+
+set dateformat dmy
+
+set @TuNgay = '01/01/2016'
+set @DenNgay = '31/12/2016'
+
+SELECT ID,ttcMa
+,(TamUngDauKy -PhanBoDauKy -DaChiHoanTamUngDauKy)TamUngDauKy
+,(XuatKhoDauKy-PhanBoDauKy-DaThuXuatKhoDauKy) ConPhaiThuDauKy
+,(TamUngTrongKy -PhanBoTrongKy )TamUngTrongKyConLai
+,XuatKhoTrongKy PhaiThuTrongKy
+,(PhanBoTrongKy +DaThuXuatKhoTrongKy)DaThuTrongKy
+,DaChiHoanTamUngTrongKy HoanTamUngTrongKy 
+,(TamUngDauKy -PhanBoDauKy -DaChiHoanTamUngDauKy)+(TamUngTrongKy -PhanBoTrongKy )UngTruocCuoiKy
+,(XuatKhoDauKy+XuatKhoTrongKy-PhanBoDauKy-PhanBoTrongKy-DaThuXuatKhoDauKy-DaThuXuatKhoTrongKy) ConPhaiThuCuoiKy
+ FROM
+
+(
+
+SELECT ID, ttcMa,
+
+/***** DAU KY *****/
+
+-- tạm chi đầu kỳ --
+
+--tong nha cung cap tam ung dau ky
+(select isnull(sum(Sotien),0) from CHI where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
++ 
+(select isnull(sum(Sotien),0) from UNC where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay)
+TamUngDauKy,
+-- đã phân bổ nhập kho đầu kỳ -- 
+(select isnull(sum(PhanBoTamUng),0) from phieunhapkho where  IDkhachhang=KHACHHANG.id 
+and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103)  &lt; @TuNgay
+ --   SophieuDH in 
+	--((select PhieuTC0 from CHI where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id 
+	--	and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
+	--union all
+	--(select PhieuTC0 from UNC where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id 
+	--	and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay))
+)PhanBoDauKy,
+-- đã chi hoàn tạm ứng 
+(select isnull(sum(Sotien),0) from chi where MucDich = 109 and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
++ 
+(select isnull(sum(Sotien),0) from unc where MucDich = 109 and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay)
+as DaChiHoanTamUngDauKy,
+
+-- phải Chi Nhâp kho đầu kỳ --
+(select isnull(sum(Tientruocthue+tienthue),0) from phieunhapkho
+where IdKhachHang = KHACHHANG.id and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay)
+XuatKhoDauKy,
+-- đã CHI nhập kho
+(select isnull(sum(Sotien),0) from CHI where MucDich = 210 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
++ 
+(select isnull(sum(Sotien),0) from UNC where MucDich = 210 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay)
+as DaThuXuatKhoDauKy,
+
+
+
+/***** TRONG KY *****/
+
+-- tạm ứng trong kỳ
+(select isnull(sum(Sotien),0) from CHI where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @TuNgay 
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt;= @DenNgay)
++ 
+(select isnull(sum(Sotien),0) from UNC where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt;= @DenNgay)
+as TamUngTrongKy,
+-- đã phân bổ nhập kho trong kỳ -- 
+(select isnull(sum(PhanBoTamUng),0) from phieunhapkho where IDkhachhang=KHACHHANG.id 
+and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay
+ --   SophieuDH in 
+	--((select PhieuTC0 from CHI where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id 
+	--	and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @TuNgay
+	--	and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt;= @DenNgay)
+	--union all
+	--(select PhieuTC0 from UNC where MucDich = 210 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id 
+	--	and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt;= @TuNgay
+	--	and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @DenNgay))
+)PhanBoTrongKy,
+
+-- phải CHI nhập kho trong kỳ --
+(select isnull(sum(Tientruocthue+tienthue),0) from phieunhapkho
+where IdKhachHang = KHACHHANG.id 
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt;= @DenNgay
+)XuatKhoTrongKy,
+
+-- đã CHI nhập kho trong kỳ
+(select isnull(sum(Sotien),0) from CHI where MucDich = 210 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt;= @DenNgay)
++ 
+(select isnull(sum(Sotien),0) from UNC where MucDich = 210 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt;= @DenNgay)
+as DaThuXuatKhoTrongKy,
+
+-- đã chi hoàn tạm ứng trong kỳ
+(select isnull(sum(Sotien),0) from chi where MucDich = 109 and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt;= @DenNgay)
++ 
+(select isnull(sum(Sotien),0) from unc where MucDich = 109 and Idkh = KHACHHANG.id
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @TuNgay
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt;= @DenNgay)
+as DaChiHoanTamUngTrongKy
+
+
+
+FROM KHACHHANG 
+
+)TBL
+
+WHERE 
+
+TamUngDauKy &lt;&gt; 0 or
+XuatKhoDauKy &lt;&gt; 0 or
+PhanBoDauKy &lt;&gt; 0 or
+DaThuXuatKhoDauKy &lt;&gt; 0 or
+DaChiHoanTamUngDauKy &lt;&gt; 0 or
+TamUngTrongKy &lt;&gt; 0 or
+XuatKhoTrongKy &lt;&gt; 0 or
+DaThuXuatKhoTrongKy &lt;&gt; 0 or
+DaChiHoanTamUngTrongKy &lt;&gt; 0 or
+PhanBoTrongKy &lt;&gt; 0
+
+
+ORDER BY ttcMa</value>
+  </data>
+  <data name="txtTongHopCongNoPhaiThu.EditValue" xml:space="preserve">
+    <value>
+DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+
+set dateformat dmy
+
+set @TuNgay = '01/01/2016'
+set @DenNgay = '31/12/2016'
+
+
+DECLARE @tblKQ as table(
+	ID int,
+	ttcMa nvarchar(50),
+	TamUngDauKy float,
+	ConPhaiThuDauKy float,
+	TamUngTrongKyConLai float,
+	PhaiThuTrongKy float,
+	DaThuTrongKy float,
+	HoanTamUngTrongKy float,
+	UngTruocCuoiKy float,
+	ConPhaiThuCuoiKy float
+)
+
+insert into @tblKQ(Id,ttcMa)  SELECT Id,ttcMa FROM KHACHHANG 
+
+
+update tbl 
+
+set
+	-- KH tạm ứng trước =Tổng Kh tạm ứng trước (TC0) (đến thời điểm A) – Thu phân bổ (đến thời điểm A) – Hoàn tạm ứng (đến thời điểm A).
+	TamUngDauKy = (	select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
+				+ 
+					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
+				-
+					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay)
+				-
+					(select isnull(sum(Sotien),0) from chi where MucDich = 230 and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
+				-
+					(select isnull(sum(Sotien),0) from unc where MucDich = 230 and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay),
+
+	-- Số phải thu ( tống tất cả các giá trị xuất kho) -  Thu phân bổ – thu ngân hàng (Thu cho XK)– thu tiền mặt (Thu cho XK) 
+	ConPhaiThuDauKy = (select isnull(sum(Tientruocthue+tienthue),0) from phieuxuatkho
+					where IdKhachHang = tbl.id and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay) 
+				-	
+					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay)
+				-
+					(select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay)
+				-
+					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay),
+					
+	-- Kh tạm ứng trước (TC0) – Thu phân bổ (chi tính trong khoảng A -&gt; B)
+	TamUngTrongKyConLai = (	select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
+				+ 
+					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103)  between @TuNgay and @DenNgay)
+				-
+					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and 
+					Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay),
+	
+	-- Tổng giá trị các xuất kho (chi tính trong khoảng A -&gt; B)
+	PhaiThuTrongKy = (select isnull(sum(Tientruocthue+tienthue),0) from phieuxuatkho
+					where IdKhachHang = tbl.id and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay),
+
+	-- Thu phân bổ + Thu tiền mặt (Thu cho XK) + Thu ngân hàng (Thu cho XK) (chi tính trong khoảng A -&gt; B)
+	DaThuTrongKy = (select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and 
+					Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay)
+				+
+					(select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
+				+
+					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103)  between @TuNgay and @DenNgay),
+
+	-- phiếu chi có mục đích hoàn tạm ứng (chi tính trong khoảng A -&gt; B)
+	HoanTamUngTrongKy = (select isnull(sum(Sotien),0) from unc where MucDich = 230 and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)			
+
+from @tblKQ tbl
+
+
+-- Xoa du lieu thua
+delete from @tblKQ where TamUngDauKy + ConPhaiThuDauKy + TamUngTrongKyConLai + PhaiThuTrongKy + DaThuTrongKy + HoanTamUngTrongKy = 0
+
+-- CUOI KY -----------------
+-- KH tạm ứng trước = Tổng Kh tạm ứng trước (TC0) (đến thời điểm B) – Thu phân bổ (đến thời điểm B) – Hoàn tạm ứng (đến thời điểm B).
+update @tblKQ
+		SET UngTruocCuoiKy = TamUngTrongKyConLai + TamUngDauKy - HoanTamUngTrongKy,
+			ConPhaiThuCuoiKy = ConPhaiThuDauKy + PhaiThuTrongKy - DaThuTrongKy
+
+select * from @tblKQ</value>
+  </data>
+  <data name="txtChiTietCongNoPhaiThu.EditValue" xml:space="preserve">
+    <value>
+
+declare @TuNgay as datetime
+declare @DenNgay as datetime
+declare @IdKH as int
+
+set dateformat dmy
+
+set @TuNgay = '01/01/2016'
+set @DenNgay = '31/12/2016'
+
+set @IdKH = 20 * 1 * 1 * 1
+
+declare @tblKetQua as table(
+	SoPhieu nvarchar(30),
+	TenVatTu nvarchar(1500),
+	Ngay datetime, 
+	SoTT int, 
+	MaVatTu nvarchar(500),
+	DonViTinh nvarchar(30), 
+	SoLuong float,
+	DonGia float,
+	TienHang float, 
+	TienThue float, 
+	TongTienTamUng float, 
+	ConLaiTamUng float, 
+	PhatSinhNo float, 
+	PhatSinhCo float, 
+	LuyKe float, 
+	HanThu datetime,
+	LoaiCT nvarchar(50),
+	SapXep int
+)
+
+-- thông tin đầu kỳ -----------------
+
+insert into @tblKetQua(TenVatTu) SELECT N'Đầu kỳ: Ứng trước/ phải thu'
+
+
+-- Lấy thông tin thu tạm ứng --
+insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, TongTienTamUng, LoaiCT,SapXep)
+select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Tạm ứng TM',1
+from THU WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
+AND MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' AND IdKH = @IdKH
+
+insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, TongTienTamUng, LoaiCT,SapXep)
+select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Tạm ứng NH',2
+from THUNH WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
+AND MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' AND IdKH = @IdKH
+
+
+-- Lấy thông tin tiền xuất kho -------
+insert into @tblKetQua(SoPhieu, Ngay, TenVatTu,DonViTinh,MaVatTu,SoLuong,DonGia,TienHang,SoTT,TienThue,PhatSinhNo,LoaiCT,SapXep)
+SELECT 'XK ' + PHIEUXUATKHO.Sophieu, PHIEUXUATKHO.Ngaythang, TENVATTU.ten AS TenVatTu, TENDONVITINH.TEN AS DonViTinh, VATTU.Model,
+XUATKHO.Soluong, XUATKHO.Dongia, (XUATKHO.Soluong * XUATKHO.Dongia)ThanhTien, XUATKHO.AZ AS Stt,
+(case when XUATKHO.Xuatthue = 1 then (SoLuong * DonGia) * (MucThue / 100.0) else 0 end)TienThue, 
+(XUATKHO.Soluong * XUATKHO.Dongia) + (case when XUATKHO.Xuatthue = 1 then (SoLuong * DonGia) * (MucThue / 100.0) else 0 end),
+N'Xuất kho',4 FROM				 
+XUATKHO LEFT OUTER JOIN VATTU LEFT OUTER JOIN
+TENDONVITINH ON VATTU.IDTenvattu = TENDONVITINH.ID LEFT OUTER JOIN
+TENVATTU ON VATTU.IDTenvattu = TENVATTU.ID ON XUATKHO.IDvattu = VATTU.ID RIGHT OUTER JOIN
+PHIEUXUATKHO ON XUATKHO.Sophieu = PHIEUXUATKHO.Sophieu where PHIEUXUATKHO.IdKhachHang = @IdKH AND 
+Convert(datetime,CONVERT(nvarchar,PHIEUXUATKHO.NgayThang,103),103) between @TuNgay and @DenNgay 
+-- Lấy thông tin xuất kho công trình ---
+insert into @tblKetQua(SoPhieu, Ngay, TenVatTu,SoLuong,DonGia,TienHang,TienThue,LoaiCT,SapXep)
+select 'XK ' + PHIEUXUATKHO.SoPhieu,Ngaythang,NoiDung,SoLuong,DonGia, (XUATKHOAUX.Soluong * XUATKHOAUX.Dongia), 
+(case when XUATKHOAUX.Xuatthue = 1 then (SoLuong * DonGia) * (MucThue / 100.0) else 0 end), N'Xuất kho CT',5
+FROM PHIEUXUATKHO INNER JOIN XUATKHOAUX ON XUATKHOAUX.Sophieu = PHIEUXUATKHO.Sophieu 
+WHERE PHIEUXUATKHO.IdKhachHang = @IdKH AND 
+Convert(datetime,CONVERT(nvarchar,PHIEUXUATKHO.NgayThang,103),103) between @TuNgay and @DenNgay 
+
+-- Lấy tiền thu phân bổ ------------
+insert into @tblKetQua(SoPhieu,Ngay,PhatSinhCo,LoaiCT,SapXep)
+(select 'TPN ' + SoPhieu,NgayThang,PhanBoTamUng,N'Phân bổ',3 from phieuxuatkho where IDkhachhang =  @IdKH 
+and PhanBoTamUng &lt;&gt; 0 and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay)
+
+
+-- Hoàn tạm ứng --------------------
+insert into @tblKetQua(SoPhieu,Ngay,PhatSinhNo,LoaiCT,SapXep)
+(select 'HTM ' + SoPhieu, NgayThangCT, Sotien,N'Hoàn tạm ứng TM',8 from chi where MucDich = 230 and IdKh = @IdKH 
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
+
+insert into @tblKetQua(SoPhieu,Ngay,PhatSinhNo,LoaiCT,SapXep)
+(select 'HNH ' + SoPhieu, NgayThang, Sotien,N'Hoàn tạm ứng NH',9 from unc where MucDich = 230 and IdKh = @IdKH 
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)
+
+
+-- Thu xuất kho -------------------
+insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, PhatSinhCo, LoaiCT,SapXep)
+select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Thu xuất kho TM',6
+from THU WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
+AND MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' AND IdKH = @IdKH
+
+insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, PhatSinhCo, LoaiCT,SapXep)
+select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Thu xuất kho NH',7
+from THUNH WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
+AND MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' AND IdKH = @IdKH
+
+
+
+
+select * from @tblKetQua order by Ngay,SapXep,SoTT
+
+
+
+</value>
+  </data>
+</root>

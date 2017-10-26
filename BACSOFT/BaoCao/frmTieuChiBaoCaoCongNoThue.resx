@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkGhiSo.Properties.PictureChecked" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACE0lEQVQ4T2P4//8/RRirICkYQkwXZGCY
+        LcTAMAeIQTSIv0iYgWGpCAQvA+IVogwMK0XlGVaJngFiD4blIgQMmAnE84FsEIYYJgDUtCHtXfl/IH0G
+        iD1IMYCNYbHIPMNjzk+jHmX/j39Z8BvIP0OsAYwMC4RbFXYY3wu4kfjf+2rML54VcpcYFgr7oBvgAcRn
+        wDSIP5kfJp4pvErlhtv58H8uZ0P/CixXvAa0KBloKFIYTBMEaTqT9Kr4L4gG80EGTBP04ZgrcVlnm+1v
+        tfXm//gWyN8CylczzAAbjGTAJP4zMU9zf3lciPwf8TDzD4gPxLksU4VPK28x+aG4yeg//3z5+0CxHoYp
+        AkwMUwUYQBhhQB+fB0Mv3xn/m/E/lfYY/3e4EPADxJfapPVZeofOf/5Fck+A/HkM/fwcQAPAmhm8OZAM
+        6OVjYOjg9WBo5z1jfMr5m8Rhzf8aZyz/ix/S+M+/Su4VUHwdQxevANAABgYvDgYYQBjgzs7AkMrFwNDM
+        7cHQxH1G+oDWF+GzKv/5tsm+Z2zm2c3QyiPN4ApUgwYQBsCAAjMDQzibB0MR+xmuZWIvGMs4jgD5mgxy
+        TFAFqADZAJAKoPsY5IFYl8GYKY0hnukMgzZjKJCvCcRKQCwFxMAkycADxGxAzIhsACMQgzwHDB0GcSAG
+        KZaEsoGZgAEYbwy8QAz0J1gz0KlIBpCP/zMAAIAsiHxWMptuAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="chkGhiSo.Properties.PictureUnchecked" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/ElEQVQ4T6WRsWqEUBBF7WMjKGS39Cvs
+        Qwpbu12sFgnJxqQyjYX+oN3C/oCNIgpaKCIyO7cJhJmAmzw48Gbu4b7iGUT0L9TlPajLe/i+ZFlm5Hnu
+        Mgfm5ReQuXBFQZqm4FjX9YVn9SCDA5fHnwVJkoDXdV1pWRYVZHDgioI4jsHbPM80TZMKMjhwRUEUReA8
+        jiMNw6CCDA5cURCGIYj7vqe2bVWQwYErCoIgAB9d11FVVSrI4MAVBb7vg8+maagsSxVkcOCKAsuyDM/z
+        TkVRXPm7xOvYIYMDVxTwcUzTfLJt+91xnC8NZOw8s/uoFTwwO2a/AVMU/BV1uR0ybpQ0qvoLpiKkAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
+  <data name="btInHoaDon.Appearance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6
+        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAAsMAAALDAE/QCLIAAADKElE
+        QVQ4T42SW09TaRSGVzL+Cm+cOy+M8Y4foP4HRy9GBq0ZBsbEjHpHYMyYCU3ESrGDZ2NpEQbpAaPdpcBu
+        OXS3BQpUaA0VLCBsC+XQiYfQbl7Xqmgw4sSdPPm+/a33ebN38lHL0NpnnOG18q54Pv14LJ/qGssnBa8Q
+        zyc9n9lIuUfzacnudOlecJnuM3fULLVpq5ZnSwVM6ZuYFF5vYopJMs+zDK/TywWkeG3TchZxxBfopj9D
+        zf55avZlqCW0ZBteLCC2aGBksYgx3UAia2Bq2cD0qoGZdQML/21hbsOAo3/RZmPnH2WObigZIq9PpSZv
+        kq66knSn+4V14OUmQpki+jMFDM0VEJkvYnihiPGlIp5li6XC6ZUC7nH2SmeSrOxKBwX8PvIqffR3a5Qa
+        vZPWocwmBuY+Fg1wUXi+gOhCAaNcNK4XkVrZQop/r6lr0nrZGS25PdxBis9HfuXJnkeepz9c7xix9M8a
+        CL0E1BlmFujn/WAG/GVAbAGY0JklA7bOEUsHO+JKB6l9fTdjsZg2GtVCLU8dr+4HVLSqUTj7wnAwsjrV
+        MJ99pD0UxYMeFQ7OiiOudFAikdjA9tMVv4S20RPwTlbAnTj5Ba5tPDx7OMIZzn56pIM0LayvruWQy63C
+        q11DTcch1HYeZGTdjYOoeXSolBVHXOkgn8+nx+NxRCIRRkNoQP0uJCuOuNJBbrdb1zQNwWAQg4OD0MKR
+        70Ky4ogrHeR0OvXe3l4oigKXywV+38axY//1mWTFEZffdbLb7et+vx/d3d2oq6vDiePHUHnmdIlfz5z6
+        gk/nx386VsqKI650UG1tbdhisWw0NDRkL144/9581QpPaALuUALuIK874TOZ1V9pxMULf7wTR1zpIJPJ
+        tLesrOzA0SOH91dWnW0Npt+ihy9fgC/hbsgsmH6Dyqrf28URVzqourqa9u37kUynTlLrv66GwAtASTPT
+        34BnAb71zvZOi6ni55IrHVRV9RtV/FJOf/1ZQzxs9s9sofd/vkhmkpHsZXbElQ4ym+vp7u1bZGtqpCZb
+        8zm7pyfX8lh9bfeq+m6UZpyRrDjims319AGwCrS5Is2AVAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnDong.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6
+        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAAsMAAALDAE/QCLIAAAEOElE
+        QVQ4T1WUbUyTVxTHryulLX2ggBSqfaG0NqBSbRAzMMEEGqqJLx9mxgczMWMSs2U6FrP4ZQMq2PJWJLx2
+        FEvleYFSSkEpUt2AjDnMsrmQbMuSkcV9YR82IzIRp+HcnacJJjQ57b3nnvP7/+997lPi1+nIUE4OGTaZ
+        CJ+ZScb0ekU0L69k9tChxodlZWOPjh//6ofy8qkHRUU9szbbu/cOHlSP6/UkbDaT4J49hMvOjkccxCJI
+        MBrJqMFQMFtSMv5defmrb4qK6JzVSufz8ujC/v30weHDdLGsjC46HD/dzc8/G8rOfms7COlDIsRiOTVv
+        t/8Vzc+nIbWahlNTYTI9HaYzMuCuWg23cTyRkUGnzGa6UFr6KmqzNQ6jgW2OOLO5OHb06D+CVktZlYry
+        MhmMKhRwR6OBqV27YFqrhcm0NBiVSmkwJQUEBMaKi+m41XqVRSOcwUCIb/duJlxQcA8T1K9SwSACInY7
+        TJ08CSM4nszKgnByMoRzc+H++fNUQHcc1t3auZPeKSz8mzOZ3g7o9TIyoNef4iwW2peSQr2oOH7sGPz7
+        9Cm82NiA2LlzMEgIDBsM8MfcHFD8/NjTA36lEgYYBm7pdFTYu7fXbzSWkX6DodublUV70XK3REInKyrg
+        v5cvxSZYX12F+5cuwXIsFp+LoJ9DIehHiA/rvWlpdNBoXEKQh3RrNLMdeC5deLi4AN2JiZvR6mrYWF+P
+        N+PXFmTzt0gEfJmZ0I9b9eLhd6em0j6NZu1LnS5GWlSqJQ9uC2HQhQqis1bczsyVK1uAePy5uAideC7o
+        GvoQIgp3ooEbGO0q1ffkulK50JKcTNsQcAMVPAkJ0G+xwOOFhW2gF2trMH3xIvWgSBfWdiBINNDCMOvN
+        DPM1aWCYfpdSSZvRrjshgfoOHICVpaU3gN9nZuDZykp8/Hpzk87U1EBrYiK0Yb1owM0wv2B/J6lTKCqu
+        IaiRYWgtITRSVfUG8sjvBxc6HD59Gp4/eSLm6PL8PLjxnrnlcsDd0Aal0o9xQgSl1yclfetMSqJOuZw2
+        4qOdb2qCh729gErQiGfiFK/AmTPwazRKvTYbNEilIAo7lcpV7C3F3yTyBSGkTiJx1CsUz5y4WI+wz7ER
+        89CAqi581KgM9RLJppirR4fXxDoUrpNK3WK/GMTf3EzaHQ5Su2NHJcbzWrxLdTIZRTCg0rbAnNgcPwKs
+        9bpyc6UDLhe56XYTMhwOE04QCBsIkNYjRwobtNpZhL1Gla0G0R3dCmd6+nKT1Vrl93gINzJC+LExImAQ
+        nuflHM87uGDwY0x8EvD5OnovX37cZrdT97599LrJRF34CrXg30pXZeWav719TAiFrvKjo59h3wWWZa0c
+        x6lFUCJOCtmhoXdYjnsfC6qFSKQSoR/h/NOhQKAG12r4YLBGmJi4gA4+YHn+Q8y9h30nMHJYllX9D4Wr
+        cKsGsUA1AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="txtTongHopCongNoPhaiThu.EditValue" xml:space="preserve">
+    <value>DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+DECLARE @Nam AS INT
+
+
+--Convert(datetime,CONVERT(nvarchar,NgayHD,103),103)
+
+SET @TuNgay = Convert(datetime,'{@TuNgay}',103)
+SET @DenNgay = Convert(datetime,'{@DenNgay}',103)
+SET @Nam = {@Nam}
+
+SELECT * FROM
+(
+
+SELECT ttcMa,Ten, N'131' TaiKhoan,
+
+--No dau ky
+(
+	ISNULL((SELECT SoDuNo FROM CONGNOTHUEDAUKY WHERE IdKH = KH.ID AND Nam = @Nam),0) 
+	+ 
+	ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'131%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = KH.ID
+	),0)
+)NoDauKy,
+--Co dau ky
+(
+	ISNULL((SELECT SoDuCo FROM CONGNOTHUEDAUKY WHERE IdKH = KH.ID AND Nam = @Nam),0) 
+	+ 
+	ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'131%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = KH.ID
+	),0)
+)CoDauKy,
+
+--No trong ky
+ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'131%' AND a.IdKH = KH.ID
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &gt;= @TuNgay
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt;= @DenNgay
+	),0)NoPhatSinh,
+--Co trong ky
+ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'131%' AND a.IdKH = KH.ID
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &gt;= @TuNgay
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt;= @DenNgay
+	),0)CoPhatSinh
+
+FROM KHACHHANG KH 
+
+) TBL
+
+WHERE NoDauKy &lt;&gt; 0 OR CoDauKy &lt;&gt; 0 OR NoPhatSinh &lt;&gt; 0 OR CoPhatSinh &lt;&gt; 0
+
+ORDER BY Ten </value>
+  </data>
+  <data name="txtTongHopCongNoPhaiTra.EditValue" xml:space="preserve">
+    <value>DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+DECLARE @Nam AS INT
+
+
+--Convert(datetime,CONVERT(nvarchar,NgayHD,103),103)
+
+SET @TuNgay = Convert(datetime,'{@TuNgay}',103)
+SET @DenNgay = Convert(datetime,'{@DenNgay}',103)
+SET @Nam = {@Nam}
+
+SELECT * FROM
+(
+
+SELECT ttcMa,Ten, N'331' TaiKhoan,
+
+--No dau ky
+(
+	ISNULL((SELECT SoDuNo FROM CONGNOTHUEDAUKY WHERE IdKH = KH.ID AND Nam = @Nam),0) 
+	+ 
+	ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'331%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = KH.ID
+	),0)
+)NoDauKy,
+--Co dau ky
+(
+	ISNULL((SELECT SoDuCo FROM CONGNOTHUEDAUKY WHERE IdKH = KH.ID AND Nam = @Nam),0) 
+	+ 
+	ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'331%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = KH.ID
+	),0)
+)CoDauKy,
+
+--No trong ky
+ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'331%' AND a.IdKH = KH.ID
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &gt;= @TuNgay
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt;= @DenNgay
+	),0)NoPhatSinh,
+--Co trong ky
+ISNULL((
+		SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+		WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'331%' AND a.IdKH = KH.ID
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &gt;= @TuNgay
+		AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt;= @DenNgay
+	),0)CoPhatSinh
+
+FROM KHACHHANG KH 
+
+) TBL
+
+WHERE NoDauKy &lt;&gt; 0 OR CoDauKy &lt;&gt; 0 OR NoPhatSinh &lt;&gt; 0 OR CoPhatSinh &lt;&gt; 0
+
+ORDER BY Ten </value>
+  </data>
+  <data name="txtChiTietCongNoPhaiThu.EditValue" xml:space="preserve">
+    <value>DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+DECLARE @Nam AS INT
+DECLARE @IdKH AS INT
+
+
+--Convert(datetime,CONVERT(nvarchar,NgayHD,103),103)
+
+SET @TuNgay = Convert(datetime,'{@TuNgay}',103)
+SET @DenNgay = Convert(datetime,'{@DenNgay}',103)
+SET @Nam = {@Nam}
+SET @IdKH = {@IdKH}
+
+--Lấy số dư đầu kỳ
+SELECT ISNULL((SELECT SoDuNo - SoDuCo FROM CONGNOTHUEDAUKY WHERE IdKH = @IdKH AND Nam = @Nam),0)
++
+ISNULL((
+	SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+	WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'131%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = @IdKH
+),0)
+-
+ISNULL((
+	SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+	WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'131%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = @IdKH
+),0)
+
+
+--Chi tiet cong no phai thu
+SELECT a.NgayCT,a.SoCT,a.LoaiCT,a.LoaiCT2,a.DienGiai,a.SoHD,
+(
+	CASE WHEN b.TaiKhoanNo like N'131%' THEN b.TaiKhoanNo
+	ELSE b.TaiKhoanCo
+	END
+)TaiKhoan,
+(
+	CASE WHEN b.TaiKhoanNo like N'131%' THEN b.TaiKhoanCo
+	ELSE b.TaiKhoanNo
+	END
+)DoiUng,
+(
+	CASE WHEN b.TaiKhoanNo like N'131%' THEN SUM((b.ThanhTien * isnull(a.TyGia,1)))
+	ELSE 0
+	END
+)PhatSinhNo,
+(
+	CASE WHEN b.TaiKhoanNo like N'131%' THEN 0
+	ELSE SUM((b.ThanhTien * isnull(a.TyGia,1)))
+	END
+)PhatSinhCo
+
+FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+WHERE a.GhiSo = 1 AND (b.TaiKhoanNo like N'131%' OR b.TaiKhoanCo like N'131%') AND  a.IdKH = @IdKH
+AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103)&gt;= @TuNgay AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103)&lt;= @DenNgay
+GROUP BY a.NgayCT,a.SoCT,a.SoHD,a.LoaiCT,a.LoaiCT2,a.DienGiai,b.TaiKhoanNo,b.TaiKhoanCo,a.ID 
+ORDER BY NgayCT, a.ID</value>
+  </data>
+  <data name="txtChiTietCongNoPhaiTra.EditValue" xml:space="preserve">
+    <value>DECLARE @TuNgay as datetime
+DECLARE @DenNgay as datetime
+
+DECLARE @Nam AS INT
+DECLARE @IdKH AS INT
+
+
+--Convert(datetime,CONVERT(nvarchar,NgayHD,103),103)
+
+SET @TuNgay = Convert(datetime,'{@TuNgay}',103)
+SET @DenNgay = Convert(datetime,'{@DenNgay}',103)
+SET @Nam = {@Nam}
+SET @IdKH = {@IdKH}
+
+--Lấy số dư đầu kỳ
+SELECT ISNULL((SELECT SoDuCo - SoDuNo FROM CONGNOTHUEDAUKY WHERE IdKH = @IdKH AND Nam = @Nam),0)
++
+ISNULL((
+	SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+	WHERE a.GhiSo = 1 AND b.TaiKhoanCo like N'331%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = @IdKH
+),0)
+-
+ISNULL((
+	SELECT SUM(b.ThanhTien*isnull(a.TyGia,1)) FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+	WHERE a.GhiSo = 1 AND b.TaiKhoanNo like N'331%' AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103) &lt; @TuNgay AND a.IdKH = @IdKH
+),0)
+
+
+--Chi tiet cong no phai thu
+SELECT a.NgayCT,a.SoCT,a.LoaiCT,a.LoaiCT2,a.DienGiai,a.SoHD,
+(
+	CASE WHEN b.TaiKhoanNo like N'331%' THEN b.TaiKhoanNo
+	ELSE b.TaiKhoanCo
+	END
+)TaiKhoan,
+(
+	CASE WHEN b.TaiKhoanNo like N'331%' THEN b.TaiKhoanCo
+	ELSE b.TaiKhoanNo
+	END
+)DoiUng,
+(
+	CASE WHEN b.TaiKhoanNo like N'331%' THEN SUM((b.ThanhTien * isnull(a.TyGia,1)))
+	ELSE 0
+	END
+)PhatSinhNo,
+(
+	CASE WHEN b.TaiKhoanNo like N'331%' THEN 0
+	ELSE SUM((b.ThanhTien * isnull(a.TyGia,0)))
+	END
+)PhatSinhCo
+
+FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT 
+WHERE a.GhiSo = 1 AND (b.TaiKhoanNo like N'331%' OR b.TaiKhoanCo like N'331%') AND  a.IdKH = @IdKH
+AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103)&gt;= @TuNgay AND Convert(datetime,CONVERT(nvarchar,NgayCT,103),103)&lt;= @DenNgay
+GROUP BY a.NgayCT,a.SoCT,a.SoHD,a.LoaiCT,a.LoaiCT2,a.DienGiai,b.TaiKhoanNo,b.TaiKhoanCo,a.ID 
+ORDER BY NgayCT, a.ID</value>
+  </data>
+  <data name="chkKemBangKe.Properties.PictureChecked" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACE0lEQVQ4T2P4//8/RRirICkYQkwXZGCY
+        LcTAMAeIQTSIv0iYgWGpCAQvA+IVogwMK0XlGVaJngFiD4blIgQMmAnE84FsEIYYJgDUtCHtXfl/IH0G
+        iD1IMYCNYbHIPMNjzk+jHmX/j39Z8BvIP0OsAYwMC4RbFXYY3wu4kfjf+2rML54VcpcYFgr7oBvgAcRn
+        wDSIP5kfJp4pvErlhtv58H8uZ0P/CixXvAa0KBloKFIYTBMEaTqT9Kr4L4gG80EGTBP04ZgrcVlnm+1v
+        tfXm//gWyN8CylczzAAbjGTAJP4zMU9zf3lciPwf8TDzD4gPxLksU4VPK28x+aG4yeg//3z5+0CxHoYp
+        AkwMUwUYQBhhQB+fB0Mv3xn/m/E/lfYY/3e4EPADxJfapPVZeofOf/5Fck+A/HkM/fwcQAPAmhm8OZAM
+        6OVjYOjg9WBo5z1jfMr5m8Rhzf8aZyz/ix/S+M+/Su4VUHwdQxevANAABgYvDgYYQBjgzs7AkMrFwNDM
+        7cHQxH1G+oDWF+GzKv/5tsm+Z2zm2c3QyiPN4ApUgwYQBsCAAjMDQzibB0MR+xmuZWIvGMs4jgD5mgxy
+        TFAFqADZAJAKoPsY5IFYl8GYKY0hnukMgzZjKJCvCcRKQCwFxMAkycADxGxAzIhsACMQgzwHDB0GcSAG
+        KZaEsoGZgAEYbwy8QAz0J1gz0KlIBpCP/zMAAIAsiHxWMptuAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="chkKemBangKe.Properties.PictureUnchecked" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/ElEQVQ4T6WRsWqEUBBF7WMjKGS39Cvs
+        Qwpbu12sFgnJxqQyjYX+oN3C/oCNIgpaKCIyO7cJhJmAmzw48Gbu4b7iGUT0L9TlPajLe/i+ZFlm5Hnu
+        Mgfm5ReQuXBFQZqm4FjX9YVn9SCDA5fHnwVJkoDXdV1pWRYVZHDgioI4jsHbPM80TZMKMjhwRUEUReA8
+        jiMNw6CCDA5cURCGIYj7vqe2bVWQwYErCoIgAB9d11FVVSrI4MAVBb7vg8+maagsSxVkcOCKAsuyDM/z
+        TkVRXPm7xOvYIYMDVxTwcUzTfLJt+91xnC8NZOw8s/uoFTwwO2a/AVMU/BV1uR0ybpQ0qvoLpiKkAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
+</root>

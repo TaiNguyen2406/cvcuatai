@@ -1,0 +1,3 @@
+Public Class rptKetQuaHoatDongKinhDoanh
+
+End Class
