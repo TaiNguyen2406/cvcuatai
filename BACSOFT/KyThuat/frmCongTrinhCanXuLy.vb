@@ -40,6 +40,7 @@ Public Class frmCongTrinhCanXuLy
         sql &= "	NHANSU_1.Ten AS TenNgd,BANGCHAOGIA.IDTakeCare,tblTienTe.Ten AS TienTe,(CASE NhanKS WHEN 0 THEN 'KD' WHEN 1 THEN 'KT' ELSE '' END)NhanKS,"
         sql &= "	Congtrinh,(Case XuLy WHEN 0 THEN N'Cần xử lý' WHEN 1 THEN N'Đã xử lý' END) AS Trangthai,Khautru,BANGCHAOGIA.FileDinhKem,"
         sql &= "    tblTuDien.NoiDung AS TrangThaiCG,BANGCHAOGIA.TrangThai as TTCG, BANGCHAOGIA.TienDo,NGUOINHAN.Ten AS NguoiNhanXL,ThoiGianNhanXL,PHUTRACHCT.Ten as PhuTrachCT"
+        sql &= "    ,case when isnull( (select count(ID) from PHIEUXUATKHO where SoPhieuCG=BANGCHAOGIA.Sophieu),0)=0 then 0 else 1 end  isXuatKho"
         sql &= " FROM BANGCHAOGIA LEFT OUTER JOIN KHACHHANG ON BANGCHAOGIA.IDKhachhang=KHACHHANG.ID"
         sql &= "        LEFT OUTER JOIN NHANSU AS NHANSU_1 ON BANGCHAOGIA.IDNgd=NHANSU_1.ID"
         sql &= "        LEFT OUTER JOIN NHANSU AS NGUOINHAN ON BANGCHAOGIA.IDNgNhanXL=NGUOINHAN.ID"
@@ -54,7 +55,7 @@ Public Class frmCongTrinhCanXuLy
             sql &= " AND Convert(datetime,convert(nvarchar,BANGCHAOGIA.Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay "
         End If
 
-        sql &= " AND Congtrinh=1 "
+        sql &= " AND (Congtrinh=1 or Congtrinh=2) "
 
         If Not btNhanVien.EditValue Is Nothing Then
             sql &= " AND BANGCHAOGIA.IDTakeCare= " & btNhanVien.EditValue
@@ -134,7 +135,7 @@ Public Class frmCongTrinhCanXuLy
         sql &= " LEFT OUTER JOIN TENDONVITINH ON CHAOGIAAUX.Donvi=TENDONVITINH.ID "
         sql &= " WHERE Sophieu=N'" & SoPhieu & "'"
         sql &= " ORDER BY AZ "
-        sql &= " SELECT * FROm @tb"
+        sql &= " SELECT * FROm @tb" ' order by IDVatTu asc"
 
         sql &= " SELECT ('')NVThucHien,('')NVKiemDuyetLan1,('')NVKiemDuyetLan2,tblBaoCaoLichThiCong.*,tblTuDien.NoiDung FROM tblBaoCaoLichThiCong "
         sql &= " LEFT OUTER JOIN tblTuDien ON tblTuDien.ID=tblBaoCaoLichThiCong.IDNoiDung AND tblTuDien.Loai= " & LoaiTuDien.NoiDungThiCong
@@ -228,10 +229,11 @@ Public Class frmCongTrinhCanXuLy
 
 #End Region
 
+
     Private Sub btSua_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles btSua.ItemClick, mSua.ItemClick
 
-        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
 
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
 
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then Exit Sub
         If gdvCT.GetFocusedRowCellValue("Trangthai").ToString = "Đã xử lý" Then
@@ -278,6 +280,7 @@ Public Class frmCongTrinhCanXuLy
         fCNCongTrinh.Tag = Me.Parent.Tag
         fCNCongTrinh.ShowDialog()
         gdvCT.FocusedRowHandle = index
+
     End Sub
 
     Private Sub btXem_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles btXem.ItemClick
@@ -290,6 +293,7 @@ Public Class frmCongTrinhCanXuLy
     Private Sub gdvCT_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles gdvCT.FocusedRowChanged
         If gdvCT.FocusedRowHandle < 0 Then Exit Sub
         loadDSYCChiTiet(gdvCT.GetFocusedRowCellValue("Sophieu"), gdvCT.GetFocusedRowCellValue("Masodathang"))
+        mnuDanhMucYC.Caption = "Lịch sử Y/C VT CG " & gdvCT.GetFocusedRowCellValue("Sophieu")
     End Sub
 
 #Region "Xuất Excel"
@@ -547,6 +551,97 @@ Public Class frmCongTrinhCanXuLy
             printFile.CongTrinh.BangKeVatTu(gdvCT.GetFocusedRowCellValue("Sophieu"))
         ElseIf chkInBangKe.Checked = False And chkInKeHoachThiCong.Checked Then
             printFile.CongTrinh.KeHoachThiCong(gdvCT.GetFocusedRowCellValue("Sophieu"), gdvCT.GetFocusedRowCellValue("Masodathang"))
+        ElseIf chkInKiemHangNhapLaiKho.Checked Then
+
+            If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+
+            Try
+
+
+                Dim f As New frmIn("In phiếu kiểm hàng nhập lại kho")
+                Dim rpt As New rptPhieuKiemHangNhapLaiKho
+                rpt.pLogo.Image = My.Resources.Logo3
+
+
+                Dim sql As String = "SELECT Sophieu as SoCG,(select ttcMa from khachhang where id = bangchaogia.IDKhachhang)MaKH,getdate()NgayXuat from bangchaogia where Sophieu = @SoCG; "
+
+
+                sql &= "select IdVatTu,SUM(SoLuong)SoLuong,TenVT,TenHang,Model,TenDVT "
+
+                sql &= "from "
+                sql &= "( "
+                sql &= "	select IdVatTu,SUM(SlXuatKho) as SoLuong,TENVATTU.Ten as TenVT, "
+                sql &= "	TENHANGSANXUAT.Ten as TenHang, VATTU.Model, TENDONVITINH.Ten AS TenDVT "
+                sql &= "	from xuatkhotam "
+                sql &= "	LEFT OUTER JOIN VATTU ON XUATKHOTAM.IdVatTu=VATTU.ID "
+                sql &= "	LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID "
+                sql &= "	LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID "
+                sql &= "	LEFT OUTER JOIN TENDONVITINH ON VATTU.IDDonvitinh=TENDONVITINH.ID "
+                sql &= "	where SlXuatKho > 0 and SoCG =  @SoCG "
+                sql &= "    group by IdVatTu,TENVATTU.Ten, TENHANGSANXUAT.TEN, VATTU.Model, VATTU.Thongso, TENDONVITINH.TEN "
+
+                sql &= "	union all "
+                sql &= "	select IdVatTu,-1 * SUM(SlNhapKho) as SoLuong,TENVATTU.Ten as TenVT, "
+                sql &= "	TENHANGSANXUAT.Ten as TenHang, VATTU.Model, TENDONVITINH.Ten AS TenDVT "
+                sql &= "	from nhapkhotam "
+                sql &= "	LEFT OUTER JOIN VATTU ON NHAPKHOTAM.IdVatTu=VATTU.ID "
+                sql &= "	LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID "
+                sql &= "	LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID "
+                sql &= "	LEFT OUTER JOIN TENDONVITINH ON VATTU.IDDonvitinh=TENDONVITINH.ID "
+                sql &= "	where SlNhapKho > 0  and SoCG =  @SoCG "
+                sql &= "	group by IdVatTu,TENVATTU.Ten, TENHANGSANXUAT.TEN, VATTU.Model, VATTU.Thongso, TENDONVITINH.TEN "
+                sql &= ") tblX  group by "
+                sql &= "IdVatTu,TenVT,TenHang,Model,TenDVT "
+
+
+
+                AddParameter("@SoCG", gdvCT.GetFocusedRowCellValue("Sophieu"))
+                Dim ds As DataSet = ExecuteSQLDataSet(sql)
+
+                If ds Is Nothing Then Throw New Exception(LoiNgoaiLe)
+
+
+                ds.Tables(1).Columns.Add(New DataColumn("STT", Type.GetType("System.Int32")))
+                ds.Tables(1).Columns.Add(New DataColumn("SoTT_SX", Type.GetType("System.Int32")))
+                For i As Integer = 0 To ds.Tables(1).Rows.Count - 1
+                    Dim _tb As DataTable = CType(gdvCG.DataSource, DataTable)
+                    Dim row As DataRow() = _tb.Select("IdVatTu=" & ds.Tables(1).Rows(i)("IdVatTu"))
+                    If row.Length > 0 Then
+                        Dim sott As Object = row(0)("AZ")
+                        ds.Tables(1).Rows(i)("SoTT_SX") = sott 'i + 1
+                    Else
+                        ds.Tables(1).Rows(i)("SoTT_SX") = ds.Tables(1).Rows.Count - 1
+                    End If
+                    ds.Tables(1).Rows(i)("STT") = i + 1
+                Next
+              
+                'If ds.Tables(0).Rows(0)("GhiChu").ToString.Trim <> "" Then
+                '    ds.Tables(0).Rows(0)("GhiChu") = "(* Ghi chú: " & ds.Tables(0).Rows(0)("GhiChu") & ")"
+                'End If
+                ds.Tables(1).DefaultView.Sort = "SoTT_SX asc"
+                Dim tbin As New DataTable
+
+                tbin = ds.Tables(1).DefaultView.ToTable()
+                ds.Tables.Remove(ds.Tables(1).TableName)
+                ds.Tables.Add(tbin)
+                For i As Integer = 0 To ds.Tables(1).Rows.Count - 1
+                    ds.Tables(1).Rows(i)("STT") = i + 1
+
+                Next
+                rpt.DataSource = ds
+
+
+                rpt.RequestParameters = False
+                rpt.CreateDocument()
+
+                f.printControl.PrintingSystem = rpt.PrintingSystem
+
+                f.Show()
+            Catch ex As Exception
+
+                ShowBaoLoi(ex.Message)
+            End Try
+
         Else
             printFile.CongTrinh.BangKeVatTuVaKeHoachThiCong(gdvCT.GetFocusedRowCellValue("Sophieu"), gdvCT.GetFocusedRowCellValue("Masodathang"))
         End If
@@ -563,12 +658,12 @@ Public Class frmCongTrinhCanXuLy
 
     Private Sub btLapYCVatTu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btLapYCVatTu.ItemClick
 
-        'If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        'Dim f As New frmUpdateYcXuatTam
-        'TrangThai.isAddNew = True
-        'f.Text = "Lấy vật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.ShowDialog()
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+        Dim f As New frmUpdateYcXuatTam
+        TrangThai.isAddNew = True
+        f.Text = "Lấy vật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.ShowDialog()
 
         'If gdvCT.FocusedRowHandle < 0 Then Exit Sub
         ''If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then Exit Sub
@@ -634,6 +729,10 @@ Public Class frmCongTrinhCanXuLy
                     e.Appearance.BackColor = Color.Red
                 End If
             End If
+        Else
+            If gdvCT.GetRowCellValue(e.RowHandle, "isXuatKho") = 1 Then
+                e.Appearance.BackColor = Color.FromArgb(255, 192, 192)
+            End If
         End If
     End Sub
 
@@ -686,11 +785,11 @@ Public Class frmCongTrinhCanXuLy
 
     Private Sub mnuLayVatTuThiCong_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuLayVatTuThiCong.ItemClick
         If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        'Dim f As New frmUpdateYcXuatTam
-        'TrangThai.isAddNew = True
-        'f.Text = "Lấy vật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.ShowDialog()
+        Dim f As New frmUpdateYcXuatTam
+        TrangThai.isAddNew = True
+        f.Text = "Lấy vật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.ShowDialog()
     End Sub
 
 
@@ -700,14 +799,91 @@ Public Class frmCongTrinhCanXuLy
 
 
     Private Sub btnTraLaiVatTu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnTraLaiVatTu.ItemClick
-        'If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        'Dim f As New frmUpdateYcNhapTam
-        'TrangThai.isAddNew = True
-        'f.Text = "Trảvật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
-        'f.ShowDialog()
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+        Dim f As New frmUpdateYcNhapTam
+        TrangThai.isAddNew = True
+        f.Text = "Trảvật tư thi công cho chào giá " & gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
+        f.ShowDialog()
     End Sub
 
 
+    Private Sub mnuDanhMucYC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuDanhMucYC.ItemClick
 
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+
+        Dim _strTieuDe As String = "Lịch sử Y/C VT CG " & gdvCT.GetFocusedRowCellValue("Sophieu")
+
+        For i As Integer = 0 To deskTop.tabMain.TabPages.Count - 1
+            If deskTop.tabMain.TabPages(i).Text = _strTieuDe Then
+                deskTop.tabMain.SelectedTabPageIndex = i
+                Exit Sub
+            End If
+        Next
+
+        Dim t As New DevExpress.XtraTab.XtraTabPage
+        t.Text = _strTieuDe
+        t.Tag = Me.Parent.Tag
+        Dim frm As New frmDanhMucYeuCauVatTuCongTrinh
+        frm.SoCG = gdvCT.GetFocusedRowCellValue("Sophieu")
+        With CType(frm, DevExpress.XtraEditors.XtraUserControl)
+            .Hide()
+            .Tag = Tag
+            .Dock = DockStyle.Fill
+            t.Controls.Add(frm)
+            .Show()
+        End With
+        deskTop.tabMain.TabPages.Add(t)
+        deskTop.tabMain.SelectedTabPageIndex = deskTop.tabMain.TabPages.Count - 1
+
+    End Sub
+
+    Private Sub chkInBangKe_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkInKiemHangNhapLaiKho.CheckedChanged, chkInKeHoachThiCong.CheckedChanged, chkInBangKe.CheckedChanged
+        If chkInBangKe.Checked Then
+            chkInKeHoachThiCong.Checked = False
+            chkInKiemHangNhapLaiKho.Checked = False
+        ElseIf chkInKeHoachThiCong.Checked Then
+            chkInBangKe.Checked = False
+            chkInKiemHangNhapLaiKho.Checked = False
+        ElseIf chkInKiemHangNhapLaiKho.Checked Then
+            chkInBangKe.Checked = False
+            chkInKeHoachThiCong.Checked = False
+        End If
+    End Sub
+
+    Private Sub mnuTraLaiVatTuThiCong_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuTraLaiVatTuThiCong.ItemClick
+        btnTraLaiVatTu.PerformClick()
+    End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
+        End If
+        Dim frmTTDA As New frmPhieuThongTinDuAn
+        frmTTDA._tag = Me.Parent.Tag
+        frmTTDA._soycden = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmTTDA._email = gdvCT.GetFocusedRowCellValue("EmailNgd")
+        frmTTDA._sdt = gdvCT.GetFocusedRowCellValue("DienThoaiNgd")
+        frmTTDA.Show()
+    End Sub
+
+    Private Sub btnKhaoSatChaoGia_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKhaoSatChaoGia.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
+        End If
+        Dim frmKS As New frmPhieuKhaoSatChaoGia
+        frmKS._tag = Me.Parent.Tag
+        frmKS._soyc = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmKS.Show()
+    End Sub
+
+    Private Sub btnKhaoSatThiCong_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKhaoSatThiCong.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
+        End If
+        Dim frmKS As New frmPhieuKhaoSatThiCong
+        frmKS._tag = Me.Parent.Tag
+        frmKS._soyc = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmKS.Show()
+    End Sub
 End Class

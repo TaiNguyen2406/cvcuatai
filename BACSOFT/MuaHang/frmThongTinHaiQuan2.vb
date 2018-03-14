@@ -5,8 +5,9 @@ Public Class frmThongTinHaiQuan2
 
     Private Sub frmThongTinHaiQuan_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         LoadDataCb()
-        loadThongTinChinh(PhieuDatHang)
+
         LoadChiPhi()
+        loadThongTinChinh(PhieuDatHang)
     End Sub
 
     Public Sub LoadDataCb()
@@ -27,12 +28,13 @@ Public Class frmThongTinHaiQuan2
             ShowBaoLoi(LoiNgoaiLe)
         End If
     End Sub
-
+    Private _chiphi As Double
     Public Sub LoadChiPhi()
         AddParameterWhere("@SP", PhieuDatHang)
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT Row_number() over(order by ID) as STT, *,convert(bit,0)Modify FROM CHIPHI WHERE Loai=0 AND PhieuCGDH=@SP")
+        Dim tb As DataTable = ExecuteSQLDataTable("SELECT Row_number() over(order by ID) as STT, *,convert(bit,0)Modify,(SoTien*TyGia) _ThanhTien FROM CHIPHI WHERE Loai=0 AND PhieuCGDH=@SP")
         If Not tb Is Nothing Then
             gdv.DataSource = tb
+            '   _chiphi = tb.Compute("Sum(_ThanhTien)", "TienTE <>0")
         Else
             ShowBaoLoi(LoiNgoaiLe)
         End If
@@ -66,7 +68,7 @@ Public Class frmThongTinHaiQuan2
         sql &= "    BEGIN"
         sql &= "        SET @TienVCQT = 0"
         sql &= "    END"
-        sql &= " SELECT ISNULL( SUM(ThueNK),0) FROM"
+        sql &= " SELECT ISNULL( SUM(ThueNK),0),ISNULL( SUM(ThueNK2),0) FROM"
         sql &= " ("
         sql &= " SElECT ID,IDVatTu,FOB,(FOB*SoLuong)ThanhTienFOB,TNK,"
         sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC"
@@ -75,7 +77,9 @@ Public Class frmThongTinHaiQuan2
         sql &= " (((FOB*SoLuong) + "
         sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC"
         sql &= " 						/(CASE DATHANGQT.TyGiaNhapKho WHEN 0 THEN 1 "
-        sql &= " 						ELSE DATHANGQT.TyGiaNhapKho END) )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK"
+        sql &= " 						ELSE DATHANGQT.TyGiaNhapKho END) )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK,"
+        sql &= " (((FOB*SoLuong) + "
+        sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK2"
         sql &= " FROM DATHANG "
         sql &= " INNER JOIN DATHANGQT ON DATHANG.SoPhieu=DATHANGQT.SoPhieuDatHang"
         sql &= " WHERE SoPhieu=@SP)tb"
@@ -112,8 +116,10 @@ Public Class frmThongTinHaiQuan2
 
             Try
                 tbThueNK.EditValue = Math.Round(ds.Tables(3).Rows(0)(0), 0)
+                tbThueNKMoi.EditValue = Math.Round(ds.Tables(3).Rows(0)(1), 0)
             Catch ex As Exception
                 tbThueNK.EditValue = 0
+                tbThueNKMoi.EditValue = 0
             End Try
 
         Else
@@ -138,7 +144,7 @@ Public Class frmThongTinHaiQuan2
         sql &= "    BEGIN"
         sql &= "        SET @TienVCQT = 0"
         sql &= "    END"
-        sql &= " SELECT ISNULL( SUM(ThueNK),0) FROM"
+        sql &= " SELECT ISNULL( SUM(ThueNK),0), ISNULL( SUM(ThueNK2),0) FROM"
         sql &= " ("
         sql &= " SElECT ID,IDVatTu,FOB,(FOB*SoLuong)ThanhTienFOB,TNK,"
         sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC"
@@ -147,7 +153,9 @@ Public Class frmThongTinHaiQuan2
         sql &= " (((FOB*SoLuong) + "
         sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC"
         sql &= " 						/(CASE DATHANGQT.TyGiaNhapKho WHEN 0 THEN 1 "
-        sql &= " 						ELSE DATHANGQT.TyGiaNhapKho END) )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK"
+        sql &= " 						ELSE DATHANGQT.TyGiaNhapKho END) )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK,"
+        sql &= " (((FOB*SoLuong) + "
+        sql &= " 	(@TienVCQT*(DATHANGQT.TyGiaHQVC )/@TongFOB)*(FOB*SoLuong)) * TNK/100)*TyGiaHQHH AS ThueNK2"
         sql &= " FROM DATHANG "
         sql &= " INNER JOIN DATHANGQT ON DATHANG.SoPhieu=DATHANGQT.SoPhieuDatHang"
         sql &= " WHERE SoPhieu=@SP)tb"
@@ -156,6 +164,7 @@ Public Class frmThongTinHaiQuan2
         Dim tb As DataTable = ExecuteSQLDataTable(sql)
         If Not tb Is Nothing Then
             tbThueNK.EditValue = Math.Round(tb.Rows(0)(0), 0)
+            tbThueNKMoi.EditValue = Math.Round(tb.Rows(0)(1), 0)
         Else
             ShowBaoLoi(LoiNgoaiLe)
         End If
@@ -249,7 +258,7 @@ Public Class frmThongTinHaiQuan2
         Next
         gdvCT.CloseEditor()
         gdvCT.UpdateCurrentRow()
-
+        LoadChiPhi()
         TinhTNK()
         ShowAlert("Đã cập nhật !")
 
@@ -353,9 +362,7 @@ Public Class frmThongTinHaiQuan2
                 AddParameter("@TenKH", dtKH.Rows(0)("Ten"))
                 AddParameter("@DiaChi", dtKH.Rows(0)("ttcDiachiTs"))
                 AddParameter("@MaSoThue", dtKH.Rows(0)("ttcMasothue"))
-            End If
-
-            AddParameter("@NguoiLienHe", "")
+            End If            AddParameter("@NguoiLienHe", "")
             AddParameter("@HtThanhToan", HoaDonGTGT.HinhThucThanhToan.TrangThai.TMCK)
             AddParameter("@TienTe", 0)
             AddParameter("@TyGia", 1)

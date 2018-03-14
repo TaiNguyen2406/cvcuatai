@@ -234,7 +234,7 @@ Public Class frmSoTienMat
             link.Component = gdvSoTienMat
             link.Landscape = True
             link.PaperKind = Printing.PaperKind.A4
-            link.Margins.Bottom = 0
+            link.Margins.Bottom = 45
             link.Margins.Top = 0
             link.Margins.Left = 0
             link.Margins.Right = 0

@@ -14,6 +14,7 @@ Public Class frmHangCanNhapKho
         tbDenNgay.EditValue = Today.Date
         tbDenNgay.Enabled = False
         cbTieuChi.EditValue = "Tất cả"
+        riLueHTCT.DataSource = TAI.tableHinhThucCT()
         Application.DoEvents()
         LoadrCbNhanVien()
         Application.DoEvents()
@@ -31,6 +32,7 @@ Public Class frmHangCanNhapKho
         sql &= " SELECT convert(bit,0)isChecked, PHIEUDATHANG.NgayDat, DATHANG.SoPhieu,NCC.ttcMa as TenNCC,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,VATTU.Model,VATTU.ThongSo,"
         sql &= " TENDONVITINH.Ten AS DVT,SoLuong,(Soluong-CanNhap)AS SLDaNhap,CanNhap AS SLCanNhap,ISNULL(DATHANG.Dongia,0)DonGia,(DATHANG.Dongia * DATHANG.Soluong) AS ThanhTien,DATHANG.NhapThue,DATHANG.MucThue,"
         sql &= " 0 AS AZ,NGUOIDAT.Ten as NguoiDat,PHIEUDATHANG.IDKhachHang,DATHANG.IDVatTu,DATHANG.ID"
+        sql &= " ,IDHinhThucCT"
         sql &= " FROM DATHANG LEFT OUTER JOIN VATTU ON DATHANG.IDvattu=VATTU.ID"
         sql &= " INNER JOIN PHIEUDATHANG ON PHIEUDATHANG.SoPhieu=DATHANG.SoPhieu"
         If btNhanVien.EditValue IsNot Nothing Then
@@ -207,6 +209,25 @@ Public Class frmHangCanNhapKho
         gdvDHCT.EndUpdate()
         fCNNhapKho.strID = str
         fCNNhapKho.ShowDialog()
+    End Sub
+
+    Private Sub gdvDHCT_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gdvDHCT.RowStyle
+      
+      
+
+    End Sub
+
+    Private Sub gdvDHCT_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles gdvDHCT.RowCellStyle
+        If e.Column.FieldName = "IDHinhThucCT" Then
+            If Not IsDBNull(gdvDHCT.GetRowCellValue(e.RowHandle, "IDHinhThucCT")) Then
+                If gdvDHCT.GetRowCellValue(e.RowHandle, "IDHinhThucCT") = 2 Then
+                    e.Appearance.BackColor = Color.FromArgb(255, 192, 192)
+                ElseIf gdvDHCT.GetRowCellValue(e.RowHandle, "IDHinhThucCT") = 3 Then
+                    e.Appearance.BackColor = Color.FromArgb(255, 255, 128)
+                End If
+            End If
+        End If
+      
     End Sub
 
 End Class

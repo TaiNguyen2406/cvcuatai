@@ -29,7 +29,7 @@ Public Class frmThemBaoduongxe
         End If
         dtpNgaySuaChua.EditValue = Today
         lueXebd.Properties.DataSource = ExecuteSQLDataTable(query)
-        lueXebd.Properties.PopulateColumns()
+        ' lueXebd.Properties.PopulateColumns()
         lueXebd.Properties.Columns(lueXebd.Properties.ValueMember).Visible = False
         lueXebd.ItemIndex = 0
         query = "select id,ten from nhansu where trangthai=1 and noictac=74"

@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="meSql.EditValue" xml:space="preserve">
+    <value>select Email from NHANSU where Matruycap in (select MaTruyCap from (
+select Matruycap,
+dbo.StringSplit(
+(select left( right(Quyen,len(Quyen)-nullif(charindex('mYeuCauDi_DatHang',Quyen),0)) , charindex(',',right(Quyen,len(Quyen)-nullif(charindex('mYeuCauDi_DatHang',Quyen),0)-1))) from QUYENTRUYCAP where Matruycap =a.Matruycap ),';',8 ) QuyenAdmin from QUYENTRUYCAP a
+) tb
+ where QuyenAdmin =1) and Email&lt;&gt;''</value>
+  </data>
 </root>

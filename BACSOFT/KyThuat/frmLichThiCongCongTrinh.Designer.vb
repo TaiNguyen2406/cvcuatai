@@ -20,13 +20,13 @@ Partial Class frmLichThiCongCongTrinh
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TimeRuler1 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeScaleYear1 As DevExpress.XtraScheduler.TimeScaleYear = New DevExpress.XtraScheduler.TimeScaleYear()
-        Dim TimeScaleQuarter1 As DevExpress.XtraScheduler.TimeScaleQuarter = New DevExpress.XtraScheduler.TimeScaleQuarter()
-        Dim TimeScaleMonth1 As DevExpress.XtraScheduler.TimeScaleMonth = New DevExpress.XtraScheduler.TimeScaleMonth()
-        Dim TimeScaleDay1 As DevExpress.XtraScheduler.TimeScaleDay = New DevExpress.XtraScheduler.TimeScaleDay()
-        Dim TimeScaleFixedInterval1 As DevExpress.XtraScheduler.TimeScaleFixedInterval = New DevExpress.XtraScheduler.TimeScaleFixedInterval()
-        Dim TimeRuler2 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeScaleYear2 As DevExpress.XtraScheduler.TimeScaleYear = New DevExpress.XtraScheduler.TimeScaleYear()
+        Dim TimeScaleQuarter2 As DevExpress.XtraScheduler.TimeScaleQuarter = New DevExpress.XtraScheduler.TimeScaleQuarter()
+        Dim TimeScaleMonth2 As DevExpress.XtraScheduler.TimeScaleMonth = New DevExpress.XtraScheduler.TimeScaleMonth()
+        Dim TimeScaleDay2 As DevExpress.XtraScheduler.TimeScaleDay = New DevExpress.XtraScheduler.TimeScaleDay()
+        Dim TimeScaleFixedInterval2 As DevExpress.XtraScheduler.TimeScaleFixedInterval = New DevExpress.XtraScheduler.TimeScaleFixedInterval()
+        Dim TimeRuler4 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Me.BarManager2 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.cbPhongBan = New DevExpress.XtraBars.BarEditItem()
@@ -403,13 +403,13 @@ Partial Class frmLichThiCongCongTrinh
         Me.SchLichThiCong.Views.DayView.AppointmentDisplayOptions.StartTimeVisibility = DevExpress.XtraScheduler.AppointmentTimeVisibility.Never
         Me.SchLichThiCong.Views.DayView.DayCount = 3
         Me.SchLichThiCong.Views.DayView.ResourcesPerPage = 5
-        TimeRuler1.TimeZone.DaylightBias = System.TimeSpan.Parse("-01:00:00")
-        TimeRuler1.TimeZone.DaylightZoneName = "SE Asia Daylight Time"
-        TimeRuler1.TimeZone.DisplayName = "(UTC+07:00) Bangkok, Hanoi, Jakarta"
-        TimeRuler1.TimeZone.StandardZoneName = "SE Asia Standard Time"
-        TimeRuler1.TimeZone.UtcOffset = System.TimeSpan.Parse("07:00:00")
-        TimeRuler1.UseClientTimeZone = False
-        Me.SchLichThiCong.Views.DayView.TimeRulers.Add(TimeRuler1)
+        TimeRuler3.TimeZone.DaylightBias = System.TimeSpan.Parse("-01:00:00")
+        TimeRuler3.TimeZone.DaylightZoneName = "SE Asia Daylight Time"
+        TimeRuler3.TimeZone.DisplayName = "(UTC+07:00) Bangkok, Hanoi, Jakarta"
+        TimeRuler3.TimeZone.StandardZoneName = "SE Asia Standard Time"
+        TimeRuler3.TimeZone.UtcOffset = System.TimeSpan.Parse("07:00:00")
+        TimeRuler3.UseClientTimeZone = False
+        Me.SchLichThiCong.Views.DayView.TimeRulers.Add(TimeRuler3)
         Me.SchLichThiCong.Views.DayView.VisibleTime.Start = System.TimeSpan.Parse("06:00:00")
         Me.SchLichThiCong.Views.DayView.WorkTime.End = System.TimeSpan.Parse("17:30:00")
         Me.SchLichThiCong.Views.DayView.WorkTime.Start = System.TimeSpan.Parse("07:30:00")
@@ -418,32 +418,32 @@ Partial Class frmLichThiCongCongTrinh
         Me.SchLichThiCong.Views.MonthView.ShowMoreButtons = False
         Me.SchLichThiCong.Views.TimelineView.AppointmentDisplayOptions.AppointmentAutoHeight = True
         Me.SchLichThiCong.Views.TimelineView.ResourcesPerPage = 10
-        TimeScaleYear1.Enabled = False
-        TimeScaleQuarter1.Enabled = False
-        TimeScaleMonth1.DisplayFormat = "MMMM - yyyy"
-        TimeScaleMonth1.Enabled = False
-        TimeScaleDay1.DisplayFormat = "dddd, dd/MM/yyyy"
-        TimeScaleFixedInterval1.DisplayFormat = "HH:mm"
-        TimeScaleFixedInterval1.Value = System.TimeSpan.Parse("00:30:00")
-        TimeScaleFixedInterval1.Width = 40
-        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleYear1)
-        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleQuarter1)
-        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleMonth1)
-        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleDay1)
-        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleFixedInterval1)
+        TimeScaleYear2.Enabled = False
+        TimeScaleQuarter2.Enabled = False
+        TimeScaleMonth2.DisplayFormat = "MMMM - yyyy"
+        TimeScaleMonth2.Enabled = False
+        TimeScaleDay2.DisplayFormat = "dddd, dd/MM/yyyy"
+        TimeScaleFixedInterval2.DisplayFormat = "HH:mm"
+        TimeScaleFixedInterval2.Value = System.TimeSpan.Parse("00:30:00")
+        TimeScaleFixedInterval2.Width = 40
+        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleYear2)
+        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleQuarter2)
+        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleMonth2)
+        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleDay2)
+        Me.SchLichThiCong.Views.TimelineView.Scales.Add(TimeScaleFixedInterval2)
         Me.SchLichThiCong.Views.TimelineView.TimelineScrollBarVisible = True
         Me.SchLichThiCong.Views.TimelineView.WorkTime.End = System.TimeSpan.Parse("17:00:00")
         Me.SchLichThiCong.Views.TimelineView.WorkTime.Start = System.TimeSpan.Parse("08:00:00")
         Me.SchLichThiCong.Views.WeekView.ResourcesPerPage = 5
         Me.SchLichThiCong.Views.WorkWeekView.ResourcesPerPage = 5
         Me.SchLichThiCong.Views.WorkWeekView.ShowFullWeek = True
-        TimeRuler2.TimeZone.DaylightBias = System.TimeSpan.Parse("-01:00:00")
-        TimeRuler2.TimeZone.DaylightZoneName = "SE Asia Daylight Time"
-        TimeRuler2.TimeZone.DisplayName = "(UTC+07:00) Bangkok, Hanoi, Jakarta"
-        TimeRuler2.TimeZone.StandardZoneName = "SE Asia Standard Time"
-        TimeRuler2.TimeZone.UtcOffset = System.TimeSpan.Parse("07:00:00")
-        TimeRuler2.UseClientTimeZone = False
-        Me.SchLichThiCong.Views.WorkWeekView.TimeRulers.Add(TimeRuler2)
+        TimeRuler4.TimeZone.DaylightBias = System.TimeSpan.Parse("-01:00:00")
+        TimeRuler4.TimeZone.DaylightZoneName = "SE Asia Daylight Time"
+        TimeRuler4.TimeZone.DisplayName = "(UTC+07:00) Bangkok, Hanoi, Jakarta"
+        TimeRuler4.TimeZone.StandardZoneName = "SE Asia Standard Time"
+        TimeRuler4.TimeZone.UtcOffset = System.TimeSpan.Parse("07:00:00")
+        TimeRuler4.UseClientTimeZone = False
+        Me.SchLichThiCong.Views.WorkWeekView.TimeRulers.Add(TimeRuler4)
         Me.SchLichThiCong.Views.WorkWeekView.VisibleTime.Start = System.TimeSpan.Parse("06:00:00")
         Me.SchLichThiCong.Views.WorkWeekView.WorkTime.End = System.TimeSpan.Parse("17:00:00")
         Me.SchLichThiCong.Views.WorkWeekView.WorkTime.Start = System.TimeSpan.Parse("08:00:00")

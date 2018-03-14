@@ -87,6 +87,7 @@ Partial Class frmDangVe
         Me.colDVSoLuong = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDVNgayNhan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDVPhuTrach = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,7 +97,7 @@ Partial Class frmDangVe
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemPopupContainerEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbNhomVT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbTenVatTu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -559,7 +560,7 @@ Partial Class frmDangVe
         Me.gdvDangVeCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvDangVeCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvDangVeCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvDangVeCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colDVMaKH, Me.colDVSoPhieu, Me.colDVSTT, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.colDVDonGia, Me.colDVThanhTien, Me.colDVSoLuong, Me.GridColumn9, Me.colDVNgayNhan, Me.GridColumn2, Me.colDVPhuTrach, Me.GridColumn15, Me.GridColumn10, Me.GridColumn1, Me.GridColumn7, Me.GridColumn8})
+        Me.gdvDangVeCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colDVMaKH, Me.colDVSoPhieu, Me.colDVSTT, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.colDVDonGia, Me.colDVThanhTien, Me.colDVSoLuong, Me.GridColumn9, Me.colDVNgayNhan, Me.GridColumn2, Me.colDVPhuTrach, Me.GridColumn15, Me.GridColumn10, Me.GridColumn1, Me.GridColumn7, Me.GridColumn8, Me.GridColumn3})
         Me.gdvDangVeCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvDangVeCT.GridControl = Me.gdvDangVe
         Me.gdvDangVeCT.GroupPanelText = "Kéo thả cột cột nhóm nội dung vào đây"
@@ -712,7 +713,19 @@ Partial Class frmDangVe
         Me.colDVNgayNhan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.colDVNgayNhan.OptionsColumn.ReadOnly = True
         Me.colDVNgayNhan.Visible = True
-        Me.colDVNgayNhan.VisibleIndex = 10
+        Me.colDVNgayNhan.VisibleIndex = 11
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Đến ngày"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn2.FieldName = "NgayVe2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 12
         '
         'colDVPhuTrach
         '
@@ -722,7 +735,7 @@ Partial Class frmDangVe
         Me.colDVPhuTrach.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.colDVPhuTrach.OptionsColumn.ReadOnly = True
         Me.colDVPhuTrach.Visible = True
-        Me.colDVPhuTrach.VisibleIndex = 12
+        Me.colDVPhuTrach.VisibleIndex = 13
         Me.colDVPhuTrach.Width = 144
         '
         'GridColumn15
@@ -756,7 +769,7 @@ Partial Class frmDangVe
         Me.GridColumn7.FieldName = "GhiChu"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 13
+        Me.GridColumn7.VisibleIndex = 14
         Me.GridColumn7.Width = 262
         '
         'RepositoryItemMemoEdit1
@@ -782,17 +795,14 @@ Partial Class frmDangVe
         Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
         Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
         '
-        'GridColumn2
+        'GridColumn3
         '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.Caption = "Đến ngày"
-        Me.GridColumn2.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn2.FieldName = "NgayVe2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 11
+        Me.GridColumn3.Caption = "XT"
+        Me.GridColumn3.FieldName = "XuatTam"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.Width = 51
         '
         'frmDangVe
         '
@@ -901,5 +911,6 @@ Partial Class frmDangVe
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

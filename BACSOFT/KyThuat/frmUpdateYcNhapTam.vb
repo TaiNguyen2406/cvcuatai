@@ -76,17 +76,28 @@ Public Class frmUpdateYcNhapTam
         sql &= " TENDONVITINH.Ten AS TenDVT, "
 
 
-        sql &= " (SELECT isnull(SUM(SlXuatKho),0) FROM XUATKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SoLuong,  "
+        sql &= " (SELECT isnull(SUM(SlXuatKho),0) FROM XUATKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SoLuong,  " 'xuất tạm
 
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=CHAOGIA.IDVattu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=CHAOGIA.IDVattu)) AS slTon,"
+
+
+
+
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= CHAOGIA.IDVattu) AS DangVe,"
         sql &= " (select top 1 isnull(ngaythang,0) from V_Dangve where IDVattu= CHAOGIA.IDVattu) AS NgayVe,"
 
         sql &= " convert(float,0)SlYeuCau, "
 
-        sql &= " (SELECT isnull(SUM(SlYeuCau),0) FROM NHAPKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SlDaYeuCau,  "
 
-        sql &= " (SELECT isnull(SUM(SlYeuCau),0) FROM XUATKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SlCon,  "
+        If TrangThai.isUpdate Then
+            sql &= " (SELECT isnull(SUM(SlYeuCau),0) FROM NHAPKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP AND Id_Phieu <> @IdPhieu)SlDaYeuCau,  "
+            AddParameter("@IdPhieu", idPhieu)
+        Else
+            sql &= " (SELECT isnull(SUM(SlYeuCau),0) FROM NHAPKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SlDaYeuCau,  "
+        End If
+
+        'sql &= " (SELECT isnull(SUM(SlYeuCau),0) FROM XUATKHOTAM WHERE IdVatTu = CHAOGIA.IDvattu AND SoCG = @SP)SlCon,  "
+        sql &= " CHAOGIA.SoLuong as SlCon,  " 'dự toán
  
 
         sql &= " ISNULL(CHAOGIA.AZ,0)AZ"
@@ -155,7 +166,6 @@ Public Class frmUpdateYcNhapTam
         '    ShowBaoLoi(ex.Message)
         '    Exit Sub
         'End Try
-
 
         Try
 

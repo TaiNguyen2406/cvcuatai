@@ -33,9 +33,11 @@ Partial Class frmYeuCauDen
         Dim ToolTipTitleItem5 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Dim SuperToolTip6 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem6 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim SuperToolTip7 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem7 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim SuperToolTip8 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem8 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.gdvXuLyCT = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -80,6 +82,8 @@ Partial Class frmYeuCauDen
         Me.rCbNhanVien = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.cbKH = New DevExpress.XtraBars.BarEditItem()
         Me.rcbKH = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.chkTatCa = New DevExpress.XtraBars.BarEditItem()
+        Me.riChkBlank = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cbTrangThaiYC = New DevExpress.XtraBars.BarEditItem()
         Me.rcbTrangThaiYC = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.btXem = New DevExpress.XtraBars.BarButtonItem()
@@ -307,6 +311,7 @@ Partial Class frmYeuCauDen
         CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rCbNhanVien, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbKH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riChkBlank, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbTrangThaiYC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -687,7 +692,7 @@ Partial Class frmYeuCauDen
         '
         Me.GridColumn48.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn48.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn48.Caption = "CT"
+        Me.GridColumn48.Caption = "Loại "
         Me.GridColumn48.FieldName = "CongTrinh"
         Me.GridColumn48.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn48.Name = "GridColumn48"
@@ -696,7 +701,7 @@ Partial Class frmYeuCauDen
         Me.GridColumn48.OptionsColumn.ReadOnly = True
         Me.GridColumn48.Visible = True
         Me.GridColumn48.VisibleIndex = 12
-        Me.GridColumn48.Width = 26
+        Me.GridColumn48.Width = 80
         '
         'GridColumn50
         '
@@ -778,9 +783,9 @@ Partial Class frmYeuCauDen
         Me.BarManagerChinh.DockControls.Add(Me.barDockControlLeft)
         Me.BarManagerChinh.DockControls.Add(Me.barDockControlRight)
         Me.BarManagerChinh.Form = Me
-        Me.BarManagerChinh.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btThem, Me.btSua, Me.mThem, Me.mSua, Me.mXoa, Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.mThanhToan, Me.mNhanChuyenMa, Me.BarButtonItem1, Me.mXemHD, Me.pmCmFilter, Me.pCMChuyenMaRieng, Me.pMYCThemYC, Me.pMYCBoYC, Me.pMYCLuuLai, Me.btChaoGia, Me.pmYCChaoGia, Me.chkLocDuLieu, Me.btTuDong, Me.chkTuDong, Me.cbTieuChi, Me.cbNVKD, Me.pCMChuyenMa, Me.mQuaTrinhXuLy, Me.BarButtonItem3, Me.cbKH, Me.mThuMucLuuTaiLieu, Me.mXemAnhLon, Me.mTaiTaiLieu, Me.btSuaThongTinVT, Me.mXemChaoGia, Me.btLayYeuCauTuFile, Me.mTaiAnhVeMay, Me.cbTrangThaiYC, Me.mXacNhanChuyenMa, Me.mGiaoViec, Me.btTinhTrangVT, Me.btXemTTVT, Me.mTaoBanSao, Me.mSuDungDeChaoGia, Me.mSuDungDeDatHang, Me.mPhanHoiChoCungUng})
-        Me.BarManagerChinh.MaxItemId = 67
-        Me.BarManagerChinh.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemDateEdit3, Me.RepositoryItemDateEdit4, Me.RepositoryItemComboBox1, Me.cmbDSKho, Me.RepositoryItemCheckEdit3, Me.RepositoryItemComboBox2, Me.rCbNhanVien, Me.rcbKH, Me.rcbTrangThaiYC})
+        Me.BarManagerChinh.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btThem, Me.btSua, Me.mThem, Me.mSua, Me.mXoa, Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.mThanhToan, Me.mNhanChuyenMa, Me.BarButtonItem1, Me.mXemHD, Me.pmCmFilter, Me.pCMChuyenMaRieng, Me.pMYCThemYC, Me.pMYCBoYC, Me.pMYCLuuLai, Me.btChaoGia, Me.pmYCChaoGia, Me.chkLocDuLieu, Me.btTuDong, Me.chkTuDong, Me.cbTieuChi, Me.cbNVKD, Me.pCMChuyenMa, Me.mQuaTrinhXuLy, Me.BarButtonItem3, Me.cbKH, Me.mThuMucLuuTaiLieu, Me.mXemAnhLon, Me.mTaiTaiLieu, Me.btSuaThongTinVT, Me.mXemChaoGia, Me.btLayYeuCauTuFile, Me.mTaiAnhVeMay, Me.cbTrangThaiYC, Me.mXacNhanChuyenMa, Me.mGiaoViec, Me.btTinhTrangVT, Me.btXemTTVT, Me.mTaoBanSao, Me.mSuDungDeChaoGia, Me.mSuDungDeDatHang, Me.mPhanHoiChoCungUng, Me.chkTatCa})
+        Me.BarManagerChinh.MaxItemId = 69
+        Me.BarManagerChinh.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemDateEdit3, Me.RepositoryItemDateEdit4, Me.RepositoryItemComboBox1, Me.cmbDSKho, Me.RepositoryItemCheckEdit3, Me.RepositoryItemComboBox2, Me.rCbNhanVien, Me.rcbKH, Me.rcbTrangThaiYC, Me.riChkBlank})
         '
         'Bar2
         '
@@ -791,7 +796,7 @@ Partial Class frmYeuCauDen
         Me.Bar2.DockCol = 0
         Me.Bar2.DockRow = 0
         Me.Bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.cbNVKD), New DevExpress.XtraBars.LinkPersistInfo(Me.cbKH), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThaiYC), New DevExpress.XtraBars.LinkPersistInfo(Me.btXem, True), New DevExpress.XtraBars.LinkPersistInfo(Me.chkTuDong), New DevExpress.XtraBars.LinkPersistInfo(Me.chkLocDuLieu), New DevExpress.XtraBars.LinkPersistInfo(Me.btThem), New DevExpress.XtraBars.LinkPersistInfo(Me.btSua), New DevExpress.XtraBars.LinkPersistInfo(Me.btChaoGia)})
+        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.cbNVKD), New DevExpress.XtraBars.LinkPersistInfo(Me.cbKH), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.chkTatCa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThaiYC, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btXem, True), New DevExpress.XtraBars.LinkPersistInfo(Me.chkTuDong), New DevExpress.XtraBars.LinkPersistInfo(Me.chkLocDuLieu), New DevExpress.XtraBars.LinkPersistInfo(Me.btThem), New DevExpress.XtraBars.LinkPersistInfo(Me.btSua), New DevExpress.XtraBars.LinkPersistInfo(Me.btChaoGia)})
         Me.Bar2.OptionsBar.AllowQuickCustomization = False
         Me.Bar2.OptionsBar.DisableCustomization = True
         Me.Bar2.OptionsBar.DrawDragBorder = False
@@ -905,6 +910,27 @@ Partial Class frmYeuCauDen
         Me.rcbKH.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.rcbKH.ValueMember = "ID"
         '
+        'chkTatCa
+        '
+        Me.chkTatCa.Caption = "Có người GD"
+        Me.chkTatCa.Edit = Me.riChkBlank
+        Me.chkTatCa.EditValue = False
+        Me.chkTatCa.Id = 67
+        Me.chkTatCa.Name = "chkTatCa"
+        ToolTipTitleItem1.Text = "Chọn để tải yêu cầu đến của kinh doanh khác từ khách hàng mà mình có người giao d" & _
+    "ịch"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.chkTatCa.SuperTip = SuperToolTip1
+        Me.chkTatCa.Width = 20
+        '
+        'riChkBlank
+        '
+        Me.riChkBlank.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.riChkBlank.Name = "riChkBlank"
+        Me.riChkBlank.PictureChecked = Global.BACSOFT.My.Resources.Resources.Checked
+        Me.riChkBlank.PictureGrayed = Global.BACSOFT.My.Resources.Resources.UnCheck
+        Me.riChkBlank.PictureUnchecked = Global.BACSOFT.My.Resources.Resources.UnCheck
+        '
         'cbTrangThaiYC
         '
         Me.cbTrangThaiYC.Caption = "Trạng thái"
@@ -933,9 +959,9 @@ Partial Class frmYeuCauDen
         Me.btXem.Id = 11
         Me.btXem.Name = "btXem"
         Me.btXem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem1.Text = "Tải danh sách yêu cầu đến của khách hàng"
-        SuperToolTip1.Items.Add(ToolTipTitleItem1)
-        Me.btXem.SuperTip = SuperToolTip1
+        ToolTipTitleItem2.Text = "Tải danh sách yêu cầu đến của khách hàng"
+        SuperToolTip2.Items.Add(ToolTipTitleItem2)
+        Me.btXem.SuperTip = SuperToolTip2
         '
         'chkTuDong
         '
@@ -944,9 +970,9 @@ Partial Class frmYeuCauDen
         Me.chkTuDong.Id = 38
         Me.chkTuDong.Name = "chkTuDong"
         Me.chkTuDong.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem2.Text = "Tự động cập nhật yêu cầu đến khi có dữ liệu mới"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        Me.chkTuDong.SuperTip = SuperToolTip2
+        ToolTipTitleItem3.Text = "Tự động cập nhật yêu cầu đến khi có dữ liệu mới"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        Me.chkTuDong.SuperTip = SuperToolTip3
         Me.chkTuDong.Tag = "chkTuDong"
         '
         'chkLocDuLieu
@@ -956,9 +982,9 @@ Partial Class frmYeuCauDen
         Me.chkLocDuLieu.Id = 35
         Me.chkLocDuLieu.Name = "chkLocDuLieu"
         Me.chkLocDuLieu.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem3.Text = "Ẩn/hiện dòng lọc dữ liệu <Ctrl + F>"
-        SuperToolTip3.Items.Add(ToolTipTitleItem3)
-        Me.chkLocDuLieu.SuperTip = SuperToolTip3
+        ToolTipTitleItem4.Text = "Ẩn/hiện dòng lọc dữ liệu <Ctrl + F>"
+        SuperToolTip4.Items.Add(ToolTipTitleItem4)
+        Me.chkLocDuLieu.SuperTip = SuperToolTip4
         '
         'btThem
         '
@@ -967,9 +993,9 @@ Partial Class frmYeuCauDen
         Me.btThem.Id = 0
         Me.btThem.Name = "btThem"
         Me.btThem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem4.Text = "Thêm yêu cầu đến <Ctrl + N>"
-        SuperToolTip4.Items.Add(ToolTipTitleItem4)
-        Me.btThem.SuperTip = SuperToolTip4
+        ToolTipTitleItem5.Text = "Thêm yêu cầu đến <Ctrl + N>"
+        SuperToolTip5.Items.Add(ToolTipTitleItem5)
+        Me.btThem.SuperTip = SuperToolTip5
         '
         'btSua
         '
@@ -978,9 +1004,9 @@ Partial Class frmYeuCauDen
         Me.btSua.Id = 1
         Me.btSua.Name = "btSua"
         Me.btSua.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem5.Text = "Sửa nội dung yêu cầu đến <Ctrl + E>"
-        SuperToolTip5.Items.Add(ToolTipTitleItem5)
-        Me.btSua.SuperTip = SuperToolTip5
+        ToolTipTitleItem6.Text = "Sửa nội dung yêu cầu đến <Ctrl + E>"
+        SuperToolTip6.Items.Add(ToolTipTitleItem6)
+        Me.btSua.SuperTip = SuperToolTip6
         '
         'btChaoGia
         '
@@ -989,9 +1015,9 @@ Partial Class frmYeuCauDen
         Me.btChaoGia.Id = 33
         Me.btChaoGia.Name = "btChaoGia"
         Me.btChaoGia.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem6.Text = "Lập chào giá cho yêu cầu được chọn"
-        SuperToolTip6.Items.Add(ToolTipTitleItem6)
-        Me.btChaoGia.SuperTip = SuperToolTip6
+        ToolTipTitleItem7.Text = "Lập chào giá cho yêu cầu được chọn"
+        SuperToolTip7.Items.Add(ToolTipTitleItem7)
+        Me.btChaoGia.SuperTip = SuperToolTip7
         '
         'barDockControlTop
         '
@@ -1446,7 +1472,7 @@ Partial Class frmYeuCauDen
         Me.gdvYC.MenuManager = Me.BarManagerChinh
         Me.gdvYC.Name = "gdvYC"
         Me.gdvYC.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.N0, Me.cbMucDoCan, Me.cbTrangThai, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.cbNhanVien, Me.cbDVT, Me.chkChon, Me.cbTGCungUng, Me.RepositoryItemHyperLinkEdit3, Me.rPopupFileCT, Me.RepositoryItemCheckEdit5, Me.rcbTienTe})
-        Me.gdvYC.Size = New System.Drawing.Size(1006, 179)
+        Me.gdvYC.Size = New System.Drawing.Size(1006, 136)
         Me.gdvYC.TabIndex = 5
         Me.gdvYC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvYCCT, Me.gdvQuaTrinhBaoGia})
         '
@@ -1953,7 +1979,7 @@ Partial Class frmYeuCauDen
         Me.GroupControl2.Location = New System.Drawing.Point(0, 67)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.ShowCaption = False
-        Me.GroupControl2.Size = New System.Drawing.Size(1010, 111)
+        Me.GroupControl2.Size = New System.Drawing.Size(1010, 154)
         Me.GroupControl2.TabIndex = 11
         Me.GroupControl2.Text = "GroupControl2"
         '
@@ -1984,7 +2010,7 @@ Partial Class frmYeuCauDen
         Me.gdvChuyenMa.MenuManager = Me.BarManagerChinh
         Me.gdvChuyenMa.Name = "gdvChuyenMa"
         Me.gdvChuyenMa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN0, Me.RepositoryItemMemoEdit2, Me.RepositoryItemPictureEdit1, Me.rpopupTaiLieu})
-        Me.gdvChuyenMa.Size = New System.Drawing.Size(1006, 107)
+        Me.gdvChuyenMa.Size = New System.Drawing.Size(1006, 150)
         Me.gdvChuyenMa.TabIndex = 6
         Me.gdvChuyenMa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvChuyenMaCT, Me.GridView1})
         '
@@ -2345,13 +2371,13 @@ Partial Class frmYeuCauDen
         '
         'GridColumn96
         '
-        Me.GridColumn96.Caption = "Xuất tạm"
+        Me.GridColumn96.Caption = "XT"
         Me.GridColumn96.FieldName = "XuatTam"
         Me.GridColumn96.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn96.Name = "GridColumn96"
         Me.GridColumn96.Visible = True
         Me.GridColumn96.VisibleIndex = 16
-        Me.GridColumn96.Width = 59
+        Me.GridColumn96.Width = 50
         '
         'tbN0
         '
@@ -2390,7 +2416,7 @@ Partial Class frmYeuCauDen
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.ShowCaption = False
-        Me.GroupControl1.Size = New System.Drawing.Size(1010, 183)
+        Me.GroupControl1.Size = New System.Drawing.Size(1010, 140)
         Me.GroupControl1.TabIndex = 15
         Me.GroupControl1.Text = "GroupControl1"
         '
@@ -2565,7 +2591,7 @@ Partial Class frmYeuCauDen
         Me.SplitContainerControl2.Panel2.Padding = New System.Windows.Forms.Padding(0, 2, 0, 0)
         Me.SplitContainerControl2.Panel2.Text = "Panel2"
         Me.SplitContainerControl2.Size = New System.Drawing.Size(1010, 368)
-        Me.SplitContainerControl2.SplitterPosition = 185
+        Me.SplitContainerControl2.SplitterPosition = 142
         Me.SplitContainerControl2.TabIndex = 1
         Me.SplitContainerControl2.Text = "SplitContainerControl2"
         '
@@ -2574,20 +2600,20 @@ Partial Class frmYeuCauDen
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.BarDockControl3.Location = New System.Drawing.Point(0, 67)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 111)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 154)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
         Me.BarDockControl4.Location = New System.Drawing.Point(1010, 67)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 111)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 154)
         '
         'BarDockControl2
         '
         Me.BarDockControl2.CausesValidation = False
         Me.BarDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BarDockControl2.Location = New System.Drawing.Point(0, 178)
+        Me.BarDockControl2.Location = New System.Drawing.Point(0, 221)
         Me.BarDockControl2.Size = New System.Drawing.Size(1010, 0)
         '
         'BarDockControl1
@@ -2760,9 +2786,9 @@ Partial Class frmYeuCauDen
         Me.btTaiLai.Id = 8
         Me.btTaiLai.Name = "btTaiLai"
         Me.btTaiLai.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem7.Text = "Tải lại danh sách vật tư "
-        SuperToolTip7.Items.Add(ToolTipTitleItem7)
-        Me.btTaiLai.SuperTip = SuperToolTip7
+        ToolTipTitleItem8.Text = "Tải lại danh sách vật tư "
+        SuperToolTip8.Items.Add(ToolTipTitleItem8)
+        Me.btTaiLai.SuperTip = SuperToolTip8
         '
         'btTop10
         '
@@ -2929,6 +2955,7 @@ Partial Class frmYeuCauDen
         CType(Me.RepositoryItemComboBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rCbNhanVien, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbKH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riChkBlank, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbTrangThaiYC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3262,5 +3289,6 @@ Partial Class frmYeuCauDen
     Friend WithEvents GridColumn94 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
-
+    Friend WithEvents chkTatCa As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents riChkBlank As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

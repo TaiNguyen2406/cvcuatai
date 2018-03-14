@@ -20,8 +20,8 @@ Partial Class frmThuTienMat
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btfilterTuNgay = New DevExpress.XtraBars.BarEditItem()
@@ -80,6 +80,9 @@ Partial Class frmThuTienMat
         Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
         Me.mInTheoNhomNguoiNhan = New DevExpress.XtraBars.BarButtonItem()
         Me.mInTheoNhomDoiTuongCongNo = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuChuyenSangBenThue = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuChuyenCacSoDaChon = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuChonBoChonTatCa = New DevExpress.XtraBars.BarButtonItem()
         Me.rcbMaVT = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.tbThongSo = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -89,6 +92,8 @@ Partial Class frmThuTienMat
         Me.gdvThu = New DevExpress.XtraGrid.GridControl()
         Me.gdvThuCT = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -103,6 +108,7 @@ Partial Class frmThuTienMat
         Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -117,8 +123,6 @@ Partial Class frmThuTienMat
         Me.RepositoryItemPopupContainerEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.pMenuThu = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.mXemPhieuTC0 = New DevExpress.XtraBars.BarButtonItem()
-        Me.mXemPhieuTC1 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,6 +141,7 @@ Partial Class frmThuTienMat
         CType(Me.rcbTakecare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvThu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvThuCT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPopupContainerEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,8 +156,8 @@ Partial Class frmThuTienMat
         Me.BarManager1.DockControls.Add(Me.BarDockControl3)
         Me.BarManager1.DockControls.Add(Me.BarDockControl4)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btfilterTenVT, Me.cbSoTK, Me.btTaiLai, Me.btCM, Me.btChuyenMaRieng, Me.btChuyenMaChung, Me.pCMChuyenMaChung, Me.btFilterHangSX, Me.chkLocThongDung, Me.chkLocTon, Me.chkLocKhoBan, Me.chkHienDongLocDuLieu, Me.btFilterMaVT, Me.mSuaHinhAnh, Me.BarButtonItem1, Me.mSaoChep, Me.mLuuLai, Me.mChuyenDenThuMuc, Me.mTaiAnhVeMay, Me.mThuMucLuuTaiLieu, Me.mDungChungTaiLieu, Me.mDungChungHinhAnh, Me.mBoHinhAnh, Me.mMoThuMucLuuTruTaiLieu, Me.mXemAnhLon, Me.mBoSapXep, Me.mSapXep, Me.btfilterMaKH, Me.chkRutGon, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mXemChaoGia, Me.mXemXuatKho, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInPhieuThu, Me.btInPhieuChi, Me.mInPhieuChiTong, Me.btNhapChiPhiTuExcel, Me.mInPhieuTheoNhom, Me.BarSubItem1, Me.mInTheoNhomNguoiNhan, Me.mInTheoNhomDoiTuongCongNo, Me.mXemPhieuTC0, Me.mXemPhieuTC1})
-        Me.BarManager1.MaxItemId = 71
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btfilterTenVT, Me.cbSoTK, Me.btTaiLai, Me.btCM, Me.btChuyenMaRieng, Me.btChuyenMaChung, Me.pCMChuyenMaChung, Me.btFilterHangSX, Me.chkLocThongDung, Me.chkLocTon, Me.chkLocKhoBan, Me.chkHienDongLocDuLieu, Me.btFilterMaVT, Me.mSuaHinhAnh, Me.BarButtonItem1, Me.mSaoChep, Me.mLuuLai, Me.mChuyenDenThuMuc, Me.mTaiAnhVeMay, Me.mThuMucLuuTaiLieu, Me.mDungChungTaiLieu, Me.mDungChungHinhAnh, Me.mBoHinhAnh, Me.mMoThuMucLuuTruTaiLieu, Me.mXemAnhLon, Me.mBoSapXep, Me.mSapXep, Me.btfilterMaKH, Me.chkRutGon, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mXemChaoGia, Me.mXemXuatKho, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInPhieuThu, Me.btInPhieuChi, Me.mInPhieuChiTong, Me.btNhapChiPhiTuExcel, Me.mInPhieuTheoNhom, Me.BarSubItem1, Me.mInTheoNhomNguoiNhan, Me.mInTheoNhomDoiTuongCongNo, Me.mnuChuyenSangBenThue, Me.mnuChuyenCacSoDaChon, Me.mnuChonBoChonTatCa})
+        Me.BarManager1.MaxItemId = 72
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rcbTenVatTu, Me.rcbMaVT, Me.rcbSoTK, Me.RepositoryItemCheckEdit4, Me.rcbHangSX, Me.tbThongSo, Me.rtbMaVT, Me.rtbThongSo, Me.rpQuaTrinh, Me.rcbMaKH, Me.rcbTakecare, Me.rtbTuNgay, Me.rtbDenNgay})
         '
         'Bar1
@@ -269,9 +274,9 @@ Partial Class frmThuTienMat
         Me.btTaiLai.Id = 8
         Me.btTaiLai.Name = "btTaiLai"
         Me.btTaiLai.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem4.Text = "Tải dữ liệu"
-        SuperToolTip4.Items.Add(ToolTipTitleItem4)
-        Me.btTaiLai.SuperTip = SuperToolTip4
+        ToolTipTitleItem1.Text = "Tải dữ liệu"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btTaiLai.SuperTip = SuperToolTip1
         '
         'btNhapChiPhiTuExcel
         '
@@ -287,7 +292,7 @@ Partial Class frmThuTienMat
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(1094, 27)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1094, 29)
         '
         'BarDockControl2
         '
@@ -300,15 +305,15 @@ Partial Class frmThuTienMat
         '
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl3.Location = New System.Drawing.Point(0, 27)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 580)
+        Me.BarDockControl3.Location = New System.Drawing.Point(0, 29)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 578)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(1094, 27)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 580)
+        Me.BarDockControl4.Location = New System.Drawing.Point(1094, 29)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 578)
         '
         'btfilterTenVT
         '
@@ -609,6 +614,25 @@ Partial Class frmThuTienMat
         Me.mInTheoNhomDoiTuongCongNo.Id = 68
         Me.mInTheoNhomDoiTuongCongNo.Name = "mInTheoNhomDoiTuongCongNo"
         '
+        'mnuChuyenSangBenThue
+        '
+        Me.mnuChuyenSangBenThue.Caption = "Chuyển sang bên thuế"
+        Me.mnuChuyenSangBenThue.Id = 69
+        Me.mnuChuyenSangBenThue.Name = "mnuChuyenSangBenThue"
+        '
+        'mnuChuyenCacSoDaChon
+        '
+        Me.mnuChuyenCacSoDaChon.Caption = "Chuyển các phiếu đã chọn"
+        Me.mnuChuyenCacSoDaChon.Id = 70
+        Me.mnuChuyenCacSoDaChon.Name = "mnuChuyenCacSoDaChon"
+        '
+        'mnuChonBoChonTatCa
+        '
+        Me.mnuChonBoChonTatCa.Caption = "Chọn / Bỏ chọn tất cả"
+        Me.mnuChonBoChonTatCa.Id = 71
+        Me.mnuChonBoChonTatCa.Name = "mnuChonBoChonTatCa"
+        Me.mnuChonBoChonTatCa.Tag = "True"
+        '
         'rcbMaVT
         '
         Me.rcbMaVT.AutoHeight = False
@@ -659,12 +683,12 @@ Partial Class frmThuTienMat
         'gdvThu
         '
         Me.gdvThu.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvThu.Location = New System.Drawing.Point(0, 27)
+        Me.gdvThu.Location = New System.Drawing.Point(0, 29)
         Me.gdvThu.MainView = Me.gdvThuCT
         Me.gdvThu.MenuManager = Me.BarManager1
         Me.gdvThu.Name = "gdvThu"
-        Me.gdvThu.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPopupContainerEdit2, Me.RepositoryItemHyperLinkEdit1})
-        Me.gdvThu.Size = New System.Drawing.Size(1094, 580)
+        Me.gdvThu.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPopupContainerEdit2, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemCheckEdit1})
+        Me.gdvThu.Size = New System.Drawing.Size(1094, 578)
         Me.gdvThu.TabIndex = 8
         Me.gdvThu.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvThuCT})
         '
@@ -693,7 +717,7 @@ Partial Class frmThuTienMat
         Me.gdvThuCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvThuCT.Appearance.HideSelectionRow.Options.UseBackColor = True
         Me.gdvThuCT.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand4, Me.GridBand5, Me.GridBand6, Me.GridBand7, Me.GridBand8, Me.GridBand17, Me.GridBand24})
-        Me.gdvThuCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn32, Me.BandedGridColumn35, Me.BandedGridColumn38, Me.BandedGridColumn41, Me.BandedGridColumn11})
+        Me.gdvThuCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn32, Me.BandedGridColumn35, Me.BandedGridColumn38, Me.BandedGridColumn41, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13})
         Me.gdvThuCT.GridControl = Me.gdvThu
         Me.gdvThuCT.GroupPanelText = "Kéo thả cột cần nhóm vào vị trí này"
         Me.gdvThuCT.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SoTien", Me.BandedGridColumn7, "{0:N0}")})
@@ -713,10 +737,28 @@ Partial Class frmThuTienMat
         'GridBand1
         '
         Me.GridBand1.Caption = "STT"
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn13)
         Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
         Me.GridBand1.MinWidth = 20
         Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.Width = 36
+        Me.GridBand1.Width = 69
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = " "
+        Me.BandedGridColumn13.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn13.FieldName = "chon"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.Visible = True
+        Me.BandedGridColumn13.Width = 33
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = Global.BACSOFT.My.Resources.Resources.Checked
+        Me.RepositoryItemCheckEdit1.PictureUnchecked = Global.BACSOFT.My.Resources.Resources.UnCheck
         '
         'BandedGridColumn1
         '
@@ -831,9 +873,10 @@ Partial Class frmThuTienMat
         Me.GridBand6.Caption = "Số tiền"
         Me.GridBand6.Columns.Add(Me.BandedGridColumn7)
         Me.GridBand6.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn12)
         Me.GridBand6.MinWidth = 20
         Me.GridBand6.Name = "GridBand6"
-        Me.GridBand6.Width = 166
+        Me.GridBand6.Width = 233
         '
         'BandedGridColumn7
         '
@@ -845,7 +888,7 @@ Partial Class frmThuTienMat
         Me.BandedGridColumn7.SummaryItem.DisplayFormat = "{0:N0}"
         Me.BandedGridColumn7.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.BandedGridColumn7.Visible = True
-        Me.BandedGridColumn7.Width = 109
+        Me.BandedGridColumn7.Width = 100
         '
         'BandedGridColumn8
         '
@@ -855,7 +898,15 @@ Partial Class frmThuTienMat
         Me.BandedGridColumn8.FieldName = "TienTe"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
-        Me.BandedGridColumn8.Width = 57
+        Me.BandedGridColumn8.Width = 60
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Tỷ giá"
+        Me.BandedGridColumn12.FieldName = "TyGia"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.Visible = True
+        Me.BandedGridColumn12.Width = 73
         '
         'GridBand7
         '
@@ -964,21 +1015,9 @@ Partial Class frmThuTienMat
         '
         'pMenuThu
         '
-        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btInPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemPhieuTC0, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemPhieuTC1)})
+        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btInPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenCacSoDaChon, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChonBoChonTatCa)})
         Me.pMenuThu.Manager = Me.BarManager1
         Me.pMenuThu.Name = "pMenuThu"
-        '
-        'mXemPhieuTC0
-        '
-        Me.mXemPhieuTC0.Caption = "Xem phiếu TC0"
-        Me.mXemPhieuTC0.Id = 69
-        Me.mXemPhieuTC0.Name = "mXemPhieuTC0"
-        '
-        'mXemPhieuTC1
-        '
-        Me.mXemPhieuTC1.Caption = "Xem phiếu TC1"
-        Me.mXemPhieuTC1.Id = 70
-        Me.mXemPhieuTC1.Name = "mXemPhieuTC1"
         '
         'frmThuTienMat
         '
@@ -1009,6 +1048,7 @@ Partial Class frmThuTienMat
         CType(Me.rcbTakecare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gdvThu, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gdvThuCT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPopupContainerEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1100,7 +1140,11 @@ Partial Class frmThuTienMat
     Friend WithEvents mInTheoNhomNguoiNhan As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mInTheoNhomDoiTuongCongNo As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mInPhieuTheoNhom As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1110,8 +1154,7 @@ Partial Class frmThuTienMat
     Friend WithEvents GridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand17 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand24 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents mXemPhieuTC0 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mXemPhieuTC1 As DevExpress.XtraBars.BarButtonItem
-
+    Friend WithEvents mnuChuyenSangBenThue As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuChuyenCacSoDaChon As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuChonBoChonTatCa As DevExpress.XtraBars.BarButtonItem
 End Class

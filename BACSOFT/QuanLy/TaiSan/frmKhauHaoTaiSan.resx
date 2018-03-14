@@ -120,49 +120,50 @@
   <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="meKhauHaoTS.EditValue" xml:space="preserve">
+  <data name="meSql.EditValue" xml:space="preserve">
     <value>declare @time as datetime
 declare @time2 as datetime
 set @time='2013/8/31'
 set @time2='2013/7/31'
-select * from(
+
 select *
-,(SoLuong-SoLuongHongDauKy) as SoLuongThuc
+,(SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy) as SoLuongThuc
 ,(SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH as muckh
-, (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ (SoLuongHongDauKy)*DonGia as khluyke
-, case when datediff(day, NgayThang,@time2)&gt;0 then (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, @time2,@time) else (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time) end +(SoLuongHongTrongKy)*DonGia/SoNgayKH* (SoNgayKH- datediff(day, @time2,@time))  as khthang
-, SoLuong*DonGia- ((SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time))as saukh
-, CONVERT(varchar(50),SoNgayKH- datediff(day, NgayThang,@time))+N' ngày =' +CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time) )/30 )+N' tháng '+ case when (SoNgayKH- datediff(day, NgayThang,@time) )%30&gt;0 then CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time) )%30 )+N' ngày' else '' end as thoigianconkh 
+, (SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ (SoLuongHongDauKy+SoLuongHongTrongKy)*DonGia as khluyke
+,  case when SoNgayKH&lt; datediff(day, NgayThang,@time) then 0 else case when datediff(day, NgayThang,@time2)&gt;0 then (SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy)*DonGia/SoNgayKH*  datediff(day, @time2,@time) else (SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time) end +(SoLuongHongTrongKy)*DonGia/SoNgayKH* (SoNgayKH- datediff(day, NgayThang,@time)) end  as khthang
+, case when SoNgayKH&lt; datediff(day, NgayThang,@time) then 0 else SoLuong*DonGia- ((SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ (SoLuongHongDauKy+SoLuongHongTrongKy)*DonGia) end as saukh
+, case when SoNgayKH&lt; datediff(day, NgayThang,@time) then '0' else CONVERT(varchar(50),SoNgayKH- datediff(day, NgayThang,@time))+N' ngày =' +CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time))/30 )+N' tháng '+ case when (SoNgayKH- datediff(day, NgayThang,@time))%30&gt;0 then CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time))%30 )+N' ngày' else '' end end as thoigianconkh
  from
+ (
 (
-select TaiSan_TaiSan.*,  PHIEUXUATKHO.NgayThang, SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT
-,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &lt;=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongHongDauKy
+select TaiSan_TaiSan.*, isnull( PHIEUXUATKHO.NgayThang,NgayNhap) NgayThang , SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT
+,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &lt;@time2 and idtaisan =TaiSan_TaiSan .id) as SoLuongHongDauKy
 ,datediff(day, NgayThang,DATEADD (month,thoigiankh,NgayThang)) as SoNgayKH
 ,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &gt;=@time2 and ngaythanhly &lt;=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongHongTrongKy
  ,datediff(day, NgayThang,@time) as thoigiansudung
- 
-from TaiSan_TaiSan inner join XUATKHO on TaiSan_TaiSan.idxuatkho=XUATKHO.ID INNER JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID INNER JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID--, Taisan_DinhMuc 
- where 1=1 and NgayThang&lt;=@time
-)tb1
+from TaiSan_TaiSan inner join XUATKHO on TaiSan_TaiSan.idxuatkho=XUATKHO.ID and isnull(isCT,0)=0 inner JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID inner JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID--, Taisan_DinhMuc 
+ where 1=1 and  isnull(PHIEUXUATKHO.NgayThang,NgayNhap)&lt;=@time
+)
 union
-
-select *
-,(SoLuong-SoLuongHongDauKy) as SoLuongThuc
-,(SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH as muckh
-, (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ (SoLuongHongDauKy)*DonGia as khluyke
-, case when datediff(day, NgayThang,@time2)&gt;0 then (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, @time2,@time) else (SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time) end +(SoLuongHongTrongKy)*DonGia/SoNgayKH* (SoNgayKH- datediff(day, @time2,@time))  as khthang
-, SoLuong*DonGia- ((SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time))as saukh
-, CONVERT(varchar(50),SoNgayKH- datediff(day, NgayThang,@time))+N' ngày =' +CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time) )/30 )+N' tháng '+ case when (SoNgayKH- datediff(day, NgayThang,@time) )%30&gt;0 then CONVERT(varchar(50),(SoNgayKH- datediff(day, NgayThang,@time) )%30 )+N' ngày' else '' end as thoigianconkh 
- from
 (
-select TaiSan_TaiSan.*, PHIEUXUATKHO.NgayThang, 1 as SoLuong, BANGCHAOGIA.Tienthucthu as DonGia, BANGCHAOGIA.Tienthucthu as tongtien,BANGCHAOGIA.TenDuan as TenVT
-,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &lt;=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongHongDauKy
+select TaiSan_TaiSan.*, isnull(PHIEUXUATKHO.NgayThang,NgayNhap)NgayThang , 1 as SoLuong, BANGCHAOGIA.TienTruocthue as DonGia, BANGCHAOGIA.TienTruocthue  as tongtien,BANGCHAOGIA.TenDuan as TenVT
+,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &lt;@time2 and idtaisan =TaiSan_TaiSan .id) as SoLuongHongDauKy
 ,datediff(day, PHIEUXUATKHO.NgayThang,DATEADD (month,thoigiankh,PHIEUXUATKHO.NgayThang)) as SoNgayKH
 ,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &gt;=@time2 and ngaythanhly &lt;=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongHongTrongKy
  ,datediff(day, PHIEUXUATKHO.NgayThang,@time) as thoigiansudung
-from TaiSan_TaiSan inner join BANGCHAOGIA on TaiSan_TaiSan.idxuatkho=BANGCHAOGIA.ID inner join PHIEUXUATKHO on PHIEUXUATKHO .SophieuCG =BANGCHAOGIA.Sophieu
- where 1=1 and PHIEUXUATKHO.NgayThang&lt;=@time
-)tb2 
+from TaiSan_TaiSan inner join BANGCHAOGIA on TaiSan_TaiSan.idxuatkho=BANGCHAOGIA.ID and isnull(isCT,0)=1 inner join PHIEUXUATKHO on PHIEUXUATKHO .SophieuCG =BANGCHAOGIA.Sophieu
+ where 1=1 and  isnull(PHIEUXUATKHO.NgayThang,NgayNhap)&lt;=@time
+)
+union
+(
+select TaiSan_TaiSan.*,  NgayNhap NgayThang , SoLuongTS as SoLuong, GiaTri as DonGia, GiaTri*SoLuongTS  as tongtien,TenTaiSan as TenVT
+,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &lt;@time2 and idtaisan =TaiSan_TaiSan .id) as SoLuongHongDauKy
+,datediff(day, NgayNhap,DATEADD (month,thoigiankh,NgayNhap)) as SoNgayKH
+,(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly &gt;=@time2 and ngaythanhly &lt;=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongHongTrongKy
+ ,datediff(day, NgayNhap,@time) as thoigiansudung
+from TaiSan_TaiSan 
+ where 1=1 and  NgayNhap&lt;=@time and sophieu is null
+)
 )tbc</value>
   </data>
 </root>

@@ -177,7 +177,7 @@ Partial Class frmCNKhachHang
         Me.btDong.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btDong.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btDong.Image = Global.BACSOFT.My.Resources.Resources.close_18
-        Me.btDong.Location = New System.Drawing.Point(903, 608)
+        Me.btDong.Location = New System.Drawing.Point(900, 584)
         Me.btDong.Name = "btDong"
         Me.btDong.Size = New System.Drawing.Size(75, 28)
         Me.btDong.TabIndex = 31
@@ -190,7 +190,7 @@ Partial Class frmCNKhachHang
         Me.btLuuVaDong.Appearance.Options.UseFont = True
         Me.btLuuVaDong.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btLuuVaDong.Image = Global.BACSOFT.My.Resources.Resources.Save_18
-        Me.btLuuVaDong.Location = New System.Drawing.Point(789, 608)
+        Me.btLuuVaDong.Location = New System.Drawing.Point(786, 584)
         Me.btLuuVaDong.Name = "btLuuVaDong"
         Me.btLuuVaDong.Size = New System.Drawing.Size(108, 28)
         Me.btLuuVaDong.TabIndex = 28
@@ -297,7 +297,7 @@ Partial Class frmCNKhachHang
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 648)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 618)
         Me.barDockControlBottom.Size = New System.Drawing.Size(990, 0)
         '
         'barDockControlLeft
@@ -305,14 +305,14 @@ Partial Class frmCNKhachHang
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 648)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 618)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(990, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 648)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 618)
         '
         'tbNgayTL
         '
@@ -518,7 +518,7 @@ Partial Class frmCNKhachHang
         '
         'cbTakecare
         '
-        Me.cbTakecare.Location = New System.Drawing.Point(84, 584)
+        Me.cbTakecare.Location = New System.Drawing.Point(81, 558)
         Me.cbTakecare.Name = "cbTakecare"
         Me.cbTakecare.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.cbTakecare.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Tên")})
@@ -565,7 +565,7 @@ Partial Class frmCNKhachHang
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(8, 588)
+        Me.LabelControl3.Location = New System.Drawing.Point(5, 562)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl3.TabIndex = 17
@@ -597,7 +597,7 @@ Partial Class frmCNKhachHang
         '
         'cbHinhThucTT
         '
-        Me.cbHinhThucTT.Location = New System.Drawing.Point(84, 532)
+        Me.cbHinhThucTT.Location = New System.Drawing.Point(81, 605)
         Me.cbHinhThucTT.Name = "cbHinhThucTT"
         Me.cbHinhThucTT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbHinhThucTT.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HinhThucTT_VIE", "Hình thức TT")})
@@ -609,6 +609,7 @@ Partial Class frmCNKhachHang
         Me.cbHinhThucTT.Properties.ValueMember = "ID"
         Me.cbHinhThucTT.Size = New System.Drawing.Size(508, 20)
         Me.cbHinhThucTT.TabIndex = 24
+        Me.cbHinhThucTT.Visible = False
         '
         'LabelControl16
         '
@@ -644,11 +645,12 @@ Partial Class frmCNKhachHang
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(8, 535)
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 612)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl12.TabIndex = 15
         Me.LabelControl12.Text = "Hình thức TT"
+        Me.LabelControl12.Visible = False
         '
         'LabelControl14
         '
@@ -768,6 +770,8 @@ Partial Class frmCNKhachHang
         Me.tbMaKH.Name = "tbMaKH"
         Me.tbMaKH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbMaKH.Properties.Appearance.Options.UseFont = True
+        Me.tbMaKH.Properties.Mask.EditMask = "[0-9A-Z]*"
+        Me.tbMaKH.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
         Me.tbMaKH.Size = New System.Drawing.Size(216, 20)
         Me.tbMaKH.TabIndex = 0
         '
@@ -803,6 +807,8 @@ Partial Class frmCNKhachHang
         '
         Me.tbMST.Location = New System.Drawing.Point(84, 161)
         Me.tbMST.Name = "tbMST"
+        Me.tbMST.Properties.Mask.EditMask = "[0-9 -]*"
+        Me.tbMST.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
         Me.tbMST.Size = New System.Drawing.Size(216, 20)
         Me.tbMST.TabIndex = 7
         '
@@ -855,7 +861,7 @@ Partial Class frmCNKhachHang
         Me.btThemMoi.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btThemMoi.Appearance.Options.UseFont = True
         Me.btThemMoi.Image = Global.BACSOFT.My.Resources.Resources.AddNew_18
-        Me.btThemMoi.Location = New System.Drawing.Point(604, 608)
+        Me.btThemMoi.Location = New System.Drawing.Point(601, 584)
         Me.btThemMoi.Name = "btThemMoi"
         Me.btThemMoi.Size = New System.Drawing.Size(92, 28)
         Me.btThemMoi.TabIndex = 30
@@ -867,7 +873,7 @@ Partial Class frmCNKhachHang
         Me.btLuu.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btLuu.Appearance.Options.UseFont = True
         Me.btLuu.Image = Global.BACSOFT.My.Resources.Resources.Save_18
-        Me.btLuu.Location = New System.Drawing.Point(702, 608)
+        Me.btLuu.Location = New System.Drawing.Point(699, 584)
         Me.btLuu.Name = "btLuu"
         Me.btLuu.Size = New System.Drawing.Size(81, 28)
         Me.btLuu.TabIndex = 29
@@ -928,7 +934,7 @@ Partial Class frmCNKhachHang
         '
         'LabelControl27
         '
-        Me.LabelControl27.Location = New System.Drawing.Point(8, 561)
+        Me.LabelControl27.Location = New System.Drawing.Point(5, 535)
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl27.TabIndex = 36
@@ -939,7 +945,7 @@ Partial Class frmCNKhachHang
         Me.cbHinhThucTT2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbHinhThucTT2.EditValue = ""
-        Me.cbHinhThucTT2.Location = New System.Drawing.Point(84, 558)
+        Me.cbHinhThucTT2.Location = New System.Drawing.Point(81, 532)
         Me.cbHinhThucTT2.Name = "cbHinhThucTT2"
         Me.cbHinhThucTT2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbHinhThucTT2.Properties.DisplayMember = "GiaiThich"
@@ -1048,7 +1054,7 @@ Partial Class frmCNKhachHang
         '
         'cmbHTCT
         '
-        Me.cmbHTCT.Location = New System.Drawing.Point(395, 584)
+        Me.cmbHTCT.Location = New System.Drawing.Point(392, 558)
         Me.cmbHTCT.Name = "cmbHTCT"
         Me.cmbHTCT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.cmbHTCT.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name1", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name2")})
@@ -1064,7 +1070,7 @@ Partial Class frmCNKhachHang
         '
         'LabelControl29
         '
-        Me.LabelControl29.Location = New System.Drawing.Point(311, 588)
+        Me.LabelControl29.Location = New System.Drawing.Point(308, 562)
         Me.LabelControl29.Name = "LabelControl29"
         Me.LabelControl29.Size = New System.Drawing.Size(79, 13)
         Me.LabelControl29.TabIndex = 52
@@ -1105,7 +1111,7 @@ Partial Class frmCNKhachHang
         Me.mePTTT.EditValue = ""
         Me.mePTTT.Location = New System.Drawing.Point(600, 522)
         Me.mePTTT.Name = "mePTTT"
-        Me.mePTTT.Size = New System.Drawing.Size(383, 79)
+        Me.mePTTT.Size = New System.Drawing.Size(383, 56)
         Me.mePTTT.TabIndex = 66
         '
         'LabelControl32
@@ -1121,7 +1127,7 @@ Partial Class frmCNKhachHang
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btDong
-        Me.ClientSize = New System.Drawing.Size(990, 648)
+        Me.ClientSize = New System.Drawing.Size(990, 618)
         Me.Controls.Add(Me.LabelControl32)
         Me.Controls.Add(Me.mePTTT)
         Me.Controls.Add(Me.LabelControl31)

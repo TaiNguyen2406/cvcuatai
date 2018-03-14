@@ -308,7 +308,7 @@ Partial Class frmCNYeuCauHoiGia
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.ShowCaption = False
-        Me.GroupControl2.Size = New System.Drawing.Size(907, 59)
+        Me.GroupControl2.Size = New System.Drawing.Size(906, 59)
         Me.GroupControl2.TabIndex = 0
         Me.GroupControl2.Text = "Thông tin chính"
         '
@@ -638,7 +638,7 @@ Partial Class frmCNYeuCauHoiGia
         Me.gdv.MainView = Me.gdvCT
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN2, Me.cbThoiGianGH, Me.rcbTienTe, Me.RepositoryItemMemoEdit1})
-        Me.gdv.Size = New System.Drawing.Size(1082, 204)
+        Me.gdv.Size = New System.Drawing.Size(1082, 203)
         Me.gdv.TabIndex = 0
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
         '
@@ -883,11 +883,11 @@ Partial Class frmCNYeuCauHoiGia
         'gdvChuyenMa
         '
         Me.gdvChuyenMa.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvChuyenMa.Location = New System.Drawing.Point(0, 25)
+        Me.gdvChuyenMa.Location = New System.Drawing.Point(0, 31)
         Me.gdvChuyenMa.MainView = Me.gdvChuyenMaCT
         Me.gdvChuyenMa.Name = "gdvChuyenMa"
         Me.gdvChuyenMa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN0, Me.RepositoryItemMemoEdit2, Me.RepositoryItemPictureEdit1, Me.rpopupTaiLieu})
-        Me.gdvChuyenMa.Size = New System.Drawing.Size(1082, 183)
+        Me.gdvChuyenMa.Size = New System.Drawing.Size(1082, 177)
         Me.gdvChuyenMa.TabIndex = 23
         Me.gdvChuyenMa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvChuyenMaCT, Me.GridView1})
         '
@@ -1253,15 +1253,15 @@ Partial Class frmCNYeuCauHoiGia
         '
         Me.BarDockControl8.CausesValidation = False
         Me.BarDockControl8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl8.Location = New System.Drawing.Point(0, 25)
-        Me.BarDockControl8.Size = New System.Drawing.Size(0, 183)
+        Me.BarDockControl8.Location = New System.Drawing.Point(0, 31)
+        Me.BarDockControl8.Size = New System.Drawing.Size(0, 177)
         '
         'BarDockControl9
         '
         Me.BarDockControl9.CausesValidation = False
         Me.BarDockControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl9.Location = New System.Drawing.Point(1082, 25)
-        Me.BarDockControl9.Size = New System.Drawing.Size(0, 183)
+        Me.BarDockControl9.Location = New System.Drawing.Point(1082, 31)
+        Me.BarDockControl9.Size = New System.Drawing.Size(0, 177)
         '
         'BarDockControl7
         '
@@ -1275,7 +1275,7 @@ Partial Class frmCNYeuCauHoiGia
         Me.BarDockControl6.CausesValidation = False
         Me.BarDockControl6.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl6.Location = New System.Drawing.Point(0, 2)
-        Me.BarDockControl6.Size = New System.Drawing.Size(1082, 23)
+        Me.BarDockControl6.Size = New System.Drawing.Size(1082, 29)
         '
         'gTong
         '

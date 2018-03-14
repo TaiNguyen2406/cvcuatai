@@ -417,14 +417,16 @@ Partial Class frmUpdateYcNhapTam
         '
         'GridColumn21
         '
-        Me.GridColumn21.Caption = "Đã xuất"
+        Me.GridColumn21.Caption = "Xuất tạm"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn21.FieldName = "SoLuong"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.FixedWidth = True
         Me.GridColumn21.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn21.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 3
+        Me.GridColumn21.VisibleIndex = 4
         Me.GridColumn21.Width = 65
         '
         'GridColumn1
@@ -433,7 +435,7 @@ Partial Class frmUpdateYcNhapTam
         Me.GridColumn1.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumn1.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn1.AppearanceCell.Options.UseFont = True
-        Me.GridColumn1.Caption = "SL trả"
+        Me.GridColumn1.Caption = "SL YC"
         Me.GridColumn1.DisplayFormat.FormatString = "N2"
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "SlYeuCau"
@@ -441,14 +443,14 @@ Partial Class frmUpdateYcNhapTam
         Me.GridColumn1.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn1.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.VisibleIndex = 5
         Me.GridColumn1.Width = 67
         '
         'GridColumn2
         '
         Me.GridColumn2.AppearanceCell.BackColor = System.Drawing.Color.Azure
         Me.GridColumn2.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn2.Caption = "Đã trả"
+        Me.GridColumn2.Caption = "Đã YC"
         Me.GridColumn2.DisplayFormat.FormatString = "N2"
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "SlDaYeuCau"
@@ -456,14 +458,14 @@ Partial Class frmUpdateYcNhapTam
         Me.GridColumn2.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn2.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.VisibleIndex = 6
         Me.GridColumn2.Width = 65
         '
         'GridColumn3
         '
         Me.GridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Ivory
         Me.GridColumn3.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn3.Caption = "SL YC"
+        Me.GridColumn3.Caption = "Dự toán"
         Me.GridColumn3.DisplayFormat.FormatString = "N2"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "SlCon"
@@ -471,7 +473,7 @@ Partial Class frmUpdateYcNhapTam
         Me.GridColumn3.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn3.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 60
         '
         'GridColumn16
@@ -485,7 +487,7 @@ Partial Class frmUpdateYcNhapTam
         Me.GridColumn16.OptionsColumn.FixedWidth = True
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 7
+        Me.GridColumn16.VisibleIndex = 8
         Me.GridColumn16.Width = 46
         '
         'colThongSo

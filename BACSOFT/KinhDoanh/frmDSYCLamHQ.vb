@@ -32,6 +32,7 @@ Public Class frmDSYCLamHQ
     '    End Set
     'End Property
     Private Sub loadGVHaiQuan()
+
         ShowWaiting("Đang tải dữ liệu ...")
         Dim query As String = " SELECT "
         If barCbbXem.EditValue = "Top 500" Then
@@ -182,6 +183,7 @@ Public Class frmDSYCLamHQ
         If Not dt Is Nothing Then
             With dt
                 For i As Integer = 0 To .Rows.Count - 1
+
                     .Rows(i)("AZ") = i + 1
 
                 Next
@@ -300,7 +302,7 @@ Public Class frmDSYCLamHQ
             'gColNDYC.OptionsColumn.AllowEdit = False
             ' gColGhiChu.OptionsColumn.AllowEdit = False
             gColTinhTrang.OptionsColumn.AllowEdit = True
-           
+
             gColNgayHT.VisibleIndex = 1
             gcolNgayThongQuan.VisibleIndex = 2
             gColSoHD.VisibleIndex = 3
@@ -363,6 +365,11 @@ Public Class frmDSYCLamHQ
             End If
             gColNguoiXuLy.VisibleIndex = 15
             mnu_ChinhSua.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            mnu_CnTenEng.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            mnu_CnPTTT.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            mnu_CnDiaChiLamHQ.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            mnu_CapNhatLaiMoTa.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            mnu_CapNhatLaiMaHS.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
         cbbLoaiInovice.EditValue = "Chung"
         '  loadGVHaiQuan()
@@ -440,7 +447,7 @@ Public Class frmDSYCLamHQ
                 'If deskTop.tabMain.SelectedTabPage.Text = "Hàng đã chào giá" Or deskTop.tabMain.SelectedTabPage.Text = "Yêu cầu đi - Đặt hàng" Then
                 '    AddParameter("@idtinhtrang_haiquan", 1)
                 'End If
-              
+
                 gvDsVatTuHaiQuan.PostEditor()
                 gvDsVatTuHaiQuan.UpdateCurrentRow()
                 Dim hientai As DateTime = GetServerTime()
@@ -903,59 +910,65 @@ Public Class frmDSYCLamHQ
 
     Private Sub btnCapNhat_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnCapNhat.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then Exit Sub
-        gvDsVatTuHaiQuan.PostEditor()
-        gvDsVatTuHaiQuan.UpdateCurrentRow()
-        For i As Integer = 0 To gvDsVatTuHaiQuan.RowCount - 1
-            If Not IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "tgnhanxuly")) Then
-                AddParameter("@phanhoi", gvDsVatTuHaiQuan.GetRowCellValue(i, "phanhoi"))
-                AddParameter("@sotk", gvDsVatTuHaiQuan.GetRowCellValue(i, "sotk"))
-                AddParameter("@luong", gvDsVatTuHaiQuan.GetRowCellValue(i, "luong"))
-                AddParameter("@chiphi", gvDsVatTuHaiQuan.GetRowCellValue(i, "chiphi"))
-                AddParameter("@giaithichchiphi", gvDsVatTuHaiQuan.GetRowCellValue(i, "giaithichchiphi"))
-                AddParameter("@tygiahaiquan", gvDsVatTuHaiQuan.GetRowCellValue(i, "tygiahaiquan"))
-                AddParameter("@donvitien", gvDsVatTuHaiQuan.GetRowCellValue(i, "donvitien"))
-                AddParameter("@idtinhtrang_haiquan", gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan"))
-                '   If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 3 And IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht")) Then
-                If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 3 And (IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht")) Or gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht") Is Nothing) Then
-                    AddParameter("@ngayht", Now)
+        If ShowCauHoi("Bạn có muốn lưu lại không ?") Then
+            gvDsVatTuHaiQuan.PostEditor()
+            gvDsVatTuHaiQuan.UpdateCurrentRow()
+            For i As Integer = 0 To gvDsVatTuHaiQuan.RowCount - 1
+                If Not IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "tgnhanxuly")) Then
+                    AddParameter("@phanhoi", gvDsVatTuHaiQuan.GetRowCellValue(i, "phanhoi"))
+                    AddParameter("@sotk", gvDsVatTuHaiQuan.GetRowCellValue(i, "sotk"))
+                    AddParameter("@luong", gvDsVatTuHaiQuan.GetRowCellValue(i, "luong"))
+                    AddParameter("@chiphi", gvDsVatTuHaiQuan.GetRowCellValue(i, "chiphi"))
+                    AddParameter("@giaithichchiphi", gvDsVatTuHaiQuan.GetRowCellValue(i, "giaithichchiphi"))
+                    AddParameter("@tygiahaiquan", gvDsVatTuHaiQuan.GetRowCellValue(i, "tygiahaiquan"))
+                    AddParameter("@donvitien", gvDsVatTuHaiQuan.GetRowCellValue(i, "donvitien"))
+                    AddParameter("@idtinhtrang_haiquan", gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan"))
+                    AddParameter("@PhuongThucThanhToan_HQ", gvDsVatTuHaiQuan.GetRowCellValue(i, "PhuongThucThanhToanHQ"))
+                    AddParameter("@ttcDiachi_HQ", gvDsVatTuHaiQuan.GetRowCellValue(i, "ttcDiachiHQ"))
+                    AddParameter("@NgayThongQuan", gvDsVatTuHaiQuan.GetRowCellValue(i, "NgayThongQuan"))
+                    '   If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 3 And IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht")) Then
+                    If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 3 And (IsDBNull(gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht")) Or gvDsVatTuHaiQuan.GetRowCellValue(i, "ngayht") Is Nothing) Then
+                        AddParameter("@ngayht", Now)
+
+                    End If
+                    If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 1 Then
+                        AddParameter("@idnguoinhanxuly", DBNull.Value)
+                        AddParameter("@tgnhanxuly", DBNull.Value)
+                        AddParameter("@ngayht", DBNull.Value)
+                    End If
+                    If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 2 Then
+                        AddParameter("@ngayht", DBNull.Value)
+                    End If
+                    AddParameterWhere("@id", gvDsVatTuHaiQuan.GetRowCellValue(i, "id"))
+
+                    If doUpdate("HaiQuan_LamHaiQuan", "id=@id") Is Nothing Then
+                        ShowBaoLoi(LoiNgoaiLe)
+                    Else
+                        '  ShowAlert("Thành công !")
+                    End If
 
                 End If
-                If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 1 Then
-                    AddParameter("@idnguoinhanxuly", DBNull.Value)
-                    AddParameter("@tgnhanxuly", DBNull.Value)
-                    AddParameter("@ngayht", DBNull.Value)
-                End If
-                If gvDsVatTuHaiQuan.GetRowCellValue(i, "idtinhtrang_haiquan") = 2 Then
-                    AddParameter("@ngayht", DBNull.Value)
-                End If
-                AddParameterWhere("@id", gvDsVatTuHaiQuan.GetRowCellValue(i, "id"))
 
-                If doUpdate("HaiQuan_LamHaiQuan", "id=@id") Is Nothing Then
-                    ShowBaoLoi(LoiNgoaiLe)
-                Else
-                    '  ShowAlert("Thành công !")
-                End If
+            Next
+            'Cong no
+            'If gvDsVatTuHaiQuan.GetFocusedRowCellValue("idtinhtrang_haiquan") = 3 And (IsDBNull(gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayht")) And gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayht") Is Nothing) Then
+            '    AddParameterWhere("@idlamhaiquan", gvDsVatTuHaiQuan.GetFocusedRowCellValue("id"))
+            '    Dim tbSoPhieuCG = ExecuteSQLDataTable("select SoPhieu ,IDVatTuHQ  from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  ON idchaogia   =CHAOGIA .id  where idlamhaiquan=@idlamhaiquan")
+            '    For j = 0 To tbSoPhieuCG.Rows.Count - 1
+            '        AddParameterWhere("@SophieuCG", tbSoPhieuCG.Rows(j).Item("SoPhieu"))
+            '        AddParameterWhere("@IDvattu", tbSoPhieuCG.Rows(j).Item("IDVatTuHQ"))
+            '        Dim tbSoPhieuXK = ExecuteSQLDataTable("select PHIEUXUATKHO .Sophieu from PHIEUXUATKHO inner join XUATKHO on PHIEUXUATKHO .Sophieu =XUATKHO .Sophieu where SophieuCG =@SophieuCG and IDvattu =@IDvattu")
+            '        For k = 0 To tbSoPhieuXK.Rows.Count - 1
+            '            TAI.TinhNgayCongNo(tbSoPhieuCG.Rows(j).Item("Sophieu"), tbSoPhieuXK.Rows(k).Item("SoPhieu"), 3, Now)
+            '        Next
+            '    Next
+            'End If
+            'Cong no
+            Dim row = gvDsVatTuHaiQuan.FocusedRowHandle
+            loadGVHaiQuan()
+            gvDsVatTuHaiQuan.FocusedRowHandle = row
 
-            End If
-
-        Next
-        'Cong no
-        'If gvDsVatTuHaiQuan.GetFocusedRowCellValue("idtinhtrang_haiquan") = 3 And (IsDBNull(gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayht")) And gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayht") Is Nothing) Then
-        '    AddParameterWhere("@idlamhaiquan", gvDsVatTuHaiQuan.GetFocusedRowCellValue("id"))
-        '    Dim tbSoPhieuCG = ExecuteSQLDataTable("select SoPhieu ,IDVatTuHQ  from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  ON idchaogia   =CHAOGIA .id  where idlamhaiquan=@idlamhaiquan")
-        '    For j = 0 To tbSoPhieuCG.Rows.Count - 1
-        '        AddParameterWhere("@SophieuCG", tbSoPhieuCG.Rows(j).Item("SoPhieu"))
-        '        AddParameterWhere("@IDvattu", tbSoPhieuCG.Rows(j).Item("IDVatTuHQ"))
-        '        Dim tbSoPhieuXK = ExecuteSQLDataTable("select PHIEUXUATKHO .Sophieu from PHIEUXUATKHO inner join XUATKHO on PHIEUXUATKHO .Sophieu =XUATKHO .Sophieu where SophieuCG =@SophieuCG and IDvattu =@IDvattu")
-        '        For k = 0 To tbSoPhieuXK.Rows.Count - 1
-        '            TAI.TinhNgayCongNo(tbSoPhieuCG.Rows(j).Item("Sophieu"), tbSoPhieuXK.Rows(k).Item("SoPhieu"), 3, Now)
-        '        Next
-        '    Next
-        'End If
-        'Cong no
-        Dim row = gvDsVatTuHaiQuan.FocusedRowHandle
-        loadGVHaiQuan()
-        gvDsVatTuHaiQuan.FocusedRowHandle = row
+        End If
 
     End Sub
     Dim hientai As DateTime = GetServerTime()
@@ -978,20 +991,20 @@ Public Class frmDSYCLamHQ
                 Select Case dau
                     Case "1"
                         If (ngayht - _tgnhanxuly).TotalHours < 72 Then
-                            e.Appearance.BackColor = Color.Green
+                            e.Appearance.BackColor = Color.LightGreen
                         End If
                         If (ngayht - _tgnhanxuly).TotalHours = 72 Then
-                            e.Appearance.BackColor = Color.Yellow
+                            e.Appearance.BackColor = Color.LightYellow
                         End If
                         If (ngayht - _tgnhanxuly).TotalHours > 72 Then
                             e.Appearance.BackColor = Color.Red
                         End If
                     Case "2"
                         If (ngayht - _tgnhanxuly).TotalHours < 120 Then
-                            e.Appearance.BackColor = Color.Green
+                            e.Appearance.BackColor = Color.LightGreen
                         End If
                         If (ngayht - _tgnhanxuly).TotalHours = 120 Then
-                            e.Appearance.BackColor = Color.Yellow
+                            e.Appearance.BackColor = Color.LightYellow
                         End If
                         If (ngayht - _tgnhanxuly).TotalHours > 120 Then
                             e.Appearance.BackColor = Color.Red
@@ -1004,20 +1017,20 @@ Public Class frmDSYCLamHQ
                 Select Case dau
                     Case "1"
                         If (ngaythongquan - _tgnhanxuly).TotalHours < 72 Then
-                            e.Appearance.BackColor = Color.Green
+                            e.Appearance.BackColor = Color.LightGreen
                         End If
                         If (ngaythongquan - _tgnhanxuly).TotalHours = 72 Then
-                            e.Appearance.BackColor = Color.Yellow
+                            e.Appearance.BackColor = Color.LightYellow
                         End If
                         If (ngaythongquan - _tgnhanxuly).TotalHours > 72 Then
                             e.Appearance.BackColor = Color.Red
                         End If
                     Case "2"
                         If (ngaythongquan - _tgnhanxuly).TotalHours < 120 Then
-                            e.Appearance.BackColor = Color.Green
+                            e.Appearance.BackColor = Color.LightGreen
                         End If
                         If (ngaythongquan - _tgnhanxuly).TotalHours = 120 Then
-                            e.Appearance.BackColor = Color.Yellow
+                            e.Appearance.BackColor = Color.LightYellow
                         End If
                         If (ngaythongquan - _tgnhanxuly).TotalHours > 120 Then
                             e.Appearance.BackColor = Color.Red
@@ -1814,6 +1827,30 @@ Public Class frmDSYCLamHQ
 
 
     End Sub
+    'mnu_CnSdtvaFax
+    Private Sub mnu_CnSdtvaFax_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnu_CnSdtvaFax.ItemClick
+        If ShowCauHoi("Bạn có muốn cập nhật số điện thoại và fax cho " & gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcMa")) Then
+            AddParameter("@ttcDienthoai", gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcDienthoai"))
+            AddParameter("@ttcFax", gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcFax"))
+            AddParameterWhere("@ID", gvDsVatTuHaiQuan.GetFocusedRowCellValue("IDKhachhang"))
+            If doUpdate("KHACHHANG", "ID=@ID") Is Nothing Then
+                ShowBaoLoi(LoiNgoaiLe)
+            Else
+                ShowAlert("Đã cập nhật")
+            End If
+        End If
+    End Sub
+    Private Sub mnu_CnTenEng_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnu_CnTenEng.ItemClick
+        If ShowCauHoi("Bạn có muốn cập nhật tên tiếng anh cho " & gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcMa")) Then
+            AddParameter("@TenENG", gvDsVatTuHaiQuan.GetFocusedRowCellValue("TenENG"))
+            AddParameterWhere("@ID", gvDsVatTuHaiQuan.GetFocusedRowCellValue("IDKhachhang"))
+            If doUpdate("KHACHHANG", "ID=@ID") Is Nothing Then
+                ShowBaoLoi(LoiNgoaiLe)
+            Else
+                ShowAlert("Đã cập nhật")
+            End If
+        End If
+    End Sub
     Private Sub mnu_CapNhatLaiMoTa_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnu_CapNhatLaiMoTa.ItemClick
         If ShowCauHoi("Bạn có muốn cập nhật lại mô tả cho " & gvDsVatTuHaiQuanCT.GetFocusedRowCellValue("TenVT") & " mã " & gvDsVatTuHaiQuanCT.GetFocusedRowCellValue("Model")) Then
             AddParameter("@MoTaHQ", gvDsVatTuHaiQuanCT.GetFocusedRowCellValue("MoTaHQ"))
@@ -1894,7 +1931,9 @@ Public Class frmDSYCLamHQ
         Dim fileKetXuat As String = ""
         Dim str As String = ""
         Dim tb As DataTable = CType(gcDsVatTuHaiQuan.DataSource, DataTable)
+        'Dim tbtg As DataTable = CType(gcDsVatTuHaiQuanCT.DataSource, DataTable)
         Dim tb2 As DataTable = CType(gcDsVatTuHaiQuanCT.DataSource, DataTable)
+
         Dim wb As IWorkbook
         Dim ws As IWorksheet
         Dim _cells As IRange
@@ -1908,13 +1947,14 @@ Public Class frmDSYCLamHQ
                     Exit For
                 End If
             End If
-          
         Next
         ' áp dụng chung cho mọi khách hàng
         Try
 
             If cbbLoaiInovice.EditValue = "Chung" Then
-                fileKetXuat = Application.StartupPath & "\Excel\HAIQUAN\INV_CHUNG.xls"
+                tb2.DefaultView.Sort = "SoPOHQ desc"
+                tb2 = tb2.DefaultView.ToTable()
+                fileKetXuat = Application.StartupPath & "\Excel\HAIQUAN\CI&PL_CHUNG.xlsx"
                 wb = Factory.GetWorkbookSet().Workbooks.Open(fileKetXuat)
                 ws = wb.Worksheets(0)
                 _cells = ws.Cells
@@ -1923,34 +1963,31 @@ Public Class frmDSYCLamHQ
                     Exit Sub
                 End If
 
-                _cells(9, 0).Value = gvDsVatTuHaiQuan.GetFocusedRowCellValue("TenENG")
-                _cells(10, 0).Value = gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcDiaChiHQ")
-                _cells(12, 0).Value = "Tel: " + gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcDienthoai") + "     Fax: " + gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcFax")
-                _cells(4, 6).Value = gvDsVatTuHaiQuan.GetFocusedRowCellValue("sohoadon")
+                _cells(4, 0).Value &= gvDsVatTuHaiQuan.GetFocusedRowCellValue("TenENG")
+                _cells(5, 0).Value &= gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcDiachiHQ")
+                '_cells(12, 0).Value = "Tel: " + gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcDienthoai") + "     Fax: " + gvDsVatTuHaiQuan.GetFocusedRowCellValue("ttcFax")
+                _cells(4, 8).Value &= gvDsVatTuHaiQuan.GetFocusedRowCellValue("sohoadon")
 
                 If IsDBNull(gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayhoadon")) Then
-                    _cells(5, 6).Value = ""
+                    _cells(5, 8).Value &= ""
                 Else
                     Dim ngay As DateTime = gvDsVatTuHaiQuan.GetFocusedRowCellValue("ngayhoadon")
-                    _cells(5, 6).Value = ngay
+                    _cells(5, 8).Value &= ngay
 
-                    _cells("F9").Value = "On or about " & ngay.ToString("MMM", usEng) & " " & ngay.Year()
-                End If
-                _cells("F11").Value = gvDsVatTuHaiQuan.GetFocusedRowCellValue("PhuongThucThanhToanHQ") 'PhuongThucThanhToanHQ
-                If d > 0 Then
-                    _cells("G15").Value = "As listed below"
-                Else
-                    _cells("G15").Value = tb2.Rows(0)("SoPOHQ")
+                    _cells(7, 3).Value &= "On or about " & ngay.ToString("MMM", usEng) & " " & ngay.Year()
                 End If
 
-                Dim index As Integer = 18
+                _cells(8, 0).Value &= gvDsVatTuHaiQuan.GetFocusedRowCellValue("PhuongThucThanhToanHQ") 'PhuongThucThanhToanHQ
+
+
+                Dim index As Integer = 10
+
 
                 For i As Integer = 0 To tb2.Rows.Count - 1
-
                     If i < tb2.Rows.Count - 1 Then
                         _cells(index + 1, 0, index + 1, 8).Insert(InsertShiftDirection.Down)
                     End If
-                    _cells(index, 0).Value = tb2.Rows(i)("AZ")
+                    _cells(index, 0).Value = i + 1
                     _cells(index, 1).Value = tb2.Rows(i)("SoPOHQ")
                     _cells(index, 2).Value = tb2.Rows(i)("Model")
                     _cells(index, 3).Value = tb2.Rows(i)("Ten_ENG")
@@ -1959,21 +1996,32 @@ Public Class frmDSYCLamHQ
                     _cells(index, 6).Value = tb2.Rows(i)("DonGia")
                     _cells(index, 7).Value = tb2.Rows(i)("ThanhTien")
                     _cells(index, 8).Value = VietHoaChuDau(tb2.Rows(i)("TenHang")) + "/" + VietHoaChuDau(tb2.Rows(i)("Tennuoc"))
+                    If i > 0 Then
+                        If Not tb2.Rows(i - 1)("SoPOHQ") Is Nothing And Not IsDBNull(tb2.Rows(i - 1)("SoPOHQ")) And Not tb2.Rows(i)("SoPOHQ") Is Nothing And Not IsDBNull(tb2.Rows(i)("SoPOHQ")) Then
+                            If tb2.Rows(i - 1)("SoPOHQ") = tb2.Rows(i)("SoPOHQ") Then
+                                _cells(index - 1, 0, index, 0).MergeCells = True
+                                _cells(index - 1, 1, index, 1).MergeCells = True
+                                _cells(index - 1, 8, index, 8).MergeCells = True
+                            End If
+                        End If
+
+                        If _cells(index - 1, 0).Value = 0 And i > 1 Then
+                            _cells(index, 0).Value = _cells(index, 0).Value - 1
+                        End If
+                    End If
                     index += 1
-                    '   _cells(index, 0, index, 8).Insert(InsertShiftDirection.Down)
                 Next
-                'index += 1
-                _cells(index + 1, 3).RowHeight = _cells(index + 1, 3).RowHeight * 2
-                _cells(index + 1, 3).WrapText = True
-                _cells(index + 1, 3).Font.Bold = True
-                _cells(index + 1, 3).Value = "DAP - Total AMOUNT"
-                _cells(index + 1, 4).Value = tb2.Compute("SUM(SoLuongLamHQ)", "")
-                _cells(index + 1, 6).Value = "VNĐ"
-                _cells(index + 1, 7).Value = tb2.Compute("SUM(ThanhTien)", "")
-                _cells(index + 6, 5).Value = barSeCanTinh.EditValue.ToString() + " Kgs"
-                _cells(index + 7, 5).Value = barSeCanKhoi.EditValue.ToString() + " Kgs"
-                _cells(index + 7, 7).Value = barSeSLThung.EditValue.ToString() + " " + barTeLoaiThung.EditValue.ToString()
+
+                _cells(10, 0, index - 1, 8).Borders.LineStyle = LineStyle.Continous
+
+                _cells(index, 4).Value = tb2.Compute("SUM(SoLuongLamHQ)", "")
+                _cells(index, 7).Value = tb2.Compute("SUM(ThanhTien)", "")
+                _cells(index + 2, 4).Value = barSeCanTinh.EditValue.ToString()
+                _cells(index + 3, 4).Value = barSeCanKhoi.EditValue.ToString()
+                '_cells(index + 3, 7).Value = barSeSLThung.EditValue.ToString() + " " + barTeLoaiThung.EditValue.ToString()
+                loadGVHaiQuanCT(gvDsVatTuHaiQuan.GetFocusedRowCellValue("id"))
             End If
+
             ' áp dụng với khách hàng GE
             If cbbLoaiInovice.EditValue = "GE" Then
                 fileKetXuat = Application.StartupPath & "\Excel\HAIQUAN\INV_GE.xls"
@@ -2167,10 +2215,8 @@ Public Class frmDSYCLamHQ
                     End If
                     If dem = 0 Then
                         sopotong &= tb2.Rows(i)("SoPOHQ").ToString() & ","
-                     
-                    End If
 
-                  
+                    End If
                     index += 1
                 Next
                 sopotong = sopotong.Trim().Remove(sopotong.Length - 1)
@@ -2265,7 +2311,6 @@ Public Class frmDSYCLamHQ
                 ShowBaoLoi(LoiNgoaiLe)
                 CloseWaiting()
             End Try
-
         Catch ex As Exception
             ShowBaoLoi(ex.Message)
             CloseWaiting()
@@ -2273,7 +2318,7 @@ Public Class frmDSYCLamHQ
         CloseWaiting()
     End Sub
 
-    Private Sub gvDsVatTuHaiQuan_RowUpdated(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectEventArgs) Handles gvDsVatTuHaiQuan.RowUpdated
+    Private Sub gvDsVatTuHaiQuan_RowUpdated(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectEventArgs) 'Handles gvDsVatTuHaiQuan.RowUpdated
         If deskTop.tabMain.SelectedTabPage.Text = "Làm hải quan" Then
             If ShowCauHoi("Bạn có muốn lưu lại không ") Then
                 gvDsVatTuHaiQuan.CloseEditor()
@@ -2296,7 +2341,7 @@ Public Class frmDSYCLamHQ
                 gvDsVatTuHaiQuan.FocusedRowHandle = row
             End If
         End If
-       
+
 
     End Sub
 
@@ -2306,4 +2351,5 @@ Public Class frmDSYCLamHQ
             gvDsVatTuHaiQuan.SetFocusedRowCellValue("NgayThongQuan", DBNull.Value)
         End If
     End Sub
+
 End Class

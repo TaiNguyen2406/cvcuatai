@@ -43,6 +43,7 @@ Partial Class fMain
         Me.btThongBaoMoi = New DevExpress.XtraBars.BarButtonItem()
         Me.lbVer = New DevExpress.XtraBars.BarStaticItem()
         Me.btDangXuat = New DevExpress.XtraBars.BarButtonItem()
+        Me.lbAutoRestart = New DevExpress.XtraBars.BarStaticItem()
         Me.BarMenu = New DevExpress.XtraBars.Bar()
         Me.mHeThong = New DevExpress.XtraBars.BarSubItem()
         Me.mPhienBan = New DevExpress.XtraBars.BarButtonItem()
@@ -58,7 +59,9 @@ Partial Class fMain
         Me.mTaiKhoanNganHang = New DevExpress.XtraBars.BarButtonItem()
         Me.mTGGiaoHang = New DevExpress.XtraBars.BarButtonItem()
         Me.mHinhThucTT = New DevExpress.XtraBars.BarButtonItem()
-        Me.mHinhThucTT2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuHinhThucTT2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuCongNoKhachHangDauKy = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuCongNoNhaCungCapDauKy = New DevExpress.XtraBars.BarButtonItem()
         Me.mMucDichThuChi = New DevExpress.XtraBars.BarButtonItem()
         Me.mDanhMucTrangThai = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
@@ -82,10 +85,13 @@ Partial Class fMain
         Me.mnuThueThaoVatTuBo = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThuePhieuNhapXuatKho = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuDoiChieuVatTuTon2Kho = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThueInBienBanNghiemThuBanGiao = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThueInBangChaoGiaCongTrinh = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueThuChiTienMat = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThue_PhieuThu = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_PhieuChi = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_InPhieuChiTheoLo = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThue_InPhieuThuTheoLo = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_SoQuyTienMat = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueThuChiNganHang = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThue_GuiTien = New DevExpress.XtraBars.BarButtonItem()
@@ -93,8 +99,10 @@ Partial Class fMain
         Me.mnuThue_SoQuyTienGui = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueTaiSanCoDinh = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThueGhiTangTSCD = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThueKhauHaoTSCD = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueDanhSachTSCD = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueTonDauKyTSCD = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThueTheTaiSanCoDinh = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_CCDC = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThue_GhiTangCCDC = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_PhanBoCCDC = New DevExpress.XtraBars.BarButtonItem()
@@ -106,6 +114,7 @@ Partial Class fMain
         Me.mnuThueKetChuyenLaiLo = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_CongCuTienIch = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThue_DanhLaiSoCT = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThueGhiSoTheoLo = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueChungTuChuaGhiSo = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueTinhThueHangNhapKhau = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThueKhaiBaoDauKy = New DevExpress.XtraBars.BarSubItem()
@@ -130,6 +139,7 @@ Partial Class fMain
         Me.mnuThueBangKeHoaDonMuaVao = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuThue_BaoCaoTaiChinh = New DevExpress.XtraBars.BarSubItem()
         Me.mnuThue_KetQuaHoatDongKinhDoanh = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuThue_BangCanDoiTaiKhoanThue = New DevExpress.XtraBars.BarButtonItem()
         Me.mQuanTri = New DevExpress.XtraBars.BarSubItem()
         Me.mDanhMucNangLuc = New DevExpress.XtraBars.BarButtonItem()
         Me.mDiemThiKyNang = New DevExpress.XtraBars.BarButtonItem()
@@ -152,6 +162,7 @@ Partial Class fMain
         Me.mDSKhachHang = New DevExpress.XtraBars.BarButtonItem()
         Me.mDSNguoiGiaoDich = New DevExpress.XtraBars.BarButtonItem()
         Me.mTongHopQuaTrinhGiaoDich = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuBaoCaoDoanhThuTheoKhachHang = New DevExpress.XtraBars.BarButtonItem()
         Me.mVatTu = New DevExpress.XtraBars.BarSubItem()
         Me.mThongSo = New DevExpress.XtraBars.BarButtonItem()
         Me.mThongTinPhu = New DevExpress.XtraBars.BarButtonItem()
@@ -169,6 +180,8 @@ Partial Class fMain
         Me.mKetQuaXuLyYeuCau = New DevExpress.XtraBars.BarButtonItem()
         Me.mDiemChuyenMa = New DevExpress.XtraBars.BarButtonItem()
         Me.mDiemDanhGia = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuDanhMucYcVatTu = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuDanhMucTraLaiVatTu = New DevExpress.XtraBars.BarButtonItem()
         Me.mTHThemGioThemCong = New DevExpress.XtraBars.BarButtonItem()
         Me.mMuaHang = New DevExpress.XtraBars.BarSubItem()
         Me.mYeuCauCanHoiGia = New DevExpress.XtraBars.BarButtonItem()
@@ -184,8 +197,10 @@ Partial Class fMain
         Me.mKetQuaBaoGia = New DevExpress.XtraBars.BarButtonItem()
         Me.btnLamHaiQuan = New DevExpress.XtraBars.BarButtonItem()
         Me.mTHDuKienPhaiTra = New DevExpress.XtraBars.BarButtonItem()
+        Me.mDSYCDatTon_MuaHang = New DevExpress.XtraBars.BarButtonItem()
         Me.mKinhDoanh = New DevExpress.XtraBars.BarSubItem()
         Me.mYeuCauDen = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem8 = New DevExpress.XtraBars.BarButtonItem()
         Me.mTongHopYeuCau = New DevExpress.XtraBars.BarButtonItem()
         Me.mChaoGia = New DevExpress.XtraBars.BarButtonItem()
         Me.mChiTieuKhachHang = New DevExpress.XtraBars.BarButtonItem()
@@ -194,18 +209,23 @@ Partial Class fMain
         Me.mTHDuKienPhaiThu = New DevExpress.XtraBars.BarButtonItem()
         Me.btnDSYCLamHQ = New DevExpress.XtraBars.BarButtonItem()
         Me.mPhatTrienSanPham = New DevExpress.XtraBars.BarButtonItem()
+        Me.mDSYCDatTon = New DevExpress.XtraBars.BarButtonItem()
         Me.mKho = New DevExpress.XtraBars.BarSubItem()
         Me.mNhapKho = New DevExpress.XtraBars.BarButtonItem()
         Me.mDHCanNhap = New DevExpress.XtraBars.BarButtonItem()
         Me.mHangCanNhapKho = New DevExpress.XtraBars.BarButtonItem()
         Me.mNhapThueChoHangDaNhap = New DevExpress.XtraBars.BarButtonItem()
         Me.mXuatKho = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuXuatKhoTam = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuTraKhoXuatTam = New DevExpress.XtraBars.BarButtonItem()
         Me.mChaoGiaCanXuat = New DevExpress.XtraBars.BarButtonItem()
         Me.mHangYCXuat = New DevExpress.XtraBars.BarButtonItem()
         Me.mXuatMuon = New DevExpress.XtraBars.BarButtonItem()
         Me.mXuatKhoCongTrinh = New DevExpress.XtraBars.BarButtonItem()
         Me.mTonKho = New DevExpress.XtraBars.BarButtonItem()
         Me.mTonKhoGiaVon = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuHangHoaCongTrinhCanXuatTam = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuHangHoaCongTrinhCanTraLai = New DevExpress.XtraBars.BarButtonItem()
         Me.mQuanLy = New DevExpress.XtraBars.BarSubItem()
         Me.mNhanSu = New DevExpress.XtraBars.BarButtonItem()
         Me.mDanhGiaNhanVien = New DevExpress.XtraBars.BarButtonItem()
@@ -257,15 +277,15 @@ Partial Class fMain
         Me.mKetQuaTongHopXK = New DevExpress.XtraBars.BarButtonItem()
         Me.mDatHangCanThanhToan = New DevExpress.XtraBars.BarButtonItem()
         Me.mChiPhi = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarSubItem4 = New DevExpress.XtraBars.BarSubItem()
-        Me.mPhanBoTamUngNhapKho = New DevExpress.XtraBars.BarButtonItem()
-        Me.mTongHopCongNoTra = New DevExpress.XtraBars.BarButtonItem()
-        Me.mTongHopCongNoThu = New DevExpress.XtraBars.BarButtonItem()
-        Me.mTongHopCongNoTra2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.mTongHopCongNoThu2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuCongNoTest = New DevExpress.XtraBars.BarSubItem()
+        Me.mnuPhanBoTamUngXuatKho = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuPhanBoTamUngNhapKho = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuDuKienCongNo = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuCongNoPhaiThuPhaiTra2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuTongHopCongNoPhaiThu = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuTongHopCongNoPhaiTra = New DevExpress.XtraBars.BarButtonItem()
         Me.mCongNoPhaiThu = New DevExpress.XtraBars.BarButtonItem()
         Me.mCongNoPhaiTra = New DevExpress.XtraBars.BarButtonItem()
-        Me.mCongNoPhaiTraMoi = New DevExpress.XtraBars.BarButtonItem()
         Me.mCongNoPhaiThuPhaiTra = New DevExpress.XtraBars.BarButtonItem()
         Me.mTHCongNo = New DevExpress.XtraBars.BarButtonItem()
         Me.mBCTongHop = New DevExpress.XtraBars.BarButtonItem()
@@ -365,6 +385,9 @@ Partial Class fMain
         Me.btAn = New DevExpress.XtraEditors.SimpleButton()
         Me.tbChiTiet = New DevExpress.XtraEditors.MemoEdit()
         Me.TimerLoadThongBao = New System.Windows.Forms.Timer(Me.components)
+        Me.tAutoRestart = New System.Windows.Forms.Timer(Me.components)
+        Me.tAutoRefreshQuyenSD = New System.Windows.Forms.Timer(Me.components)
+        Me.mKiemTraChungTu = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -417,8 +440,8 @@ Partial Class fMain
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTenMayCHu, Me.txtTenCSDL, Me.txtTenNguoiDung, Me.BarSubItem5, Me.mHeThong, Me.mDanhMuc, Me.mPhongBan, Me.mThoat, Me.mDoiMatKhau, Me.mKinhDoanh, Me.mYeuCauDi_DatHang, Me.mChaoGia, Me.mYeuCauDen, Me.mQuanLy, Me.mNganHang, Me.mTienTe, Me.mTGGiaoHang, Me.mKyThuat, Me.mMuaHang, Me.mYeuCauCanHoiGia, Me.mXemManHinhLon, Me.lbVer, Me.mHinhThucTT, Me.mQuyenTruyCap, Me.mCongTrinhCanXuLy, Me.mVatTu, Me.mThongSo, Me.mTenVT, Me.mNhomVT, Me.mHangSX, Me.mDonViTinh, Me.mNuocSX, Me.mTaiLieu, Me.mThongTinPhu, Me.mDangXuat, Me.BarButtonItem1, Me.mTaiKhoanNganHang, Me.mPhienBan, Me.mNhanSu, Me.mDaoTao, Me.mLichDaoTao, Me.mNoiDungDaotao, Me.mDinhMucDiemCongTrinh, Me.mDuyetBaoCaoThiCong, Me.mBaoCaoLichThiCong, Me.mKho, Me.mXuatMuon, Me.mKhachHang, Me.mDSKhachHang, Me.mDSNguoiGiaoDich, Me.mGuiMail, Me.mDiemThiKyNang, Me.mDanhMucNangLuc, Me.btChonToanBo, Me.mDiemSo, Me.mKetQuaHoatDong, Me.mTheoXuatKho, Me.mKetQuaChaoGia, Me.mTongHopChamCong, Me.mDinhMucLuongThuong, Me.mLuongThuong, Me.mTongHopDiemKN, Me.mQuanTri, Me.btBaoCaoThuTien, Me.mTongHopDiemQuyTrinhCu, Me.mKetQuaTongHopXK, Me.mXuatKhoCongTrinh, Me.mXuatKho, Me.mChaoGiaCanXuat, Me.btDangXuat, Me.mTonKho, Me.mBCVatTuDaNhapXuat, Me.mNhapKho, Me.mDHCanNhap, Me.mMucDichThuChi, Me.tbThang, Me.cbBCNhanVIen, Me.mVatTuDaChaoGia, Me.mVatTuDaDatHang, Me.mBaoCaoHangNgay, Me.mTieuChiBaoCao, Me.mKiemTraBaoCaoKT, Me.mCongNoPhaiThuPhaiTra, Me.mTHCongNo, Me.mBCTongHop, Me.BarButtonItem3, Me.mBaoCao, Me.mTongHopLNKT, Me.mTongHopDiemNV, Me.mChiTieuKhachHang, Me.mBaoCaoKinhDoanh, Me.mEmailMarketing, Me.BarButtonItem4, Me.mBCDoanhThuTheoHang, Me.mBaoCaoOnline, Me.mThuongCuoiNam, Me.mChiTieu, Me.mXuLyYeuCauHoiGia, Me.mYeuCauHoiGiaNCC, Me.mXuLyYeuCauCanChuyenMa, Me.mDanhMucTrangThai, Me.btThongBaoMoi, Me.mNhaCCTheoHang, Me.mTongHopQuaTrinhGiaoDich, Me.mYeuCauNoiBo, Me.mNguonKhachMoi, Me.mKetQuaXuLyYeuCau, Me.mTongHopDiemNangLuc, Me.mTongHopYeuCau, Me.mXuLyYCCongTrinh, Me.mDiemChuyenMa, Me.mKetQuaXuLyYCCungUng, Me.mChamCong, Me.mDuKienCongNo, Me.mDatHangCanThanhToan, Me.mEmail, Me.mHoTroOnline, Me.mThuChiTienMatTest, Me.mThuChiNganHangTest, Me.mCongNoPhaiThuPhaiTraTest, Me.mTHDuKienPhaiTra, Me.mTHDuKienPhaiThu, Me.mHangDangVe, Me.mHangCanXuat, Me.mHangDaNhap, Me.mHangDaXuat, Me.mCongNoPhaiThu, Me.mCongNoPhaiTra, Me.mDanhSachNhaCungCap, Me.mDanhSachNguoiGGNCC, Me.mMHDangVe, Me.mMHCanXuat, Me.btSinhNhat, Me.mKetQuaBaoGia, Me.mnuHoaDonDauRa, Me.mnuHoaDonDauVao, Me.mnuTonKhoThueDauKy, Me.mThue, Me.mnuHoaDonGTGT_DauVao, Me.mnuThueMuaHangTrongNuoc, Me.mnuThueMuaHangNuocNgoai, Me.mnuThueMuaDichVu, Me.mnuThueHoaDonCongCuDungCu, Me.mnuThueHoaDonTSCD, Me.mnuHoaDonGTGT_DauRa, Me.mnuThueKhaiBaoDauKy, Me.mnuThueBanHangHoa, Me.mnuBanHangDichVu, Me.mnuThueXuLyCT, Me.BarButtonItem5, Me.mnuThueTongHopBaoCao, Me.mnuThueNhapXuatTon, Me.mnuThueCongCuDungCu, Me.mnuHeThongTaiKhoanThue, Me.mnuThueBangKeHoaDonBanRa, Me.mnuThueBangKeHoaDonMuaVao, Me.mKetQuaNhapKho, Me.BarButtonItem6, Me.mnuThueThuChiTienMat, Me.mnuThue_PhieuThu, Me.mnuThue_PhieuChi, Me.BarButtonItem9, Me.mnuThueThuChiNganHang, Me.mnuThue_GuiTien, Me.mnuThue_UyNhiemChi, Me.mChiPhi, Me.mnuThue_SoQuyTienMat, Me.mnuThue_SoQuyTienGui, Me.mnuThue_DanhLaiSoCT, Me.mnuThue_CongCuTienIch, Me.mnuThue_TinhGiaVon, Me.mnuThue_CongCuDungCu, Me.mnuThue_CCDC, Me.mnuThue_GhiTangCCDC, Me.mnuThue_TonDauKyCCDC, Me.mnuThue_PhanBoCCDC, Me.BarButtonItem7, Me.mnuThueKeToanTongHop, Me.mnuThueChungTuKhac, Me.mnuThueTaiSanCoDinh, Me.mnuThueDanhSachTSCD, Me.mnuThueCongNoDauKy, Me.mnuThueTongHopCongNoPhaiThu, Me.mnuThueTongHopCongNoPhaiTra, Me.mnuThueChiTietCongNoPhaiThu, Me.mnuThueChiTietCongNoPhaiTra, Me.mnuDanhMucPhongBanThue, Me.mHangCanNhapKho, Me.mnuThueTonDauKyTSCD, Me.mNhapThueChoHangDaNhap, Me.mnuThueThaoGhepVatTuBo, Me.mnuThueNganHangDauKy, Me.mTonKhoGiaVon, Me.mKQXKPT1, Me.mKQChaoGia1, Me.mnuThueChungTuChuaGhiSo, Me.mnuThueKetChuyenLaiLo, Me.mnuThueSoChiTietVatTuHangHoa, Me.mnuThueKhoHangHoa, Me.mnuGhepVatTuBo, Me.mnuThueThaoVatTuBo, Me.mnuThuePhieuNhapXuatKho, Me.mnuThue_InPhieuChiTheoLo, Me.mnuThueSoNhatKyChung, Me.mnuThueSoCaiTaiKhoan, Me.mnuThueHoaDonVanChuyen, Me.mHangYCXuat, Me.BarSubItem1, Me.btnMucDichSd, Me.btnMucDoQuanTrong, Me.btnDinhMucHD, Me.btnNhienVatLieu, Me.btnTrangThaiXe, Me.btnTinhTrangXe, Me.BarSubItem2, Me.btnThongTinXe, Me.btnDKMuonXe, Me.btnLichMuonXe, Me.btnLichSuMuonXe, Me.btnThongTinBDXE, Me.BarSubItem3, Me.btnBCHuHaiXe, Me.btnTkeNSD, Me.btnTKXeSD, Me.bsiTinhTrangXe, Me.mnuThueTinhThueHangNhapKhau, Me.mnuThueGhiTangTSCD, Me.mnuThueSoDuTaiKhoanThueDauKy, Me.mnuDoiChieuVatTuTon2Kho, Me.mHangDaXuatTest, Me.mHangDaChaoGiaTest, Me.btnNguoiSuDung, Me.btnKhauHaoTS, Me.btnTShong, Me.btnCongCuDungCu, Me.mDiemDanhGia, Me.btnHangHoaXuatChoBA, Me.btnThongTinTS, Me.btnThongTinCCDC, Me.mThuTienMat, Me.BarButtonItem11, Me.mUNC, Me.mSoTienMat, Me.mSoTienGui, Me.mThuNganHang, Me.mChiTienMat, Me.mDiemSoTest2, Me.btnDSYCLamHQ, Me.btnLamHaiQuan, Me.mBoPhanTrongSo, Me.mPhatTrienSanPham, Me.mDanhGiaNhanVien, Me.mPhanBoLoiNhuan, Me.mLNNhanVienHT, Me.mLoiNhuanNVPTSP, Me.mChotSoLieu, Me.mKetQuaXuatKhoCT, Me.mTongHopDiemKyNang, Me.mLNPhanBoTheoXK, Me.mPhanBoLNNhomHT, Me.mDiemSo3, Me.mDinhMucTinhDiem, Me.mnuThue_BaoCaoTaiChinh, Me.mnuThue_KetQuaHoatDongKinhDoanh, Me.mHSLNMuaHang, Me.mKQChaoGiaCT, Me.mnuThueCongNoPhaiTraDauKy, Me.mnuThueSoChiTietTaiKhoan, Me.mHinhThucTT2, Me.BarSubItem4, Me.mPhanBoTamUngNhapKho, Me.mTongHopCongNoTra, Me.mTongHopCongNoThu, Me.mTongHopCongNoTra2, Me.mTongHopCongNoThu2, Me.btnThongTinCPC, Me.mCongNoPhaiTraMoi, Me.mTHThemGioThemCong})
-        Me.BarManager1.MaxItemId = 383
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTenMayCHu, Me.txtTenCSDL, Me.txtTenNguoiDung, Me.BarSubItem5, Me.mHeThong, Me.mDanhMuc, Me.mPhongBan, Me.mThoat, Me.mDoiMatKhau, Me.mKinhDoanh, Me.mYeuCauDi_DatHang, Me.mChaoGia, Me.mYeuCauDen, Me.mQuanLy, Me.mNganHang, Me.mTienTe, Me.mTGGiaoHang, Me.mKyThuat, Me.mMuaHang, Me.mYeuCauCanHoiGia, Me.mXemManHinhLon, Me.lbVer, Me.mHinhThucTT, Me.mQuyenTruyCap, Me.mCongTrinhCanXuLy, Me.mVatTu, Me.mThongSo, Me.mTenVT, Me.mNhomVT, Me.mHangSX, Me.mDonViTinh, Me.mNuocSX, Me.mTaiLieu, Me.mThongTinPhu, Me.mDangXuat, Me.BarButtonItem1, Me.mTaiKhoanNganHang, Me.mPhienBan, Me.mNhanSu, Me.mDaoTao, Me.mLichDaoTao, Me.mNoiDungDaotao, Me.mDinhMucDiemCongTrinh, Me.mDuyetBaoCaoThiCong, Me.mBaoCaoLichThiCong, Me.mKho, Me.mXuatMuon, Me.mKhachHang, Me.mDSKhachHang, Me.mDSNguoiGiaoDich, Me.mGuiMail, Me.mDiemThiKyNang, Me.mDanhMucNangLuc, Me.btChonToanBo, Me.mDiemSo, Me.mKetQuaHoatDong, Me.mTheoXuatKho, Me.mKetQuaChaoGia, Me.mTongHopChamCong, Me.mDinhMucLuongThuong, Me.mLuongThuong, Me.mTongHopDiemKN, Me.mQuanTri, Me.btBaoCaoThuTien, Me.mTongHopDiemQuyTrinhCu, Me.mKetQuaTongHopXK, Me.mXuatKhoCongTrinh, Me.mXuatKho, Me.mChaoGiaCanXuat, Me.btDangXuat, Me.mTonKho, Me.mBCVatTuDaNhapXuat, Me.mNhapKho, Me.mDHCanNhap, Me.mMucDichThuChi, Me.tbThang, Me.cbBCNhanVIen, Me.mVatTuDaChaoGia, Me.mVatTuDaDatHang, Me.mBaoCaoHangNgay, Me.mTieuChiBaoCao, Me.mKiemTraBaoCaoKT, Me.mCongNoPhaiThuPhaiTra, Me.mTHCongNo, Me.mBCTongHop, Me.BarButtonItem3, Me.mBaoCao, Me.mTongHopLNKT, Me.mTongHopDiemNV, Me.mChiTieuKhachHang, Me.mBaoCaoKinhDoanh, Me.mEmailMarketing, Me.BarButtonItem4, Me.mBCDoanhThuTheoHang, Me.mBaoCaoOnline, Me.mThuongCuoiNam, Me.mChiTieu, Me.mXuLyYeuCauHoiGia, Me.mYeuCauHoiGiaNCC, Me.mXuLyYeuCauCanChuyenMa, Me.mDanhMucTrangThai, Me.btThongBaoMoi, Me.mNhaCCTheoHang, Me.mTongHopQuaTrinhGiaoDich, Me.mYeuCauNoiBo, Me.mNguonKhachMoi, Me.mKetQuaXuLyYeuCau, Me.mTongHopDiemNangLuc, Me.mTongHopYeuCau, Me.mXuLyYCCongTrinh, Me.mDiemChuyenMa, Me.mKetQuaXuLyYCCungUng, Me.mChamCong, Me.mDuKienCongNo, Me.mDatHangCanThanhToan, Me.mEmail, Me.mHoTroOnline, Me.mThuChiTienMatTest, Me.mThuChiNganHangTest, Me.mCongNoPhaiThuPhaiTraTest, Me.mTHDuKienPhaiTra, Me.mTHDuKienPhaiThu, Me.mHangDangVe, Me.mHangCanXuat, Me.mHangDaNhap, Me.mHangDaXuat, Me.mCongNoPhaiThu, Me.mCongNoPhaiTra, Me.mDanhSachNhaCungCap, Me.mDanhSachNguoiGGNCC, Me.mMHDangVe, Me.mMHCanXuat, Me.btSinhNhat, Me.mKetQuaBaoGia, Me.mnuHoaDonDauRa, Me.mnuHoaDonDauVao, Me.mnuTonKhoThueDauKy, Me.mThue, Me.mnuHoaDonGTGT_DauVao, Me.mnuThueMuaHangTrongNuoc, Me.mnuThueMuaHangNuocNgoai, Me.mnuThueMuaDichVu, Me.mnuThueHoaDonCongCuDungCu, Me.mnuThueHoaDonTSCD, Me.mnuHoaDonGTGT_DauRa, Me.mnuThueKhaiBaoDauKy, Me.mnuThueBanHangHoa, Me.mnuBanHangDichVu, Me.mnuThueXuLyCT, Me.BarButtonItem5, Me.mnuThueTongHopBaoCao, Me.mnuThueNhapXuatTon, Me.mnuThueCongCuDungCu, Me.mnuHeThongTaiKhoanThue, Me.mnuThueBangKeHoaDonBanRa, Me.mnuThueBangKeHoaDonMuaVao, Me.mKetQuaNhapKho, Me.BarButtonItem6, Me.mnuThueThuChiTienMat, Me.mnuThue_PhieuThu, Me.mnuThue_PhieuChi, Me.BarButtonItem9, Me.mnuThueThuChiNganHang, Me.mnuThue_GuiTien, Me.mnuThue_UyNhiemChi, Me.mChiPhi, Me.mnuThue_SoQuyTienMat, Me.mnuThue_SoQuyTienGui, Me.mnuThue_DanhLaiSoCT, Me.mnuThue_CongCuTienIch, Me.mnuThue_TinhGiaVon, Me.mnuThue_CongCuDungCu, Me.mnuThue_CCDC, Me.mnuThue_GhiTangCCDC, Me.mnuThue_TonDauKyCCDC, Me.mnuThue_PhanBoCCDC, Me.BarButtonItem7, Me.mnuThueKeToanTongHop, Me.mnuThueChungTuKhac, Me.mnuThueTaiSanCoDinh, Me.mnuThueDanhSachTSCD, Me.mnuThueCongNoDauKy, Me.mnuThueTongHopCongNoPhaiThu, Me.mnuThueTongHopCongNoPhaiTra, Me.mnuThueChiTietCongNoPhaiThu, Me.mnuThueChiTietCongNoPhaiTra, Me.mnuDanhMucPhongBanThue, Me.mHangCanNhapKho, Me.mnuThueTonDauKyTSCD, Me.mNhapThueChoHangDaNhap, Me.mnuThueThaoGhepVatTuBo, Me.mnuThueNganHangDauKy, Me.mTonKhoGiaVon, Me.mKQXKPT1, Me.mKQChaoGia1, Me.mnuThueChungTuChuaGhiSo, Me.mnuThueKetChuyenLaiLo, Me.mnuThueSoChiTietVatTuHangHoa, Me.mnuThueKhoHangHoa, Me.mnuGhepVatTuBo, Me.mnuThueThaoVatTuBo, Me.mnuThuePhieuNhapXuatKho, Me.mnuThue_InPhieuChiTheoLo, Me.mnuThueSoNhatKyChung, Me.mnuThueSoCaiTaiKhoan, Me.mnuThueHoaDonVanChuyen, Me.mHangYCXuat, Me.BarSubItem1, Me.btnMucDichSd, Me.btnMucDoQuanTrong, Me.btnDinhMucHD, Me.btnNhienVatLieu, Me.btnTrangThaiXe, Me.btnTinhTrangXe, Me.BarSubItem2, Me.btnThongTinXe, Me.btnDKMuonXe, Me.btnLichMuonXe, Me.btnLichSuMuonXe, Me.btnThongTinBDXE, Me.BarSubItem3, Me.btnBCHuHaiXe, Me.btnTkeNSD, Me.btnTKXeSD, Me.bsiTinhTrangXe, Me.mnuThueTinhThueHangNhapKhau, Me.mnuThueGhiTangTSCD, Me.mnuThueSoDuTaiKhoanThueDauKy, Me.mnuDoiChieuVatTuTon2Kho, Me.mHangDaXuatTest, Me.mHangDaChaoGiaTest, Me.btnNguoiSuDung, Me.btnKhauHaoTS, Me.btnTShong, Me.btnCongCuDungCu, Me.mDiemDanhGia, Me.btnHangHoaXuatChoBA, Me.btnThongTinTS, Me.btnThongTinCCDC, Me.mThuTienMat, Me.BarButtonItem11, Me.mUNC, Me.mSoTienMat, Me.mSoTienGui, Me.mThuNganHang, Me.mChiTienMat, Me.mDiemSoTest2, Me.btnDSYCLamHQ, Me.btnLamHaiQuan, Me.mBoPhanTrongSo, Me.mPhatTrienSanPham, Me.mDanhGiaNhanVien, Me.mPhanBoLoiNhuan, Me.mLNNhanVienHT, Me.mLoiNhuanNVPTSP, Me.mChotSoLieu, Me.mKetQuaXuatKhoCT, Me.mTongHopDiemKyNang, Me.mLNPhanBoTheoXK, Me.mPhanBoLNNhomHT, Me.mDiemSo3, Me.mDinhMucTinhDiem, Me.mnuThue_BaoCaoTaiChinh, Me.mnuThue_KetQuaHoatDongKinhDoanh, Me.mHSLNMuaHang, Me.mKQChaoGiaCT, Me.mnuThueCongNoPhaiTraDauKy, Me.mnuThueSoChiTietTaiKhoan, Me.mnuThueKhauHaoTSCD, Me.mnuThueGhiSoTheoLo, Me.mnuThue_BangCanDoiTaiKhoanThue, Me.mnuHinhThucTT2, Me.mnuCongNoTest, Me.mnuPhanBoTamUngXuatKho, Me.mnuPhanBoTamUngNhapKho, Me.mnuBaoCaoDoanhThuTheoKhachHang, Me.mnuTongHopCongNoPhaiThu, Me.mnuTongHopCongNoPhaiTra, Me.mnuThue_InPhieuThuTheoLo, Me.mnuHangHoaCongTrinhCanXuatTam, Me.mnuXuatKhoTam, Me.mnuThueTheTaiSanCoDinh, Me.mnuThueInBienBanNghiemThuBanGiao, Me.mnuThueInBangChaoGiaCongTrinh, Me.mnuCongNoKhachHangDauKy, Me.mnuCongNoNhaCungCapDauKy, Me.lbAutoRestart, Me.mnuDanhMucYcVatTu, Me.mnuDanhMucTraLaiVatTu, Me.mnuHangHoaCongTrinhCanTraLai, Me.mnuTraKhoXuatTam, Me.btnThongTinCPC, Me.mTHThemGioThemCong, Me.mnuCongNoPhaiThuPhaiTra2, Me.mnuDuKienCongNo, Me.BarButtonItem8, Me.mDSYCDatTon, Me.mDSYCDatTon_MuaHang, Me.mKiemTraChungTu})
+        Me.BarManager1.MaxItemId = 404
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemAppointmentLabel1, Me.RepositoryItemDateEdit1, Me.RepositoryItemMonth1, Me.RepositoryItemSpinEdit1, Me.rcbBCNhanVien})
         Me.BarManager1.StatusBar = Me.Bar3
         '
@@ -432,7 +455,7 @@ Partial Class fMain
         Me.Bar3.DockCol = 0
         Me.Bar3.DockRow = 0
         Me.Bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom
-        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenMayCHu), New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenCSDL), New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenNguoiDung), New DevExpress.XtraBars.LinkPersistInfo(Me.tbThang), New DevExpress.XtraBars.LinkPersistInfo(Me.cbBCNhanVIen), New DevExpress.XtraBars.LinkPersistInfo(Me.btBaoCaoThuTien), New DevExpress.XtraBars.LinkPersistInfo(Me.bsiTinhTrangXe), New DevExpress.XtraBars.LinkPersistInfo(Me.btSinhNhat), New DevExpress.XtraBars.LinkPersistInfo(Me.btThongBaoMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.lbVer, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btDangXuat)})
+        Me.Bar3.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenMayCHu), New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenCSDL), New DevExpress.XtraBars.LinkPersistInfo(Me.txtTenNguoiDung), New DevExpress.XtraBars.LinkPersistInfo(Me.tbThang), New DevExpress.XtraBars.LinkPersistInfo(Me.cbBCNhanVIen), New DevExpress.XtraBars.LinkPersistInfo(Me.btBaoCaoThuTien), New DevExpress.XtraBars.LinkPersistInfo(Me.bsiTinhTrangXe), New DevExpress.XtraBars.LinkPersistInfo(Me.btSinhNhat), New DevExpress.XtraBars.LinkPersistInfo(Me.btThongBaoMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.lbVer, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btDangXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.lbAutoRestart)})
         Me.Bar3.OptionsBar.AllowQuickCustomization = False
         Me.Bar3.OptionsBar.DrawDragBorder = False
         Me.Bar3.OptionsBar.UseWholeRow = True
@@ -572,6 +595,15 @@ Partial Class fMain
         Me.btDangXuat.Name = "btDangXuat"
         Me.btDangXuat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
+        'lbAutoRestart
+        '
+        Me.lbAutoRestart.Caption = "0"
+        Me.lbAutoRestart.Id = 391
+        Me.lbAutoRestart.Name = "lbAutoRestart"
+        Me.lbAutoRestart.Tag = "Khởi động lại sau: {0}s"
+        Me.lbAutoRestart.TextAlignment = System.Drawing.StringAlignment.Near
+        Me.lbAutoRestart.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        '
         'BarMenu
         '
         Me.BarMenu.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -644,7 +676,7 @@ Partial Class fMain
         Me.mDanhMuc.Caption = "Danh mục"
         Me.mDanhMuc.Glyph = Global.BACSOFT.My.Resources.Resources.Folder_24
         Me.mDanhMuc.Id = 13
-        Me.mDanhMuc.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mPhongBan, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.mNganHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTienTe), New DevExpress.XtraBars.LinkPersistInfo(Me.mTaiKhoanNganHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mTGGiaoHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHinhThucTT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHinhThucTT2), New DevExpress.XtraBars.LinkPersistInfo(Me.mMucDichThuChi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhMucTrangThai, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem1)})
+        Me.mDanhMuc.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mPhongBan, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.mNganHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTienTe), New DevExpress.XtraBars.LinkPersistInfo(Me.mTaiKhoanNganHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mTGGiaoHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHinhThucTT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuHinhThucTT2), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuCongNoKhachHangDauKy, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuCongNoNhaCungCapDauKy), New DevExpress.XtraBars.LinkPersistInfo(Me.mMucDichThuChi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhMucTrangThai, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem1)})
         Me.mDanhMuc.Name = "mDanhMuc"
         Me.mDanhMuc.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         Me.mDanhMuc.Tag = "mDanhMuc"
@@ -690,11 +722,23 @@ Partial Class fMain
         Me.mHinhThucTT.Name = "mHinhThucTT"
         Me.mHinhThucTT.Tag = "mHinhThucTT"
         '
-        'mHinhThucTT2
+        'mnuHinhThucTT2
         '
-        Me.mHinhThucTT2.Caption = "Hình thức thanh toán 2"
-        Me.mHinhThucTT2.Id = 373
-        Me.mHinhThucTT2.Name = "mHinhThucTT2"
+        Me.mnuHinhThucTT2.Caption = "Hình thức thanh toán 2"
+        Me.mnuHinhThucTT2.Id = 376
+        Me.mnuHinhThucTT2.Name = "mnuHinhThucTT2"
+        '
+        'mnuCongNoKhachHangDauKy
+        '
+        Me.mnuCongNoKhachHangDauKy.Caption = "Công nợ khách hàng đầu kỳ"
+        Me.mnuCongNoKhachHangDauKy.Id = 389
+        Me.mnuCongNoKhachHangDauKy.Name = "mnuCongNoKhachHangDauKy"
+        '
+        'mnuCongNoNhaCungCapDauKy
+        '
+        Me.mnuCongNoNhaCungCapDauKy.Caption = "Công nợ nhà cung cấp đầu kỳ"
+        Me.mnuCongNoNhaCungCapDauKy.Id = 390
+        Me.mnuCongNoNhaCungCapDauKy.Name = "mnuCongNoNhaCungCapDauKy"
         '
         'mMucDichThuChi
         '
@@ -826,7 +870,7 @@ Partial Class fMain
         Me.mnuThueKhoHangHoa.Caption = "Kho hàng hóa"
         Me.mnuThueKhoHangHoa.Glyph = CType(resources.GetObject("mnuThueKhoHangHoa.Glyph"), System.Drawing.Image)
         Me.mnuThueKhoHangHoa.Id = 297
-        Me.mnuThueKhoHangHoa.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuGhepVatTuBo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueThaoVatTuBo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThuePhieuNhapXuatKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDoiChieuVatTuTon2Kho)})
+        Me.mnuThueKhoHangHoa.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuGhepVatTuBo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueThaoVatTuBo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThuePhieuNhapXuatKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDoiChieuVatTuTon2Kho), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueInBienBanNghiemThuBanGiao, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueInBangChaoGiaCongTrinh)})
         Me.mnuThueKhoHangHoa.Name = "mnuThueKhoHangHoa"
         '
         'mnuGhepVatTuBo
@@ -853,12 +897,24 @@ Partial Class fMain
         Me.mnuDoiChieuVatTuTon2Kho.Id = 327
         Me.mnuDoiChieuVatTuTon2Kho.Name = "mnuDoiChieuVatTuTon2Kho"
         '
+        'mnuThueInBienBanNghiemThuBanGiao
+        '
+        Me.mnuThueInBienBanNghiemThuBanGiao.Caption = "In biên bản nghiệm thu bàn giao"
+        Me.mnuThueInBienBanNghiemThuBanGiao.Id = 387
+        Me.mnuThueInBienBanNghiemThuBanGiao.Name = "mnuThueInBienBanNghiemThuBanGiao"
+        '
+        'mnuThueInBangChaoGiaCongTrinh
+        '
+        Me.mnuThueInBangChaoGiaCongTrinh.Caption = "In bảng chào giá công trình"
+        Me.mnuThueInBangChaoGiaCongTrinh.Id = 388
+        Me.mnuThueInBangChaoGiaCongTrinh.Name = "mnuThueInBangChaoGiaCongTrinh"
+        '
         'mnuThueThuChiTienMat
         '
         Me.mnuThueThuChiTienMat.Caption = "Quỹ tiền mặt"
         Me.mnuThueThuChiTienMat.Glyph = CType(resources.GetObject("mnuThueThuChiTienMat.Glyph"), System.Drawing.Image)
         Me.mnuThueThuChiTienMat.Id = 256
-        Me.mnuThueThuChiTienMat.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_PhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_PhieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_InPhieuChiTheoLo, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_SoQuyTienMat)})
+        Me.mnuThueThuChiTienMat.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_PhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_PhieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_InPhieuChiTheoLo, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_InPhieuThuTheoLo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_SoQuyTienMat, True)})
         Me.mnuThueThuChiTienMat.Name = "mnuThueThuChiTienMat"
         '
         'mnuThue_PhieuThu
@@ -880,6 +936,12 @@ Partial Class fMain
         Me.mnuThue_InPhieuChiTheoLo.Caption = "In phiếu chi"
         Me.mnuThue_InPhieuChiTheoLo.Id = 301
         Me.mnuThue_InPhieuChiTheoLo.Name = "mnuThue_InPhieuChiTheoLo"
+        '
+        'mnuThue_InPhieuThuTheoLo
+        '
+        Me.mnuThue_InPhieuThuTheoLo.Caption = "In phiếu thu"
+        Me.mnuThue_InPhieuThuTheoLo.Id = 383
+        Me.mnuThue_InPhieuThuTheoLo.Name = "mnuThue_InPhieuThuTheoLo"
         '
         'mnuThue_SoQuyTienMat
         '
@@ -921,7 +983,7 @@ Partial Class fMain
         Me.mnuThueTaiSanCoDinh.Caption = "Tài sản cố định"
         Me.mnuThueTaiSanCoDinh.Glyph = CType(resources.GetObject("mnuThueTaiSanCoDinh.Glyph"), System.Drawing.Image)
         Me.mnuThueTaiSanCoDinh.Id = 277
-        Me.mnuThueTaiSanCoDinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueGhiTangTSCD), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueDanhSachTSCD, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueTonDauKyTSCD)})
+        Me.mnuThueTaiSanCoDinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueGhiTangTSCD), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueKhauHaoTSCD), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueDanhSachTSCD, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueTonDauKyTSCD), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueTheTaiSanCoDinh, True)})
         Me.mnuThueTaiSanCoDinh.Name = "mnuThueTaiSanCoDinh"
         '
         'mnuThueGhiTangTSCD
@@ -929,6 +991,12 @@ Partial Class fMain
         Me.mnuThueGhiTangTSCD.Caption = "Ghi tăng TSCĐ"
         Me.mnuThueGhiTangTSCD.Id = 325
         Me.mnuThueGhiTangTSCD.Name = "mnuThueGhiTangTSCD"
+        '
+        'mnuThueKhauHaoTSCD
+        '
+        Me.mnuThueKhauHaoTSCD.Caption = "Khấu hao TSCĐ"
+        Me.mnuThueKhauHaoTSCD.Id = 373
+        Me.mnuThueKhauHaoTSCD.Name = "mnuThueKhauHaoTSCD"
         '
         'mnuThueDanhSachTSCD
         '
@@ -941,6 +1009,12 @@ Partial Class fMain
         Me.mnuThueTonDauKyTSCD.Caption = "Tồn đầu kỳ TSCĐ"
         Me.mnuThueTonDauKyTSCD.Id = 286
         Me.mnuThueTonDauKyTSCD.Name = "mnuThueTonDauKyTSCD"
+        '
+        'mnuThueTheTaiSanCoDinh
+        '
+        Me.mnuThueTheTaiSanCoDinh.Caption = "Thẻ tài sản cố định"
+        Me.mnuThueTheTaiSanCoDinh.Id = 386
+        Me.mnuThueTheTaiSanCoDinh.Name = "mnuThueTheTaiSanCoDinh"
         '
         'mnuThue_CCDC
         '
@@ -1008,7 +1082,7 @@ Partial Class fMain
         Me.mnuThue_CongCuTienIch.Caption = "Công cụ, tiện ích"
         Me.mnuThue_CongCuTienIch.Glyph = CType(resources.GetObject("mnuThue_CongCuTienIch.Glyph"), System.Drawing.Image)
         Me.mnuThue_CongCuTienIch.Id = 267
-        Me.mnuThue_CongCuTienIch.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_DanhLaiSoCT), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueChungTuChuaGhiSo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueTinhThueHangNhapKhau, True)})
+        Me.mnuThue_CongCuTienIch.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_DanhLaiSoCT), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueGhiSoTheoLo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueChungTuChuaGhiSo), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThueTinhThueHangNhapKhau, True)})
         Me.mnuThue_CongCuTienIch.Name = "mnuThue_CongCuTienIch"
         '
         'mnuThue_DanhLaiSoCT
@@ -1017,6 +1091,12 @@ Partial Class fMain
         Me.mnuThue_DanhLaiSoCT.Glyph = CType(resources.GetObject("mnuThue_DanhLaiSoCT.Glyph"), System.Drawing.Image)
         Me.mnuThue_DanhLaiSoCT.Id = 266
         Me.mnuThue_DanhLaiSoCT.Name = "mnuThue_DanhLaiSoCT"
+        '
+        'mnuThueGhiSoTheoLo
+        '
+        Me.mnuThueGhiSoTheoLo.Caption = "Ghi sổ, bỏ sổ theo lô"
+        Me.mnuThueGhiSoTheoLo.Id = 374
+        Me.mnuThueGhiSoTheoLo.Name = "mnuThueGhiSoTheoLo"
         '
         'mnuThueChungTuChuaGhiSo
         '
@@ -1159,7 +1239,7 @@ Partial Class fMain
         Me.mnuThue_BaoCaoTaiChinh.Caption = "Báo cáo tài chính"
         Me.mnuThue_BaoCaoTaiChinh.Glyph = CType(resources.GetObject("mnuThue_BaoCaoTaiChinh.Glyph"), System.Drawing.Image)
         Me.mnuThue_BaoCaoTaiChinh.Id = 367
-        Me.mnuThue_BaoCaoTaiChinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_KetQuaHoatDongKinhDoanh)})
+        Me.mnuThue_BaoCaoTaiChinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_KetQuaHoatDongKinhDoanh), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuThue_BangCanDoiTaiKhoanThue)})
         Me.mnuThue_BaoCaoTaiChinh.Name = "mnuThue_BaoCaoTaiChinh"
         '
         'mnuThue_KetQuaHoatDongKinhDoanh
@@ -1167,6 +1247,12 @@ Partial Class fMain
         Me.mnuThue_KetQuaHoatDongKinhDoanh.Caption = "Kết quả hoạt động kinh doanh"
         Me.mnuThue_KetQuaHoatDongKinhDoanh.Id = 368
         Me.mnuThue_KetQuaHoatDongKinhDoanh.Name = "mnuThue_KetQuaHoatDongKinhDoanh"
+        '
+        'mnuThue_BangCanDoiTaiKhoanThue
+        '
+        Me.mnuThue_BangCanDoiTaiKhoanThue.Caption = "Bảng cân đối tài khoản thuế"
+        Me.mnuThue_BangCanDoiTaiKhoanThue.Id = 375
+        Me.mnuThue_BangCanDoiTaiKhoanThue.Name = "mnuThue_BangCanDoiTaiKhoanThue"
         '
         'mQuanTri
         '
@@ -1284,7 +1370,7 @@ Partial Class fMain
         Me.mKhachHang.Caption = "Khách hàng"
         Me.mKhachHang.Glyph = Global.BACSOFT.My.Resources.Resources.Customer_24
         Me.mKhachHang.Id = 121
-        Me.mKhachHang.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mDSKhachHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mDSNguoiGiaoDich), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopQuaTrinhGiaoDich)})
+        Me.mKhachHang.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mDSKhachHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mDSNguoiGiaoDich), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopQuaTrinhGiaoDich), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuBaoCaoDoanhThuTheoKhachHang, True)})
         Me.mKhachHang.Name = "mKhachHang"
         Me.mKhachHang.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
@@ -1305,6 +1391,12 @@ Partial Class fMain
         Me.mTongHopQuaTrinhGiaoDich.Caption = "Tổng hợp quá trình giao dịch"
         Me.mTongHopQuaTrinhGiaoDich.Id = 199
         Me.mTongHopQuaTrinhGiaoDich.Name = "mTongHopQuaTrinhGiaoDich"
+        '
+        'mnuBaoCaoDoanhThuTheoKhachHang
+        '
+        Me.mnuBaoCaoDoanhThuTheoKhachHang.Caption = "Báo cáo doanh thu theo khách hàng"
+        Me.mnuBaoCaoDoanhThuTheoKhachHang.Id = 380
+        Me.mnuBaoCaoDoanhThuTheoKhachHang.Name = "mnuBaoCaoDoanhThuTheoKhachHang"
         '
         'mVatTu
         '
@@ -1356,7 +1448,7 @@ Partial Class fMain
         Me.mKyThuat.Caption = "Kỹ thuật"
         Me.mKyThuat.Glyph = Global.BACSOFT.My.Resources.Resources.KyThuat_24
         Me.mKyThuat.Id = 63
-        Me.mKyThuat.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYeuCauCanChuyenMa), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYCCongTrinh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongTrinhCanXuLy), New DevExpress.XtraBars.LinkPersistInfo(Me.mDinhMucDiemCongTrinh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBaoCaoLichThiCong, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuyetBaoCaoThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mKiemTraBaoCaoKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaXuLyYeuCau), New DevExpress.XtraBars.LinkPersistInfo(Me.mDiemChuyenMa), New DevExpress.XtraBars.LinkPersistInfo(Me.mDiemDanhGia, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHThemGioThemCong)})
+        Me.mKyThuat.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYeuCauCanChuyenMa), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYCCongTrinh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongTrinhCanXuLy), New DevExpress.XtraBars.LinkPersistInfo(Me.mDinhMucDiemCongTrinh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBaoCaoLichThiCong, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuyetBaoCaoThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mKiemTraBaoCaoKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaXuLyYeuCau), New DevExpress.XtraBars.LinkPersistInfo(Me.mDiemChuyenMa), New DevExpress.XtraBars.LinkPersistInfo(Me.mDiemDanhGia, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDanhMucYcVatTu, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDanhMucTraLaiVatTu), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHThemGioThemCong)})
         Me.mKyThuat.Name = "mKyThuat"
         Me.mKyThuat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         Me.mKyThuat.Tag = "mKyThuat"
@@ -1422,10 +1514,22 @@ Partial Class fMain
         Me.mDiemDanhGia.Id = 337
         Me.mDiemDanhGia.Name = "mDiemDanhGia"
         '
+        'mnuDanhMucYcVatTu
+        '
+        Me.mnuDanhMucYcVatTu.Caption = "Danh mục yêu cầu vật tư"
+        Me.mnuDanhMucYcVatTu.Id = 392
+        Me.mnuDanhMucYcVatTu.Name = "mnuDanhMucYcVatTu"
+        '
+        'mnuDanhMucTraLaiVatTu
+        '
+        Me.mnuDanhMucTraLaiVatTu.Caption = "Danh mục trả lại vật tư"
+        Me.mnuDanhMucTraLaiVatTu.Id = 393
+        Me.mnuDanhMucTraLaiVatTu.Name = "mnuDanhMucTraLaiVatTu"
+        '
         'mTHThemGioThemCong
         '
         Me.mTHThemGioThemCong.Caption = "Tổng hợp thêm giờ, thêm công"
-        Me.mTHThemGioThemCong.Id = 382
+        Me.mTHThemGioThemCong.Id = 397
         Me.mTHThemGioThemCong.Name = "mTHThemGioThemCong"
         '
         'mMuaHang
@@ -1433,7 +1537,7 @@ Partial Class fMain
         Me.mMuaHang.Caption = "Mua hàng"
         Me.mMuaHang.Glyph = Global.BACSOFT.My.Resources.Resources.MuaHang_24
         Me.mMuaHang.Id = 65
-        Me.mMuaHang.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauCanHoiGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauDi_DatHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYeuCauHoiGia, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauHoiGiaNCC), New DevExpress.XtraBars.LinkPersistInfo(Me.mMHDangVe, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mMHCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhSachNhaCungCap, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhSachNguoiGGNCC), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhaCCTheoHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaXuLyYCCungUng), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaBaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.btnLamHaiQuan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHDuKienPhaiTra, True)})
+        Me.mMuaHang.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauCanHoiGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauDi_DatHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuLyYeuCauHoiGia, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauHoiGiaNCC), New DevExpress.XtraBars.LinkPersistInfo(Me.mMHDangVe, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mMHCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhSachNhaCungCap, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhSachNguoiGGNCC), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhaCCTheoHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaXuLyYCCungUng), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaBaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.btnLamHaiQuan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHDuKienPhaiTra, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDSYCDatTon_MuaHang)})
         Me.mMuaHang.Name = "mMuaHang"
         Me.mMuaHang.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         Me.mMuaHang.Tag = "mMuaHang"
@@ -1518,12 +1622,18 @@ Partial Class fMain
         Me.mTHDuKienPhaiTra.Id = 216
         Me.mTHDuKienPhaiTra.Name = "mTHDuKienPhaiTra"
         '
+        'mDSYCDatTon_MuaHang
+        '
+        Me.mDSYCDatTon_MuaHang.Caption = "Danh sách yêu cầu đặt tồn"
+        Me.mDSYCDatTon_MuaHang.Id = 402
+        Me.mDSYCDatTon_MuaHang.Name = "mDSYCDatTon_MuaHang"
+        '
         'mKinhDoanh
         '
         Me.mKinhDoanh.Caption = "Kinh doanh"
         Me.mKinhDoanh.Glyph = Global.BACSOFT.My.Resources.Resources.invoice_242
         Me.mKinhDoanh.Id = 49
-        Me.mKinhDoanh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauDen), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopYeuCau), New DevExpress.XtraBars.LinkPersistInfo(Me.mChaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiTieuKhachHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mEmailMarketing, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mNguonKhachMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHDuKienPhaiThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btnDSYCLamHQ, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mPhatTrienSanPham, True)})
+        Me.mKinhDoanh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mYeuCauDen), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem8), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopYeuCau), New DevExpress.XtraBars.LinkPersistInfo(Me.mChaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiTieuKhachHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mEmailMarketing, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mNguonKhachMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHDuKienPhaiThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btnDSYCLamHQ, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mPhatTrienSanPham, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDSYCDatTon)})
         Me.mKinhDoanh.Name = "mKinhDoanh"
         Me.mKinhDoanh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         Me.mKinhDoanh.Tag = "mKinhDoanh"
@@ -1534,6 +1644,12 @@ Partial Class fMain
         Me.mYeuCauDen.Id = 52
         Me.mYeuCauDen.Name = "mYeuCauDen"
         Me.mYeuCauDen.Tag = "mYeuCauDen"
+        '
+        'BarButtonItem8
+        '
+        Me.BarButtonItem8.Caption = "Yêu cầu từ web"
+        Me.BarButtonItem8.Id = 400
+        Me.BarButtonItem8.Name = "BarButtonItem8"
         '
         'mTongHopYeuCau
         '
@@ -1584,12 +1700,18 @@ Partial Class fMain
         Me.mPhatTrienSanPham.Id = 355
         Me.mPhatTrienSanPham.Name = "mPhatTrienSanPham"
         '
+        'mDSYCDatTon
+        '
+        Me.mDSYCDatTon.Caption = "Danh sách yêu cầu đặt tồn"
+        Me.mDSYCDatTon.Id = 401
+        Me.mDSYCDatTon.Name = "mDSYCDatTon"
+        '
         'mKho
         '
         Me.mKho.Caption = "Kho"
         Me.mKho.Glyph = Global.BACSOFT.My.Resources.Resources.home_24
         Me.mKho.Id = 118
-        Me.mKho.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mDHCanNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangCanNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapThueChoHangDaNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChaoGiaCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangYCXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatMuon), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatKhoCongTrinh), New DevExpress.XtraBars.LinkPersistInfo(Me.mTonKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTonKhoGiaVon)})
+        Me.mKho.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mDHCanNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangCanNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapThueChoHangDaNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuXuatKhoTam), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuTraKhoXuatTam), New DevExpress.XtraBars.LinkPersistInfo(Me.mChaoGiaCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangYCXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatMuon), New DevExpress.XtraBars.LinkPersistInfo(Me.mXuatKhoCongTrinh), New DevExpress.XtraBars.LinkPersistInfo(Me.mTonKho, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTonKhoGiaVon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuHangHoaCongTrinhCanXuatTam, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuHangHoaCongTrinhCanTraLai)})
         Me.mKho.Name = "mKho"
         Me.mKho.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
@@ -1625,6 +1747,18 @@ Partial Class fMain
         Me.mXuatKho.Id = 151
         Me.mXuatKho.Name = "mXuatKho"
         Me.mXuatKho.Tag = "mXuatKho"
+        '
+        'mnuXuatKhoTam
+        '
+        Me.mnuXuatKhoTam.Caption = "Xuất kho tạm"
+        Me.mnuXuatKhoTam.Id = 385
+        Me.mnuXuatKhoTam.Name = "mnuXuatKhoTam"
+        '
+        'mnuTraKhoXuatTam
+        '
+        Me.mnuTraKhoXuatTam.Caption = "Trả kho xuất tạm"
+        Me.mnuTraKhoXuatTam.Id = 395
+        Me.mnuTraKhoXuatTam.Name = "mnuTraKhoXuatTam"
         '
         'mChaoGiaCanXuat
         '
@@ -1663,12 +1797,24 @@ Partial Class fMain
         Me.mTonKhoGiaVon.Id = 290
         Me.mTonKhoGiaVon.Name = "mTonKhoGiaVon"
         '
+        'mnuHangHoaCongTrinhCanXuatTam
+        '
+        Me.mnuHangHoaCongTrinhCanXuatTam.Caption = "Hàng hóa công trình cần xuất tạm"
+        Me.mnuHangHoaCongTrinhCanXuatTam.Id = 384
+        Me.mnuHangHoaCongTrinhCanXuatTam.Name = "mnuHangHoaCongTrinhCanXuatTam"
+        '
+        'mnuHangHoaCongTrinhCanTraLai
+        '
+        Me.mnuHangHoaCongTrinhCanTraLai.Caption = "Hàng hóa công trình cần trả lại"
+        Me.mnuHangHoaCongTrinhCanTraLai.Id = 394
+        Me.mnuHangHoaCongTrinhCanTraLai.Name = "mnuHangHoaCongTrinhCanTraLai"
+        '
         'mQuanLy
         '
         Me.mQuanLy.Caption = "Quản lý"
         Me.mQuanLy.Glyph = Global.BACSOFT.My.Resources.Resources.User_24
         Me.mQuanLy.Id = 54
-        Me.mQuanLy.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhanSu), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhGiaNhanVien), New DevExpress.XtraBars.LinkPersistInfo(Me.mEmail, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChamCong, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopChamCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mDinhMucLuongThuong), New DevExpress.XtraBars.LinkPersistInfo(Me.mLuongThuong), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuTienMat, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiTienMat), New DevExpress.XtraBars.LinkPersistInfo(Me.mSoTienMat), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuNganHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mUNC), New DevExpress.XtraBars.LinkPersistInfo(Me.mSoTienGui), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuongCuoiNam, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.btnHangHoaXuatChoBA), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinTS), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinCCDC), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinCPC)})
+        Me.mQuanLy.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhanSu), New DevExpress.XtraBars.LinkPersistInfo(Me.mDanhGiaNhanVien), New DevExpress.XtraBars.LinkPersistInfo(Me.mEmail, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChamCong, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopChamCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mDinhMucLuongThuong), New DevExpress.XtraBars.LinkPersistInfo(Me.mLuongThuong), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuTienMat, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiTienMat), New DevExpress.XtraBars.LinkPersistInfo(Me.mSoTienMat), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuNganHang, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mUNC), New DevExpress.XtraBars.LinkPersistInfo(Me.mSoTienGui), New DevExpress.XtraBars.LinkPersistInfo(Me.mThuongCuoiNam, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.btnHangHoaXuatChoBA), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinTS), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinCCDC), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinCPC), New DevExpress.XtraBars.LinkPersistInfo(Me.mKiemTraChungTu)})
         Me.mQuanLy.Name = "mQuanLy"
         Me.mQuanLy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         Me.mQuanLy.Tag = "mQuanLy"
@@ -1815,7 +1961,7 @@ Partial Class fMain
         'btnThongTinCPC
         '
         Me.btnThongTinCPC.Caption = "Chi phí chung"
-        Me.btnThongTinCPC.Id = 380
+        Me.btnThongTinCPC.Id = 396
         Me.btnThongTinCPC.Name = "btnThongTinCPC"
         '
         'mKetQuaHoatDong
@@ -1912,7 +2058,7 @@ Partial Class fMain
         Me.mBaoCao.Caption = "Báo cáo"
         Me.mBaoCao.Glyph = Global.BACSOFT.My.Resources.Resources.chart_pie_24
         Me.mBaoCao.Id = 178
-        Me.mBaoCao.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mVatTuDaDatHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mVatTuDaChaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaChaoGiaTest), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDangVe, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaNhap, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaXuatTest), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaTongHopXK, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDatHangCanThanhToan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiPhi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiTra), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiTraMoi), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiThuPhaiTra, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHCongNo), New DevExpress.XtraBars.LinkPersistInfo(Me.mBCTongHop), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopLNKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopDiemNV, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBaoCaoKinhDoanh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBCDoanhThuTheoHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuKienCongNo, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem3)})
+        Me.mBaoCao.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mVatTuDaDatHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mVatTuDaChaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaChaoGiaTest), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDangVe, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangCanXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaNhap, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaXuat), New DevExpress.XtraBars.LinkPersistInfo(Me.mHangDaXuatTest), New DevExpress.XtraBars.LinkPersistInfo(Me.mKetQuaTongHopXK, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mDatHangCanThanhToan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChiPhi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuCongNoTest), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiTra), New DevExpress.XtraBars.LinkPersistInfo(Me.mCongNoPhaiThuPhaiTra, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTHCongNo), New DevExpress.XtraBars.LinkPersistInfo(Me.mBCTongHop), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopLNKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopDiemNV, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBaoCaoKinhDoanh, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mBCDoanhThuTheoHang), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuKienCongNo, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarSubItem3)})
         Me.mBaoCao.Name = "mBaoCao"
         Me.mBaoCao.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
@@ -1985,42 +2131,50 @@ Partial Class fMain
         Me.mChiPhi.Id = 263
         Me.mChiPhi.Name = "mChiPhi"
         '
-        'BarSubItem4
+        'mnuCongNoTest
         '
-        Me.BarSubItem4.Caption = "Công nợ test"
-        Me.BarSubItem4.Id = 374
-        Me.BarSubItem4.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mPhanBoTamUngNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopCongNoTra, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopCongNoThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopCongNoTra2), New DevExpress.XtraBars.LinkPersistInfo(Me.mTongHopCongNoThu2)})
-        Me.BarSubItem4.Name = "BarSubItem4"
+        Me.mnuCongNoTest.Caption = "Công nợ Test"
+        Me.mnuCongNoTest.Id = 377
+        Me.mnuCongNoTest.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuPhanBoTamUngXuatKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuPhanBoTamUngNhapKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDuKienCongNo, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuCongNoPhaiThuPhaiTra2), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuTongHopCongNoPhaiThu, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuTongHopCongNoPhaiTra)})
+        Me.mnuCongNoTest.Name = "mnuCongNoTest"
         '
-        'mPhanBoTamUngNhapKho
+        'mnuPhanBoTamUngXuatKho
         '
-        Me.mPhanBoTamUngNhapKho.Caption = "Phân bổ tạm ứng nhập kho"
-        Me.mPhanBoTamUngNhapKho.Id = 375
-        Me.mPhanBoTamUngNhapKho.Name = "mPhanBoTamUngNhapKho"
+        Me.mnuPhanBoTamUngXuatKho.Caption = "Phân bổ tạm ứng xuất kho"
+        Me.mnuPhanBoTamUngXuatKho.Id = 378
+        Me.mnuPhanBoTamUngXuatKho.Name = "mnuPhanBoTamUngXuatKho"
         '
-        'mTongHopCongNoTra
+        'mnuPhanBoTamUngNhapKho
         '
-        Me.mTongHopCongNoTra.Caption = "Tổng hợp công nợ phải trả"
-        Me.mTongHopCongNoTra.Id = 376
-        Me.mTongHopCongNoTra.Name = "mTongHopCongNoTra"
+        Me.mnuPhanBoTamUngNhapKho.Caption = "Phân bổ tạm ứng nhập kho"
+        Me.mnuPhanBoTamUngNhapKho.Id = 379
+        Me.mnuPhanBoTamUngNhapKho.Name = "mnuPhanBoTamUngNhapKho"
         '
-        'mTongHopCongNoThu
+        'mnuDuKienCongNo
         '
-        Me.mTongHopCongNoThu.Caption = "Tổng hợp công nợ phải thu"
-        Me.mTongHopCongNoThu.Id = 377
-        Me.mTongHopCongNoThu.Name = "mTongHopCongNoThu"
+        Me.mnuDuKienCongNo.Caption = "Dự kiến công nợ - test"
+        Me.mnuDuKienCongNo.Id = 399
+        Me.mnuDuKienCongNo.Name = "mnuDuKienCongNo"
         '
-        'mTongHopCongNoTra2
+        'mnuCongNoPhaiThuPhaiTra2
         '
-        Me.mTongHopCongNoTra2.Caption = "Tổng hợp công nợ phải trả 2"
-        Me.mTongHopCongNoTra2.Id = 378
-        Me.mTongHopCongNoTra2.Name = "mTongHopCongNoTra2"
+        Me.mnuCongNoPhaiThuPhaiTra2.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.mnuCongNoPhaiThuPhaiTra2.Appearance.Options.UseForeColor = True
+        Me.mnuCongNoPhaiThuPhaiTra2.Caption = "Công nợ xem theo xuất kho"
+        Me.mnuCongNoPhaiThuPhaiTra2.Id = 398
+        Me.mnuCongNoPhaiThuPhaiTra2.Name = "mnuCongNoPhaiThuPhaiTra2"
         '
-        'mTongHopCongNoThu2
+        'mnuTongHopCongNoPhaiThu
         '
-        Me.mTongHopCongNoThu2.Caption = "Tổng hợp công nợ phải thu 2"
-        Me.mTongHopCongNoThu2.Id = 379
-        Me.mTongHopCongNoThu2.Name = "mTongHopCongNoThu2"
+        Me.mnuTongHopCongNoPhaiThu.Caption = "Tổng hợp công nợ phải thu"
+        Me.mnuTongHopCongNoPhaiThu.Id = 381
+        Me.mnuTongHopCongNoPhaiThu.Name = "mnuTongHopCongNoPhaiThu"
+        '
+        'mnuTongHopCongNoPhaiTra
+        '
+        Me.mnuTongHopCongNoPhaiTra.Caption = "Tổng hợp công nợ phải trả"
+        Me.mnuTongHopCongNoPhaiTra.Id = 382
+        Me.mnuTongHopCongNoPhaiTra.Name = "mnuTongHopCongNoPhaiTra"
         '
         'mCongNoPhaiThu
         '
@@ -2033,12 +2187,6 @@ Partial Class fMain
         Me.mCongNoPhaiTra.Caption = "Công nợ phải trả"
         Me.mCongNoPhaiTra.Id = 223
         Me.mCongNoPhaiTra.Name = "mCongNoPhaiTra"
-        '
-        'mCongNoPhaiTraMoi
-        '
-        Me.mCongNoPhaiTraMoi.Caption = "Công nợ phải trả(mới)"
-        Me.mCongNoPhaiTraMoi.Id = 381
-        Me.mCongNoPhaiTraMoi.Name = "mCongNoPhaiTraMoi"
         '
         'mCongNoPhaiThuPhaiTra
         '
@@ -2851,7 +2999,7 @@ Partial Class fMain
         '
         'tbChiTiet
         '
-        Me.tbChiTiet.Location = New System.Drawing.Point(6, 6)
+        Me.tbChiTiet.Location = New System.Drawing.Point(5, 6)
         Me.tbChiTiet.MenuManager = Me.BarManager1
         Me.tbChiTiet.Name = "tbChiTiet"
         Me.tbChiTiet.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
@@ -2863,6 +3011,21 @@ Partial Class fMain
         'TimerLoadThongBao
         '
         Me.TimerLoadThongBao.Interval = 10000
+        '
+        'tAutoRestart
+        '
+        Me.tAutoRestart.Interval = 1000
+        '
+        'tAutoRefreshQuyenSD
+        '
+        Me.tAutoRefreshQuyenSD.Enabled = True
+        Me.tAutoRefreshQuyenSD.Interval = 60000
+        '
+        'mKiemTraChungTu
+        '
+        Me.mKiemTraChungTu.Caption = "Kiểm tra chứng từ"
+        Me.mKiemTraChungTu.Id = 403
+        Me.mKiemTraChungTu.Name = "mKiemTraChungTu"
         '
         'fMain
         '
@@ -3253,14 +3416,37 @@ Partial Class fMain
     Friend WithEvents mKQChaoGiaCT As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuThueCongNoPhaiTraDauKy As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuThueSoChiTietTaiKhoan As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mHinhThucTT2 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarSubItem4 As DevExpress.XtraBars.BarSubItem
-    Friend WithEvents mPhanBoTamUngNhapKho As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mTongHopCongNoTra As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mTongHopCongNoThu As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mTongHopCongNoTra2 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mTongHopCongNoThu2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThueKhauHaoTSCD As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThueGhiSoTheoLo As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThue_BangCanDoiTaiKhoanThue As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuHinhThucTT2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuCongNoTest As DevExpress.XtraBars.BarSubItem
+    Friend WithEvents mnuPhanBoTamUngXuatKho As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuPhanBoTamUngNhapKho As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuBaoCaoDoanhThuTheoKhachHang As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuTongHopCongNoPhaiThu As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuTongHopCongNoPhaiTra As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThue_InPhieuThuTheoLo As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuHangHoaCongTrinhCanXuatTam As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuXuatKhoTam As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThueTheTaiSanCoDinh As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThueInBienBanNghiemThuBanGiao As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuThueInBangChaoGiaCongTrinh As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuCongNoKhachHangDauKy As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuCongNoNhaCungCapDauKy As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents lbAutoRestart As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents tAutoRestart As System.Windows.Forms.Timer
+    Friend WithEvents tAutoRefreshQuyenSD As System.Windows.Forms.Timer
+    Friend WithEvents mnuDanhMucYcVatTu As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuDanhMucTraLaiVatTu As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuHangHoaCongTrinhCanTraLai As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuTraKhoXuatTam As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btnThongTinCPC As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mCongNoPhaiTraMoi As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mTHThemGioThemCong As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuCongNoPhaiThuPhaiTra2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuDuKienCongNo As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem8 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mDSYCDatTon As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mDSYCDatTon_MuaHang As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mKiemTraChungTu As DevExpress.XtraBars.BarButtonItem
 End Class

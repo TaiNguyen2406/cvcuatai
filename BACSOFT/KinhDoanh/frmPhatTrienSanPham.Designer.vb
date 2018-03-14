@@ -37,12 +37,12 @@ Partial Class frmPhatTrienSanPham
         Me.tbNam = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.btXem = New DevExpress.XtraBars.BarButtonItem()
+        Me.btLayDuLieuThangTruoc = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.btLayDuLieuThangTruoc = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.gdv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbHang, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -238,6 +238,15 @@ Partial Class frmPhatTrienSanPham
         Me.btXem.Name = "btXem"
         Me.btXem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
+        'btLayDuLieuThangTruoc
+        '
+        Me.btLayDuLieuThangTruoc.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btLayDuLieuThangTruoc.Appearance.Options.UseFont = True
+        Me.btLayDuLieuThangTruoc.Caption = "Lấy dữ liệu tháng trước"
+        Me.btLayDuLieuThangTruoc.Id = 4
+        Me.btLayDuLieuThangTruoc.Name = "btLayDuLieuThangTruoc"
+        Me.btLayDuLieuThangTruoc.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
@@ -273,15 +282,6 @@ Partial Class frmPhatTrienSanPham
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {12, 0, 0, 0})
         Me.RepositoryItemSpinEdit1.MinValue = New Decimal(New Integer() {1, 0, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'btLayDuLieuThangTruoc
-        '
-        Me.btLayDuLieuThangTruoc.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.btLayDuLieuThangTruoc.Appearance.Options.UseFont = True
-        Me.btLayDuLieuThangTruoc.Caption = "Lấy dữ liệu tháng trước"
-        Me.btLayDuLieuThangTruoc.Id = 4
-        Me.btLayDuLieuThangTruoc.Name = "btLayDuLieuThangTruoc"
-        Me.btLayDuLieuThangTruoc.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'frmPhatTrienSanPham
         '

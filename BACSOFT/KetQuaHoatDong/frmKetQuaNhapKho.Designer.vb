@@ -92,6 +92,9 @@ Partial Class frmKetQuaNhapKho
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colVCNguoiNhap = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rcbHinhThucCT = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.rpopupFile = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -183,6 +186,7 @@ Partial Class frmKetQuaNhapKho
         CType(Me.rcbDVVC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbSoTien, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbTienTe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rcbHinhThucCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rpopupFile, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -392,7 +396,7 @@ Partial Class frmKetQuaNhapKho
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1401, 31)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1401, 33)
         '
         'barDockControlBottom
         '
@@ -405,15 +409,15 @@ Partial Class frmKetQuaNhapKho
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 714)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 712)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1401, 31)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 714)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1401, 33)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 712)
         '
         'btXemPhieuChi
         '
@@ -557,7 +561,7 @@ Partial Class frmKetQuaNhapKho
         Me.gdv.MainView = Me.gdvCT
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
-        Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rpopupFile, Me.RepositoryItemHyperLinkEdit1, Me.rtbThoiGian, Me.rcbDVVC, Me.rtbSoTien, Me.rcbTienTe})
+        Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rpopupFile, Me.RepositoryItemHyperLinkEdit1, Me.rtbThoiGian, Me.rcbDVVC, Me.rtbSoTien, Me.rcbTienTe, Me.rcbHinhThucCT})
         Me.gdv.Size = New System.Drawing.Size(1401, 468)
         Me.gdv.TabIndex = 6
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
@@ -580,7 +584,7 @@ Partial Class frmKetQuaNhapKho
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.colPhieuChi, Me.colUNC, Me.colPhieuXK, Me.colPhieuCG, Me.colTrcThue, Me.GridColumn6, Me.GridColumn8, Me.GridColumn11, Me.GridColumn2, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20, Me.GridColumn9, Me.colVCSoBill, Me.colVCThoiGian, Me.colVCDVVC, Me.colVCSoTien, Me.colVCTienTe, Me.colVCTyGia, Me.colVCCanNang, Me.colVCGhiChu, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn13, Me.colVCNguoiNhap})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.colPhieuChi, Me.colUNC, Me.colPhieuXK, Me.colPhieuCG, Me.colTrcThue, Me.GridColumn6, Me.GridColumn8, Me.GridColumn11, Me.GridColumn2, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20, Me.GridColumn9, Me.colVCSoBill, Me.colVCThoiGian, Me.colVCDVVC, Me.colVCSoTien, Me.colVCTienTe, Me.colVCTyGia, Me.colVCCanNang, Me.colVCGhiChu, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn13, Me.colVCNguoiNhap, Me.GridColumn39, Me.GridColumn42})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.GroupPanelText = "Kéo thả cột cần nhóm dữ liệu vào đây"
@@ -619,7 +623,7 @@ Partial Class frmKetQuaNhapKho
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 173
+        Me.GridColumn1.Width = 160
         '
         'colPhieuChi
         '
@@ -741,7 +745,7 @@ Partial Class frmKetQuaNhapKho
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 10
-        Me.GridColumn2.Width = 168
+        Me.GridColumn2.Width = 150
         '
         'GridColumn14
         '
@@ -751,8 +755,8 @@ Partial Class frmKetQuaNhapKho
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 11
-        Me.GridColumn14.Width = 195
+        Me.GridColumn14.VisibleIndex = 12
+        Me.GridColumn14.Width = 160
         '
         'GridColumn19
         '
@@ -917,6 +921,32 @@ Partial Class frmKetQuaNhapKho
         Me.colVCNguoiNhap.FieldName = "NguoiNhapCP"
         Me.colVCNguoiNhap.Name = "colVCNguoiNhap"
         Me.colVCNguoiNhap.Width = 120
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Hình thức CT"
+        Me.GridColumn39.ColumnEdit = Me.rcbHinhThucCT
+        Me.GridColumn39.FieldName = "IDHinhThucCT"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 11
+        Me.GridColumn39.Width = 80
+        '
+        'rcbHinhThucCT
+        '
+        Me.rcbHinhThucCT.AutoHeight = False
+        Me.rcbHinhThucCT.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rcbHinhThucCT.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Name3", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Tên")})
+        Me.rcbHinhThucCT.DisplayMember = "Ten"
+        Me.rcbHinhThucCT.Name = "rcbHinhThucCT"
+        Me.rcbHinhThucCT.NullText = ""
+        Me.rcbHinhThucCT.ValueMember = "Id"
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Ngày tháng"
+        Me.GridColumn42.FieldName = "Ngaythang"
+        Me.GridColumn42.Name = "GridColumn42"
         '
         'RepositoryItemMemoEdit1
         '
@@ -1337,13 +1367,13 @@ Partial Class frmKetQuaNhapKho
         Me.SplitContainerControl1.CollapsePanel = DevExpress.XtraEditors.SplitCollapsePanel.Panel2
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 31)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 33)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.gdv)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1401, 714)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1401, 712)
         Me.SplitContainerControl1.SplitterPosition = 468
         Me.SplitContainerControl1.TabIndex = 16
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1354,7 +1384,7 @@ Partial Class frmKetQuaNhapKho
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1401, 240)
+        Me.GroupControl1.Size = New System.Drawing.Size(1401, 239)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Chi tiết nhập kho"
         '
@@ -1366,7 +1396,7 @@ Partial Class frmKetQuaNhapKho
         Me.gdvVT.MenuManager = Me.BarManager1
         Me.gdvVT.Name = "gdvVT"
         Me.gdvVT.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.N0, Me.cbMucDoCan, Me.cbTrangThai, Me.RepositoryItemMemoEdit2, Me.RepositoryItemMemoExEdit1, Me.cbNhanVien, Me.cbDVT, Me.chkChon})
-        Me.gdvVT.Size = New System.Drawing.Size(1397, 216)
+        Me.gdvVT.Size = New System.Drawing.Size(1397, 215)
         Me.gdvVT.TabIndex = 7
         Me.gdvVT.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvVTCT})
         '
@@ -1702,6 +1732,7 @@ Partial Class frmKetQuaNhapKho
         CType(Me.rcbDVVC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbSoTien, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbTienTe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rcbHinhThucCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rpopupFile, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1881,5 +1912,7 @@ Partial Class frmKetQuaNhapKho
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents btPhanBoChiPhiNhap As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents colVCNguoiNhap As DevExpress.XtraGrid.Columns.GridColumn
-
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents rcbHinhThucCT As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

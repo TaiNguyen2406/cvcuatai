@@ -18,20 +18,22 @@ Public Class frmThemTaiSanHong
         glueNSD.Properties.View.PopulateColumns(glueNSD.Properties.DataSource)
         glueNSD.Properties.View.Columns(glueNSD.Properties.ValueMember).Visible = False
         glueNSD.EditValue = 1
-        query = " select TaiSan_TaiSan.id,  ten, Model from Taisan_TaiSan inner join XUATKHO on XUATKHO.ID=TaiSan_TaiSan.idxuatkho inner join VATTU on VATTU.ID=TaiSan_TaiSan.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
+        query = "  select TaiSan_TaiSan.id, isnull( ten,TenTaiSan) ten, isnull(Model,MaTS) Model from Taisan_TaiSan left join XUATKHO on XUATKHO.ID=TaiSan_TaiSan.idxuatkho left join VATTU on VATTU.ID=TaiSan_TaiSan.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID where IdGop is null"
         lueTaiSan.Properties.DataSource = ExecuteSQLDataTable(query)
-        query = "select TaiSan_ChiTietTaiSan.id, tenchitiettaisan from TaiSan_ChiTietTaiSan inner join TaiSan_TaiSan on idtaisan=TaiSan_TaiSan.id where idloaitaisan=2"
+        query = "select TaiSan_ChiTietTaiSan.id, tenchitiettaisan from TaiSan_ChiTietTaiSan inner join TaiSan_TaiSan on idtaisan=TaiSan_TaiSan.id"
         If _message = 0 Then
-            query &= " and TaiSan_ChiTietTaiSan.id  not in(select idchitiettaisan from TaiSan_NguoiSuDung)"
+            query &= " and TaiSan_ChiTietTaiSan.id  not in(select idchitiettaisan from TaiSan_NguoiSuDung)  and IdGop is null"
         End If
         query &= " order by tenchitiettaisan  "
         lueChiTietTaiSan.Properties.DataSource = ExecuteSQLDataTable(query)
         '    lueChiTietTaiSan.ItemIndex = 0
         deNgaySua.EditValue = Today
         If _message <> 0 Then
-            query = "select * from TaiSan_TaiSanHong where id=@id"
+
+            query = "select *,(Select idtaisan from TaiSan_ChiTietTaiSan where id=idchitiettaisan) idtaisan from TaiSan_TaiSanHong where id=@id"
             AddParameterWhere("@id", _message)
             Dim dt As DataTable = ExecuteSQLDataTable(query)
+            lueTaiSan.EditValue = dt.Rows(0).Item(6)
             lueChiTietTaiSan.EditValue = dt.Rows(0).Item(1)
             glueNSD.EditValue = dt.Rows(0).Item(2)
             deNgaySua.EditValue = dt.Rows(0).Item(3)
@@ -93,7 +95,7 @@ Public Class frmThemTaiSanHong
     End Sub
 
     Private Sub lueTaiSan_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles lueTaiSan.EditValueChanged
-        Dim query = "select TaiSan_ChiTietTaiSan.id, tenchitiettaisan from TaiSan_ChiTietTaiSan inner join TaiSan_TaiSan on idtaisan=TaiSan_TaiSan.id where idloaitaisan=2 "
+        Dim query = "  select TaiSan_ChiTietTaiSan.id, tenchitiettaisan from TaiSan_ChiTietTaiSan inner join TaiSan_TaiSan on idtaisan=TaiSan_TaiSan.id where  IdGop is null "
         If lueTaiSan.EditValue IsNot Nothing Then
             query &= " and idtaisan=@idtaisan"
             AddParameterWhere("@idtaisan", lueTaiSan.EditValue)

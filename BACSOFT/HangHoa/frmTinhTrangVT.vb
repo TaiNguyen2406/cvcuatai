@@ -12,6 +12,8 @@ Public Class frmTinhTrangVT
     Public _HienCGXK As Boolean = True
 
     Private Sub frmTinhTrangVT_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        riLueCTCG.DataSource = TAI.tableCongTrinh
+        riLueCTXK.DataSource = TAI.tableCongTrinh
         If Not _HienNCC Then
             If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.TPKinhDoanh) Then
                 colNhaCC.Visible = False
@@ -25,6 +27,18 @@ Public Class frmTinhTrangVT
             Dim sql As String = ""
             sql &= " SELECT Model,Code,"
             sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID)) AS TonBAC,"
+
+
+            'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = " & _IDVatTu & " AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+            'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = " & _IDVatTu & " AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+            'sql &= " as XuatTam, "
+
+            sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = " & _IDVatTu & " ),0)  "
+            sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = " & _IDVatTu & " ),0) "
+            sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = " & _IDVatTu & " AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = " & _IDVatTu & " and SlXuatKho > 0)),0) "
+            sql &= " as XuatTam, "
+
+            sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= " & _IDVatTu & ") AS Dangve, "
             sql &= " TonNCC,(SELECT ISNULL(SUM(SoLuong),0) FROM NHAPKHO WHERE IDVatTu=VATTU.ID)TongNhap,(SELECT ISNULL(SUM(SoLuong),0) FROM XUATKHO WHERE IDVatTu=VATTU.ID)TongXuat,"
             sql &= " ((CASE ConSX WHEN 1 THEN N'Còn SX, ' ELSE N'Ngừng SX, ' END) +(CASE MaLoi WHEN 1 THEN N'Mã lỗi, ' ELSE N'' END)+(CASE ThongDung WHEN 1 THEN N'Thông dụng, ' ELSE N'' END)+(CASE HangTon WHEN 1 THEN N'Khó bán,' ELSE N'' END))TinhTrang,"
             sql &= " SLMOQ1,GiaMOQ1,SLMOQ2,GiaMOQ2,SLMOQ3,GiaMOQ3,ISNULL(GiaNKBAC,0)GiaNKBAC,HinhAnh,TaiLieu,ThongSo,TENNHOM.Ten_ENG AS TenNhom_ENG, TENHANGSANXUAT.Ten AS TenHang,"
@@ -63,6 +77,9 @@ Public Class frmTinhTrangVT
 
             sql &= " SELECT CHAOGIA.Sophieu,IDVattu,Soluong,(Dongia * BANGCHAOGIA.Tygia)Dongia,BANGCHAOGIA.Tiente,Mucthue,Xuatthue,"
             sql &= " BANGCHAOGIA.Ngaythang,KHACHHANG.ttcMa,BANGCHAOGIA.CongTrinh,"
+            'Tai
+            sql &= " BANGCHAOGIA.NgayNhan, CHAOGIA.NgayCan, (select GiaiThich  from DM_HINH_THUC_TT where ID=BANGCHAOGIA.IDHinhThucTT2 ) HTTT,(select sum(Sotien) from (select ID, NgayTHangCT,Sophieu,SoTien,PhieuTC0 ,PhieuTC1  from Thu union all select ID, NgayTHangCT,Sophieu,SoTien,PhieuTC0 ,PhieuTC1 from THUNH  ) tbThu where PhieuTC0=BANGCHAOGIA.Sophieu and PhieuTC1 ='000000000') DaThanhToan, "
+            'Tai
             sql &= " (CASE VATTU.DonGia1 WHEN 0 THEN 0 ELSE "
             sql &= " (CASE VATTU.TienTe1 WHEN 0 THEN round(((Dongia * BANGCHAOGIA.Tygia)/VATTU.DonGia1)*100,2) "
             sql &= " 	ELSE round(((Dongia * BANGCHAOGIA.Tygia)/(VATTU.DonGia1 * tblTienTe.TyGia))*100,2) END )END)GiaBanPT,"
@@ -73,7 +90,6 @@ Public Class frmTinhTrangVT
             sql &= "         INNER JOIN KHACHHANG ON BANGCHAOGIA.IDKhachhang=KHACHHANG.ID"
             sql &= " WHERE (CHAOGIA.TrangThai <>2 OR CHAOGIA.CanXuat <> 0) AND CHAOGIA.IDVattu=" & _IDVatTu
             sql &= " ORDER BY BANGCHAOGIA.Ngaythang DESC"
-
 
 
             sql &= " SELECT ISNULL( (SELECT SUM(SoLuong) FROM tblXuatMuon WHERE TrangThai <>1 AND IDVatTu=" & _IDVatTu & "),0)"
@@ -94,10 +110,12 @@ Public Class frmTinhTrangVT
                     tbModel.EditValue = .Rows(0)("Model")
                     tbCode.EditValue = .Rows(0)("Code")
                     tbTonBAC.EditValue = .Rows(0)("TonBAC")
+                    txtXuatTam.EditValue = .Rows(0)("XuatTam")
                     tbTonNCC.EditValue = .Rows(0)("TonNCC")
                     tbTongNhap.EditValue = .Rows(0)("TongNhap")
                     tbTongXuat.EditValue = .Rows(0)("TongXuat")
                     tbTinhTrang.EditValue = .Rows(0)("TinhTrang")
+                    tbDangVe.EditValue = .Rows(0)("Dangve")
                     If _HienThongTinNX Then
                         tbSLMOQ1.EditValue = .Rows(0)("SLMOQ1")
                         tbSLMOQ2.EditValue = .Rows(0)("SLMOQ2")
@@ -134,7 +152,7 @@ Public Class frmTinhTrangVT
                 gdvGiaBan.DataSource = ds.Tables(2)
                 gdvChaoGia.DataSource = ds.Tables(3)
 
-                
+
 
                 If ds.Tables(4).Rows(0)(0) > 0 Then
                     lbMuon.Text = "KD đang mượn: " & ds.Tables(4).Rows(0)(0).ToString
@@ -329,4 +347,11 @@ Public Class frmTinhTrangVT
     '        ShowBaoLoi(LoiNgoaiLe)
     '    End If
     'End Sub
+
+    Private Sub btnLsXuatTam_Click(sender As System.Object, e As System.EventArgs) Handles btnLsXuatTam.Click
+        Dim f As New frmLichSuNhapXuatKhoTam
+        f.idVatTu = _IDVatTu
+        f.ShowDialog()
+    End Sub
+
 End Class

@@ -93,7 +93,17 @@ Partial Class frmNhaCungCap
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rgdvHTTT2 = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
+        Me.riLueNhom = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemGridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rcmbHinhThucChungTu = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -131,16 +141,6 @@ Partial Class frmNhaCungCap
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.pMenuNgd = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.pMenuSuaQTGD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.riLueNhom = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.gdvNgd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvKH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +156,8 @@ Partial Class frmNhaCungCap
         CType(Me.gdvListFileCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgdvHTTT2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcmbHinhThucChungTu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,8 +170,6 @@ Partial Class frmNhaCungCap
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMenuNgd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMenuSuaQTGD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gdvNgd
@@ -948,6 +948,27 @@ Partial Class frmNhaCungCap
         Me.rgdvHTTT2.ValueMember = "ID"
         Me.rgdvHTTT2.View = Me.RepositoryItemGridLookUpEdit1View
         '
+        'riLueNhom
+        '
+        Me.riLueNhom.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.riLueNhom.AppearanceReadOnly.Options.UseFont = True
+        Me.riLueNhom.AutoHeight = False
+        Me.riLueNhom.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.riLueNhom.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name15"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenNhom", "Name16")})
+        Me.riLueNhom.DisplayMember = "TenNhom"
+        Me.riLueNhom.Name = "riLueNhom"
+        Me.riLueNhom.NullText = ""
+        Me.riLueNhom.ShowFooter = False
+        Me.riLueNhom.ShowHeader = False
+        Me.riLueNhom.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.riLueNhom.ValueMember = "ID"
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit2.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
+        '
         'RepositoryItemGridLookUpEdit1View
         '
         Me.RepositoryItemGridLookUpEdit1View.Appearance.GroupRow.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -965,6 +986,83 @@ Partial Class frmNhaCungCap
         Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = False
         Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowIndicator = False
         Me.RepositoryItemGridLookUpEdit1View.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn59, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "ID"
+        Me.GridColumn58.FieldName = "ID"
+        Me.GridColumn58.Name = "GridColumn58"
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.Caption = "Nhóm"
+        Me.GridColumn59.ColumnEdit = Me.riLueNhom
+        Me.GridColumn59.FieldName = "Nhom"
+        Me.GridColumn59.GroupFormat.FormatString = "{0}"
+        Me.GridColumn59.GroupFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 0
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "T1"
+        Me.GridColumn60.FieldName = "TraTruoc1"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 1
+        Me.GridColumn60.Width = 25
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.Caption = "T2"
+        Me.GridColumn61.FieldName = "TraTruoc2"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 2
+        Me.GridColumn61.Width = 25
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "S1"
+        Me.GridColumn62.FieldName = "TraSau1"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 3
+        Me.GridColumn62.Width = 25
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "S2"
+        Me.GridColumn63.FieldName = "TraSau1"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 4
+        Me.GridColumn63.Width = 25
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "Ngày HT"
+        Me.GridColumn64.FieldName = "SoNgayHT"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 5
+        Me.GridColumn64.Width = 60
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.GridColumn65.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.GridColumn65.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn65.Caption = "Giải thích"
+        Me.GridColumn65.ColumnEdit = Me.RepositoryItemMemoEdit2
+        Me.GridColumn65.FieldName = "GiaiThich"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 0
+        Me.GridColumn65.Width = 300
         '
         'GridColumn57
         '
@@ -1271,104 +1369,6 @@ Partial Class frmNhaCungCap
         Me.pMenuSuaQTGD.Manager = Me.BarManager1
         Me.pMenuSuaQTGD.Name = "pMenuSuaQTGD"
         '
-        'GridColumn58
-        '
-        Me.GridColumn58.Caption = "ID"
-        Me.GridColumn58.FieldName = "ID"
-        Me.GridColumn58.Name = "GridColumn58"
-        '
-        'GridColumn59
-        '
-        Me.GridColumn59.Caption = "Nhóm"
-        Me.GridColumn59.ColumnEdit = Me.riLueNhom
-        Me.GridColumn59.FieldName = "Nhom"
-        Me.GridColumn59.GroupFormat.FormatString = "{0}"
-        Me.GridColumn59.GroupFormat.FormatType = DevExpress.Utils.FormatType.Custom
-        Me.GridColumn59.Name = "GridColumn59"
-        Me.GridColumn59.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value
-        Me.GridColumn59.Visible = True
-        Me.GridColumn59.VisibleIndex = 0
-        '
-        'GridColumn60
-        '
-        Me.GridColumn60.Caption = "T1"
-        Me.GridColumn60.FieldName = "TraTruoc1"
-        Me.GridColumn60.Name = "GridColumn60"
-        Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 1
-        Me.GridColumn60.Width = 25
-        '
-        'GridColumn61
-        '
-        Me.GridColumn61.Caption = "T2"
-        Me.GridColumn61.FieldName = "TraTruoc2"
-        Me.GridColumn61.Name = "GridColumn61"
-        Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 2
-        Me.GridColumn61.Width = 25
-        '
-        'GridColumn62
-        '
-        Me.GridColumn62.Caption = "S1"
-        Me.GridColumn62.FieldName = "TraSau1"
-        Me.GridColumn62.Name = "GridColumn62"
-        Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 3
-        Me.GridColumn62.Width = 25
-        '
-        'GridColumn63
-        '
-        Me.GridColumn63.Caption = "S2"
-        Me.GridColumn63.FieldName = "TraSau1"
-        Me.GridColumn63.Name = "GridColumn63"
-        Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 4
-        Me.GridColumn63.Width = 25
-        '
-        'GridColumn64
-        '
-        Me.GridColumn64.Caption = "Ngày HT"
-        Me.GridColumn64.FieldName = "SoNgayHT"
-        Me.GridColumn64.Name = "GridColumn64"
-        Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 5
-        Me.GridColumn64.Width = 60
-        '
-        'riLueNhom
-        '
-        Me.riLueNhom.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.riLueNhom.AppearanceReadOnly.Options.UseFont = True
-        Me.riLueNhom.AutoHeight = False
-        Me.riLueNhom.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.riLueNhom.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name15"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenNhom", "Name16")})
-        Me.riLueNhom.DisplayMember = "TenNhom"
-        Me.riLueNhom.Name = "riLueNhom"
-        Me.riLueNhom.NullText = ""
-        Me.riLueNhom.ShowFooter = False
-        Me.riLueNhom.ShowHeader = False
-        Me.riLueNhom.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.riLueNhom.ValueMember = "ID"
-        '
-        'GridColumn65
-        '
-        Me.GridColumn65.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn65.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.GridColumn65.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.GridColumn65.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn65.Caption = "Giải thích"
-        Me.GridColumn65.ColumnEdit = Me.RepositoryItemMemoEdit2
-        Me.GridColumn65.FieldName = "GiaiThich"
-        Me.GridColumn65.Name = "GridColumn65"
-        Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 0
-        Me.GridColumn65.Width = 300
-        '
-        'RepositoryItemMemoEdit2
-        '
-        Me.RepositoryItemMemoEdit2.Appearance.Options.UseTextOptions = True
-        Me.RepositoryItemMemoEdit2.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
-        '
         'frmNhaCungCap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1397,6 +1397,8 @@ Partial Class frmNhaCungCap
         CType(Me.gdvListFileCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rgdvHTTT2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcmbHinhThucChungTu, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1410,8 +1412,6 @@ Partial Class frmNhaCungCap
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pMenuNgd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pMenuSuaQTGD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

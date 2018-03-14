@@ -6,6 +6,10 @@ Public Class frmCNNguoiGiaoDich
         loadNoiCongTac()
         cbDoiTuongNhanEmail.Properties.DataSource = getDataCbDoiTuongNhanEmail()
         cbDoiTuongNhanEmail.EditValue = Convert.ToByte(4)
+        If KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) = False And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.TPKinhDoanh) = False Then
+
+            cbTakeCare.Enabled = False
+        End If
         If TrangThai.isAddNew Then
             Me.Text = "Thêm người giao dịch"
             chkConLamViec.Checked = True
@@ -42,6 +46,7 @@ Public Class frmCNNguoiGiaoDich
                 If Not IsDBNull(dt.Rows(0)("Chamsoc")) Then
                     If KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) = False And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.TPKinhDoanh) = False Then
                         cbTakeCare.Properties.ReadOnly = True
+
                     End If
                 End If
 
@@ -104,7 +109,20 @@ Public Class frmCNNguoiGiaoDich
     End Sub
 
     Public Sub loadNoiCongTac()
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,ttcMa,Ten FROM KHACHHANG Where ID <> 74 ORDER BY ttcMa")
+        Dim sql As String = "SELECT distinct KHACHHANG. * from KHACHHANG left join NHANSU on KHACHHANG .ID=NHANSU .Noictac  where KHACHHANG.ID <> 74"
+        '  Dim sql As String = "SELECT ID,ttcMa,Ten,IDTakecare FROM KHACHHANG "
+        If cbTakeCare.EditValue IsNot Nothing Then
+            sql &= " AND ((NHANSU .ChamSoc=@Chamsoc  OR KHACHHANG.IDTakecare is null  ) or KHACHHANG.IDTakecare=@Chamsoc)"
+            AddParameterWhere("@Chamsoc", cbTakeCare.EditValue)
+            '   Else
+            '  sql &= " AND KHACHHANG.IDTakecare is null   "
+        End If
+
+        sql &= "  ORDER BY ttcMa "
+        If KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.TPKinhDoanh) = True Or KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) = True Then
+            sql = "SELECT ID,ttcMa,Ten FROM KHACHHANG Where ID <> 74 ORDER BY ttcMa"
+        End If
+        Dim tb As DataTable = ExecuteSQLDataTable(sql) '"SELECT ID,ttcMa,Ten FROM KHACHHANG Where ID <> 74 ORDER BY ttcMa"
         If Not tb Is Nothing Then
             cbNoiCongTac.Properties.DataSource = tb
         Else
@@ -218,5 +236,9 @@ Public Class frmCNNguoiGiaoDich
 
     Private Sub cbTakeCare_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cbTakeCare.ButtonClick
         cbTakeCare.EditValue = Nothing
+    End Sub
+
+    Private Sub cbTakeCare_EditValueChanged(sender As Object, e As EventArgs) Handles cbTakeCare.EditValueChanged
+        loadNoiCongTac()
     End Sub
 End Class

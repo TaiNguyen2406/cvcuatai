@@ -7,6 +7,7 @@ Imports DevExpress.XtraPrinting
 Imports System.IO
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports DevExpress.XtraGrid.Views.BandedGrid.ViewInfo
 
 Public Class frmTongHopThemGioThemCongKT
     Private _exit As Boolean = False
@@ -372,7 +373,7 @@ Public Class frmTongHopThemGioThemCongKT
                     '    tb.Rows.Add()
                     'End If
                     Do While dem < row.Length - 1
-                       
+
                         'If t = 1 Then
                         '    max = row.Length
                         '    tb.Rows.Add()
@@ -508,7 +509,7 @@ Public Class frmTongHopThemGioThemCongKT
         tb.Columns.Add(New DataColumn("Ngay2", System.Type.GetType("System.Int32")))
         tb.Columns.Add(New DataColumn("Thu", System.Type.GetType("System.Int32")))
         Dim sql As String = meSqlDiLai.Text
- 
+
         ' sql &= " group by Ngay,  SoYC,SoCG ,IDNgThucHien, IDkhachhang   order by Ngay desc"
         dt = ExecuteSQLDataTable(sql)
         Dim ngay As DateTime
@@ -564,7 +565,7 @@ Public Class frmTongHopThemGioThemCongKT
                     Loop
                     If dem > dongcuoi Then
                         dongcuoi = dem
-                       
+
                     End If
                 End If
                 If t = gv.Bands.Count - 1 Then
@@ -693,7 +694,7 @@ Public Class frmTongHopThemGioThemCongKT
             tb.Rows(0)("GioX1") = tbTongHop.Compute("sum(ThemGio" & idnv & ")", "")
             tb.Rows(0)("Tong") = tryObj2Double(tb.Rows(0)("GioX1")) + tryObj2Double(tb.Rows(0)("GioX2"))
         End If
-      
+
         gcTH.DataSource = tb
         gvTH.OptionsSelection.EnableAppearanceFocusedRow = True
     End Sub
@@ -787,7 +788,7 @@ Public Class frmTongHopThemGioThemCongKT
             Next
             tb.Rows(0)("Tong") = tbTongHop.Compute("sum(ThemCong" & idnv & ")", "")
         End If
-       
+
         gcTHChamCong.DataSource = tb
         gvTHChamCong.OptionsSelection.EnableAppearanceFocusedRow = True
     End Sub
@@ -880,7 +881,7 @@ Public Class frmTongHopThemGioThemCongKT
             Next
             tb.Rows(0)("Tong") = tbTongHopDiLai.Compute("sum(SoKM" & idnv & ")", "")
         End If
-     
+
         gcDiLaiTH.DataSource = tb
         gvDiLaiTH.OptionsSelection.EnableAppearanceFocusedRow = True
     End Sub
@@ -921,6 +922,7 @@ Public Class frmTongHopThemGioThemCongKT
         End If
     End Sub
     Private Sub btTaiBaoCao_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btTaiBaoCao.ItemClick
+        chkLocChuNhat.Checked = False
         If tabThemGio.SelectedTabPage.Name = "pageTongHop" Then
             taobang()
             taobangTH()
@@ -941,6 +943,7 @@ Public Class frmTongHopThemGioThemCongKT
             End If
 
         End If
+
     End Sub
 
     Private Sub rgdvNoiDung_Popup(sender As System.Object, e As System.EventArgs) Handles rgdvNoiDung.Popup
@@ -970,7 +973,7 @@ Public Class frmTongHopThemGioThemCongKT
     Private Sub gv_RowStyle(sender As System.Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gv.RowStyle
         Dim view As BandedGridView = CType(sender, BandedGridView)
         Dim viewInfo As GridViewInfo = CType(view.GetViewInfo(), GridViewInfo)
-        If e.RowHandle = View.FocusedRowHandle Then
+        If e.RowHandle = view.FocusedRowHandle Then
             e.Appearance.Assign(viewInfo.PaintAppearance.FocusedRow)
         End If
     End Sub
@@ -1029,7 +1032,11 @@ Public Class frmTongHopThemGioThemCongKT
                     Dim idNguoiThucHien As String = gvexprort.Bands(t).Name
                     gvexprort.Columns("LuongCB" + idNguoiThucHien).Visible = True
                     gvexprort.Columns("SoTien" + idNguoiThucHien).Visible = True
-                    gvexprort.Columns("ThemCong" + idNguoiThucHien).Visible = False
+                    If chkLocChuNhat.Checked Then
+                        gvexprort.Columns("ThemCong" + idNguoiThucHien).Visible = True
+                    Else
+                        gvexprort.Columns("ThemCong" + idNguoiThucHien).Visible = False
+                    End If
                 Next
                 filename = "Chi tiết thêm giờ tháng " & tu.Month & "-" & tu.Year
                 With gvexprort
@@ -1071,7 +1078,7 @@ Public Class frmTongHopThemGioThemCongKT
         End If
         Dim saveDialog As SaveFileDialog = New SaveFileDialog()
         Try
-            saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
+            saveDialog.Filter = "Excel (2010) (.xlsx)|*.xlsx"
             saveDialog.FileName = filename
             If saveDialog.ShowDialog() = DialogResult.OK Then
                 ShowWaiting("Đang kết xuất ...")
@@ -1142,7 +1149,7 @@ Public Class frmTongHopThemGioThemCongKT
                             gvTHChamCong.OptionsView.ShowViewCaption = False
                         End If
                     End If
-                 
+
                 End If
 
             End If
@@ -1197,7 +1204,7 @@ Public Class frmTongHopThemGioThemCongKT
                 End If
             End If
 
-          
+
 
             e.Handled = True
         Else
@@ -1275,7 +1282,7 @@ Public Class frmTongHopThemGioThemCongKT
         End If
     End Sub
 
-   
+
     Private Sub mThemMoiSoKm_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mThemMoiSoKm.ItemClick
         Dim f As frmCNSoKM = New frmCNSoKM
         TrangThai.isAddNew = True
@@ -1301,7 +1308,78 @@ Public Class frmTongHopThemGioThemCongKT
     End Sub
 
     Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
-        Dim f As New frmKetXuatExeclTGTCKT
-        f.ShowDialog()
+        '   Dim f As New frmKetXuatExeclTGTCKT
+        '    f.ShowDialog()
+    End Sub
+    Private Sub gv_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles gv.FocusedRowChanged
+        gv.Invalidate()
+    End Sub
+    Private Sub gv_LeftCoordChanged(sender As System.Object, e As System.EventArgs) Handles gv.LeftCoordChanged
+        gv.Invalidate()
+    End Sub
+    Private Sub gc_Paint(sender As Object, e As PaintEventArgs) Handles gc.Paint
+
+        Dim viewInfo As GridViewInfo = gv.GetViewInfo()
+        Dim handl As Integer = gv.FocusedRowHandle
+
+        Dim _Top As Integer = handl
+        If _Top >= 0 Then
+            While gv.GetRowCellValue(_Top, "Ngay").ToString() = "" And _Top > 0
+                _Top = _Top - 1
+            End While
+
+            Dim rowInfo2 As GridRowInfo = viewInfo.GetGridRowInfo(_Top)
+            If rowInfo2 Is Nothing Then Exit Sub
+            Dim rect2 As System.Drawing.Rectangle = rowInfo2.DataBounds
+            Dim pen2 As System.Drawing.Pen = New System.Drawing.Pen(System.Drawing.Brushes.Yellow, 2)
+            e.Graphics.DrawLine(pen2, rect2.X, rect2.Y, rect2.X + rect2.Width, rect2.Y)
+        End If
+
+
+        Dim _Bottom As Integer = handl + 1
+
+        If _Bottom >= 0 Then
+            If handl = gv.RowCount - 1 Then
+                _Bottom = handl
+            Else
+                While gv.GetRowCellValue(_Bottom, "Ngay").ToString() = "" And _Bottom < gv.RowCount - 1
+                    _Bottom = _Bottom + 1
+                End While
+            End If
+
+
+
+            Dim rowInfo3 As GridRowInfo = viewInfo.GetGridRowInfo(_Bottom)
+            If rowInfo3 Is Nothing Then Exit Sub
+            Dim rect3 As System.Drawing.Rectangle = rowInfo3.DataBounds
+            Dim pen3 As System.Drawing.Pen = New System.Drawing.Pen(System.Drawing.Brushes.Yellow, 2)
+            If _Bottom = handl Then
+                e.Graphics.DrawLine(pen3, rect3.X, rect3.Y + rect3.Height, rect3.X + rect3.Width, rect3.Y + rect3.Height)
+            Else
+                e.Graphics.DrawLine(pen3, rect3.X, rect3.Y, rect3.X + rect3.Width, rect3.Y)
+            End If
+
+
+        End If
+    End Sub
+
+    Private Sub chkLocChuNhat_EditValueChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BarCheckItem1_CheckedChanged(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles chkLocChuNhat.CheckedChanged
+        If chkLocChuNhat.Checked = True Then
+            Dim d = gv.RowCount - 1
+            For i = 0 To d
+                If gv.GetRowCellValue(i, "Thu") <> 0 Then
+
+                    gv.DeleteRow(i)
+                    i = i - 1
+                    d = d - 1
+                End If
+            Next
+        Else
+            taobang()
+        End If
     End Sub
 End Class

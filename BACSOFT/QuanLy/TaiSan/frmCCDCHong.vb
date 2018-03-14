@@ -8,7 +8,6 @@ Public Class frmCCDCHong
     Private Shared dt As DataTable
     Private Sub loadGV()
         query = "select Taisan_CCDCHong.*, tenchitietccdc, Ten from Taisan_CCDCHong inner join NHANSU on idnhansu= NHANSU.ID inner join Taisan_ChiTIetCCDC on idchitietccdc=Taisan_ChiTIetCCDC.id where 1=1 "
-
         If barLueCCDC.EditValue IsNot Nothing Then
             query &= " and idccdc=@idccdc"
             AddParameterWhere("@idccdc", barLueCCDC.EditValue)
@@ -32,9 +31,11 @@ Public Class frmCCDCHong
         riGlueNSD.View.PopulateColumns(riGlueNSD.DataSource)
         riGlueNSD.View.Columns(riGlueNSD.ValueMember).Visible = False
         'barGlueNSD.EditValue = 1
-        query = " select TaiSan_CongCuDungCu.id,ten, Model from TaiSan_CongCuDungCu inner join XUATKHO on XUATKHO.Sophieu=TaiSan_CongCuDungCu.Sophieu inner join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
+        query = "  select TaiSan_CongCuDungCu.id, isnull(ten, TenCCDC) ten, isnull(Model,MaCCDC) Model from TaiSan_CongCuDungCu  left join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID  where IdGop is null"
+        '  query = "  select TaiSan_CongCuDungCu.id,ten, Model from TaiSan_CongCuDungCu  inner join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
+
         riLueCCDC.DataSource = ExecuteSQLDataTable(query)
-        query = "select id, tenchitiettaisan from TaiSan_ChiTietCCDC"
+        query = "select id, tenchitietccdc from TaiSan_ChiTietCCDC"
         riLueChiTietCCDC.DataSource = ExecuteSQLDataTable(query)
     End Sub
 
@@ -62,13 +63,19 @@ Public Class frmCCDCHong
     Private Sub btnXoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXoa.ItemClick
         Dim id = If(gvCCDCHong.GetFocusedRowCellValue("id").ToString = "", "0", gvCCDCHong.GetFocusedRowCellValue("id"))
         If id <> "0" Then
-            If ShowCauHoi("Bạn có muốn xóa hư hại của:" + gvCCDCHong.GetFocusedRowCellValue("tentaisan").ToString + " do """ + gvCCDCHong.GetFocusedRowCellValue("Ten").ToString + " làm hỏng không ?") Then
+            If ShowCauHoi("Bạn có muốn xóa hư hại của:" + gvCCDCHong.GetFocusedRowCellValue("tenchitietccdc").ToString + " do """ + gvCCDCHong.GetFocusedRowCellValue("Ten").ToString + " làm hỏng không ?") Then
                 AddParameterWhere("@id", gvCCDCHong.GetFocusedRowCellValue("id"))
                 If doDelete("Taisan_CCDCHong", "id=@id") Is Nothing Then
                     ShowBaoLoi(LoiNgoaiLe)
                 Else
+                    AddParameter("@idtinhtrang", 1)
+                    AddParameter("@ngaythanhly", DBNull.Value)
+                    AddParameterWhere("@id", gvCCDCHong.GetFocusedRowCellValue("idchitietccdc"))
+                    If doUpdate("TaiSan_ChiTietCCDC", "id=@id") Is Nothing Then
+                        ShowBaoLoi(LoiNgoaiLe)
+                    End If
                     loadGV()
-                End If
+                    End If
             End If
         End If
     End Sub
@@ -80,7 +87,7 @@ Public Class frmCCDCHong
 
     Private Sub barLueCCDC_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles barLueCCDC.EditValueChanged
         loadGV()
-        query = "select id, tenchitiettaisan from Taisan_ChiTIetCCDC"
+        query = "select id, tenchitietccdc from Taisan_ChiTIetCCDC"
         If barLueCCDC.EditValue IsNot Nothing Then
             query &= " where idccdc=@idccdc"
             AddParameterWhere("@idccdc", barLueCCDC.EditValue)
@@ -128,6 +135,7 @@ Public Class frmCCDCHong
     Private Sub riGlueNSD_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles riGlueNSD.ButtonClick
         If e.Button.Index = 1 Then
             barGlueNSD.EditValue = Nothing
+            riGlueNSD.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         End If
     End Sub
 

@@ -300,8 +300,8 @@ Partial Class frmThemNsdTS
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(285, 278)
-        Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.lueTaiSan)
+        Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.txtGhichuNSD)
         Me.Controls.Add(Me.ceNgayTra)

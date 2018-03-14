@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>11, 10</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkLocdo.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGPSURBVDhPpZC/S0JhFIYvBLU0SJNbIAhqEaH9EMHB
+        iAIjg0hKKQzMiHCwIRoiotvSEA0t0dTU0t8SFwqCcGgpMIIi0a6oXN/Oq/bpIBI1PHyHc5735XI1AP+i
+        MWxOt+MRdMEQ0IQzd7y13J8CKxnScHPCN2VtzeRq+jpwuQfZNZCZO97oNN1WQTkRJKlKOgzrPANcH3eE
+        Nzp0mVEFZtzvKSWCOet0G7g66AodusyogvySVy/tLAAXu7+CLjOq4D0ybFQP1wB+wVm6O+LQZUYVvM46
+        YW5MoRibhJkMoZKJwNqPoXaUqMOZO97qjrjMqILn0CDMRBCfYRc+ph1doUOXGVXwFLAbJWn9ivqQn3N3
+        hQ5dZlRBdmxAf5NjeTUAU4Ti4mhHeKNDlxlV8DDS73n02nKUqnE/ysvjKFNuR3a80aHLjCq4d/eRVNZr
+        Q2F+CLWVCVhEQnVk5o43OnSZUQWGs0dD1Mc3defqzb0E7CjIz5JdHc7c8Uan6bYKbh1aOx5BFwwBTThz
+        x5tyVcHfgfYNqh9+zwmZBBYAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="chkLocVang.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGVSURBVDhPpZHPK4NxHMe/7aZNqWkuLk6ym5sDf4Gz
+        P8BhB1cHchCtKJEUhx04KMVGWpOasEVa9qPHDrSiGVqmZ0zZapq1t+/7Md9NscTh9Xw/fd6vz/vyCAD/
+        wvgkPaIeu8Qp0SSowpk7ZspVBVcbfJN8HdfbLZmsNohi1i2jpAFn7pjRqbq1gsSaII7UbicKaRdQjn8L
+        Mzp0eaMKzleFPbHenMnfzAKvwYbQocsbVXC2LJzp434gv/kr6PJGFURdQstfDqPyuADklhpChy5vVEFo
+        USAX7sNDoAu5014ULgZQSg2hcj9iwJk7ZoYjXd6ogqN5WRDqxq3X/PnbfoQOXd6ogoMZoT1HeqAH2nHn
+        MzeEDl3eqAL/lHAm3DYUwh14CrZB37d+CzM6dHmjCnYmhd0/bcrohzYUI1IKteLlxPoF7pjRocsbVeAd
+        F8QRnDNB32tCOWbBW9SCUsRswJk7ZnTo8kYVbI3JNyb4OnwTIhNfEcj6ZRT7gDN3zOhU3VqBZ1TUY5c4
+        JZoEVThzx0y5quDvQLwDwDaw+cgE9AEAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="chkLocXanh.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGRSURBVDhPpZJLSwJRGIbnL4gLxY0LNzIgiIIgioh4
+        QxHxuhRcDLpSEEQDixwQbNMmiIIgiojoRhHRdRm0alYFQdSizSyC/sLXeQ/T0SiGqMUzc/i+5305jEpE
+        9C/4I74bn0ZmqAyNQQY4Y4adcEVBbCcmjd/HeCupg5Rev61T/6VPbMbBGTPs4BjupCCyFQFK9jhLnccO
+        jd5GP4IdHLjIiILQRkiObkf11n2LhvrQFDhwkREFgbWAWrmq0OB18CvgIiMKfCs+rXHXoO5Tl3rPPVPg
+        wEVGFHiWPFQ8L+IjUeGsQLWbGjW1JrUf2hycMcMODlxkRIF70U350zwF14PkX/WbAgcuMqLAteDSqtdV
+        3s4+jilw4CIjCpwjpxreDPOrpQ/Tn3+eb2AHBy4yosAx75DZQM8cZah0UeJXzJ3kvoAZdnDgIiMKbLM2
+        oLBrUXI/yX+m8mWZBwDOmGEHBy4yosA6Y5WYgLdin7Pr3mUvJfYSPARwxgw7OIY7KbD0LNPIDJWhMcgA
+        Z8ywE64o+DskfQBEBEY10MEOCQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>38</value>
+  </metadata>
+  <data name="txtSQL_PhaiThu.EditValue" xml:space="preserve">
+    <value>
+declare @TuNgay as datetime
+declare @DenNgay as datetime
+declare @NgayXem as datetime
+
+set dateformat dmy
+
+set @TuNgay = '01/01/2017' 
+set @DenNgay = '31/12/2017' 
+set @NgayXem = getdate() 
+
+declare @LaiSuat as float
+
+set @LaiSuat = 12/100.0
+
+declare @tblKQ as table(
+
+	SoPhieuGroup nvarchar(15),
+	LoaiPhieu nvarchar(150),
+	SoTT tinyint,
+	
+	IdKH int,
+	ttcMa nvarchar(250),
+	SoPhieuXK nvarchar(15),
+	NgayXK datetime,
+	NgayCT datetime,
+	PhaiThu float,
+
+	SoPhieuThu nvarchar(15),
+	NgayThuTien datetime,
+	TienThu float,
+	LuyKe float,
+	ConNo float,
+
+	KinhDoanh nvarchar(250),
+	HinhThucCT nvarchar(250),
+	HinhThucThanhToan nvarchar(500),
+	SoNgayTT int,
+	HanThu datetime,
+	NgayQH int,
+	SoTienNo float,
+	TienLai float,
+	NhomHTTT int,
+
+	SoPhieuCG nvarchar(15),
+	NgayGiaHan datetime,
+
+	ThuChi int, -- 1: thu; -1: chi
+	DaThuTienLai float,
+	ConThuTienLai float
+
+) 
+
+-- danh sách xuất kho ----------------------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,IdKH,ttcMa,SoPhieuXK,NgayXK,PhaiThu,KinhDoanh,HinhThucCT,HinhThucThanhToan,NgayCT,SoNgayTT,NhomHTTT,SoPhieuCG,NgayGiaHan,DaThuTienLai)
+select phieuxuatkho.Sophieu,N'Phiếu xuất kho',0,phieuxuatkho.IdKhachHang,ttcMa,phieuxuatkho.Sophieu,
+phieuxuatkho.NgayThang,(phieuxuatkho.TienTruocThue+phieuxuatkho.TienThue), nhansu.Ten,
+(case when IDHinhThucCT = 1 then N'Không lấy VAT'
+	when IDHinhThucCT = 2 then  N'Xuất VAT'
+	else N'Hải Quan' end) HinhThucCT,
+(select GiaiThich from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2) HinhThucThanhToan,
+--- begin ngày chứng từ -------
+(case when IDHinhThucCT = 1 then phieuxuatkho.Ngaythang -- không lấy VAT -&gt; Ngày xuất kho.
+when IDHinhThucCT = 2 then  -- Xuất VAT -&gt; Ngày hóa đơn.		
+	(select top 1 NgayHD from chungtu where id in (select distinct id_CT from xuatkho where Sophieu=phieuxuatkho.SoPhieu) order by NgayHD)
+else -- ngày hải quan --
+
+
+	(select top 1 NgayTHongQuan from HaiQuan_ChiTietLamHaiQuan ct 
+	inner join HaiQuan_LamHaiQuan on idlamhaiquan =HaiQuan_LamHaiQuan.id 
+	right join  XUATKHO on ct.idchaogia =XUATKHO.idchaogia
+	where XUATKHO.Sophieu = phieuxuatkho.SoPhieu)
+
+
+end) NgayCT,
+--- end ngày chứng từ -------
+isnull((select SoNgayHT from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2),0) SoNgayTT,
+isnull((select Nhom from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2),0) NhomHTT,
+phieuxuatkho.SophieuCG,phieuxuatkho.HanThu, 
+-- thu tiền lãi đến ngày @NgayXem ------------
+isnull((select sum(Sotien) from thu where mucdich = 117 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieuxuatkho.Sophieu),0)
++ 
+isnull((select sum(Sotien) from thunh where mucdich = 117 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieuxuatkho.Sophieu),0)
+from phieuxuatkho 
+left join khachhang on phieuxuatkho.Idkhachhang = khachhang.id
+left join nhansu on phieuxuatkho.IDTakecare = nhansu.id
+left join bangchaogia on phieuxuatkho.SoPhieuCG = bangchaogia.sophieu
+where CONVERT(datetime,Convert(nvarchar,phieuxuatkho.Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- danh sách thu phân bổ tiền mặt ----------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1,Sophieu,N'Phân bổ tiền mặt' ,1,PhanBoTamUng,
+(select top 1 'PBTM ' + Sophieu from thu where PhieuTC0 = phieuxuatkho.SoPhieuCG),
+(select top 1 NgaythangCT from thu where PhieuTC0 = phieuxuatkho.SoPhieuCG)
+from phieuxuatkho 
+where CONVERT(datetime,Convert(nvarchar,Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- danh sách thu phân bổ ngân hàng --------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1,Sophieu,N'Phân bổ ngân hàng' ,1,PhanBoTamUng,
+(select top 1 'PBNH ' + Sophieu from thunh where PhieuTC0 = phieuxuatkho.SoPhieuCG),
+(select top 1 NgaythangCT from thunh where PhieuTC0 = phieuxuatkho.SoPhieuCG)
+from phieuxuatkho 
+where CONVERT(datetime,Convert(nvarchar,Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- xóa kết quả thu phân bổ không dùng -----------
+delete from @tblKQ where SoPhieuThu is null and TienThu is not null
+
+-- danh sách thu tiền mặt -----------------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1, PhieuTC1, N'Thu tiền mặt', 2, SoTien, 'TTM ' + Sophieu, NgaythangCT
+from thu inner join @tblKQ tbl on thu.PhieuTC1 = tbl.SoPhieuXK 
+where thu.mucdich = 100
+
+
+-- danh sách thu ngân hàng -----------------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1, PhieuTC1, N'Thu ngân hàng', 2, SoTien, 'TNH ' + Sophieu, NgaythangCT
+from thunh inner join @tblKQ tbl on thunh.PhieuTC1 = tbl.SoPhieuXK
+where thunh.mucdich = 100
+
+-- danh sách chi hoàn tạm ứng tiền mặt -----------------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select -1, PhieuTC1, N'Hoàn tạm ứng tiền mặt', 2, SoTien, 'CTM ' + Sophieu, NgaythangCT
+from chi inner join @tblKQ tbl on chi.PhieuTC1 = tbl.SoPhieuXK 
+where chi.mucdich = 230
+
+-- danh sách chi hoàn tạm ứng ngân hàng -----------------------
+insert into @tblKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select -1, PhieuTC1, N'Hoàn tạm ứng ngân hàng', 2, SoTien, 'UNC ' + Sophieu, Ngaythang
+from unc inner join @tblKQ tbl on unc.PhieuTC1 = tbl.SoPhieuXK 
+where unc.mucdich = 230
+
+-- tính số còn nợ, ngày CT ---------------------------------
+update tbl
+
+	set ConNo = PhaiThu - isnull((select sum(TienThu*ThuChi) from @tblKQ where SoPhieuGroup = tbl.SoPhieuGroup and SoTT &lt;&gt; 0),0) ,
+
+	HanThu = (case when NgayCT is null then dateadd(day,SoNgayTT,NgayXK) -- nếu ngày ct null thì lấy ngày xk
+			else 
+				(case when HinhThucCT = N'Hải Quan' then -- nếu làm hải quan kiểm tra ngày hải quan trước ngày xk thì lấy ngày xk
+					(case when datediff(day,NgayXK,NgayCT) &lt; 0 then dateadd(day,SoNgayTT,NgayXK) else dateadd(day,SoNgayTT,NgayCT)  end )
+				else
+					dateadd(day,SoNgayTT,NgayCT) 
+				end)
+			end)
+
+from @tblKQ tbl where SoTT = 0
+
+-- update lại hạn thu theo nhóm hình thức thanh toán kể từ ngày cuối tháng ------
+update tbl
+	set HanThu = DATEADD(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0)) )
+from @tblKQ tbl where SoTT = 0 and NhomHTTT = 4
+
+-- update lại hạn thu theo nhóm hình thức thanh toán theo lịch cố định ------
+update tbl
+	set HanThu = (case when day(DATEADD(day,SoNgayTT*-1,HanThu)) &gt;= SoNgayTT then
+						dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0))) 
+					else
+						dateadd(month, -1, dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0))) )
+					end)
+
+	 
+from @tblKQ tbl where SoTT = 0 and NhomHTTT = 5
+
+
+-- tính quá hạn, tiền lãi ---------------------------------
+update tbl
+	set NgayQH = (case when conno = 0 then 0 else 
+					(
+						case when isnull(tbl.NgayGiaHan,tbl.HanThu) &lt; @NgayXem then
+						        datediff(day, isnull(tbl.NgayGiaHan,tbl.HanThu), @NgayXem)
+						else datediff(day, isnull(tbl.NgayGiaHan,tbl.HanThu), @NgayXem)
+						end
+					)
+				 end)
+
+from @tblKQ tbl where SoTT = 0
+
+
+-- tính quá hạn, tiền lãi ---------------------------------
+update tbl
+	set SoTienNo = ConNo,
+	TienLai = round( (ConNo * @LaiSuat / 360.0) * NgayQH , 0)
+from @tblKQ tbl where NgayQH &gt; 0
+
+update tbl
+	set ConThuTienLai = TienLai - DaThuTienLai
+from @tblKQ tbl where NgayQH &gt; 0
+
+update tbl
+	set DaThuTienLai = null  
+from @tblKQ tbl where SoTT = 0 and TienLai is null
+
+
+select * from @tblKQ order by convert(bigint,SoPhieuGroup),SoTT,NgayThuTien</value>
+  </data>
+  <data name="txtSQL_PhaiTra.EditValue" xml:space="preserve">
+    <value>
+declare @TuNgay as datetime
+declare @DenNgay as datetime
+declare @NgayXem as datetime
+
+set dateformat dmy
+
+set @TuNgay = '01/01/2017' 
+set @DenNgay = '31/12/2017' 
+set @NgayXem = getdate() 
+
+declare @LaiSuat as float
+
+set @LaiSuat = 12/100.0
+
+declare @tblKQ as table(
+
+	SoPhieuGroup nvarchar(15),
+	LoaiPhieu nvarchar(150),
+	SoTT tinyint,
+	
+	IdKH int,
+	ttcMa nvarchar(250),
+	SoPhieuNK nvarchar(15),
+	NgayNK datetime,
+	NgayCT datetime,
+	PhaiTra float,
+
+	SoPhieuChi nvarchar(15),
+	NgayChiTien datetime,
+	TienTra float,
+	LuyKe float,
+	ConNo float,
+
+	KinhDoanh nvarchar(250),
+	HinhThucCT nvarchar(250),
+	HinhThucThanhToan nvarchar(500),
+	SoNgayTT int,
+	HanTra datetime,
+	NgayQH int,
+	SoTienNo float,
+	TienLai float,
+	NhomHTTT int,
+
+	SoPhieuCG nvarchar(15),
+	NgayGiaHan datetime,
+
+	ThuChi int, -- -1: thu; 1: chi
+	DaTraTienLai float,
+	ConTraTienLai float
+
+) 
+
+-- danh sách nhập kho ----------------------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,IdKH,ttcMa,SoPhieuNK,NgayNK,PhaiTra,KinhDoanh,HinhThucCT,HinhThucThanhToan,NgayCT,SoNgayTT,NhomHTTT,DaTraTienLai)
+select phieunhapkho.Sophieu,N'Phiếu nhập kho',0,phieunhapkho.IdKhachHang,ttcMa,phieunhapkho.Sophieu,
+phieunhapkho.NgayThang,(phieunhapkho.TienTruocThue+phieunhapkho.TienThue), nhansu.Ten,
+(case when IDHinhThucCT = 1 then N'Không lấy VAT'
+	when IDHinhThucCT = 2 then  N'Xuất VAT'
+	else N'Hải Quan' end) HinhThucCT,
+(select GiaiThich from DM_HINH_THUC_TT where ID = phieudathang.IDHinhThucTT2) HinhThucThanhToan,
+--- begin ngày chứng từ -------
+(case when IDHinhThucCT = 1 then phieunhapkho.Ngaythang -- không lấy VAT -&gt; Ngày xuất kho.
+when IDHinhThucCT = 2 then  -- Xuất VAT -&gt; Ngày hóa đơn.		
+	(select top 1 NgayHD from chungtu where id in (select distinct id_CT from nhapkho where Sophieu=phieunhapkho.SoPhieu) order by NgayHD)
+else -- ngày hải quan --
+
+	(select top 1 NgayThongQuan from HaiQuan_ChiTietLamHaiQuan ct 
+	inner join HaiQuan_LamHaiQuan on idlamhaiquan =HaiQuan_LamHaiQuan.id 
+	right join  NHAPKHO  on ct.idchaogia =NHAPKHO .IDDathang 
+	where  NHAPKHO.Sophieu = phieunhapkho.SoPhieu)
+
+
+end) NgayCT,
+--- end ngày chứng từ -------
+isnull((select SoNgayHT from DM_HINH_THUC_TT where ID = phieudathang.IDHinhThucTT2),0) SoNgayTT,
+isnull((select Nhom from DM_HINH_THUC_TT where ID = phieudathang.IDHinhThucTT2),0) NhomHTT,
+-- chi tiền lãi đến ngày @NgayXem ------------
+isnull((select sum(Sotien) from chi where mucdich = 254 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieunhapkho.Sophieu),0)
++ 
+isnull((select sum(Sotien) from thunh where mucdich = 254 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieunhapkho.Sophieu),0)
+
+from phieunhapkho 
+left join khachhang on phieunhapkho.Idkhachhang = khachhang.id
+left join nhansu on phieunhapkho.IDNguoiDat = nhansu.id
+left join phieudathang on phieudathang.sophieu = phieunhapkho.SoPhieuDH
+where CONVERT(datetime,Convert(nvarchar,phieunhapkho.Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+
+-- danh sách chi phân bổ tiền mặt ----------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,TienTra,SoPhieuChi,NgayChiTien )
+select Sophieu,N'Phân bổ tiền mặt' ,1,PhanBoTamUng,
+(select top 1 'PBTM ' + Sophieu from chi where PhieuTC0 = phieunhapkho.SoPhieuDH),
+(select top 1 NgaythangCT from chi where PhieuTC0 = phieunhapkho.SoPhieuDH)
+from phieunhapkho 
+where CONVERT(datetime,Convert(nvarchar,Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- danh sách chi phân bổ ngân hàng --------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,TienTra,SoPhieuChi,NgayChiTien )
+select Sophieu,N'Phân bổ ngân hàng' ,1,PhanBoTamUng,
+(select top 1 'PBNH ' + Sophieu from unc where PhieuTC0 = phieunhapkho.SoPhieuDH),
+(select top 1 Ngaythang from unc where PhieuTC0 = phieunhapkho.SoPhieuDH)
+from phieunhapkho 
+where CONVERT(datetime,Convert(nvarchar,Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- xóa kết quả thu phân bổ không dùng -----------
+delete from @tblKQ where SoPhieuChi is null and TienTra is not null
+
+
+-- danh sách chi tiền mặt -----------------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,TienTra,SoPhieuChi,NgayChiTien )
+select PhieuTC1, N'Chi tiền mặt', 2, SoTien, 'CTM ' + Sophieu, NgaythangCT
+from chi inner join @tblKQ tbl on chi.PhieuTC1 = tbl.SoPhieuNK
+where chi.mucdich = 210
+
+-- danh sách chi ngân hàng -----------------------
+insert into @tblKQ(SoPhieuGroup,LoaiPhieu,SoTT,TienTra,SoPhieuChi,NgayChiTien )
+select PhieuTC1, N'Chi ngân hàng', 2, SoTien, 'UNC ' + Sophieu, Ngaythang
+from unc inner join @tblKQ tbl on unc.PhieuTC1 = tbl.SoPhieuNK
+where unc.mucdich = 210
+
+-- tính số còn nợ, ngày CT ---------------------------------
+update tbl
+	set ConNo = PhaiTra - isnull((select sum(TienTra) from @tblKQ where SoPhieuGroup = tbl.SoPhieuGroup and SoTT &lt;&gt; 0),0) ,
+
+	HanTra = (case when NgayCT is null then dateadd(day,SoNgayTT,NgayNK) -- nếu ngày ct null thì lấy ngày nk
+			else 
+				(case when HinhThucCT = N'Hải Quan' then -- nếu làm hải quan kiểm tra ngày hải quan trước ngày nk thì lấy ngày nk
+					(case when datediff(day,NgayNK,NgayCT) &lt; 0 then dateadd(day,SoNgayTT,NgayNK) else dateadd(day,SoNgayTT,NgayCT)  end )
+				else
+					dateadd(day,SoNgayTT,NgayCT) 
+				end)
+			end)
+
+from @tblKQ tbl where SoTT = 0
+
+-- update lại hạn thu theo nhóm hình thức thanh toán kể từ ngày cuối tháng ------
+update tbl
+	set HanTra = DATEADD(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanTra)) + 1, 0)) )
+from @tblKQ tbl where SoTT = 0 and NhomHTTT = 4
+
+
+-- update lại hạn thu theo nhóm hình thức thanh toán theo lịch cố định ------
+update tbl
+	set HanTra = (case when day(DATEADD(day,SoNgayTT*-1,HanTra)) &gt;= SoNgayTT then
+						dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanTra)) + 1, 0))) 
+					else
+						dateadd(month, -1, dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanTra)) + 1, 0))) )
+					end)
+
+	 
+from @tblKQ tbl where SoTT = 0 and NhomHTTT = 5
+
+
+-- tính quá hạn, tiền lãi ---------------------------------
+update tbl
+	set NgayQH = (case when conno = 0 then 0 else 
+				(
+					case when isnull(tbl.NgayGiaHan,tbl.HanTra) &gt; @NgayXem then
+						datediff(day, isnull(tbl.NgayGiaHan,tbl.HanTra), @NgayXem)
+					else datediff(day, isnull(tbl.NgayGiaHan,tbl.HanTra), @NgayXem)
+					end
+				)
+			 end)
+from @tblKQ tbl where SoTT = 0
+
+
+-- tính quá hạn, tiền lãi ---------------------------------
+update tbl
+	set SoTienNo = ConNo,
+	TienLai = round( (ConNo * @LaiSuat / 360.0) * NgayQH , 0)
+
+from @tblKQ tbl where NgayQH &gt; 0
+
+update tbl
+	set ConTraTienLai = TienLai - DaTraTienLai
+from @tblKQ tbl where NgayQH &gt; 0
+
+update tbl
+	set DaTraTienLai = null  
+from @tblKQ tbl where SoTT = 0 and TienLai is null
+
+select * from @tblKQ order by convert(bigint,SoPhieuGroup),SoTT,NgayChiTien
+
+</value>
+  </data>
+  <data name="btLocDo.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGPSURBVDhPpZC/S0JhFIYvBLU0SJNbIAhqEaH9EMHB
+        iAIjg0hKKQzMiHCwIRoiotvSEA0t0dTU0t8SFwqCcGgpMIIi0a6oXN/Oq/bpIBI1PHyHc5735XI1AP+i
+        MWxOt+MRdMEQ0IQzd7y13J8CKxnScHPCN2VtzeRq+jpwuQfZNZCZO97oNN1WQTkRJKlKOgzrPANcH3eE
+        Nzp0mVEFZtzvKSWCOet0G7g66AodusyogvySVy/tLAAXu7+CLjOq4D0ybFQP1wB+wVm6O+LQZUYVvM46
+        YW5MoRibhJkMoZKJwNqPoXaUqMOZO97qjrjMqILn0CDMRBCfYRc+ph1doUOXGVXwFLAbJWn9ivqQn3N3
+        hQ5dZlRBdmxAf5NjeTUAU4Ti4mhHeKNDlxlV8DDS73n02nKUqnE/ysvjKFNuR3a80aHLjCq4d/eRVNZr
+        Q2F+CLWVCVhEQnVk5o43OnSZUQWGs0dD1Mc3defqzb0E7CjIz5JdHc7c8Uan6bYKbh1aOx5BFwwBTThz
+        x5tyVcHfgfYNqh9+zwmZBBYAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btLocVang.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGVSURBVDhPpZHPK4NxHMe/7aZNqWkuLk6ym5sDf4Gz
+        P8BhB1cHchCtKJEUhx04KMVGWpOasEVa9qPHDrSiGVqmZ0zZapq1t+/7Md9NscTh9Xw/fd6vz/vyCAD/
+        wvgkPaIeu8Qp0SSowpk7ZspVBVcbfJN8HdfbLZmsNohi1i2jpAFn7pjRqbq1gsSaII7UbicKaRdQjn8L
+        Mzp0eaMKzleFPbHenMnfzAKvwYbQocsbVXC2LJzp434gv/kr6PJGFURdQstfDqPyuADklhpChy5vVEFo
+        USAX7sNDoAu5014ULgZQSg2hcj9iwJk7ZoYjXd6ogqN5WRDqxq3X/PnbfoQOXd6ogoMZoT1HeqAH2nHn
+        MzeEDl3eqAL/lHAm3DYUwh14CrZB37d+CzM6dHmjCnYmhd0/bcrohzYUI1IKteLlxPoF7pjRocsbVeAd
+        F8QRnDNB32tCOWbBW9SCUsRswJk7ZnTo8kYVbI3JNyb4OnwTIhNfEcj6ZRT7gDN3zOhU3VqBZ1TUY5c4
+        JZoEVThzx0y5quDvQLwDwDaw+cgE9AEAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btLocXanh.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGRSURBVDhPpZJLSwJRGIbnL4gLxY0LNzIgiIIgioh4
+        QxHxuhRcDLpSEEQDixwQbNMmiIIgiojoRhHRdRm0alYFQdSizSyC/sLXeQ/T0SiGqMUzc/i+5305jEpE
+        9C/4I74bn0ZmqAyNQQY4Y4adcEVBbCcmjd/HeCupg5Rev61T/6VPbMbBGTPs4BjupCCyFQFK9jhLnccO
+        jd5GP4IdHLjIiILQRkiObkf11n2LhvrQFDhwkREFgbWAWrmq0OB18CvgIiMKfCs+rXHXoO5Tl3rPPVPg
+        wEVGFHiWPFQ8L+IjUeGsQLWbGjW1JrUf2hycMcMODlxkRIF70U350zwF14PkX/WbAgcuMqLAteDSqtdV
+        3s4+jilw4CIjCpwjpxreDPOrpQ/Tn3+eb2AHBy4yosAx75DZQM8cZah0UeJXzJ3kvoAZdnDgIiMKbLM2
+        oLBrUXI/yX+m8mWZBwDOmGEHBy4yosA6Y5WYgLdin7Pr3mUvJfYSPARwxgw7OIY7KbD0LNPIDJWhMcgA
+        Z8ywE64o+DskfQBEBEY10MEOCQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="mPhaiThu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 10</value>
+  </metadata>
+</root>

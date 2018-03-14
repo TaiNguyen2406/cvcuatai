@@ -20,8 +20,8 @@ Partial Class frmThuNganHang
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btfilterTuNgay = New DevExpress.XtraBars.BarEditItem()
@@ -71,6 +71,7 @@ Partial Class frmThuNganHang
         Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -87,8 +88,6 @@ Partial Class frmThuNganHang
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.pMenuThu = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.pMenuChi = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.mXemPhieuTC0 = New DevExpress.XtraBars.BarButtonItem()
-        Me.mXemPhieuTC1 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,8 +115,8 @@ Partial Class frmThuNganHang
         Me.BarManager1.DockControls.Add(Me.BarDockControl3)
         Me.BarManager1.DockControls.Add(Me.BarDockControl4)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbSoTK, Me.btTaiLai, Me.BarButtonItem1, Me.btfilterMaKH, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInUNC, Me.mInUNCTong, Me.BarSubItem1, Me.mInUNCTheoNguoiNhan, Me.mInUNCTheoDoiTuongCongNo, Me.mnuChuyenSangBenThue, Me.mnuChuyenCacPhieuDaChon, Me.mnuChonBoChonTatCa, Me.mXemPhieuTC0, Me.mXemPhieuTC1})
-        Me.BarManager1.MaxItemId = 72
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbSoTK, Me.btTaiLai, Me.BarButtonItem1, Me.btfilterMaKH, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInUNC, Me.mInUNCTong, Me.BarSubItem1, Me.mInUNCTheoNguoiNhan, Me.mInUNCTheoDoiTuongCongNo, Me.mnuChuyenSangBenThue, Me.mnuChuyenCacPhieuDaChon, Me.mnuChonBoChonTatCa})
+        Me.BarManager1.MaxItemId = 70
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rcbSoTK, Me.RepositoryItemCheckEdit4, Me.rcbMaKH, Me.rcbTakecare, Me.rtbTuNgay, Me.rtbDenNgay})
         '
         'Bar1
@@ -234,16 +233,16 @@ Partial Class frmThuNganHang
         Me.btTaiLai.Id = 8
         Me.btTaiLai.Name = "btTaiLai"
         Me.btTaiLai.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem2.Text = "Tải dữ liệu"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        Me.btTaiLai.SuperTip = SuperToolTip2
+        ToolTipTitleItem1.Text = "Tải dữ liệu"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btTaiLai.SuperTip = SuperToolTip1
         '
         'BarDockControl1
         '
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(1186, 27)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1186, 29)
         '
         'BarDockControl2
         '
@@ -256,15 +255,15 @@ Partial Class frmThuNganHang
         '
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl3.Location = New System.Drawing.Point(0, 27)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 511)
+        Me.BarDockControl3.Location = New System.Drawing.Point(0, 29)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 509)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(1186, 27)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 511)
+        Me.BarDockControl4.Location = New System.Drawing.Point(1186, 29)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 509)
         '
         'BarButtonItem1
         '
@@ -374,12 +373,12 @@ Partial Class frmThuNganHang
         'gdvThuNH
         '
         Me.gdvThuNH.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvThuNH.Location = New System.Drawing.Point(0, 27)
+        Me.gdvThuNH.Location = New System.Drawing.Point(0, 29)
         Me.gdvThuNH.MainView = Me.gdvThuNHCT
         Me.gdvThuNH.MenuManager = Me.BarManager1
         Me.gdvThuNH.Name = "gdvThuNH"
         Me.gdvThuNH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemPopupContainerEdit2, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemCheckEdit1})
-        Me.gdvThuNH.Size = New System.Drawing.Size(1186, 511)
+        Me.gdvThuNH.Size = New System.Drawing.Size(1186, 509)
         Me.gdvThuNH.TabIndex = 8
         Me.gdvThuNH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvThuNHCT})
         '
@@ -408,7 +407,7 @@ Partial Class frmThuNganHang
         Me.gdvThuNHCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvThuNHCT.Appearance.HideSelectionRow.Options.UseBackColor = True
         Me.gdvThuNHCT.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand4, Me.GridBand5, Me.GridBand6, Me.GridBand7, Me.GridBand8, Me.GridBand17, Me.GridBand28})
-        Me.gdvThuNHCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn12, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn40, Me.BandedGridColumn39, Me.BandedGridColumn42, Me.BandedGridColumn11})
+        Me.gdvThuNHCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn12, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn40, Me.BandedGridColumn39, Me.BandedGridColumn42, Me.BandedGridColumn11, Me.BandedGridColumn13})
         Me.gdvThuNHCT.GridControl = Me.gdvThuNH
         Me.gdvThuNHCT.GroupPanelText = "Kéo thả cột cần nhóm vào vị trí này"
         Me.gdvThuNHCT.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SoTien", Me.BandedGridColumn7, "{0:N0}")})
@@ -566,9 +565,10 @@ Partial Class frmThuNganHang
         Me.GridBand6.Caption = "Số tiền"
         Me.GridBand6.Columns.Add(Me.BandedGridColumn7)
         Me.GridBand6.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn13)
         Me.GridBand6.MinWidth = 20
         Me.GridBand6.Name = "GridBand6"
-        Me.GridBand6.Width = 166
+        Me.GridBand6.Width = 241
         '
         'BandedGridColumn7
         '
@@ -591,6 +591,13 @@ Partial Class frmThuNganHang
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
         Me.BandedGridColumn8.Width = 57
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "Tỷ giá"
+        Me.BandedGridColumn13.FieldName = "TyGia"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.Visible = True
         '
         'GridBand7
         '
@@ -709,7 +716,7 @@ Partial Class frmThuNganHang
         '
         'pMenuThu
         '
-        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenSangBenThue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenCacPhieuDaChon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChonBoChonTatCa), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemPhieuTC0, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemPhieuTC1)})
+        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenSangBenThue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenCacPhieuDaChon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChonBoChonTatCa)})
         Me.pMenuThu.Manager = Me.BarManager1
         Me.pMenuThu.Name = "pMenuThu"
         '
@@ -718,18 +725,6 @@ Partial Class frmThuNganHang
         Me.pMenuChi.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btThemPhieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.btSuaPhieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.mInUNCTong, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btInUNC)})
         Me.pMenuChi.Manager = Me.BarManager1
         Me.pMenuChi.Name = "pMenuChi"
-        '
-        'mXemPhieuTC0
-        '
-        Me.mXemPhieuTC0.Caption = "Xem phiếu TC0"
-        Me.mXemPhieuTC0.Id = 70
-        Me.mXemPhieuTC0.Name = "mXemPhieuTC0"
-        '
-        'mXemPhieuTC1
-        '
-        Me.mXemPhieuTC1.Caption = "Xem phiếu TC1"
-        Me.mXemPhieuTC1.Id = 71
-        Me.mXemPhieuTC1.Name = "mXemPhieuTC1"
         '
         'frmThuNganHang
         '
@@ -812,22 +807,21 @@ Partial Class frmThuNganHang
     Friend WithEvents mInUNCTheoNguoiNhan As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mInUNCTheoDoiTuongCongNo As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents mnuChuyenSangBenThue As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuChuyenCacPhieuDaChon As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuChonBoChonTatCa As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand17 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand28 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents mnuChuyenSangBenThue As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mnuChuyenCacPhieuDaChon As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mnuChonBoChonTatCa As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mXemPhieuTC0 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents mXemPhieuTC1 As DevExpress.XtraBars.BarButtonItem
 
 End Class

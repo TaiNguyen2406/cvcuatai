@@ -20,17 +20,17 @@ Public Class frmChotSoLieu
                 sql &= " UPDATE XUATKHO SET GiaNhap="
                 sql &= " ISNULL((SELECT DonGia FROM tblTonDauKy WHERE tblTonDauKy.IDVatTu=XuatKho.IDVatTu"
                 sql &= " AND ThoiGian=(Select right(Convert(nvarchar,NgayThang,103),7) FROM PHIEUXUATKHO"
-                sql &= " WHERE PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu"
+                sql &= " WHERE PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu "
                 If Not tbThang.EditValue Is Nothing Then
                     sql &= " AND Right(Convert(nvarchar,NgayThang,103),7)=@Thang "
                 End If
                 sql &= " )),0)"
-
+                sql &= " where 1=1"
                 If Not tbThang.EditValue Is Nothing Then
                     AddParameterWhere("@Thang", Convert.ToDateTime(tbThang.EditValue).ToString("MM/yyyy"))
-                    sql &= " WHERE ISNULL( XUATKHO.isGiaDacBiet,0)=0 AND XUATKHO.SoPhieu IN (SELECT SoPhieu FROM PHIEUXUATKHO WHERE Right(Convert(nvarchar,NgayThang,103),7)=@Thang )"
+                    sql &= " and ISNULL( XUATKHO.isGiaDacBiet,0)=0 AND XUATKHO.SoPhieu IN (SELECT SoPhieu FROM PHIEUXUATKHO WHERE Right(Convert(nvarchar,NgayThang,103),7)=@Thang )"
                 End If
-
+                sql &= " and IdVatTu<>148841"
                 sql &= " UPDATE PHIEUXUATKHO SET TienGoc=tb.TongGiaNhap"
                 sql &= " FROM PHIEUXUATKHO,"
                 sql &= " (SELECT SUM(SoLuong*ISNULL(GiaNhap,0))TongGiaNhap,SoPhieu FROM XUATKHO"

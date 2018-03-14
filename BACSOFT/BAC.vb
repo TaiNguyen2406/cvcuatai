@@ -54,7 +54,7 @@ Module BAC
     Public UrlKhachHang As String = ServerName & "\BAC KHACH HANG$\"
     Public UrlYeuCauNoiBo As String = ServerName & "\DATA$\YEU CAU NOI BO\"
     Public UrlThiNangLuc As String = ServerName & "\DATA$\THI NANG LUC\"
-
+    Public UrlQuyTrinhKyThuat As String = ServerName & "\DATA$\THI NANG LUC\"
     Public DbChamCong As New DbLibAccess.Database.AccessDBProvider("D:\standard\Att2003.mdb", "", "", "")
 
 

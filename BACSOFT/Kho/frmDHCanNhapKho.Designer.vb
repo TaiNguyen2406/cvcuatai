@@ -366,7 +366,7 @@ Partial Class frmDHCanNhapKho
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1020, 27)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1020, 29)
         '
         'barDockControlBottom
         '
@@ -379,15 +379,15 @@ Partial Class frmDHCanNhapKho
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 27)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 533)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 531)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1020, 27)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 533)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1020, 29)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 531)
         '
         'btXoa
         '
@@ -574,13 +574,13 @@ Partial Class frmDHCanNhapKho
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 27)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 29)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.gdv)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1020, 533)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1020, 531)
         Me.SplitContainerControl1.SplitterPosition = 321
         Me.SplitContainerControl1.TabIndex = 9
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -850,7 +850,7 @@ Partial Class frmDHCanNhapKho
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1020, 206)
+        Me.GroupControl1.Size = New System.Drawing.Size(1020, 205)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Hàng cần nhập kho"
         '
@@ -862,7 +862,7 @@ Partial Class frmDHCanNhapKho
         Me.gdvDH.MenuManager = Me.BarManager1
         Me.gdvDH.Name = "gdvDH"
         Me.gdvDH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.N0, Me.cbMucDoCan, Me.cbTrangThai, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.cbNhanVien, Me.cbDVT, Me.chkChon})
-        Me.gdvDH.Size = New System.Drawing.Size(1016, 182)
+        Me.gdvDH.Size = New System.Drawing.Size(1016, 181)
         Me.gdvDH.TabIndex = 6
         Me.gdvDH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvDHCT})
         '

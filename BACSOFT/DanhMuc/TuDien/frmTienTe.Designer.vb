@@ -29,6 +29,8 @@ Partial Class frmTienTe
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.BarStaticItem1 = New DevExpress.XtraBars.BarStaticItem()
@@ -40,8 +42,6 @@ Partial Class frmTienTe
         Me.pmThem = New DevExpress.XtraBars.BarButtonItem()
         Me.pmXoa = New DevExpress.XtraBars.BarButtonItem()
         Me.pmLuuLai = New DevExpress.XtraBars.BarButtonItem()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.gdv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,6 +178,26 @@ Partial Class frmTienTe
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         Me.RepositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Tỷ giá BAC"
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "TyGiaBAC"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Tỷ giá HQ"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "TyGiaHQ"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
+        '
         'BarManager1
         '
         Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1})
@@ -268,26 +288,6 @@ Partial Class frmTienTe
         Me.pmLuuLai.Glyph = Global.BACSOFT.My.Resources.Resources.Save_18
         Me.pmLuuLai.Id = 8
         Me.pmLuuLai.Name = "pmLuuLai"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Tỷ giá BAC"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "TyGiaBAC"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Tỷ giá HQ"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "TyGiaHQ"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
         '
         'frmTienTe
         '

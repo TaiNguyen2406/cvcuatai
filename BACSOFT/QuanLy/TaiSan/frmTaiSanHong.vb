@@ -32,7 +32,7 @@ Public Class frmTaiSanHong
         riGlueNSD.View.PopulateColumns(riGlueNSD.DataSource)
         riGlueNSD.View.Columns(riGlueNSD.ValueMember).Visible = False
         'barGlueNSD.EditValue = 1
-        query = " select TaiSan_TaiSan.id,  ten, Model from Taisan_TaiSan inner join XUATKHO on XUATKHO.Sophieu=TaiSan_TaiSan.Sophieu inner join VATTU on VATTU.ID=TaiSan_TaiSan.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
+        query = "   select TaiSan_TaiSan.id,  isnull(ten, TenTaiSan) ten, isnull(Model,MaTS) Model from Taisan_TaiSan  left join VATTU on VATTU.ID=TaiSan_TaiSan.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID where IdGop is null"
         riLueTaiSan.DataSource = ExecuteSQLDataTable(query)
         query = "select id, tenchitiettaisan from TaiSan_ChiTietTaiSan"
         riLueChiTietTS.DataSource = ExecuteSQLDataTable(query)
@@ -63,7 +63,7 @@ Public Class frmTaiSanHong
     Private Sub btnXoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXoa.ItemClick
         Dim id = If(gvTaiSanHong.GetFocusedRowCellValue("id").ToString = "", "0", gvTaiSanHong.GetFocusedRowCellValue("id"))
         If id <> "0" Then
-            If ShowCauHoi("Bạn có muốn xóa hư hại của:" + gvTaiSanHong.GetFocusedRowCellValue("tentaisan").ToString + " do """ + gvTaiSanHong.GetFocusedRowCellValue("Ten").ToString + " làm hỏng không ?") Then
+            If ShowCauHoi("Bạn có muốn xóa hư hại của:" + gvTaiSanHong.GetFocusedRowCellValue("tenchitiettaisan").ToString + " do """ + gvTaiSanHong.GetFocusedRowCellValue("Ten").ToString + " làm hỏng không ?") Then
                 AddParameterWhere("@id", gvTaiSanHong.GetFocusedRowCellValue("id"))
                 If doDelete("TaiSan_TaiSanHong", "id=@id") Is Nothing Then
                     ShowBaoLoi(LoiNgoaiLe)
@@ -114,21 +114,22 @@ Public Class frmTaiSanHong
     End Sub
 
    
-    Private Sub riLueChiTietTS_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
+    Private Sub riLueChiTietTS_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles riLueChiTietTS.ButtonClick
         If e.Button.Index = 1 Then
             barLueChiTietTS.EditValue = Nothing
         End If
     End Sub
 
-    Private Sub riLueTaiSan_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
+    Private Sub riLueTaiSan_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles riLueTaiSan.ButtonClick
         If e.Button.Index = 1 Then
             barLueTaiSan.EditValue = Nothing
         End If
     End Sub
 
-    Private Sub riGlueNSD_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs)
+    Private Sub riGlueNSD_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles riGlueNSD.ButtonClick
         If e.Button.Index = 1 Then
             barGlueNSD.EditValue = Nothing
+            riGlueNSD.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         End If
     End Sub
 

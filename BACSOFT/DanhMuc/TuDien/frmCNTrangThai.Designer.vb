@@ -128,7 +128,7 @@ Partial Class frmCNTrangThai
         '
         'cbTrangThai
         '
-        Me.cbTrangThai.Caption = "Trạng thái"
+        Me.cbTrangThai.Caption = "Loại"
         Me.cbTrangThai.Edit = Me.rcbTrangThai
         Me.cbTrangThai.Id = 0
         Me.cbTrangThai.Name = "cbTrangThai"

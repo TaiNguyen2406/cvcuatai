@@ -20,12 +20,12 @@ Partial Class frmCongTrinhCanXuLy
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SuperToolTip5 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem5 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SuperToolTip6 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem6 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.barMenu = New DevExpress.XtraBars.Bar()
@@ -51,6 +51,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemPopupContainerEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.popupIn = New DevExpress.XtraEditors.PopupContainerControl()
+        Me.chkInKiemHangNhapLaiKho = New DevExpress.XtraEditors.CheckEdit()
         Me.btXacNhanIn = New DevExpress.XtraEditors.SimpleButton()
         Me.chkInKeHoachThiCong = New DevExpress.XtraEditors.CheckEdit()
         Me.chkInBangKe = New DevExpress.XtraEditors.CheckEdit()
@@ -94,6 +95,12 @@ Partial Class frmCongTrinhCanXuLy
         Me.mnuLayVatTuThiCong = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuLichSuXuatTam = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuTraLaiVatTuThiCong = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuDanhMucYC = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnThongTinDuAn = New DevExpress.XtraBars.BarSubItem()
+        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnKhaoSatChaoGia = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnKhaoSatThiCong = New DevExpress.XtraBars.BarButtonItem()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
@@ -179,6 +186,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.splitChiTiet = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.gdvThiCong = New DevExpress.XtraGrid.GridControl()
@@ -208,6 +216,7 @@ Partial Class frmCongTrinhCanXuLy
         CType(Me.RepositoryItemPopupContainerEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.popupIn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.popupIn.SuspendLayout()
+        CType(Me.chkInKiemHangNhapLaiKho.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkInKeHoachThiCong.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkInBangKe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbXuatExcel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -322,8 +331,8 @@ Partial Class frmCongTrinhCanXuLy
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btSua, Me.btXoa, Me.mThem, Me.mSua, Me.mXoa, Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.mThanhToan, Me.mHuy, Me.BarButtonItem1, Me.mXemHD, Me.cbTieuChi, Me.btNhanVien, Me.chkLoc, Me.btXuatExcel, Me.cbKH, Me.cbNangCao, Me.mChuyenSangCGChoKhach, Me.mXemFileLienQuan, Me.BarEditItem1, Me.btGiaoViec, Me.btLapYCVatTu, Me.btTTVatTu, Me.mSaoChepNoiDung, Me.mNhanXuLy, Me.mnuLayVatTuThiCong, Me.mnuLichSuXuatTam, Me.btnTraLaiVatTu, Me.mnuTraLaiVatTuThiCong})
-        Me.BarManager1.MaxItemId = 64
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btSua, Me.btXoa, Me.mThem, Me.mSua, Me.mXoa, Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.mThanhToan, Me.mHuy, Me.BarButtonItem1, Me.mXemHD, Me.cbTieuChi, Me.btNhanVien, Me.chkLoc, Me.btXuatExcel, Me.cbKH, Me.cbNangCao, Me.mChuyenSangCGChoKhach, Me.mXemFileLienQuan, Me.BarEditItem1, Me.btGiaoViec, Me.btLapYCVatTu, Me.btTTVatTu, Me.mSaoChepNoiDung, Me.mNhanXuLy, Me.mnuLayVatTuThiCong, Me.mnuLichSuXuatTam, Me.btnTraLaiVatTu, Me.mnuTraLaiVatTuThiCong, Me.mnuDanhMucYC, Me.BarButtonItem2, Me.btnThongTinDuAn, Me.BarButtonItem3, Me.btnKhaoSatChaoGia, Me.btnKhaoSatThiCong})
+        Me.BarManager1.MaxItemId = 70
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepositoryItemDateEdit3, Me.RepositoryItemDateEdit4, Me.RepositoryItemComboBox1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemPopupContainerEdit1, Me.RepositoryItemPopupContainerEdit2, Me.RepositoryItemComboBox2, Me.RepositoryItemComboBox3, Me.rCbNhanVien, Me.rExcel, Me.RepositoryItemPopupContainerEdit4, Me.rcbXuatExcel, Me.rcbKH, Me.rcbNangCao, Me.RepositoryItemCheckedComboBoxEdit1, Me.RepositoryItemPopupContainerEdit3})
         '
         'Bar2
@@ -457,9 +466,9 @@ Partial Class frmCongTrinhCanXuLy
         Me.btXem.Id = 11
         Me.btXem.Name = "btXem"
         Me.btXem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem4.Text = "Tải danh sách chào giá"
-        SuperToolTip4.Items.Add(ToolTipTitleItem4)
-        Me.btXem.SuperTip = SuperToolTip4
+        ToolTipTitleItem1.Text = "Tải danh sách chào giá"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btXem.SuperTip = SuperToolTip1
         '
         'chkLoc
         '
@@ -468,9 +477,9 @@ Partial Class frmCongTrinhCanXuLy
         Me.chkLoc.Id = 41
         Me.chkLoc.Name = "chkLoc"
         Me.chkLoc.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem5.Text = "Ẩn/hiện dòng lọc dữ liệu <Ctrl+F>"
-        SuperToolTip5.Items.Add(ToolTipTitleItem5)
-        Me.chkLoc.SuperTip = SuperToolTip5
+        ToolTipTitleItem2.Text = "Ẩn/hiện dòng lọc dữ liệu <Ctrl+F>"
+        SuperToolTip2.Items.Add(ToolTipTitleItem2)
+        Me.chkLoc.SuperTip = SuperToolTip2
         '
         'btSua
         '
@@ -479,9 +488,9 @@ Partial Class frmCongTrinhCanXuLy
         Me.btSua.Id = 1
         Me.btSua.Name = "btSua"
         Me.btSua.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem6.Text = "Xử lý chào giá được chọn <Ctrl+E>"
-        SuperToolTip6.Items.Add(ToolTipTitleItem6)
-        Me.btSua.SuperTip = SuperToolTip6
+        ToolTipTitleItem3.Text = "Xử lý chào giá được chọn <Ctrl+E>"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        Me.btSua.SuperTip = SuperToolTip3
         '
         'btLapYCVatTu
         '
@@ -520,20 +529,29 @@ Partial Class frmCongTrinhCanXuLy
         '
         'popupIn
         '
+        Me.popupIn.Controls.Add(Me.chkInKiemHangNhapLaiKho)
         Me.popupIn.Controls.Add(Me.btXacNhanIn)
         Me.popupIn.Controls.Add(Me.chkInKeHoachThiCong)
         Me.popupIn.Controls.Add(Me.chkInBangKe)
         Me.popupIn.Location = New System.Drawing.Point(75, 83)
         Me.popupIn.Name = "popupIn"
-        Me.popupIn.Size = New System.Drawing.Size(223, 57)
+        Me.popupIn.Size = New System.Drawing.Size(232, 78)
         Me.popupIn.TabIndex = 9
+        '
+        'chkInKiemHangNhapLaiKho
+        '
+        Me.chkInKiemHangNhapLaiKho.Location = New System.Drawing.Point(3, 53)
+        Me.chkInKiemHangNhapLaiKho.Name = "chkInKiemHangNhapLaiKho"
+        Me.chkInKiemHangNhapLaiKho.Properties.Caption = "Tổng hợp vật tư xuất tạm"
+        Me.chkInKiemHangNhapLaiKho.Size = New System.Drawing.Size(158, 19)
+        Me.chkInKiemHangNhapLaiKho.TabIndex = 3
         '
         'btXacNhanIn
         '
         Me.btXacNhanIn.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btXacNhanIn.Appearance.Options.UseFont = True
         Me.btXacNhanIn.Image = Global.BACSOFT.My.Resources.Resources.Accept_18
-        Me.btXacNhanIn.Location = New System.Drawing.Point(124, 18)
+        Me.btXacNhanIn.Location = New System.Drawing.Point(131, 24)
         Me.btXacNhanIn.Name = "btXacNhanIn"
         Me.btXacNhanIn.Size = New System.Drawing.Size(88, 23)
         Me.btXacNhanIn.TabIndex = 2
@@ -895,6 +913,43 @@ Partial Class frmCongTrinhCanXuLy
         Me.mnuTraLaiVatTuThiCong.Id = 63
         Me.mnuTraLaiVatTuThiCong.Name = "mnuTraLaiVatTuThiCong"
         '
+        'mnuDanhMucYC
+        '
+        Me.mnuDanhMucYC.Caption = "Lịch sử Y/C VT CG"
+        Me.mnuDanhMucYC.Id = 64
+        Me.mnuDanhMucYC.Name = "mnuDanhMucYC"
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Thông tin dự án"
+        Me.BarButtonItem2.Id = 65
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'btnThongTinDuAn
+        '
+        Me.btnThongTinDuAn.Caption = "Thông tin dự án"
+        Me.btnThongTinDuAn.Id = 66
+        Me.btnThongTinDuAn.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3), New DevExpress.XtraBars.LinkPersistInfo(Me.btnKhaoSatChaoGia), New DevExpress.XtraBars.LinkPersistInfo(Me.btnKhaoSatThiCong)})
+        Me.btnThongTinDuAn.Name = "btnThongTinDuAn"
+        '
+        'BarButtonItem3
+        '
+        Me.BarButtonItem3.Caption = "Phiếu thông tin dự án"
+        Me.BarButtonItem3.Id = 67
+        Me.BarButtonItem3.Name = "BarButtonItem3"
+        '
+        'btnKhaoSatChaoGia
+        '
+        Me.btnKhaoSatChaoGia.Caption = "Phiếu kháo sát chào giá"
+        Me.btnKhaoSatChaoGia.Id = 68
+        Me.btnKhaoSatChaoGia.Name = "btnKhaoSatChaoGia"
+        '
+        'btnKhaoSatThiCong
+        '
+        Me.btnKhaoSatThiCong.Caption = "Phiếu khảo sát thi công"
+        Me.btnKhaoSatThiCong.Id = 69
+        Me.btnKhaoSatThiCong.Name = "btnKhaoSatThiCong"
+        '
         'RepositoryItemDateEdit1
         '
         Me.RepositoryItemDateEdit1.AutoHeight = False
@@ -1184,6 +1239,8 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn12.Caption = "IDVatTu"
         Me.GridColumn12.FieldName = "IDVatTu"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 7
         '
         'N0
         '
@@ -1268,7 +1325,7 @@ Partial Class frmCongTrinhCanXuLy
         '
         'pMenuChinh
         '
-        Me.pMenuChinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhanXuLy), New DevExpress.XtraBars.LinkPersistInfo(Me.mSua, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuLayVatTuThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuTraLaiVatTuThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mChuyenSangCGChoKhach, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemFileLienQuan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btGiaoViec, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mSaoChepNoiDung, True)})
+        Me.pMenuChinh.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mNhanXuLy), New DevExpress.XtraBars.LinkPersistInfo(Me.mSua, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuLayVatTuThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuTraLaiVatTuThiCong), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuDanhMucYC), New DevExpress.XtraBars.LinkPersistInfo(Me.mChuyenSangCGChoKhach, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemFileLienQuan, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btGiaoViec, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mSaoChepNoiDung, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThongTinDuAn)})
         Me.pMenuChinh.Manager = Me.BarManager1
         Me.pMenuChinh.Name = "pMenuChinh"
         '
@@ -1314,7 +1371,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn35, Me.GridColumn11, Me.GridColumn4, Me.colTenDuAn, Me.GridColumn8, Me.GridColumn19, Me.GridColumn18, Me.GridColumn6, Me.GridColumn5, Me.GridColumn36, Me.colTrcThue, Me.colThue, Me.colCK, Me.colThucThu, Me.colTienTe, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn21, Me.GridColumn9, Me.GridColumn25, Me.GridColumn34, Me.GridColumn10, Me.GridColumn30, Me.GridColumn32, Me.GridColumn33, Me.GridColumn38, Me.GridColumn39})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn35, Me.GridColumn11, Me.GridColumn4, Me.colTenDuAn, Me.GridColumn8, Me.GridColumn19, Me.GridColumn18, Me.GridColumn6, Me.GridColumn5, Me.GridColumn36, Me.colTrcThue, Me.colThue, Me.colCK, Me.colThucThu, Me.colTienTe, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn21, Me.GridColumn9, Me.GridColumn25, Me.GridColumn34, Me.GridColumn10, Me.GridColumn30, Me.GridColumn32, Me.GridColumn33, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.Name = "gdvCT"
@@ -1593,7 +1650,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.OptionsColumn.ReadOnly = True
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 18
+        Me.GridColumn44.VisibleIndex = 19
         Me.GridColumn44.Width = 120
         '
         'GridColumn45
@@ -1630,7 +1687,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn21.OptionsColumn.FixedWidth = True
         Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 19
+        Me.GridColumn21.VisibleIndex = 20
         Me.GridColumn21.Width = 66
         '
         'GridColumn9
@@ -1666,7 +1723,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn34.OptionsColumn.FixedWidth = True
         Me.GridColumn34.OptionsColumn.ReadOnly = True
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 21
+        Me.GridColumn34.VisibleIndex = 22
         Me.GridColumn34.Width = 35
         '
         'rcbFileDinhKem
@@ -1793,7 +1850,7 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.ReadOnly = True
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 20
+        Me.GridColumn30.VisibleIndex = 21
         Me.GridColumn30.Width = 54
         '
         'GridColumn32
@@ -1835,6 +1892,14 @@ Partial Class frmCongTrinhCanXuLy
         Me.GridColumn39.Visible = True
         Me.GridColumn39.VisibleIndex = 17
         Me.GridColumn39.Width = 100
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "XK"
+        Me.GridColumn40.FieldName = "isXuatKho"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 18
         '
         'splitChiTiet
         '
@@ -2044,6 +2109,7 @@ Partial Class frmCongTrinhCanXuLy
         CType(Me.RepositoryItemPopupContainerEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.popupIn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.popupIn.ResumeLayout(False)
+        CType(Me.chkInKiemHangNhapLaiKho.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkInKeHoachThiCong.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkInBangKe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbXuatExcel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2282,5 +2348,12 @@ Partial Class frmCongTrinhCanXuLy
     Friend WithEvents mnuLichSuXuatTam As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btnTraLaiVatTu As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuTraLaiVatTuThiCong As DevExpress.XtraBars.BarButtonItem
-
+    Friend WithEvents mnuDanhMucYC As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents chkInKiemHangNhapLaiKho As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnThongTinDuAn As DevExpress.XtraBars.BarSubItem
+    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btnKhaoSatChaoGia As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btnKhaoSatThiCong As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
 End Class

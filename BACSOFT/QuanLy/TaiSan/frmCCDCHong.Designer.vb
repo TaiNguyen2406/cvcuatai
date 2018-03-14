@@ -30,6 +30,7 @@ Partial Class frmCCDCHong
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
@@ -89,7 +90,7 @@ Partial Class frmCCDCHong
         Me.gvCCDCHong.Appearance.HeaderPanel.Options.UseFont = True
         Me.gvCCDCHong.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.gvCCDCHong.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gvCCDCHong.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8})
+        Me.gvCCDCHong.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.gvCCDCHong.GridControl = Me.gcCCDCHong
         Me.gvCCDCHong.Name = "gvCCDCHong"
         Me.gvCCDCHong.OptionsBehavior.Editable = False
@@ -166,6 +167,12 @@ Partial Class frmCCDCHong
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 4
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "id chi tiết ccdc"
+        Me.GridColumn9.FieldName = "idchitieccdc"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'PopupMenu1
         '
@@ -259,6 +266,8 @@ Partial Class frmCCDCHong
         Me.riLueCCDC.DisplayMember = "ten"
         Me.riLueCCDC.Name = "riLueCCDC"
         Me.riLueCCDC.NullText = "Tất cả"
+        Me.riLueCCDC.ShowFooter = False
+        Me.riLueCCDC.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.riLueCCDC.ValueMember = "id"
         '
         'barLueChiTietCCDC
@@ -418,4 +427,5 @@ Partial Class frmCCDCHong
     Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

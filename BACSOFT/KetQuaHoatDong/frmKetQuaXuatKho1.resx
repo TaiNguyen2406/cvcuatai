@@ -123,6 +123,202 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>42</value>
   </metadata>
+  <data name="meTaoBangPhanBo.EditValue" xml:space="preserve">
+    <value>declare @tblKQ as table(
+                  Id int identity,
+	SoPhieu nvarchar(30),
+	PhieuTC0 nvarchar(30),
+	PhieuTC1 nvarchar(30),
+	PhieuRef nvarchar(30),
+	TienThu float,
+	PhanBo float,
+	GiaTri float,
+	ConLai float
+)
+insert into @tblKQ(SoPhieu,PhieuTC0,PhieuTC1,PhieuRef)
+SELECT 'TM' + SoPhieu SoPhieu,PhieuTC0,PhieuTC1, '' PhieuRef FROM THU where( PhieuTC0 &lt;&gt; '000000000' OR PhieuTC1 &lt;&gt; '000000000' )and CONVERT(datetime,Convert(nvarchar,NgayThangCT,103),103) between @TuNgay AND @DenNgay 
+union all
+SELECT 'NH' +  SoPhieu SoPhieu,PhieuTC0,PhieuTC1, '' PhieuRef FROM THUNH where( PhieuTC0 &lt;&gt; '000000000' OR PhieuTC1 &lt;&gt; '000000000' )and CONVERT(datetime,Convert(nvarchar,NgayThangCT,103),103) between @TuNgay AND @DenNgay 
+
+-- tinh tien phieu thu
+update tbl set PhieuRef =(select SoPhieuCG from PHIEUXUATKHO where SoPhieu =PhieuTC1 ) 
+, TienThu=(
+	case when LEFT(SoPhieu,2) = 'TM' then
+		(select top 1 SoTien from thu where Sophieu = RIGHT(tbl.Sophieu,9) and CONVERT(datetime,Convert(nvarchar,NgayThangCT,103),103) between @TuNgay AND @DenNgay )
+	else
+		(select top 1 SoTien from thunh where Sophieu = RIGHT(tbl.Sophieu,9) and CONVERT(datetime,Convert(nvarchar,NgayThangCT,103),103) between @TuNgay AND @DenNgay )
+	end
+)
+from @tblKQ tbl
+
+-- tinh tien phan bo cho chao gia, gia tri chao gia
+update tbl set PhanBo=(select DaTamUng from BANGCHAOGIA where Sophieu = tbl.PhieuTC0),
+				Giatri = (select TienTruocThue+TienThue from BANGCHAOGIA where Sophieu = tbl.PhieuTC0)
+from @tblKQ tbl where PhieuTC0 &lt;&gt; '000000000'
+
+declare @tblXK as table(
+	SoCG nvarchar(30),
+	SoXK nvarchar(30),
+	DaThu float,
+	SoTien float
+)
+
+insert into @tblXK 
+select SophieuCG,SoPhieu,
+isnull((select sum(SoTien) from thu where PhieuTC1 = PHIEUXUATKHO.Sophieu),0) +
+isnull((select sum(SoTien) from thunh where PhieuTC1 = PHIEUXUATKHO.Sophieu) ,0),
+TienTruocThue+TienThue
+from phieuxuatkho where SophieuCG in (select PhieuTC0 from @tblKQ where PhieuTC0 &lt;&gt; '000000000') and Sophieu not in (select PhieuTC1 from @tblKQ where PhieuTC1 &lt;&gt; '000000000')
+
+--select SoCG, SoXK, DaThu,SoTien  from @tblXK	order by SoCG desc
+
+insert into @tblKQ(PhieuTC0,PhieuRef,TienThu,GiaTri)
+select SoCG, SoXK, DaThu,SoTien  from @tblXK	
+ 
+select Id, SoPhieu, PhieuTC0 , PhieuTC1 ,
+Case when PhieuTC1 is null then 'XK'+PhieuRef else 'CG'+PhieuRef end PhieuRef,
+ TienThu, PhanBo, GiaTri, ConLai
+ from @tblKQ  
+
+order by PhieuTC0 desc, PhieuRef  ASC</value>
+  </data>
+  <data name="meSql.EditValue" xml:space="preserve">
+    <value>select * , 0.0 GiaTriXk2,  1.0 as HeSo,
+0.0 LoiNhuanKT,
+0.0 LoiNhuanKD,
+0.0  LNThiCong,
+0.0 LNXucTienHD,
+0.0 LNPhuTrachCT,
+0.0 LNKSChaoGia,
+0.0 LNThiCong,
+0.0 TongLNKD
+from (
+SELECT distinct KHACHHANG.ttcMa, tbThu.PhieuTC0, 0 as isPhanBo,PHIEUXUATKHO.Ngaythang  NgayXK,
+                  (CASE (SELECT Count(ID) FROM PHIEUXUATKHO AS B WHERE B.IDKhachHang=PHIEUXUATKHO.IDKhachHang AND 
+                   datediff(day,B.NgayThang,PHIEUXUATKHO.NgayThang)&lt;365 AND  PHIEUXUATKHO.NgayThang &gt; B.NgayThang 
+                   AND RIGHT(CONVERT(nvarchar, B.NgayThang,103),7) &lt;&gt; RIGHT(CONVERT(nvarchar, PHIEUXUATKHO.NgayThang,103),7) )
+                   WHEN 0 THEN Convert(bit, 1) ELSE convert(bit, 0) END) KHMoi,
+                   tbThu.NgaythangCT AS Ngay, 
+                   case  tbThu.Loai when 0 then 'TM'+ tbThu.SoPhieu else 'NH'+tbThu.SoPhieu  end SoPhieu  ,
+                 tbThu.Loai, PHIEUXUATKHO.error, PHIEUXUATKHO.SoPhieuCG, PHIEUXUATKHO.Sophieu AS SoPhieuXK, 
+                	BANGCHAOGIA.MaSoDatHang,PHIEUXUATKHO.CongTrinh,PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia AS TienTruocThue, 
+                	PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia AS TienThue,tbThu.Sotien AS TienThu,
+					(PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia+PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia) GiaTriXK,
+					0 as ConLai,
+					 ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) AS TienGoc, 
+                	ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) + ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) AS ChiPhi, 
+                	ISNULL(PHIEUXUATKHO.TienChietKhau,0)*PHIEUXUATKHO.TyGia AS TienChietKhau,
+                    (ISNULL(V_XuatkhoChietkhauTM.ChietkhauTM, 0)   + ISNULL(V_XuatkhoChietkhauUNC.ChietkhauUNC, 0))   AS ChiCK,
+					 tbThu.SoTien as Thu,  tbThu.SoTien as Thu2,
+					
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) WHEN 0 THEN 0 ELSE ((PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0)) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) * ISNULL(PHIEUXUATKHO.Tygia, 1) / (1 - (CASE WHEN BANGCHAOGIA.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END)) ) 
+                    *1 * 
+                   (ISNULL(PhanBoLoiNhuan.TongConLai,0) / 100) END)
+                    AS LoiNhuanKT2, 
+
+                  (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) WHEN 0 THEN 0 ELSE ((PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0)) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) * ISNULL(PHIEUXUATKHO.Tygia, 1) / (1 - (CASE WHEN BANGCHAOGIA.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END)) ) 
+                    *1 * 
+                   ( ISNULL(PhanBoLoiNhuan.PhuTrachHopDong,0) / 100 ) END)
+                    AS LoiNhuanKD2, 
+
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) WHEN 0 THEN 0 ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - (ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * PHIEUXUATKHO.Tygia) * 
+                    1 * 
+                   (ISNULL(PhanBoLoiNhuan.XucTienKyHD,0)/100) END) AS LNXucTienHD2,
+				   ISNULL(NGUOIKYHD.Ten,NHANSU.Ten) as NVKyHD, IDPhuTrachKyHD,
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) 
+                    WHEN 0 THEN 0 ELSE 
+                    (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - (ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * PHIEUXUATKHO.Tygia) * 
+                    1 * 
+                   (PhanBoLoiNhuan.PhuTrachQuanLyCT / 100 ) END) AS LNPhuTrachCT2,
+				    ISNULL(NVPHUTRACHCT.Ten,NHANSU.Ten) as NVPhuTrachCT,ISNULL(IDPhuTrachCT,BANGCHAOGIA.IDTakeCare)IDPhuTrachCT,
+
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) 
+                    WHEN 0 THEN 0 ELSE 
+                    (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - (ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * PHIEUXUATKHO.Tygia) * 
+                    1 * 
+                   (ISNULL(PhanBoLoiNhuan.PhuTrachChaoGia,0)/100) END) AS LNKSChaoGia2,
+				    (CASE NhanKS WHEN 0 THEN 'KD' WHEN 1 THEN 'KT' ELSE '' END)NhanKS,
+
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) 
+                    WHEN 0 THEN 0 ELSE 
+                    (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - (ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * PHIEUXUATKHO.Tygia) * 
+                    1 * 
+                   (PhanBoLoiNhuan.TongConLai / 100) END) AS LNThiCong2,
+
+				   --tổng ln kinh doanh
+                    (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) * PHIEUXUATKHO.Tygia) 
+                    WHEN 0 THEN 0 ELSE 
+                    (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                    - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - (ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * PHIEUXUATKHO.Tygia) * 
+                    1 * 
+                (CASE WHEN ISNULL(BANGCHAOGIA.NhanKS, 0) = 1 
+                THEN (PhanBoLoiNhuan.PhuTrachHopDong + (
+                CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachKyHD, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.XucTienKyHD ELSE 0 END) + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachCT, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.PhuTrachQuanLyCT ELSE 0 END)
+                +(CASE WHEN PHIEUXUATKHO.CongTrinh =0 THEN  PhanBoLoiNhuan.TongConLai ELSE 0 END)
+                )/ 100 
+                ELSE 
+                (PhanBoLoiNhuan.PhuTrachHopDong + 
+                PhanBoLoiNhuan.PhuTrachChaoGia + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachKyHD, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.XucTienKyHD ELSE 0 END) + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachCT, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.PhuTrachQuanLyCT ELSE 0 END)+
+                (CASE WHEN PHIEUXUATKHO.CongTrinh =0 THEN  PhanBoLoiNhuan.TongConLai ELSE 0 END)) / 100 END) END)
+                as TongLNKD2,
+
+                	 (CASE PHIEUXUATKHO.Tientruocthue  * PHIEUXUATKHO.Tygia WHEN 0 THEN 0 ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) 
+                     - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN BANGCHAOGIA.KhauTru is null THEN 0.15 ELSE BANGCHAOGIA.KhauTru/100 END) END)) ) /((PHIEUXUATKHO.Tientruocthue+PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)*100 END) AS PTLN, 
+                    (CASE PHIEUXUATKHO.Tientruocthue  * PHIEUXUATKHO.Tygia WHEN 0 THEN 0 ELSE (PHIEUXUATKHO.Tienchietkhau*PHIEUXUATKHO.TyGia)/(PHIEUXUATKHO.Tientruocthue  * PHIEUXUATKHO.Tygia)*100 END) AS PTCK,
+                	BANGYEUCAU.IDLoaiYeuCau, PHIEUXUATKHO.IDTakeCare,NHANSU.Ten AS TakeCare,DEPATMENT.Ten AS Phong,BANGCHAOGIA.KhauTru,BANGCHAOGIA.TrangThai AS TrangThaiCG,'' AS CBTT, (CASE WHEN tbTT.SoTien is null then 0 ELSE (CASE WHEN tbTT.SoTien &lt;&gt; (PHIEUXUATKHO.TienTruocThue + PHIEUXUATKHO.TienThue) THEN 2 ELSE 1 END) END) AS TTTT,
+                PHIEUXUATKHO.TienGoc as TienGocChot,PHIEUXUATKHO.ChiPhi as ChiPhiChot,PHIEUXUATKHO.LoiNhuanChot, 
+                ISNULL(tbLNPTSP.LoiNhuanPTSP,0)LoiNhuanPTSP
+                FROM  (
+				     SELECT NgayThangCT, Sophieu, IDkh, Sotien*TyGia Sotien, Mucdich, IDUser, PhieuTC0, PhieuTC1,convert(bit,0)Loai
+                     FROM THU  where Mucdich not in (109 ,230)
+                     UNION ALL
+                     SELECT NgayThangCT, sophieu, IDKh, Sotien*TyGia Sotien, Mucdich, IDUser, PhieuTC0, PhieuTC1,convert(bit,1)Loai
+                     FROM THUNH  where Mucdich not in (109 ,230)
+					 ) AS tbThu 
+                LEFT OUTER JOIN tblQuyDoi ON CONVERT(int, LEFT(tblQuyDoi.ThangNam, 2)) = MONTH(tbThu.NgaythangCT) AND CONVERT(int, RIGHT(tblQuyDoi.ThangNam, 4)) = YEAR(tbThu.NgaythangCT)
+                	INNER JOIN KHACHHANG ON KHACHHANG.ID=tbThu.IDKH 
+                	INNER JOIN
+                    PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu OR tbThu.PhieuTC0=PHIEUXUATKHO.SoPhieuCG 
+                   LEFT JOIN (SELECT Sum(SoTien)SoTien, SoPhieu1 FROM tblCongNo WHERE Loai=0 GROUP BY SoPhieu1)tbTT ON tbTT.SoPhieu1=PHIEUXUATKHO.SoPhieu 
+
+                    INNER JOIN NHANSU ON PHIEUXUATKHO.IDTakecare=NHANSU.ID 
+				AND NHANSU.IDDepatment= @IDDepatment
+				  LEFT JOIN (SELECT DISTINCT IDKhachHang FROM PHIEUXUATKHO WHERE datediff(day, PHIEUXUATKHO.NgayThang,@DenNgay)&gt;365)tbKHMoi ON PHIEUXUATKHO.IDKhachHang=tbKHMoi.IDKhachHang 
+                     INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = PHIEUXUATKHO.SophieuCG 
+                 LEFT JOIN NHANSU AS NGUOIKYHD ON NGUOIKYHD.ID=BANGCHAOGIA.IDPhuTrachKyHD
+                 LEFT JOIN NHANSU AS NVPHUTRACHCT ON NVPHUTRACHCT.ID=BANGCHAOGIA.IDPhuTrachCT
+
+                   INNER JOIN  BANGYEUCAU ON BANGYEUCAU.Sophieu = BANGCHAOGIA.Masodathang 
+
+                     LEFT JOIN DEPATMENT ON NHANSU.IDDepatment=DEPATMENT.ID
+					  LEFT JOIN View_XuatKhoTongGiaNhapTB ON PHIEUXUATKHO.Sophieu = View_XuatKhoTongGiaNhapTB.Sophieu 
+                    LEFT OUTER JOIN V_XuatkhoChiphiTM ON V_XuatkhoChiphiTM.Sophieu = PHIEUXUATKHO.Sophieu LEFT OUTER JOIN
+                     V_XuatkhoChiphiUnc ON V_XuatkhoChiphiUnc.Sophieu = PHIEUXUATKHO.Sophieu LEFT OUTER JOIN
+                     V_XuatkhoChietkhauTM ON V_XuatkhoChietkhauTM.Sophieu = PHIEUXUATKHO.Sophieu LEFT OUTER JOIN
+                     V_XuatkhoChietkhauUNC ON V_XuatkhoChietkhauUNC.Sophieu = PHIEUXUATKHO.Sophieu
+                 LEFT JOIN
+                 ( SELECT SUM(PhatTrienSanPham_LoiNhuan.SoLuong*PhatTrienSanPham_LoiNhuan.LoiNhuan) as LoiNhuanPTSP,PhatTrienSanPham_LoiNhuan.SoPhieu FROM PhatTrienSanPham_LoiNhuan
+                    INNER JOIN PHIEUXUATKHO as PX ON PX.SoPhieu=PhatTrienSanPham_LoiNhuan.SoPhieu
+                    AND CONVERT(datetime,Convert(nvarchar,PX.NgayThang,103),103) between @TuNgay AND @DenNgay 
+                    GROUP BY PhatTrienSanPham_LoiNhuan.SoPhieu)tbLNPTSP ON tbLNPTSP.SoPhieu=PHIEUXUATKHO.SoPhieu
+                    LEFT JOIN PhanBoLoiNhuan ON PhanBoLoiNhuan.Thang=Right(Convert(nvarchar,PHIEUXUATKHO.NgayTHang,103),7) AND PhanBoLoiNhuan.CT=PHIEUXUATKHO.CongTrinh
+               WHERE CONVERT(datetime,Convert(nvarchar,tbThu.NgayThangCT,103),103) between @TuNgay AND @DenNgay 
+				 AND PHIEUXUATKHO.IDTakeCare =@IDTakeCare
+				  ) tbl ORDER BY  SophieuCG , Ngay asc, NgayXK  asc</value>
+  </data>
   <metadata name="pMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>142, 17</value>
   </metadata>

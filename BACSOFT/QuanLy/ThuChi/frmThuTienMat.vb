@@ -50,10 +50,10 @@ Public Class frmThuTienMat
 
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = " SET DATEFORMAT DMY "
-        sql &= " SELECT THU.SoPhieuT, 0 AS STT, THU.ID,NgayThangVS,(N'TT ' + THU.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,THU.DienGiai,"
+        sql &= " SELECT convert(bit,0)chon,THU.SoPhieuT, 0 AS STT, THU.ID,NgayThangVS,(N'TT ' + THU.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,THU.DienGiai,THU.TyGia,"
         sql &= " 	THU.SoTien,tblTienTe.Ten AS TienTe,MUCDICHTHUCHI.Ten AS MucDich,NguoiNop,"
-        sql &= " (CASE PhieuTC0 WHEN N'000000000' THEN N'' ELSE N'CG ' + PhieuTC0 END) PhieuTC0,"
-        sql &= " (CASE PhieuTC1 WHEN N'000000000' THEN N'' ELSE N'XK ' + PhieuTC1 END) PhieuTC1,"
+        sql &= " (CASE PhieuTC0 WHEN N'000000000' THEN N'' ELSE case when Thu.MucDich = 109 then N'ĐH ' else N'CG ' end + PhieuTC0 END) PhieuTC0, "
+        sql &= " (CASE PhieuTC1 WHEN N'000000000' THEN N'' ELSE case when Thu.MucDich = 109 then N'NK ' else N'XK ' end + PhieuTC1 END) PhieuTC1, "
         sql &= " (SELECT SoCT FROM CHUNGTU WHERE ID = THU.IdChungTu)SoPhieuThu,NHANSU.Ten as NguoiLap "
         sql &= " FROM THU"
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=THU.IDKh"
@@ -248,50 +248,115 @@ Public Class frmThuTienMat
         End If
     End Sub
 
-    Private Sub mXemPhieuTC0_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXemPhieuTC0.ItemClick
-        If gdvThuCT.FocusedRowHandle < 0 Then Exit Sub
-        If gdvThuCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Length > 0 Then
-            If gdvThuCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Substring(0, 2) = "CG" Then
-                'If gdvThuCT.GetFocusedRowCellValue("TrangThai") = TrangThaiChaoGia.DaXacNhan Or gdvThuCT.GetFocusedRowCellValue("IDTakeCare") <> TaiKhoan Then
-                '    If Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.TPKinhDoanh) Then
-                '        ShowCanhBao("Bạn cần có quyền TP Kinh doanh hoặc Admin để sửa chào giá đã xác nhận hoặc chào giá của nv khác!")
-                '        Exit Sub
-                '    End If
-                'End If
-
-                TrangThai.isUpdate = True
-                fCNChaoGia = New frmCNChaoGia
-                fCNChaoGia.TrangThaiCG.isUpdate = True
-                'fCNChaoGia.chkCongTrinh.Checked = gdvCT.GetFocusedRowCellValue("CongTrinh")
-                fCNChaoGia.SPChaoGia = gdvThuCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Substring(3, 9)
-                fCNChaoGia.Tag = deskTop.mChaoGia.Name
-                fCNChaoGia.btGhi.Enabled = False
-                fCNChaoGia.Show()
-            End If
+    Private Sub gdvThuCT_RowCellClick(sender As Object, e As XtraGrid.Views.Grid.RowCellClickEventArgs) Handles gdvThuCT.RowCellClick
+        If e.Column.FieldName = "chon" Then
+            gdvThuCT.SetRowCellValue(e.RowHandle, "chon", Not gdvThuCT.GetRowCellValue(e.RowHandle, "chon"))
         End If
     End Sub
 
-    Private Sub mXemPhieuTC1_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXemPhieuTC1.ItemClick
+    Private Sub mnuChuyenCacSoDaChon_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mnuChuyenCacSoDaChon.ItemClick
+        gdvThuCT.CloseEditor()
+        gdvThuCT.UpdateCurrentRow()
+        Dim arrPhieu As New List(Of Integer)
+        For i As Integer = 0 To gdvThuCT.RowCount - 1
+            If gdvThuCT.GetRowCellValue(i, "chon") = True Then
+                arrPhieu.Add(i)
+            End If
+        Next
+        If arrPhieu.Count = 0 Then
+            ShowCanhBao("Chưa chọn phiếu nào cả!")
+            Exit Sub
+        End If
+        If Not ShowCauHoi("Chuyển " & arrPhieu.Count & " phiếu đã chọn sang bên thuế ?") Then Exit Sub
 
-        If gdvThuCT.FocusedRowHandle < 0 Then Exit Sub
+        Try
+            For i As Integer = 0 To arrPhieu.Count - 1
 
-        If gdvThuCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Length > 0 Then
-            If gdvThuCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Substring(0, 2) = "XK" Then
-                TrangThai.isUpdate = True
-                fCNXuatKho = New frmCNXuatKho
-                fCNXuatKho.PhieuXK = gdvThuCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Substring(3, 9)
-                fCNXuatKho.Tag = deskTop.mXuatKho.Name
-                If Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mXuatKho.Name, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mXuatKho.Name, DanhMucQuyen.QuyenSua) Then
-                    fCNXuatKho.btGhi.Enabled = False
-                    fCNXuatKho.btChuyenXK.Enabled = False
-                    fCNXuatKho.btCal.Enabled = False
-                    fCNXuatKho.btTichThue.Enabled = False
-                    fCNXuatKho.mChonBoChon.Enabled = False
+
+                Dim sql As String = "SELECT * FROM THU WHERE ID = " & gdvThuCT.GetRowCellValue(arrPhieu(i), "ID")
+                Dim r As DataRow = ExecuteSQLDataTable(sql).Rows(0)
+
+                sql = "SELECT ID,ttcMa,Ten,ttcMasothue,ttcDiachi FROM KHACHHANG WHERE ID = @ID"
+                AddParameter("@ID", r("IDKh"))
+                Dim rKH As DataRow = ExecuteSQLDataTable(sql).Rows(0)
+
+                sql = "SELECT ISNULL((SELECT SUM(sotien) FROM THU WHERE SoPhieuT =  @SoPhieuT),0)"
+                AddParameter("@SoPhieuT", r("SoPhieuT"))
+                Dim tt As Object = ExecuteSQLDataTable(sql).Rows(0)(0)
+                If tt <= r("sotien") Then tt = r("sotien")
+
+
+                'chung tu
+                AddParameter("@LoaiCT", ChungTu.LoaiChungTu.PhieuThuTienMat)
+                AddParameter("@NgayCT", r("ngaythangCT"))
+                AddParameter("@TienTe", 0)
+                AddParameter("@TyGia", 1)
+                AddParameter("@GhiSo", 0)
+                AddParameter("@IdKH", r("IDKh"))
+                AddParameter("@TenKH", rKH("Ten"))
+                AddParameter("@DiaChi", rKH("ttcDiachi"))
+                AddParameter("@MaSoThue", rKH("ttcMasothue"))
+                AddParameter("@NguoiLienHe", DBNull.Value)
+                AddParameter("@DienGiai", rKH("Ten") & " thanh toán tiền hàng")
+                'AddParameter("@SoTkNganHang", r("taikhoanden"))
+                'AddParameter("@TenTkNganHang", r("nganhangden"))
+                'AddParameter("@SoTkNganHangDoiUng", r("taikhoandi"))
+                'AddParameter("@TenTkNganHangDoiUng", r("nganhangdi"))
+                AddParameter("@ThanhTien", tt)
+
+                AddParameter("@refId", gdvThuCT.GetRowCellValue(arrPhieu(i), "ID"))
+                Dim idHoaDon As Object
+                idHoaDon = doInsert("CHUNGTU")
+                If idHoaDon Is Nothing Then Throw New Exception(LoiNgoaiLe)
+
+                'Hàng tiền
+                AddParameter("@Id_CT", idHoaDon)
+                AddParameter("@DienGiai", rKH("Ten") & " thanh toán tiền hàng")
+                AddParameter("@ThanhTien", tt)
+                AddParameter("@TaiKhoanNo", "1111")
+                AddParameter("@TaiKhoanCo", "131")
+                AddParameter("@ButToan", ChungTu.LoaiButToan.HangTien)
+
+                Dim idHdCT As Object = doInsert("CHUNGTUCHITIET")
+                If idHdCT Is Nothing Then Throw New Exception(LoiNgoaiLe)
+
+                gdvThuCT.SetRowCellValue(arrPhieu(i), "IdCT", idHoaDon)
+
+            Next
+            gdvThuCT.BeginUpdate()
+            For i As Integer = 0 To gdvThuCT.RowCount - 1
+                If gdvThuCT.GetRowCellValue(i, "chon") = True Then
+                    gdvThuCT.SetRowCellValue(i, "chon", False)
                 End If
-                fCNXuatKho.ShowDialog()
-            End If
-            
-        End If
-        
+            Next
+            gdvThuCT.EndUpdate()
+            mnuChonBoChonTatCa.Tag = False
+            ShowAlert("Đã chuyển thành công " & arrPhieu.Count & " phiếu sang bên thuế!")
+        Catch ex As Exception
+            ShowBaoLoi(ex.Message)
+            LoadThu()
+        End Try
     End Sub
+
+
+    Private Sub mnuChonBoChonTatCa_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mnuChonBoChonTatCa.ItemClick
+        Dim arrPhieu As New List(Of String)
+        If mnuChonBoChonTatCa.Tag Then
+            For i As Integer = 0 To gdvThuCT.RowCount - 1
+                If arrPhieu.IndexOf(gdvThuCT.GetRowCellValue(i, "SoPhieuT")) >= 0 Then
+                    gdvThuCT.SetRowCellValue(i, "chon", False)
+                Else
+                    arrPhieu.Add(gdvThuCT.GetRowCellValue(i, "SoPhieuT"))
+                    gdvThuCT.SetRowCellValue(i, "chon", True)
+                End If
+            Next
+        Else
+            For i As Integer = 0 To gdvThuCT.RowCount - 1
+                gdvThuCT.SetRowCellValue(i, "chon", False)
+            Next
+        End If
+        mnuChonBoChonTatCa.Tag = Not mnuChonBoChonTatCa.Tag
+    End Sub
+
+
 End Class

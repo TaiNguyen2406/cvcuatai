@@ -22,11 +22,14 @@ Partial Class frmDatHang_PhanHoi
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDatHang_PhanHoi))
         Me.tbNoiDung = New DevExpress.XtraEditors.MemoEdit()
         Me.lbThongTin = New DevExpress.XtraEditors.LabelControl()
         Me.btXacNhan = New DevExpress.XtraEditors.SimpleButton()
         Me.btDong = New DevExpress.XtraEditors.SimpleButton()
+        Me.meSql = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.tbNoiDung.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.meSql.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbNoiDung
@@ -62,11 +65,22 @@ Partial Class frmDatHang_PhanHoi
         Me.btDong.TabIndex = 2
         Me.btDong.Text = "Đóng"
         '
+        'meSql
+        '
+        Me.meSql.EditValue = resources.GetString("meSql.EditValue")
+        Me.meSql.Enabled = False
+        Me.meSql.Location = New System.Drawing.Point(28, 0)
+        Me.meSql.Name = "meSql"
+        Me.meSql.Size = New System.Drawing.Size(464, 96)
+        Me.meSql.TabIndex = 3
+        Me.meSql.Visible = False
+        '
         'frmDatHang_PhanHoi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(489, 175)
+        Me.Controls.Add(Me.meSql)
         Me.Controls.Add(Me.btDong)
         Me.Controls.Add(Me.btXacNhan)
         Me.Controls.Add(Me.lbThongTin)
@@ -75,6 +89,7 @@ Partial Class frmDatHang_PhanHoi
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmDatHang_PhanHoi"
         CType(Me.tbNoiDung.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.meSql.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -83,4 +98,5 @@ Partial Class frmDatHang_PhanHoi
     Friend WithEvents lbThongTin As DevExpress.XtraEditors.LabelControl
     Friend WithEvents btXacNhan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btDong As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents meSql As DevExpress.XtraEditors.MemoEdit
 End Class

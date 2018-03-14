@@ -31,7 +31,7 @@ Public Class frmVatTuDaChaoGia
             colGiaGoc.Visible = True
         End If
 
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
             btfilterTakecare.Enabled = False
         End If
         btfilterTakecare.EditValue = Convert.ToInt32(TaiKhoan)
@@ -119,7 +119,7 @@ Public Class frmVatTuDaChaoGia
         Dim sqltb As String = ""
         Dim sql As String = ""
         If NhomVT Is Nothing And TenVT Is Nothing Then
-            sql = "SELECT ID,Ten FROM TENHANGSANXUAT ORDER BY Ten"
+            sql = "SELECT ID,Ten FROM TENHANGSANXUAT where 1=1 "
         Else
             sqltb &= " SELECT TOP 1 IDHangSanxuat FROM VATTU WHERE ID=-1"
 
@@ -135,7 +135,15 @@ Public Class frmVatTuDaChaoGia
             End If
             sql = " SELECT ID,Ten FROM TENHANGSANXUAT WHERE ID IN (SELECT DISTINCT IDHangSanxuat FROM (" & sqltb & " )tb)"
         End If
+        'Tai
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            If btfilterTakecare.EditValue <> TaiKhoan Then
+                sql &= " and ID in (select IDHangSX from PhatTrienSanPham where Thang=CONVERT(char(2),getdate(), 101)+'/'+convert(nvarchar(5),datepart(year,getdate())) and IDPhuTrach =" & TaiKhoan & ")"
+            End If
 
+        End If
+        'Tai
+        sql &= " ORDER BY Ten"
         Dim tb As DataTable = ExecuteSQLDataTable(sql)
         If Not tb Is Nothing Then
             rcbHangSX.DataSource = tb
@@ -201,55 +209,55 @@ Public Class frmVatTuDaChaoGia
     Private Sub LoadDaChaoGia()
 
         ShowWaiting("Đang tải dữ liệu ...")
-        Dim sql As String = " SET DATEFORMAT DMY "
-        sql &= " SELECT KHACHHANG.ttcMa,BANGCHAOGIA.SoPhieu,BANGCHAOGIA.SoPhieu AS SoPhieu2,BANGCHAOGIA.NgayThang,0 AS STT,BANGCHAOGIA.CongTrinh,BANGCHAOGIA.TrangThai AS TrangThaiChinh,BANGCHAOGIA.IDTakeCare, "
-        sql &= "        TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.Model,TENDONVITINH.Ten AS DVT,CHAOGIA.SoLuong,(CHAOGIA.DonGia*BANGCHAOGIA.TyGia) AS DonGia,"
-        sql &= " 		(CHAOGIA.DonGia*CHAOGIA.SoLuong*BANGCHAOGIA.TyGia)AS ThanhTien,(CASE CHAOGIA.XuatThue WHEN 1 THEN BANGCHAOGIA.TyGia*CHAOGIA.DonGia*CHAOGIA.SoLuong*CHAOGIA.MucThue/100 ELSE 0 END)TienThue,"
-        sql &= " 		tblTienTe.Ten AS TienTe, BANGCHAOGIA.TyGia, CHAOGIA.MucThue,CHAOGIA.XuatThue,CHAOGIA.IDVatTu,KHACHHANG.IDLinhVucSX,CHAOGIA.ChietKhau, "
-        sql &= " 		CHAOGIA.ID AS IDCHAOGIA,NHANSU.Ten AS TakeCare,tblTuDien.NoiDung AS TrangThai, (CASE WHEN CHAOGIA.TrangThai >2 then BANGCHAOGIA.NgayHuy WHEN CHAOGIA.TrangThai=2 THEN NgayNhan ELSE NULL END)NgayNhanHuy,"
+        Dim sql As String = " Set DATEFORMAT DMY "
+        sql &= " Select KHACHHANG.ttcMa,BANGCHAOGIA.SoPhieu,BANGCHAOGIA.SoPhieu As SoPhieu2,BANGCHAOGIA.NgayThang,0 As STT,BANGCHAOGIA.CongTrinh,BANGCHAOGIA.TrangThai As TrangThaiChinh,BANGCHAOGIA.IDTakeCare, "
+        sql &= "        TENVATTU.Ten As TenVT,TENHANGSANXUAT.Ten As HangSX,VATTU.Model,TENDONVITINH.Ten As DVT,CHAOGIA.SoLuong,(CHAOGIA.DonGia*BANGCHAOGIA.TyGia) As DonGia,"
+        sql &= " 		(CHAOGIA.DonGia*CHAOGIA.SoLuong*BANGCHAOGIA.TyGia)As ThanhTien,(Case CHAOGIA.XuatThue When 1 Then BANGCHAOGIA.TyGia*CHAOGIA.DonGia*CHAOGIA.SoLuong*CHAOGIA.MucThue/100 Else 0 End)TienThue,"
+        sql &= " 		tblTienTe.Ten As TienTe, BANGCHAOGIA.TyGia, CHAOGIA.MucThue,CHAOGIA.XuatThue,CHAOGIA.IDVatTu,KHACHHANG.IDLinhVucSX,CHAOGIA.ChietKhau, "
+        sql &= " 		CHAOGIA.ID As IDCHAOGIA,NHANSU.Ten As TakeCare,tblTuDien.NoiDung As TrangThai, (Case When CHAOGIA.TrangThai >2 Then BANGCHAOGIA.NgayHuy When CHAOGIA.TrangThai=2 Then NgayNhan Else NULL End)NgayNhanHuy,"
         sql &= "        ISNULL(ISNULL("
-        sql &= "        (SELECT     TOP (1) Gianhap"
+        sql &= "        (Select     TOP (1) Gianhap"
         sql &= "            FROM V_GiaNhap "
-        sql &= "            WHERE IDvattu = CHAOGIA.IDvattu AND Ngaythang <= Convert(datetime,Convert(nvarchar,ISNULL((SELECT TOP 1 NgayThang FROM PHIEUXUATKHO WHERE SoPhieuCG=BANGCHAOGIA.SoPhieu ORDER BY NgayThang DESC ),getdate()),103),103)"
+        sql &= "            WHERE IDvattu = CHAOGIA.IDvattu And Ngaythang <= Convert(datetime,Convert(nvarchar,ISNULL((Select TOP 1 NgayThang FROM PHIEUXUATKHO WHERE SoPhieuCG=BANGCHAOGIA.SoPhieu ORDER BY NgayThang DESC ),getdate()),103),103)"
         sql &= "            ORDER BY Ngaythang DESC),"
-        sql &= "        (SELECT     TOP (1) Gianhap"
+        sql &= "        (Select     TOP (1) Gianhap"
         sql &= "            FROM V_GiaNhap"
-        sql &= "            WHERE IDvattu = CHAOGIA.IDvattu AND Ngaythang > Convert(datetime,Convert(nvarchar,ISNULL((SELECT TOP 1 NgayThang FROM PHIEUXUATKHO WHERE SoPhieuCG=BANGCHAOGIA.SoPhieu ORDER BY NgayThang DESC ),getdate()),103),103)"
-        sql &= "                 ORDER BY Ngaythang)),VATTU.DonGia1*(VATTU.GiaNhap1/100)*tblTienTe.TyGia) * CHAOGIA.SoLuong AS GiaGoc, "
-        sql &= " (CASE VATTU.XuatThue1 "
-        sql &= "	WHEN 0 THEN "
-        sql &= "		(CASE VATTU.DonGia1 "
-        sql &= "			WHEN 0 THEN 0 "
-        sql &= "				ELSE"
+        sql &= "            WHERE IDvattu = CHAOGIA.IDvattu And Ngaythang > Convert(datetime,Convert(nvarchar,ISNULL((Select TOP 1 NgayThang FROM PHIEUXUATKHO WHERE SoPhieuCG=BANGCHAOGIA.SoPhieu ORDER BY NgayThang DESC ),getdate()),103),103)"
+        sql &= "                 ORDER BY Ngaythang)),VATTU.DonGia1*(VATTU.GiaNhap1/100)*tblTienTe.TyGia) * CHAOGIA.SoLuong As GiaGoc, "
+        sql &= " (Case VATTU.XuatThue1 "
+        sql &= "	When 0 Then "
+        sql &= "		(Case VATTU.DonGia1 "
+        sql &= "			When 0 Then 0 "
+        sql &= "				Else"
         sql &= "        ROUND(((CHAOGIA.DonGia - CHAOGIA.ChietKhau) / (VATTU.DonGia1 * TTVT.TyGia)) * 100, 2)"
-        sql &= "			END) "
-        sql &= "	ELSE"
-        sql &= "		(CASE VATTU.DonGia1 "
-        sql &= "			WHEN 0 THEN 0 "
-        sql &= "				ELSE"
+        sql &= "			End) "
+        sql &= "	Else"
+        sql &= "		(Case VATTU.DonGia1 "
+        sql &= "			When 0 Then 0 "
+        sql &= "				Else"
         sql &= "        ROUND(((CHAOGIA.DonGia - CHAOGIA.ChietKhau) / ((VATTU.DonGia1 * TTVT.TyGia) / (100 + VATTU.MucThue1))) * 100, 2)"
-        sql &= "			END) "
-        sql &= "	END) AS PTGiaBan"
+        sql &= "			End) "
+        sql &= "	End) As PTGiaBan"
         '---tai
-        sql &= " , KHACHHANG.ID as IDKhachHang"
-        sql &= ", CAST(case when CHAOGIA .ID  not in(select idchaogia from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  on idchaogia =CHAOGIA .id where Soluong =(select SUM (SoLuongLamHQ ) from HaiQuan_ChiTietLamHaiQuan where idchaogia =CHAOGIA .id )) then 0 else 1 end as bit) as lamhaiquan"
-        sql &= ", CAST(case when CHAOGIA .ID  not in(select idchaogia from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  on idchaogia =CHAOGIA .id where Soluong =(select SUM (SoLuongLamHQ ) from HaiQuan_ChiTietLamHaiQuan where idchaogia =CHAOGIA .id )) then 0 else 1 end as bit) as lamhaiquan2"
-        sql &= ", CAST(case when CHAOGIA .ID  not in(select idchaogia from HaiQuan_ChiTietLamHaiQuan) then 0 else 1 end as bit) as lamhaiquan3"
+        sql &= " , KHACHHANG.ID As IDKhachHang"
+        sql &= ", CAST(Case When CHAOGIA .ID  Not In(Select idchaogia from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  On idchaogia =CHAOGIA .id where Soluong =(Select SUM (SoLuongLamHQ ) from HaiQuan_ChiTietLamHaiQuan where idchaogia =CHAOGIA .id )) Then 0 Else 1 End As bit) As lamhaiquan"
+        sql &= ", CAST(Case When CHAOGIA .ID  Not In(Select idchaogia from HaiQuan_ChiTietLamHaiQuan inner join CHAOGIA  On idchaogia =CHAOGIA .id where Soluong =(Select SUM (SoLuongLamHQ ) from HaiQuan_ChiTietLamHaiQuan where idchaogia =CHAOGIA .id )) Then 0 Else 1 End As bit) As lamhaiquan2"
+        sql &= ", CAST(Case When CHAOGIA .ID  Not In(Select idchaogia from HaiQuan_ChiTietLamHaiQuan) Then 0 Else 1 End As bit) As lamhaiquan3"
         '---tai
         sql &= " FROM CHAOGIA "
-        sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.Sophieu "
+        sql &= " 	INNER JOIN BANGCHAOGIA On BANGCHAOGIA.Sophieu = CHAOGIA.Sophieu "
 
         If cbTrangThai.EditValue = "Tất cả" Then
-            sql &= " AND Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayThang,103),103) BETWEEN @TuNgay AND @DenNgay  "
+            sql &= " And Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayThang,103),103) BETWEEN @TuNgay And @DenNgay  "
         ElseIf cbTrangThai.EditValue = "Đã xác nhận" Then
-            sql &= " AND CHAOGIA.TrangThai =2  AND Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayNhan,103),103) BETWEEN @TuNgay AND @DenNgay  "
+            sql &= " And CHAOGIA.TrangThai =2  And Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayNhan,103),103) BETWEEN @TuNgay And @DenNgay  "
         Else
-            sql &= " AND CHAOGIA.TrangThai >2 AND Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayHuy,103),103) BETWEEN @TuNgay AND @DenNgay  "
+            sql &= " And CHAOGIA.TrangThai >2 And Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayHuy,103),103) BETWEEN @TuNgay And @DenNgay  "
         End If
-        sql &= "    INNER JOIN tblTuDien ON CHAOGIA.TrangThai=tblTuDien.Ma AND Loai=2 "
-        sql &= " 	INNER JOIN VATTU ON VATTU.ID = CHAOGIA.IDVatTu"
+        sql &= "    INNER JOIN tblTuDien On CHAOGIA.TrangThai=tblTuDien.Ma And Loai=2 "
+        sql &= " 	INNER JOIN VATTU On VATTU.ID = CHAOGIA.IDVatTu"
         If btFilterMaVT.EditValue <> "" Then
-            sql &= " AND VATTU.Model LIKE '" & btFilterMaVT.EditValue.ToString & "%'"
+            sql &= " And VATTU.Model Like '" & btFilterMaVT.EditValue.ToString & "%'"
         End If
 
         If Not btFilterNhomVT.EditValue Is Nothing Then
@@ -262,6 +270,15 @@ Public Class frmVatTuDaChaoGia
 
         If Not btFilterHangSX.EditValue Is Nothing Then
             sql &= " AND VATTU.IDHangSanxuat=" & btFilterHangSX.EditValue.ToString
+        Else
+            'Tai
+            If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+                If btfilterTakecare.EditValue <> TaiKhoan Then
+                    sql &= " and VATTU.IDHangSanxuat in (select IDHangSX from PhatTrienSanPham where Thang=CONVERT(char(2),getdate(), 101)+'/'+convert(nvarchar(5),datepart(year,getdate())) and IDPhuTrach =" & TaiKhoan & ")"
+                End If
+
+            End If
+            'Tai
         End If
         sql &= " 	LEFT JOIN TENVATTU ON VATTU.IDTenVatTu=TENVATTU.ID"
         sql &= " 	LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangSanXuat=TENHANGSANXUAT.ID"
@@ -800,5 +817,12 @@ Public Class frmVatTuDaChaoGia
         End If
         _message = 0
     End Sub
+    'Tai
+    Private Sub btfilterTakecare_EditValueChanged(sender As Object, e As EventArgs) Handles btfilterTakecare.EditValueChanged
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            LoadcbHangSX(btFilterNhomVT.EditValue, btfilterTenVT.EditValue)
+        End If
+    End Sub
+    'Tai
 #End Region
 End Class

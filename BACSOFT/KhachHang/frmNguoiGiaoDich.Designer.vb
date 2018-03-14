@@ -19,10 +19,9 @@ Partial Class frmNguoiGiaoDich
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.cbKhachHang = New DevExpress.XtraBars.BarEditItem()
         Me.rcbKhachHang = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
@@ -40,7 +39,7 @@ Partial Class frmNguoiGiaoDich
         Me.mSua = New DevExpress.XtraBars.BarButtonItem()
         Me.mXoa = New DevExpress.XtraBars.BarButtonItem()
         Me.rcbLoaiKH = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu()
         Me.gdvNgd = New DevExpress.XtraGrid.GridControl()
         Me.gdvNgdCT = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -192,32 +191,28 @@ Partial Class frmNguoiGiaoDich
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1144, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(981, 29)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 678)
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1144, 0)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 551)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(981, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 645)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 522)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1144, 33)
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 645)
+        Me.barDockControlRight.Location = New System.Drawing.Point(981, 29)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 522)
         '
         'mThem
         '
@@ -258,14 +253,12 @@ Partial Class frmNguoiGiaoDich
         'gdvNgd
         '
         Me.gdvNgd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvNgd.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.gdvNgd.Location = New System.Drawing.Point(0, 33)
+        Me.gdvNgd.Location = New System.Drawing.Point(0, 29)
         Me.gdvNgd.MainView = Me.gdvNgdCT
-        Me.gdvNgd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvNgd.MenuManager = Me.BarManager1
         Me.gdvNgd.Name = "gdvNgd"
         Me.gdvNgd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rcbDoiTuongNhanEmail, Me.cbPhanHoi, Me.chkMoi})
-        Me.gdvNgd.Size = New System.Drawing.Size(1144, 645)
+        Me.gdvNgd.Size = New System.Drawing.Size(981, 522)
         Me.gdvNgd.TabIndex = 4
         Me.gdvNgd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvNgdCT})
         '
@@ -616,16 +609,15 @@ Partial Class frmNguoiGiaoDich
         '
         'frmNguoiGiaoDich
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.gdvNgd)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmNguoiGiaoDich"
-        Me.Size = New System.Drawing.Size(1144, 678)
+        Me.Size = New System.Drawing.Size(981, 551)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbKhachHang, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbLoaiKH, System.ComponentModel.ISupportInitialize).EndInit()

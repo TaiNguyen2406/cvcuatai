@@ -216,7 +216,7 @@ Partial Class frmThemTaiSan
         Me.seMucKH.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.seMucKH.Properties.Mask.EditMask = "c0"
         Me.seMucKH.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.seMucKH.Size = New System.Drawing.Size(90, 20)
+        Me.seMucKH.Size = New System.Drawing.Size(107, 20)
         Me.seMucKH.TabIndex = 34
         '
         'seTGKH

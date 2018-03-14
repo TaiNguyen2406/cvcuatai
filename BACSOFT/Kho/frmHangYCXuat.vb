@@ -195,6 +195,10 @@ Public Class frmHangYCXuat
         sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat,"
         sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe,V_DANGVE.NgayVe2, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, VATTU.ID"
         sql &= " ,ThoiGianCanXuat,NoiDungYeuCauKho,Convert(bit,0)Modify,CHAOGIA.ID as IDCG,Convert(bit,0)Chon,TGPhanHoiCuaKho,NoiDungPhanHoiCuaKho,ThoiGianLapYCCX"
+        sql &= ",  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam"
         sql &= " FROM  CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.SoPhieu "
 

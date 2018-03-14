@@ -22,7 +22,6 @@ Partial Class frmThongTinChiPhiChung
         Me.components = New System.ComponentModel.Container()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
-        Me.btnChiTietTaiSan = New DevExpress.XtraBars.BarButtonItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barCbbXem = New DevExpress.XtraBars.BarEditItem()
@@ -53,6 +52,7 @@ Partial Class frmThongTinChiPhiChung
         Me.riLueTenVT = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.barLueLoaiTS = New DevExpress.XtraBars.BarEditItem()
         Me.riLueLoaiTS = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.btnChiTietTaiSan = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem7 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem8 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem9 = New DevExpress.XtraBars.BarButtonItem()
@@ -115,12 +115,6 @@ Partial Class frmThongTinChiPhiChung
         Me.BarButtonItem6.Glyph = Global.BACSOFT.My.Resources.Resources.Delete_18
         Me.BarButtonItem6.Id = 33
         Me.BarButtonItem6.Name = "BarButtonItem6"
-        '
-        'btnChiTietTaiSan
-        '
-        Me.btnChiTietTaiSan.Caption = "Chi tiết tài sản"
-        Me.btnChiTietTaiSan.Id = 34
-        Me.btnChiTietTaiSan.Name = "btnChiTietTaiSan"
         '
         'BarManager1
         '
@@ -381,6 +375,12 @@ Partial Class frmThongTinChiPhiChung
         Me.riLueLoaiTS.ShowHeader = False
         Me.riLueLoaiTS.ValueMember = "id"
         '
+        'btnChiTietTaiSan
+        '
+        Me.btnChiTietTaiSan.Caption = "Chi tiết tài sản"
+        Me.btnChiTietTaiSan.Id = 34
+        Me.btnChiTietTaiSan.Name = "btnChiTietTaiSan"
+        '
         'BarButtonItem7
         '
         Me.BarButtonItem7.Appearance.ForeColor = System.Drawing.Color.Blue
@@ -464,7 +464,7 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn2.FieldName = "TenVT"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.SummaryItem.DisplayFormat = "Số lượng: {0}"
+        Me.GridColumn2.SummaryItem.DisplayFormat = "{0}"
         Me.GridColumn2.SummaryItem.FieldName = "tentaisan"
         Me.GridColumn2.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Count
         Me.GridColumn2.Visible = True
@@ -476,7 +476,7 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn4.Caption = "Đơn giá"
-        Me.GridColumn4.DisplayFormat.FormatString = "c0"
+        Me.GridColumn4.DisplayFormat.FormatString = "N0"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "DonGia"
         Me.GridColumn4.Name = "GridColumn4"
@@ -493,6 +493,7 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn10.FieldName = "SoLuong"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
         Me.GridColumn10.Width = 49
@@ -502,12 +503,12 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn11.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn11.Caption = "Tổng tiền"
-        Me.GridColumn11.DisplayFormat.FormatString = "c0"
+        Me.GridColumn11.DisplayFormat.FormatString = "N0"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "tongtien"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.SummaryItem.DisplayFormat = "{0:c0}"
+        Me.GridColumn11.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn11.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 9
@@ -531,7 +532,7 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumn3.Caption = "Ghi chú"
         Me.GridColumn3.ColumnEdit = Me.riMemoGhiChuTS
-        Me.GridColumn3.FieldName = "ghichutaisan"
+        Me.GridColumn3.FieldName = "ghichuchiphi"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 6
@@ -551,7 +552,7 @@ Partial Class frmThongTinChiPhiChung
         Me.GridColumn7.AppearanceHeader.Options.UseForeColor = True
         Me.GridColumn7.Caption = "Loại tài sản"
         Me.GridColumn7.ColumnEdit = Me.gRiLueLoaiTS
-        Me.GridColumn7.FieldName = "idloaitaisan"
+        Me.GridColumn7.FieldName = "idloaichiphi"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Width = 131
         '

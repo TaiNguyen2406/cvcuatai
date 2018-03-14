@@ -4,6 +4,8 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.Data.Filtering
 Imports System.Security.AccessControl
 Imports DevExpress
+Imports DevExpress.XtraGrid
+Imports DevExpress.Data
 
 Public Class frmVatTuDaChaoGiaTest
     Public _Exit As Boolean = False
@@ -29,7 +31,10 @@ Public Class frmVatTuDaChaoGiaTest
             colGiaGoc.Visible = True
         End If
 
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+        'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+        '    btfilterTakecare.Enabled = False
+        'End If
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
             btfilterTakecare.Enabled = False
         End If
         btfilterTakecare.EditValue = Convert.ToInt32(TaiKhoan)
@@ -38,7 +43,16 @@ Public Class frmVatTuDaChaoGiaTest
 #Region "Lọc vật tư"
 
     Public Sub LoadTuDien()
-        Dim ds As DataSet = ExecuteSQLDataSet("SELECT ID,Ten FROM NHANSU WHERE NoiCtac=74 AND TrangThai=1 SELECT ID,ttcMa FROM KHACHHANG ORDER BY ttcMa")
+        Dim str As String = " SELECT ID,Ten FROM NHANSU WHERE NoiCtac=74 AND TrangThai=1 "
+        str &= " SELECT KHACHHANG.ID,ttcMa,NHANSU.Ten as PhuTrach FROM KHACHHANG LEFT JOIN NHANSU ON KHACHHANG.IDTakeCare=NHANSU.ID "
+
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+            str &= " WHERE IDTakecare is null or IDTakeCare = @TK"
+            AddParameterWhere("@TK", TaiKhoan)
+        End If
+        str &= " ORDER BY ttcMa "
+
+        Dim ds As DataSet = ExecuteSQLDataSet(str)
         If Not ds Is Nothing Then
             rcbTakecare.DataSource = ds.Tables(0)
             rcbMaKH.DataSource = ds.Tables(1)
@@ -116,7 +130,7 @@ Public Class frmVatTuDaChaoGiaTest
         Dim sqltb As String = ""
         Dim sql As String = ""
         If NhomVT Is Nothing And TenVT Is Nothing Then
-            sql = "SELECT ID,Ten FROM TENHANGSANXUAT ORDER BY Ten"
+            sql = "SELECT ID,Ten FROM TENHANGSANXUAT where 1=1"
         Else
             sqltb &= " SELECT TOP 1 IDHangSanxuat FROM VATTU WHERE ID=-1"
 
@@ -132,7 +146,15 @@ Public Class frmVatTuDaChaoGiaTest
             End If
             sql = " SELECT ID,Ten FROM TENHANGSANXUAT WHERE ID IN (SELECT DISTINCT IDHangSanxuat FROM (" & sqltb & " )tb)"
         End If
+        'Tai
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            If btfilterTakecare.EditValue <> TaiKhoan Then
+                sql &= " and ID in (select IDHangSX from PhatTrienSanPham where Thang=CONVERT(char(2),getdate(), 101)+'/'+convert(nvarchar(5),datepart(year,getdate())) and IDPhuTrach =" & TaiKhoan & ")"
+            End If
 
+        End If
+        'Tai
+        sql &= " ORDER BY Ten"
         Dim tb As DataTable = ExecuteSQLDataTable(sql)
         If Not tb Is Nothing Then
             rcbHangSX.DataSource = tb
@@ -245,10 +267,11 @@ Public Class frmVatTuDaChaoGiaTest
         sql &= "	END) AS PTGiaBan,"
         sql &= "        (CASE KHACHHANG.NhomKH WHEN 1 THEN N'Thương mại, Chế tạo máy, Tích hợp …' WHEN 2 THEN  N'END User' ELSE '' END)NhomKH,"
         sql &= "        (CASE WHEN KHACHHANG.CapKH IS null THEN Convert(nvarchar,CapKH) ELSE N'Cấp ' +  Convert(nvarchar, KHACHHANG.CapKH) END)CapKH,"
-        sql &= "    CHAOGIA.ChietKhau,BANGCHAOGIA.KhauTru"
-
+        sql &= "    CHAOGIA.ChietKhau,BANGCHAOGIA.KhauTru,KHACHHANG.IDTakeCare as IDPhuTrachKH,PTKH.Ten as PhuTrachKH"
+        sql &= "  , (select NoiDung from tblTuDien where ID=IDKhuCN) KhuCN,(select NoiDung from tblTuDien where ID=IDTinhThanh ) TinhThanh,(select NoiDung from tblTuDien where ID=IDChuSoHuu ) ChuSoHuu, (select NoiDung from tblTuDien where ID=IDLoaiHinhDN ) LoaiHinhDN"
         sql &= " FROM CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.Sophieu "
+
 
         If cbTrangThai.EditValue = "Tất cả" Then
             sql &= " AND Convert(datetime,CONVERT(Nvarchar,BANGCHAOGIA.NgayThang,103),103) BETWEEN @TuNgay AND @DenNgay  "
@@ -275,20 +298,37 @@ Public Class frmVatTuDaChaoGiaTest
 
         If Not btFilterHangSX.EditValue Is Nothing Then
             sql &= " AND VATTU.IDHangSanxuat=" & btFilterHangSX.EditValue.ToString
+        Else
+            'Tai
+            If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) And KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+                If btfilterTakecare.EditValue <> TaiKhoan Then
+                    sql &= " and VATTU.IDHangSanxuat in (select IDHangSX from PhatTrienSanPham where Thang=CONVERT(char(2),getdate(), 101)+'/'+convert(nvarchar(5),datepart(year,getdate())) and IDPhuTrach =" & TaiKhoan & ")"
+                End If
+
+            End If
+            'Tai
         End If
         sql &= " 	LEFT JOIN TENVATTU ON VATTU.IDTenVatTu=TENVATTU.ID"
         sql &= " 	LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangSanXuat=TENHANGSANXUAT.ID"
         sql &= " 	LEFT JOIN TENDONVITINH ON VATTU.IDDonViTinh=TENDONVITINH.ID"
         sql &= " 	INNER JOIN KHACHHANG ON BANGCHAOGIA.IDkhachhang = KHACHHANG.ID"
+
         If Not btfilterMaKH.EditValue Is Nothing Then
             sql &= " AND BANGCHAOGIA.IDKhachhang=" & btfilterMaKH.EditValue
         End If
 
         If Not btfilterTakecare.EditValue Is Nothing Then
-            sql &= " AND BANGCHAOGIA.IDTakeCare=" & btfilterTakecare.EditValue
+            If chkBlank.Checked Then
+                sql &= " AND (( BANGCHAOGIA.IDTakeCare=" & btfilterTakecare.EditValue & " OR  KHACHHANG.IDTakeCare is null ) OR KHACHHANG.IDTakeCare=" & btfilterTakecare.EditValue & " ) "
+            Else
+                sql &= " AND ( BANGCHAOGIA.IDTakeCare=" & btfilterTakecare.EditValue & " OR KHACHHANG.IDTakeCare=" & btfilterTakecare.EditValue & " ) "
+            End If
+
+
         End If
 
         sql &= " 	INNER JOIN NHANSU ON BANGCHAOGIA.IDTakeCare = NHANSU.ID"
+        sql &= " 	LEFT JOIN NHANSU as PTKH ON KHACHHANG.IDTakeCare = PTKH.ID"
         sql &= " 	LEFT JOIN tblTienTe ON BANGCHAOGIA.TienTe=tblTienTe.ID "
         sql &= " 	INNER JOIN tblTienTe AS TTVT ON VATTU.TienTe1=TTVT.ID "
         sql &= " )tbll"
@@ -377,7 +417,9 @@ Public Class frmVatTuDaChaoGiaTest
             End If
 
             gdv.DataSource = ds.Tables(0)
-
+            Dim summaryItemMaxOrderSum As GridSummaryItem = gdvCT.GroupSummary.Add(SummaryItemType.Sum, "LoiNhuan", Nothing, String.Empty)
+            Dim firstcol As GridColumn = gdvCT.SortInfo(0).Column
+            gdvCT.GroupSummarySortInfo.Add(summaryItemMaxOrderSum, ColumnSortOrder.Descending, firstcol)
 
             CloseWaiting()
         Else
@@ -500,7 +542,7 @@ Public Class frmVatTuDaChaoGiaTest
         End If
 
         If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        If gdvCT.GetFocusedRowCellValue("TrangThaiChinh") = TrangThaiChaoGia.DaXacNhan Or gdvCT.GetFocusedRowCellValue("IDTakeCare") <> TaiKhoan Then
+        If (gdvCT.GetFocusedRowCellValue("TrangThaiChinh") = TrangThaiChaoGia.DaXacNhan Or gdvCT.GetFocusedRowCellValue("IDTakeCare") <> TaiKhoan) And (Not IsDBNull(gdvCT.GetFocusedRowCellValue("IDPhuTrachKH")) And gdvCT.GetFocusedRowCellValue("IDPhuTrachKH").ToString <> TaiKhoan) Then
             If Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.TPKinhDoanh) Then
                 ShowCanhBao("Bạn cần có quyền TP Kinh doanh hoặc Admin để sửa chào giá đã xác nhận hoặc chào giá của nv khác!")
                 Exit Sub
@@ -525,5 +567,13 @@ Public Class frmVatTuDaChaoGiaTest
         colGiaGoc.Width = 60
         colPTBL.Width = 30
         colDVT.VisibleIndex = 14
+    End Sub
+
+    Private Sub chkBlank_CheckedChanged(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles chkBlank.CheckedChanged
+        If chkBlank.Checked Then
+            chkBlank.Glyph = My.Resources.Checked
+        Else
+            chkBlank.Glyph = My.Resources.UnCheck
+        End If
     End Sub
 End Class

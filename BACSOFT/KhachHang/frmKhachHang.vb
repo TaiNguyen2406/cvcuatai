@@ -148,7 +148,7 @@ Public Class frmKhachHang
         'Tai
         sql &= "        LEFT OUTER JOIN DM_HINH_THUC_TT ON KHACHHANG.IDHinhThucTT2=DM_HINH_THUC_TT.ID "
         'Tai
-        sql &= " WHERE KHACHHANG.ttcKhachHang <>0 "
+        sql &= " WHERE 1=1" 'KHACHHANG.ttcKhachHang <>0 "
 
         If Not cmbTakeCare.EditValue Is DBNull.Value Then
             If chkTaiCaBlank.EditValue = False Then

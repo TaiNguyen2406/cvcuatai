@@ -20,8 +20,8 @@ Partial Class frmCNDatHang
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.mDuKienThanhToan = New DevExpress.XtraEditors.SimpleButton()
         Me.btBacklog = New DevExpress.XtraEditors.SimpleButton()
@@ -32,6 +32,20 @@ Partial Class frmCNDatHang
         Me.tbSoPhieuDH = New DevExpress.XtraEditors.TextEdit()
         Me.btFileKemDatHang = New DevExpress.XtraEditors.SimpleButton()
         Me.btXuatExcelDatHang = New DevExpress.XtraEditors.DropDownButton()
+        Me.pXuatExcel = New DevExpress.XtraBars.PopupControlContainer(Me.components)
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.lbCNFileDH = New DevExpress.XtraEditors.LabelControl()
+        Me.chkN2 = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkN0 = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkENG = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkVIE = New DevExpress.XtraEditors.CheckEdit()
+        Me.btXuat = New DevExpress.XtraEditors.SimpleButton()
+        Me.chkDHOmron = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkNgayGiao = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkCOCQ = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatThongSo = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatHangSX = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatMaVT = New DevExpress.XtraEditors.CheckEdit()
         Me.cbHinhThucTT = New DevExpress.XtraEditors.LookUpEdit()
         Me.btXacNhanDatHang = New DevExpress.XtraEditors.SimpleButton()
         Me.cbTienTeNK = New DevExpress.XtraEditors.LookUpEdit()
@@ -125,20 +139,6 @@ Partial Class frmCNDatHang
         Me.LabelControl35 = New DevExpress.XtraEditors.LabelControl()
         Me.tbGiaNhapPT = New DevExpress.XtraEditors.SpinEdit()
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
-        Me.pXuatExcel = New DevExpress.XtraBars.PopupControlContainer(Me.components)
-        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
-        Me.lbCNFileDH = New DevExpress.XtraEditors.LabelControl()
-        Me.chkN2 = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkN0 = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkENG = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkVIE = New DevExpress.XtraEditors.CheckEdit()
-        Me.btXuat = New DevExpress.XtraEditors.SimpleButton()
-        Me.chkDHOmron = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkNgayGiao = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkCOCQ = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatThongSo = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatHangSX = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatMaVT = New DevExpress.XtraEditors.CheckEdit()
         Me.gFileDinhKemDH = New DevExpress.XtraEditors.GroupControl()
         Me.btDongDH = New DevExpress.XtraEditors.SimpleButton()
         Me.btXoaFileDH = New DevExpress.XtraEditors.SimpleButton()
@@ -152,6 +152,20 @@ Partial Class frmCNDatHang
         CType(Me.chkHienThongSo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbLoaiDH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbSoPhieuDH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pXuatExcel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pXuatExcel.SuspendLayout()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl6.SuspendLayout()
+        CType(Me.chkN2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkN0.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkENG.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkVIE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkDHOmron.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkNgayGiao.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkCOCQ.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbHinhThucTT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbTienTeNK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbTienTe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,20 +196,6 @@ Partial Class frmCNDatHang
         CType(Me.tbTienThue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbTienTruocThue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbGiaNhapPT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pXuatExcel, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pXuatExcel.SuspendLayout()
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl6.SuspendLayout()
-        CType(Me.chkN2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkN0.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkENG.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkVIE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkDHOmron.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkNgayGiao.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkCOCQ.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gFileDinhKemDH, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gFileDinhKemDH.SuspendLayout()
         CType(Me.gdvListFileDH, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,6 +345,155 @@ Partial Class frmCNDatHang
         Me.btXuatExcelDatHang.Size = New System.Drawing.Size(116, 23)
         Me.btXuatExcelDatHang.TabIndex = 12
         Me.btXuatExcelDatHang.Text = "Excel"
+        '
+        'pXuatExcel
+        '
+        Me.pXuatExcel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.pXuatExcel.Controls.Add(Me.GroupControl6)
+        Me.pXuatExcel.Location = New System.Drawing.Point(405, 214)
+        Me.pXuatExcel.Name = "pXuatExcel"
+        Me.pXuatExcel.Size = New System.Drawing.Size(189, 193)
+        Me.pXuatExcel.TabIndex = 18
+        Me.pXuatExcel.Visible = False
+        '
+        'GroupControl6
+        '
+        Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl6.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl6.Controls.Add(Me.lbCNFileDH)
+        Me.GroupControl6.Controls.Add(Me.chkN2)
+        Me.GroupControl6.Controls.Add(Me.chkN0)
+        Me.GroupControl6.Controls.Add(Me.chkENG)
+        Me.GroupControl6.Controls.Add(Me.chkVIE)
+        Me.GroupControl6.Controls.Add(Me.btXuat)
+        Me.GroupControl6.Controls.Add(Me.chkDHOmron)
+        Me.GroupControl6.Controls.Add(Me.chkNgayGiao)
+        Me.GroupControl6.Controls.Add(Me.chkCOCQ)
+        Me.GroupControl6.Controls.Add(Me.chkXuatThongSo)
+        Me.GroupControl6.Controls.Add(Me.chkXuatHangSX)
+        Me.GroupControl6.Controls.Add(Me.chkXuatMaVT)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl6.Name = "GroupControl6"
+        Me.GroupControl6.Size = New System.Drawing.Size(189, 193)
+        Me.GroupControl6.TabIndex = 1
+        Me.GroupControl6.Text = "Xuất Excel"
+        '
+        'lbCNFileDH
+        '
+        Me.lbCNFileDH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, CType(((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic) _
+                Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.lbCNFileDH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lbCNFileDH.Location = New System.Drawing.Point(79, 173)
+        Me.lbCNFileDH.Name = "lbCNFileDH"
+        Me.lbCNFileDH.Size = New System.Drawing.Size(100, 13)
+        Me.lbCNFileDH.TabIndex = 12
+        Me.lbCNFileDH.Text = "Cập nhật file mẫu"
+        '
+        'chkN2
+        '
+        Me.chkN2.Location = New System.Drawing.Point(114, 100)
+        Me.chkN2.Name = "chkN2"
+        Me.chkN2.Properties.Caption = "..1.234,00"
+        Me.chkN2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkN2.Properties.RadioGroupIndex = 1
+        Me.chkN2.Size = New System.Drawing.Size(75, 19)
+        Me.chkN2.TabIndex = 8
+        Me.chkN2.TabStop = False
+        '
+        'chkN0
+        '
+        Me.chkN0.EditValue = True
+        Me.chkN0.Location = New System.Drawing.Point(114, 75)
+        Me.chkN0.Name = "chkN0"
+        Me.chkN0.Properties.Caption = "..1.234"
+        Me.chkN0.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkN0.Properties.RadioGroupIndex = 1
+        Me.chkN0.Size = New System.Drawing.Size(75, 19)
+        Me.chkN0.TabIndex = 9
+        '
+        'chkENG
+        '
+        Me.chkENG.Location = New System.Drawing.Point(114, 50)
+        Me.chkENG.Name = "chkENG"
+        Me.chkENG.Properties.Caption = "ENG"
+        Me.chkENG.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkENG.Properties.RadioGroupIndex = 0
+        Me.chkENG.Size = New System.Drawing.Size(75, 19)
+        Me.chkENG.TabIndex = 6
+        Me.chkENG.TabStop = False
+        '
+        'chkVIE
+        '
+        Me.chkVIE.EditValue = True
+        Me.chkVIE.Location = New System.Drawing.Point(114, 25)
+        Me.chkVIE.Name = "chkVIE"
+        Me.chkVIE.Properties.Caption = "VIE"
+        Me.chkVIE.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkVIE.Properties.RadioGroupIndex = 0
+        Me.chkVIE.Size = New System.Drawing.Size(75, 19)
+        Me.chkVIE.TabIndex = 7
+        '
+        'btXuat
+        '
+        Me.btXuat.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btXuat.Appearance.Options.UseFont = True
+        Me.btXuat.Image = Global.BACSOFT.My.Resources.Resources.Excel_18
+        Me.btXuat.Location = New System.Drawing.Point(115, 125)
+        Me.btXuat.Name = "btXuat"
+        Me.btXuat.Size = New System.Drawing.Size(61, 23)
+        Me.btXuat.TabIndex = 4
+        Me.btXuat.Text = "Xuất"
+        '
+        'chkDHOmron
+        '
+        Me.chkDHOmron.Location = New System.Drawing.Point(6, 150)
+        Me.chkDHOmron.Name = "chkDHOmron"
+        Me.chkDHOmron.Properties.Caption = "Đặt hàng Omron"
+        Me.chkDHOmron.Size = New System.Drawing.Size(103, 19)
+        Me.chkDHOmron.TabIndex = 3
+        '
+        'chkNgayGiao
+        '
+        Me.chkNgayGiao.Location = New System.Drawing.Point(6, 125)
+        Me.chkNgayGiao.Name = "chkNgayGiao"
+        Me.chkNgayGiao.Properties.Caption = "Ngày về"
+        Me.chkNgayGiao.Size = New System.Drawing.Size(103, 19)
+        Me.chkNgayGiao.TabIndex = 3
+        '
+        'chkCOCQ
+        '
+        Me.chkCOCQ.Location = New System.Drawing.Point(6, 100)
+        Me.chkCOCQ.Name = "chkCOCQ"
+        Me.chkCOCQ.Properties.Caption = "CO,CQ"
+        Me.chkCOCQ.Size = New System.Drawing.Size(103, 19)
+        Me.chkCOCQ.TabIndex = 3
+        '
+        'chkXuatThongSo
+        '
+        Me.chkXuatThongSo.Location = New System.Drawing.Point(6, 76)
+        Me.chkXuatThongSo.Name = "chkXuatThongSo"
+        Me.chkXuatThongSo.Properties.Caption = "Thống số"
+        Me.chkXuatThongSo.Size = New System.Drawing.Size(75, 19)
+        Me.chkXuatThongSo.TabIndex = 2
+        '
+        'chkXuatHangSX
+        '
+        Me.chkXuatHangSX.EditValue = True
+        Me.chkXuatHangSX.Location = New System.Drawing.Point(6, 51)
+        Me.chkXuatHangSX.Name = "chkXuatHangSX"
+        Me.chkXuatHangSX.Properties.Caption = "Hãng sản xuất"
+        Me.chkXuatHangSX.Size = New System.Drawing.Size(102, 19)
+        Me.chkXuatHangSX.TabIndex = 1
+        '
+        'chkXuatMaVT
+        '
+        Me.chkXuatMaVT.EditValue = True
+        Me.chkXuatMaVT.Location = New System.Drawing.Point(6, 26)
+        Me.chkXuatMaVT.Name = "chkXuatMaVT"
+        Me.chkXuatMaVT.Properties.Caption = "Mã hàng"
+        Me.chkXuatMaVT.Size = New System.Drawing.Size(75, 19)
+        Me.chkXuatMaVT.TabIndex = 0
         '
         'cbHinhThucTT
         '
@@ -919,7 +1068,7 @@ Partial Class frmCNDatHang
         'tbN2
         '
         Me.tbN2.AutoHeight = False
-        Me.tbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
+        Me.tbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.tbN2.DisplayFormat.FormatString = "N2"
         Me.tbN2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbN2.EditFormat.FormatString = "N2"
@@ -1355,7 +1504,7 @@ Partial Class frmCNDatHang
         Me.tbGiaNhapPT.Name = "tbGiaNhapPT"
         Me.tbGiaNhapPT.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbGiaNhapPT.Properties.Appearance.Options.UseFont = True
-        Me.tbGiaNhapPT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject12, "", Nothing, Nothing, True), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK)})
+        Me.tbGiaNhapPT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK)})
         Me.tbGiaNhapPT.Properties.DisplayFormat.FormatString = "{0:N2}"
         Me.tbGiaNhapPT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbGiaNhapPT.Properties.EditFormat.FormatString = "{0:N2}"
@@ -1371,155 +1520,6 @@ Partial Class frmCNDatHang
         Me.LabelControl32.Size = New System.Drawing.Size(75, 13)
         Me.LabelControl32.TabIndex = 1
         Me.LabelControl32.Text = "Giá nhập (%)"
-        '
-        'pXuatExcel
-        '
-        Me.pXuatExcel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.pXuatExcel.Controls.Add(Me.GroupControl6)
-        Me.pXuatExcel.Location = New System.Drawing.Point(405, 214)
-        Me.pXuatExcel.Name = "pXuatExcel"
-        Me.pXuatExcel.Size = New System.Drawing.Size(189, 193)
-        Me.pXuatExcel.TabIndex = 18
-        Me.pXuatExcel.Visible = False
-        '
-        'GroupControl6
-        '
-        Me.GroupControl6.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl6.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl6.Controls.Add(Me.lbCNFileDH)
-        Me.GroupControl6.Controls.Add(Me.chkN2)
-        Me.GroupControl6.Controls.Add(Me.chkN0)
-        Me.GroupControl6.Controls.Add(Me.chkENG)
-        Me.GroupControl6.Controls.Add(Me.chkVIE)
-        Me.GroupControl6.Controls.Add(Me.btXuat)
-        Me.GroupControl6.Controls.Add(Me.chkDHOmron)
-        Me.GroupControl6.Controls.Add(Me.chkNgayGiao)
-        Me.GroupControl6.Controls.Add(Me.chkCOCQ)
-        Me.GroupControl6.Controls.Add(Me.chkXuatThongSo)
-        Me.GroupControl6.Controls.Add(Me.chkXuatHangSX)
-        Me.GroupControl6.Controls.Add(Me.chkXuatMaVT)
-        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl6.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(189, 193)
-        Me.GroupControl6.TabIndex = 1
-        Me.GroupControl6.Text = "Xuất Excel"
-        '
-        'lbCNFileDH
-        '
-        Me.lbCNFileDH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, CType(((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic) _
-                Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.lbCNFileDH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lbCNFileDH.Location = New System.Drawing.Point(79, 173)
-        Me.lbCNFileDH.Name = "lbCNFileDH"
-        Me.lbCNFileDH.Size = New System.Drawing.Size(100, 13)
-        Me.lbCNFileDH.TabIndex = 12
-        Me.lbCNFileDH.Text = "Cập nhật file mẫu"
-        '
-        'chkN2
-        '
-        Me.chkN2.Location = New System.Drawing.Point(114, 100)
-        Me.chkN2.Name = "chkN2"
-        Me.chkN2.Properties.Caption = "..1.234,00"
-        Me.chkN2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkN2.Properties.RadioGroupIndex = 1
-        Me.chkN2.Size = New System.Drawing.Size(75, 19)
-        Me.chkN2.TabIndex = 8
-        Me.chkN2.TabStop = False
-        '
-        'chkN0
-        '
-        Me.chkN0.EditValue = True
-        Me.chkN0.Location = New System.Drawing.Point(114, 75)
-        Me.chkN0.Name = "chkN0"
-        Me.chkN0.Properties.Caption = "..1.234"
-        Me.chkN0.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkN0.Properties.RadioGroupIndex = 1
-        Me.chkN0.Size = New System.Drawing.Size(75, 19)
-        Me.chkN0.TabIndex = 9
-        '
-        'chkENG
-        '
-        Me.chkENG.Location = New System.Drawing.Point(114, 50)
-        Me.chkENG.Name = "chkENG"
-        Me.chkENG.Properties.Caption = "ENG"
-        Me.chkENG.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkENG.Properties.RadioGroupIndex = 0
-        Me.chkENG.Size = New System.Drawing.Size(75, 19)
-        Me.chkENG.TabIndex = 6
-        Me.chkENG.TabStop = False
-        '
-        'chkVIE
-        '
-        Me.chkVIE.EditValue = True
-        Me.chkVIE.Location = New System.Drawing.Point(114, 25)
-        Me.chkVIE.Name = "chkVIE"
-        Me.chkVIE.Properties.Caption = "VIE"
-        Me.chkVIE.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkVIE.Properties.RadioGroupIndex = 0
-        Me.chkVIE.Size = New System.Drawing.Size(75, 19)
-        Me.chkVIE.TabIndex = 7
-        '
-        'btXuat
-        '
-        Me.btXuat.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.btXuat.Appearance.Options.UseFont = True
-        Me.btXuat.Image = Global.BACSOFT.My.Resources.Resources.Excel_18
-        Me.btXuat.Location = New System.Drawing.Point(115, 125)
-        Me.btXuat.Name = "btXuat"
-        Me.btXuat.Size = New System.Drawing.Size(61, 23)
-        Me.btXuat.TabIndex = 4
-        Me.btXuat.Text = "Xuất"
-        '
-        'chkDHOmron
-        '
-        Me.chkDHOmron.Location = New System.Drawing.Point(6, 150)
-        Me.chkDHOmron.Name = "chkDHOmron"
-        Me.chkDHOmron.Properties.Caption = "Đặt hàng Omron"
-        Me.chkDHOmron.Size = New System.Drawing.Size(103, 19)
-        Me.chkDHOmron.TabIndex = 3
-        '
-        'chkNgayGiao
-        '
-        Me.chkNgayGiao.Location = New System.Drawing.Point(6, 125)
-        Me.chkNgayGiao.Name = "chkNgayGiao"
-        Me.chkNgayGiao.Properties.Caption = "Ngày về"
-        Me.chkNgayGiao.Size = New System.Drawing.Size(103, 19)
-        Me.chkNgayGiao.TabIndex = 3
-        '
-        'chkCOCQ
-        '
-        Me.chkCOCQ.Location = New System.Drawing.Point(6, 100)
-        Me.chkCOCQ.Name = "chkCOCQ"
-        Me.chkCOCQ.Properties.Caption = "CO,CQ"
-        Me.chkCOCQ.Size = New System.Drawing.Size(103, 19)
-        Me.chkCOCQ.TabIndex = 3
-        '
-        'chkXuatThongSo
-        '
-        Me.chkXuatThongSo.Location = New System.Drawing.Point(6, 76)
-        Me.chkXuatThongSo.Name = "chkXuatThongSo"
-        Me.chkXuatThongSo.Properties.Caption = "Thống số"
-        Me.chkXuatThongSo.Size = New System.Drawing.Size(75, 19)
-        Me.chkXuatThongSo.TabIndex = 2
-        '
-        'chkXuatHangSX
-        '
-        Me.chkXuatHangSX.EditValue = True
-        Me.chkXuatHangSX.Location = New System.Drawing.Point(6, 51)
-        Me.chkXuatHangSX.Name = "chkXuatHangSX"
-        Me.chkXuatHangSX.Properties.Caption = "Hãng sản xuất"
-        Me.chkXuatHangSX.Size = New System.Drawing.Size(102, 19)
-        Me.chkXuatHangSX.TabIndex = 1
-        '
-        'chkXuatMaVT
-        '
-        Me.chkXuatMaVT.EditValue = True
-        Me.chkXuatMaVT.Location = New System.Drawing.Point(6, 26)
-        Me.chkXuatMaVT.Name = "chkXuatMaVT"
-        Me.chkXuatMaVT.Properties.Caption = "Mã hàng"
-        Me.chkXuatMaVT.Size = New System.Drawing.Size(75, 19)
-        Me.chkXuatMaVT.TabIndex = 0
         '
         'gFileDinhKemDH
         '
@@ -1634,6 +1634,21 @@ Partial Class frmCNDatHang
         CType(Me.chkHienThongSo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbLoaiDH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbSoPhieuDH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pXuatExcel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pXuatExcel.ResumeLayout(False)
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl6.ResumeLayout(False)
+        Me.GroupControl6.PerformLayout()
+        CType(Me.chkN2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkN0.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkENG.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkVIE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkDHOmron.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkNgayGiao.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkCOCQ.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbHinhThucTT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbTienTeNK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbTienTe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1665,21 +1680,6 @@ Partial Class frmCNDatHang
         CType(Me.tbTienThue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbTienTruocThue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbGiaNhapPT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pXuatExcel, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pXuatExcel.ResumeLayout(False)
-        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl6.ResumeLayout(False)
-        Me.GroupControl6.PerformLayout()
-        CType(Me.chkN2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkN0.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkENG.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkVIE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkDHOmron.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkNgayGiao.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkCOCQ.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gFileDinhKemDH, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gFileDinhKemDH.ResumeLayout(False)
         CType(Me.gdvListFileDH, System.ComponentModel.ISupportInitialize).EndInit()

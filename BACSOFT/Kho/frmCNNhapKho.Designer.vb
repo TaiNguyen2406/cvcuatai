@@ -65,6 +65,7 @@ Partial Class frmCNNhapKho
         Me.colDonGia = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tbN2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -112,6 +113,7 @@ Partial Class frmCNNhapKho
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,8 +151,8 @@ Partial Class frmCNNhapKho
         Me.tbTongDH = New DevExpress.XtraEditors.SpinEdit()
         Me.btCapNhatGia = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.tbDonTe = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.tbTyGia.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +202,7 @@ Partial Class frmCNNhapKho
         CType(Me.tbTienThueDH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbTongNK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbTongDH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbDonTe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -400,7 +403,6 @@ Partial Class frmCNNhapKho
         Me.GridColumn4.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
-        Me.GridColumn4.Width = 65
         '
         'GridColumn5
         '
@@ -583,7 +585,7 @@ Partial Class frmCNNhapKho
         Me.gdvVT.MainView = Me.gdvVTCT
         Me.gdvVT.Name = "gdvVT"
         Me.gdvVT.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN2, Me.rcbTrangThaiChiTiet, Me.cbThoiGianGH, Me.rcbTienTe, Me.RepositoryItemMemoEdit1, Me.RepositoryItemDateEdit1})
-        Me.gdvVT.Size = New System.Drawing.Size(1002, 388)
+        Me.gdvVT.Size = New System.Drawing.Size(1002, 289)
         Me.gdvVT.TabIndex = 1
         Me.gdvVT.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvVTCT})
         '
@@ -732,6 +734,14 @@ Partial Class frmCNNhapKho
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 7
         Me.GridColumn28.Width = 110
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Chi phí"
+        Me.GridColumn18.FieldName = "ChiPhi"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 8
         '
         'GridColumn8
         '
@@ -916,7 +926,7 @@ Partial Class frmCNNhapKho
         Me.btGhi.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btGhi.Appearance.Options.UseFont = True
         Me.btGhi.Image = CType(resources.GetObject("btGhi.Image"), System.Drawing.Image)
-        Me.btGhi.Location = New System.Drawing.Point(877, 539)
+        Me.btGhi.Location = New System.Drawing.Point(877, 456)
         Me.btGhi.Name = "btGhi"
         Me.btGhi.Size = New System.Drawing.Size(87, 27)
         Me.btGhi.TabIndex = 7
@@ -926,7 +936,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTienThue.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTienThue.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTienThue.Location = New System.Drawing.Point(284, 510)
+        Me.tbTienThue.Location = New System.Drawing.Point(284, 427)
         Me.tbTienThue.Name = "tbTienThue"
         Me.tbTienThue.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTienThue.Properties.Appearance.Options.UseFont = True
@@ -941,7 +951,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTienTruocThue.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTienTruocThue.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTienTruocThue.Location = New System.Drawing.Point(131, 510)
+        Me.tbTienTruocThue.Location = New System.Drawing.Point(131, 427)
         Me.tbTienTruocThue.Name = "tbTienTruocThue"
         Me.tbTienTruocThue.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTienTruocThue.Properties.Appearance.Options.UseFont = True
@@ -956,7 +966,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl15.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl15.Location = New System.Drawing.Point(250, 514)
+        Me.LabelControl15.Location = New System.Drawing.Point(250, 431)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl15.TabIndex = 18
@@ -966,7 +976,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl10.Location = New System.Drawing.Point(63, 514)
+        Me.LabelControl10.Location = New System.Drawing.Point(63, 431)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(62, 13)
         Me.LabelControl10.TabIndex = 19
@@ -1007,7 +1017,7 @@ Partial Class frmCNNhapKho
         Me.pIn.Controls.Add(Me.btIn)
         Me.pIn.Controls.Add(Me.chkTenVT)
         Me.pIn.Controls.Add(Me.chkHangSX)
-        Me.pIn.Location = New System.Drawing.Point(797, 440)
+        Me.pIn.Location = New System.Drawing.Point(797, 357)
         Me.pIn.Name = "pIn"
         Me.pIn.Size = New System.Drawing.Size(199, 64)
         Me.pIn.TabIndex = 28
@@ -1019,7 +1029,7 @@ Partial Class frmCNNhapKho
         Me.btInPhieu.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btInPhieu.Appearance.Options.UseFont = True
         Me.btInPhieu.Image = Global.BACSOFT.My.Resources.Resources.print_24
-        Me.btInPhieu.Location = New System.Drawing.Point(877, 509)
+        Me.btInPhieu.Location = New System.Drawing.Point(877, 426)
         Me.btInPhieu.Name = "btInPhieu"
         Me.btInPhieu.Size = New System.Drawing.Size(87, 27)
         Me.btInPhieu.TabIndex = 6
@@ -1035,7 +1045,7 @@ Partial Class frmCNNhapKho
         Me.tabXK.Location = New System.Drawing.Point(0, 88)
         Me.tabXK.Name = "tabXK"
         Me.tabXK.SelectedTabPage = Me.tabNhapKho
-        Me.tabXK.Size = New System.Drawing.Size(1008, 414)
+        Me.tabXK.Size = New System.Drawing.Size(1008, 315)
         Me.tabXK.TabIndex = 30
         Me.tabXK.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabNhapKho, Me.tabThamChieuDH})
         '
@@ -1044,7 +1054,7 @@ Partial Class frmCNNhapKho
         Me.tabNhapKho.Controls.Add(Me.gdvVT)
         Me.tabNhapKho.Name = "tabNhapKho"
         Me.BarManager1.SetPopupContextMenu(Me.tabNhapKho, Me.PopupMenu1)
-        Me.tabNhapKho.Size = New System.Drawing.Size(1002, 388)
+        Me.tabNhapKho.Size = New System.Drawing.Size(1002, 289)
         Me.tabNhapKho.Text = "Hàng hóa nhập kho"
         '
         'tabThamChieuDH
@@ -1053,7 +1063,7 @@ Partial Class frmCNNhapKho
         Me.tabThamChieuDH.Controls.Add(Me.gdvThamChieu)
         Me.tabThamChieuDH.Name = "tabThamChieuDH"
         Me.BarManager1.SetPopupContextMenu(Me.tabThamChieuDH, Me.PopupMenu2)
-        Me.tabThamChieuDH.Size = New System.Drawing.Size(1002, 388)
+        Me.tabThamChieuDH.Size = New System.Drawing.Size(1002, 289)
         Me.tabThamChieuDH.Text = "Tham chiếu đặt hàng"
         '
         'chkChonHet
@@ -1072,7 +1082,7 @@ Partial Class frmCNNhapKho
         Me.gdvThamChieu.MainView = Me.gdvThamChieuCT
         Me.gdvThamChieu.Name = "gdvThamChieu"
         Me.gdvThamChieu.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.rcbTrangThaiCG, Me.RepositoryItemLookUpEdit2, Me.rcbTienTeGoc, Me.RepositoryItemMemoExEdit1, Me.RepositoryItemMemoEdit2})
-        Me.gdvThamChieu.Size = New System.Drawing.Size(1002, 388)
+        Me.gdvThamChieu.Size = New System.Drawing.Size(1002, 289)
         Me.gdvThamChieu.TabIndex = 2
         Me.gdvThamChieu.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvThamChieuCT})
         '
@@ -1232,6 +1242,16 @@ Partial Class frmCNNhapKho
         Me.GridColumn53.VisibleIndex = 8
         Me.GridColumn53.Width = 112
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Chi phí"
+        Me.GridColumn21.DisplayFormat.FormatString = "N0"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "ChiPhi"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 9
+        '
         'GridColumn87
         '
         Me.GridColumn87.Caption = "ID"
@@ -1326,7 +1346,7 @@ Partial Class frmCNNhapKho
         Me.btCal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btCal.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btCal.Appearance.Options.UseFont = True
-        Me.btCal.Location = New System.Drawing.Point(556, 510)
+        Me.btCal.Location = New System.Drawing.Point(556, 427)
         Me.btCal.Name = "btCal"
         Me.btCal.Size = New System.Drawing.Size(63, 46)
         Me.btCal.TabIndex = 5
@@ -1335,7 +1355,7 @@ Partial Class frmCNNhapKho
         'btChuyenXK
         '
         Me.btChuyenXK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btChuyenXK.Location = New System.Drawing.Point(625, 510)
+        Me.btChuyenXK.Location = New System.Drawing.Point(625, 427)
         Me.btChuyenXK.Name = "btChuyenXK"
         Me.btChuyenXK.Size = New System.Drawing.Size(87, 23)
         Me.btChuyenXK.TabIndex = 31
@@ -1399,7 +1419,7 @@ Partial Class frmCNNhapKho
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 568)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 485)
         Me.barDockControlBottom.Size = New System.Drawing.Size(1008, 0)
         '
         'barDockControlLeft
@@ -1407,14 +1427,14 @@ Partial Class frmCNNhapKho
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 568)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 485)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1008, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 568)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 485)
         '
         'mnuXoaDongSaoChepHangHoa
         '
@@ -1426,7 +1446,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl7.Location = New System.Drawing.Point(10, 514)
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 431)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl7.TabIndex = 19
@@ -1436,7 +1456,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl14.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.LabelControl14.Location = New System.Drawing.Point(63, 540)
+        Me.LabelControl14.Location = New System.Drawing.Point(63, 457)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl14.TabIndex = 19
@@ -1446,7 +1466,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl17.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl17.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.LabelControl17.Location = New System.Drawing.Point(10, 540)
+        Me.LabelControl17.Location = New System.Drawing.Point(10, 457)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl17.TabIndex = 19
@@ -1456,7 +1476,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl18.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl18.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.LabelControl18.Location = New System.Drawing.Point(250, 540)
+        Me.LabelControl18.Location = New System.Drawing.Point(250, 457)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl18.TabIndex = 18
@@ -1466,7 +1486,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTruocThueDH.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTruocThueDH.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTruocThueDH.Location = New System.Drawing.Point(131, 536)
+        Me.tbTruocThueDH.Location = New System.Drawing.Point(131, 453)
         Me.tbTruocThueDH.Name = "tbTruocThueDH"
         Me.tbTruocThueDH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTruocThueDH.Properties.Appearance.Options.UseFont = True
@@ -1482,7 +1502,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTienThueDH.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTienThueDH.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTienThueDH.Location = New System.Drawing.Point(284, 536)
+        Me.tbTienThueDH.Location = New System.Drawing.Point(284, 453)
         Me.tbTienThueDH.Name = "tbTienThueDH"
         Me.tbTienThueDH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTienThueDH.Properties.Appearance.Options.UseFont = True
@@ -1504,7 +1524,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl21.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl21.Location = New System.Drawing.Point(403, 514)
+        Me.LabelControl21.Location = New System.Drawing.Point(403, 431)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(28, 13)
         Me.LabelControl21.TabIndex = 18
@@ -1514,7 +1534,7 @@ Partial Class frmCNNhapKho
         '
         Me.LabelControl22.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LabelControl22.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.LabelControl22.Location = New System.Drawing.Point(403, 540)
+        Me.LabelControl22.Location = New System.Drawing.Point(403, 457)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl22.TabIndex = 18
@@ -1524,7 +1544,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTongNK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTongNK.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTongNK.Location = New System.Drawing.Point(437, 510)
+        Me.tbTongNK.Location = New System.Drawing.Point(437, 427)
         Me.tbTongNK.Name = "tbTongNK"
         Me.tbTongNK.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTongNK.Properties.Appearance.Options.UseFont = True
@@ -1539,7 +1559,7 @@ Partial Class frmCNNhapKho
         '
         Me.tbTongDH.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tbTongDH.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTongDH.Location = New System.Drawing.Point(437, 536)
+        Me.tbTongDH.Location = New System.Drawing.Point(437, 453)
         Me.tbTongDH.Name = "tbTongDH"
         Me.tbTongDH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTongDH.Properties.Appearance.Options.UseFont = True
@@ -1554,7 +1574,7 @@ Partial Class frmCNNhapKho
         'btCapNhatGia
         '
         Me.btCapNhatGia.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btCapNhatGia.Location = New System.Drawing.Point(625, 535)
+        Me.btCapNhatGia.Location = New System.Drawing.Point(625, 452)
         Me.btCapNhatGia.Name = "btCapNhatGia"
         Me.btCapNhatGia.Size = New System.Drawing.Size(87, 23)
         Me.btCapNhatGia.TabIndex = 36
@@ -1566,29 +1586,38 @@ Partial Class frmCNNhapKho
         Me.GridColumn17.FieldName = "IDTakeCare"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'GridColumn18
+        'tbDonTe
         '
-        Me.GridColumn18.Caption = "Chi phí"
-        Me.GridColumn18.FieldName = "ChiPhi"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 8
+        Me.tbDonTe.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.tbDonTe.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.tbDonTe.Location = New System.Drawing.Point(131, 401)
+        Me.tbDonTe.Name = "tbDonTe"
+        Me.tbDonTe.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.tbDonTe.Properties.Appearance.Options.UseFont = True
+        Me.tbDonTe.Properties.DisplayFormat.FormatString = "{0:N2}"
+        Me.tbDonTe.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.tbDonTe.Properties.EditFormat.FormatString = "{0:N2}"
+        Me.tbDonTe.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.tbDonTe.Size = New System.Drawing.Size(113, 20)
+        Me.tbDonTe.TabIndex = 41
         '
-        'GridColumn21
+        'LabelControl6
         '
-        Me.GridColumn21.Caption = "Chi phí"
-        Me.GridColumn21.DisplayFormat.FormatString = "N0"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "ChiPhi"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 9
+        Me.LabelControl6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl6.Location = New System.Drawing.Point(63, 404)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl6.TabIndex = 42
+        Me.LabelControl6.Text = "Đơn tệ"
         '
         'frmCNNhapKho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 568)
+        Me.ClientSize = New System.Drawing.Size(1008, 485)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.tbDonTe)
         Me.Controls.Add(Me.btCapNhatGia)
         Me.Controls.Add(Me.pIn)
         Me.Controls.Add(Me.btChuyenXK)
@@ -1668,6 +1697,7 @@ Partial Class frmCNNhapKho
         CType(Me.tbTienThueDH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbTongNK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbTongDH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbDonTe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1801,4 +1831,6 @@ Partial Class frmCNNhapKho
     Friend WithEvents mnuXoaDongSaoChepHangHoa As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents tbDonTe As DevExpress.XtraEditors.SpinEdit
 End Class

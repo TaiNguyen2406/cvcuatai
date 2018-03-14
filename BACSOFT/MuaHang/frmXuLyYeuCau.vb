@@ -127,6 +127,16 @@ Public Class frmXuLyYeuCau
 
         Dim sql As String = " Select NULL AS CanhBao,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.Model,VATTU.Thongso,VATTU.ID,VATTU.IDDonvitinh AS IDDVT,TENDONVITINH.Ten AS DVT,TENNHOM.Ten AS NhomVT,TENNHOM.Ten_ENG AS TenNhom_ENG, "
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID)) AS slTon, "
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
+
+        sql &= "   isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam, "
+
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= Vattu.ID) AS Dangve, "
         sql &= " Ngayve = (select top 1 isnull(ngaythang,0) from V_Dangve where IDVattu= Vattu.ID), "
         sql &= " Canxuat=(select isnull(SUM(canxuat),0) from Chaogia where IDVattu= Vattu.ID), "
@@ -372,14 +382,24 @@ Public Class frmXuLyYeuCau
         sql &= " 	NgayChuyenMa  datetime,"
         sql &= " 	TrangThai  int,"
         sql &= "    AZ int,"
-        sql &= "    SoPhut float"
+        sql &= "    SoPhut float,"
+        sql &= "    NhomKH2 nvarchar(250),"
+        sql &= "    NhomKH tinyint,"
+        sql &= "    CapKH2 nvarchar(250),"
+        sql &= "    CapKH tinyint,"
+        sql &= " 	SoPhieu2  nvarchar(10),"
+        sql &= " 	ttcMa2  nvarchar(MAX),"
+        sql &= " 	PhuTrach2  nvarchar(MAX)"
         sql &= " )"
         sql &= " INSERT INTO @tb "
         sql &= " SELECT ROW_NUMBER() OVER(ORDER BY NgayNhanYeuCau ) AS STT,BANGYEUCAU.NgayThang as NgayThangYCChinh, YEUCAUDEN.ID AS IDYC, COnvert(bit,0)Chon, YEUCAUDEN.SoPhieu, YEUCAUDEN.NgayNhanYeuCau,KHACHHANG.ttcMa,YEUCAUDEN.NoiDung,NGUOIXULY.Ten AS NguoiXuLy,PHUTRACH.Ten AS PhuTrach,NGUOINHANBAOGIA.Ten AS NguoiNhanBaoGia,"
         sql &= " YEUCAUDEN.IDVatTu,YEUCAUDEN.SoLuong,VATTU.Model,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,YEUCAUDEN.FileDinhKem,YEUCAUDEN.MucDoCan, (CASE WHEN YEUCAUDEN.IDNhanChuyenMa IS NULL THEN NULL ELSE YEUCAUDEN.NgayNhanChuyenMa END) AS NgayNhanChuyenMa,YEUCAUDEN.NgayNhanHoiGia,"
         sql &= " YEUCAUDEN.GiaCungUng,YEUCAUDEN.TGCungUng,YEUCAUDEN.IDTienTeCungUng,YEUCAUDEN.HoiThongTin,TENDONVITINH.Ten AS DVT,BANGYEUCAU.IDTakeCare,YEUCAUDEN.NgayHoiGia,(CASE WHEN YEUCAUDEN.NgayHoiGia IS NULL THEN NULL ELSE NGUOIBAOGIA.Ten END)AS NguoiBaoGia, "
         sql &= " (CASE WHEN YEUCAUDEN.NgayChuyenMa IS NULL THEN NULL ELSE NGUOICHUYENMA.Ten END) AS NguoiChuyenMa, YEUCAUDEN.NgayChuyenMa, YEUCAUDEN.TrangThai,YEUCAUDEN.AZ,"
-        sql &= " Datediff(minute,NgayNhanYeuCau,(CASE WHEN YEUCAUDEN.TrangThai=3 THEN GETDATE()  ELSE NgayHoiGia END))SoPhut"
+        sql &= " Datediff(minute,NgayNhanYeuCau,(CASE WHEN YEUCAUDEN.TrangThai=3 THEN GETDATE()  ELSE NgayHoiGia END))SoPhut,"
+        sql &= " (CASE KHACHHANG.NhomKH WHEN 1 THEN N'Thương mại, Chế tạo máy, Tích hợp …' WHEN 2 THEN  N'END User' ELSE '' END)NhomKH2,KHACHHANG.NhomKH,"
+        sql &= " (CASE WHEN KHACHHANG.CapKH IS null THEN Convert(nvarchar,CapKH) ELSE N'Cấp ' +  Convert(nvarchar, KHACHHANG.CapKH) END)CapKH2,KHACHHANG.CapKH"
+        sql &= " ,YEUCAUDEN.SoPhieu SoPhieu2, KHACHHANG.ttcMa ttcMa2, PHUTRACH.Ten AS PhuTrach2"
         sql &= " FROM YEUCAUDEN "
         sql &= " INNER JOIN BANGYEUCAU ON YEUCAUDEN.Sophieu=BANGYEUCAU.Sophieu"
         sql &= " LEFT JOIN KHACHHANG ON BANGYEUCAU.IDkhachhang=KHACHHANG.ID"
@@ -459,13 +479,22 @@ Public Class frmXuLyYeuCau
         If Not ds Is Nothing Then
             ds.Relations.Add(ds.Tables(0).Columns("IDYC"), ds.Tables(1).Columns("IDYeuCau"))
             ds.Relations.Item(0).RelationName = "Quá trình báo giá"
+            Dim tbYC As DataTable = ds.Tables(0)
+            If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+                For i = 0 To tbYC.Rows.Count - 1
+                    tbYC.Rows(i)("ttcMa2") = ""
+                    tbYC.Rows(i)("SoPhieu2") = ""
+                    tbYC.Rows(i)("PhuTrach2") = ""
 
-            gdvYC.DataSource = ds.Tables(0)
-            tbtmp = ds.Tables(0).Clone
-            CloseWaiting()
+                Next
+
+            End If
+            gdvYC.DataSource = tbYC
+        tbtmp = ds.Tables(0).Clone
+        CloseWaiting()
         Else
-            CloseWaiting()
-            ShowBaoLoi(LoiNgoaiLe)
+        CloseWaiting()
+        ShowBaoLoi(LoiNgoaiLe)
         End If
 
     End Sub
@@ -947,12 +976,12 @@ Public Class frmXuLyYeuCau
     End Sub
 
     Private Sub mThemQuaTrinhBaoGia_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mThemQuaTrinhBaoGia.ItemClick
-        'TrangThai.isAddNew = True
-        'Dim f As New frmCNQuaTrinhBaoGia
-        'f._SoYC = gdvYCCT.GetFocusedRowCellValue("SoPhieu") & " KH: " & gdvYCCT.GetFocusedRowCellValue("ttcMa")
-        'f._IDYC = gdvYCCT.GetFocusedRowCellValue("IDYC")
-        'f._IdPhuTrach = gdvYCCT.GetFocusedRowCellValue("IDTakeCare")
-        'f.ShowDialog()
+        TrangThai.isAddNew = True
+        Dim f As New frmCNQuaTrinhBaoGia
+        f._SoYC = gdvYCCT.GetFocusedRowCellValue("SoPhieu") & " KH: " & gdvYCCT.GetFocusedRowCellValue("ttcMa")
+        f._IDYC = gdvYCCT.GetFocusedRowCellValue("IDYC")
+        f._IdPhuTrach = gdvYCCT.GetFocusedRowCellValue("IDTakeCare")
+        f.ShowDialog()
     End Sub
 
     Private Sub gdvQuaTrinhBaoGia_MouseDown(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles gdvQuaTrinhBaoGia.MouseDown
@@ -962,17 +991,17 @@ Public Class frmXuLyYeuCau
     End Sub
 
     Private Sub mSuaQuaTrinhBG_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mSuaQuaTrinhBG.ItemClick
-        'If Not gdvYCCT.GetMasterRowExpanded(gdvYCCT.FocusedRowHandle) Then Exit Sub
-        'TrangThai.isUpdate = True
-        'Dim Index As Integer = gdvYCCT.FocusedRowHandle
-        'Dim indexGD As Integer = CType(gdvYCCT.GetDetailView(gdvYCCT.FocusedRowHandle, gdvYCCT.GetRelationIndex(gdvYCCT.FocusedRowHandle, "Quá trình báo giá")), DevExpress.XtraGrid.Views.Grid.GridView).FocusedRowHandle
-        'objID = CType(gdvYCCT.GetDetailView(gdvYCCT.FocusedRowHandle, gdvYCCT.GetRelationIndex(gdvYCCT.FocusedRowHandle, "Quá trình báo giá")), DevExpress.XtraGrid.Views.Grid.GridView).GetFocusedRowCellValue("ID")
-        'Dim f As New frmCNQuaTrinhBaoGia
-        'f.Tag = Me.Parent.Tag
-        'f._SoYC = gdvYCCT.GetFocusedRowCellValue("SoPhieu") & " KH: " & gdvYCCT.GetFocusedRowCellValue("ttcMa")
-        'f._IDYC = gdvYCCT.GetFocusedRowCellValue("IDYC")
-        'f._IdPhuTrach = gdvYCCT.GetFocusedRowCellValue("IDTakeCare")
-        'f.ShowDialog()
+        If Not gdvYCCT.GetMasterRowExpanded(gdvYCCT.FocusedRowHandle) Then Exit Sub
+        TrangThai.isUpdate = True
+        Dim Index As Integer = gdvYCCT.FocusedRowHandle
+        Dim indexGD As Integer = CType(gdvYCCT.GetDetailView(gdvYCCT.FocusedRowHandle, gdvYCCT.GetRelationIndex(gdvYCCT.FocusedRowHandle, "Quá trình báo giá")), DevExpress.XtraGrid.Views.Grid.GridView).FocusedRowHandle
+        objID = CType(gdvYCCT.GetDetailView(gdvYCCT.FocusedRowHandle, gdvYCCT.GetRelationIndex(gdvYCCT.FocusedRowHandle, "Quá trình báo giá")), DevExpress.XtraGrid.Views.Grid.GridView).GetFocusedRowCellValue("ID")
+        Dim f As New frmCNQuaTrinhBaoGia
+        f.Tag = Me.Parent.Tag
+        f._SoYC = gdvYCCT.GetFocusedRowCellValue("SoPhieu") & " KH: " & gdvYCCT.GetFocusedRowCellValue("ttcMa")
+        f._IDYC = gdvYCCT.GetFocusedRowCellValue("IDYC")
+        f._IdPhuTrach = gdvYCCT.GetFocusedRowCellValue("IDTakeCare")
+        f.ShowDialog()
     End Sub
 
     Private Sub pMenuKD_BeforePopup(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles pMenuKD.BeforePopup
@@ -1181,12 +1210,31 @@ Public Class frmXuLyYeuCau
     End Sub
 
     Private Sub gdvYCCT_RowCellStyle(sender As System.Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles gdvYCCT.RowCellStyle
+        If e.RowHandle < 0 Then Exit Sub
         If e.Column.FieldName = "SoGio" AndAlso Not IsDBNull(e.CellValue) Then
             If e.CellValue >= 2 And e.CellValue < 4 Then
                 e.Appearance.BackColor = Color.Yellow
             ElseIf e.CellValue >= 4 Then
                 e.Appearance.BackColor = Color.Red
             End If
+        ElseIf e.Column.FieldName = "ttcMa2" Then
+            If IsDBNull(gdvYCCT.GetRowCellValue(e.RowHandle, "NhomKH")) Then Exit Sub
+            Select Case gdvYCCT.GetRowCellValue(e.RowHandle, "NhomKH")
+                Case 1
+                    e.Appearance.BackColor = Color.Yellow
+                Case 2
+                    e.Appearance.BackColor = Color.Chartreuse
+            End Select
+        ElseIf e.Column.FieldName = "SoPhieu2" Then
+            If IsDBNull(gdvYCCT.GetRowCellValue(e.RowHandle, "CapKH")) Then Exit Sub
+            Select Case gdvYCCT.GetRowCellValue(e.RowHandle, "CapKH")
+                Case 1
+                    e.Appearance.BackColor = Color.Chartreuse
+                Case 2
+                    e.Appearance.BackColor = Color.Yellow
+                Case 3
+                    e.Appearance.BackColor = Color.Red
+            End Select
         End If
     End Sub
 
@@ -1212,6 +1260,14 @@ Public Class frmXuLyYeuCau
                 CloseWaiting()
                 ShowBaoLoi(ex.Message)
             End Try
+        End If
+    End Sub
+
+    Private Sub gdvYCCT_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) 'Handles gdvYCCT.CustomColumnDisplayText
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
+            If e.Column.FieldName = "ttcMa" Or e.Column.FieldName = "SoPhieu" Or e.Column.FieldName = "PhuTrach" Then
+                e.DisplayText = ""
+            End If
         End If
     End Sub
 End Class

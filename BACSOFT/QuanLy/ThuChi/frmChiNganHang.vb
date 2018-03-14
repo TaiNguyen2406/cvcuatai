@@ -47,7 +47,7 @@ Public Class frmChiNganHang
     Public Sub LoadUNC()
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = " SET DATEFORMAT DMY "
-        sql &= " SELECT convert(bit,0)chon, UNC.SoPhieuT, 0 AS STT, UNC.ID,NgayThang AS NgayThangVS,(N'UNC ' + UNC.SoPhieu) AS SoPhieu,NgayThang AS NgayThangCT,KHACHHANG.ttcMa,UNC.DienGiai,"
+        sql &= " SELECT convert(bit,0)chon, UNC.SoPhieuT, 0 AS STT, UNC.ID,NgayThang AS NgayThangVS,(N'UNC ' + UNC.SoPhieu) AS SoPhieu,NgayThang AS NgayThangCT,KHACHHANG.ttcMa,UNC.DienGiai,UNC.TyGia,"
         sql &= " 	UNC.SoTien,tblTienTe.Ten AS TienTe,MUCDICHTHUCHI.Ten AS MucDich,MUCDICHTHUCHI.ChiPhiMatDi,TaiKhoanDi AS TaiKhoan,"
         'sql &= "    (Case PhieuTC0 WHEN '000000000' THEN '' ELSE (CASE WHEN MucDich IN (210, 228, 205) THEN N'ĐH '+PhieuTC0 WHEN MucDich IN (200, 224, 244, 235, 205, 230) THEN N'CG '+PhieuTC0 ELSE PhieuTC0 END) END )PhieuTC0,"
         'sql &= "    (Case PhieuTC1 WHEN '000000000' THEN '' ELSE (CASE WHEN MucDich IN (210, 228, 205) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 205, 230) THEN N'XK '+PhieuTC1 ELSE PhieuTC1 END) END )PhieuTC1,"
@@ -60,14 +60,16 @@ Public Class frmChiNganHang
         sql &= "        (CASE WHEN MucDich IN (210, 228) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 230) THEN N'XK '+PhieuTC1 "
         sql &= "            WHEN MucDich = 205 THEN (CASE UNC.ChiPhiNhap WHEN 1 THEN N'NK '+PhieuTC1 ELSE N'XK '+PhieuTC1 END)"
         sql &= "        ELSE PhieuTC1 END) "
-        sql &= "    END )PhieuTC1,"
-        sql &= "    (SELECT SoCT FROM CHUNGTU WHERE ID = UNC.IdChungTu)PhieuUNC, "
-        sql &= "    (SELECT TOP 1 a.SoHD FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT WHERE a.LoaiCT = 2 AND a.LoaiCT2 = 5 AND b.GhiChuKhac = UNC.SoPhieuT AND b.ButToan = 1)SoHD,NHANSU.Ten as NguoiLap "
+        sql &= "    END )PhieuTC1"
+        'sql &= "    (SELECT SoCT FROM CHUNGTU WHERE ID = UNC.IdChungTu)PhieuUNC, "
+        'sql &= "    (SELECT TOP 1 a.SoHD FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT WHERE a.LoaiCT = 2 AND a.LoaiCT2 = 5 AND b.GhiChuKhac = UNC.SoPhieuT AND b.ButToan = 1)SoHD "
+        sql &= " ,NHANSU.Ten as NguoiLap "
         sql &= " FROM UNC"
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=UNC.IDKh"
         sql &= " LEFT JOIN NHANSU ON NHANSU.ID=UNC.IDUSer"
         sql &= " LEFT JOIN tblTienTe ON tblTienTe.ID=UNC.TienTe"
         sql &= " INNER JOIN MUCDICHTHUCHI ON MUCDICHTHUCHI.ID=UNC.MucDich"
+
         If chkLocChiPhi.Checked Then
             sql &= " AND MUCDICHTHUCHI.ChiPhiMatDi=1 "
         End If
@@ -75,6 +77,7 @@ Public Class frmChiNganHang
         If Not btfilterMaKH.EditValue Is Nothing Then
             sql &= " AND UNC.IDKh=" & btfilterMaKH.EditValue
         End If
+
         If Not cbSoTK.EditValue Is Nothing Then
             sql &= " AND rtrim(ltrim(UNC.TaiKhoanDi))='" & cbSoTK.EditValue & "'"
         End If
@@ -194,7 +197,7 @@ Public Class frmChiNganHang
         f.Show()
     End Sub
 
-   
+
 
     Private Sub btThemPhieuChi_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btThemPhieuChi.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenThem) Then Exit Sub
@@ -449,9 +452,13 @@ Public Class frmChiNganHang
                 gdvUNCCT.SetRowCellValue(arrPhieu(i), "IdCT", idHoaDon)
 
             Next
+            gdvUNCCT.BeginUpdate()
             For i As Integer = 0 To gdvUNCCT.RowCount - 1
-                gdvUNCCT.SetRowCellValue(i, "chon", False)
+                If gdvUNCCT.GetRowCellValue(i, "chon") = True Then
+                    gdvUNCCT.SetRowCellValue(i, "chon", False)
+                End If
             Next
+            gdvUNCCT.EndUpdate()
             mnuChonBoChonTatCa.Tag = False
             ShowAlert("Đã chuyển thành công " & arrPhieu.Count & " phiếu sang bên thuế!")
         Catch ex As Exception

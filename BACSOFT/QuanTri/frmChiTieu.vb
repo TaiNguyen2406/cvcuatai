@@ -7,10 +7,7 @@ Public Class frmChiTieu
     Private tbPhong As DataTable
     Private tbNV As DataTable
 
-    Private isFormLoading As Boolean = True
-
     Private Sub frmChiTieu_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
         tbNam.EditValue = Today.Year
         LoadDsPhong()
         LoadDsNhanVien()
@@ -32,13 +29,8 @@ Public Class frmChiTieu
         cbLoaiChiTieu.EditValue = "Nhân viên"
         cbPhong.EditValue = MaPhongBan
         cbNhanVien.EditValue = TaiKhoan
-
-
-        isFormLoading = False
-        btXem.PerformClick()
-
+        'btXem.PerformClick()
         'LoadDSDinhMuc()
-
     End Sub
 
     Public Sub LoadDsPhong()
@@ -942,7 +934,6 @@ Public Class frmChiTieu
     End Sub
 
     Private Sub btXem_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btXem.ItemClick
-
         If cbPhong.EditValue Is Nothing And cbLoaiChiTieu.EditValue = "Phòng" Then
             gdv.DataSource = Nothing
             Exit Sub
@@ -982,7 +973,7 @@ Public Class frmChiTieu
 
     Private Sub cbPhong_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles cbPhong.EditValueChanged
         If cbLoaiChiTieu.EditValue = "Phòng" Then
-            If Not isFormLoading Then btXem.PerformClick()
+            btXem.PerformClick()
         Else
             LoadDsNhanVien()
         End If
@@ -1017,7 +1008,7 @@ Public Class frmChiTieu
     End Sub
 
     Private Sub cbNhanVien_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles cbNhanVien.EditValueChanged
-        If Not isFormLoading Then btXem.PerformClick()
+        btXem.PerformClick()
     End Sub
 
     Private Sub tabCT_SelectedPageChanged(sender As System.Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles tabCT.SelectedPageChanged

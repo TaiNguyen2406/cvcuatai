@@ -5346,12 +5346,12 @@ Partial Class frmYeuCauDi_DatHangCu
         Me.LabelControl29.TabIndex = 20
         Me.LabelControl29.Text = "Take care"
         '
-        'frmYeuCauDi_DatHang
+        'frmYeuCauDi_DatHangCu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.tabYeuCauDi_DatHang)
-        Me.Name = "frmYeuCauDi_DatHang"
+        Me.Name = "frmYeuCauDi_DatHangCu"
         Me.Size = New System.Drawing.Size(1112, 741)
         CType(Me.tabYeuCauDi_DatHang, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabYeuCauDi_DatHang.ResumeLayout(False)

@@ -20,8 +20,8 @@ Partial Class frmVatTuDaChaoGiaTest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip9 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem9 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btfilterTuNgay = New DevExpress.XtraBars.BarEditItem()
@@ -32,6 +32,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.rcbMaKH = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.btfilterTakecare = New DevExpress.XtraBars.BarEditItem()
         Me.rcbTakecare = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.chkBlank = New DevExpress.XtraBars.BarCheckItem()
         Me.cbTrangThai = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.btFilterNhomVT = New DevExpress.XtraBars.BarEditItem()
@@ -75,6 +76,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.mXemXuatKho = New DevExpress.XtraBars.BarButtonItem()
         Me.mTinhTrangVT = New DevExpress.XtraBars.BarButtonItem()
         Me.mXemCG = New DevExpress.XtraBars.BarButtonItem()
+        Me.mThuGon = New DevExpress.XtraBars.BarButtonItem()
         Me.rcbMaVT = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.tbThongSo = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -117,10 +119,15 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemPopupContainerEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.menu = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.mThuGon = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbTuNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,8 +161,8 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.BarManager1.DockControls.Add(Me.BarDockControl3)
         Me.BarManager1.DockControls.Add(Me.BarDockControl4)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btfilterTenVT, Me.btFilterNhomVT, Me.btTaiLai, Me.btCM, Me.btChuyenMaRieng, Me.btChuyenMaChung, Me.pCMChuyenMaChung, Me.btFilterHangSX, Me.chkLocThongDung, Me.chkLocTon, Me.chkLocKhoBan, Me.chkHienDongLocDuLieu, Me.btFilterMaVT, Me.mSuaHinhAnh, Me.BarButtonItem1, Me.mSaoChep, Me.mLuuLai, Me.mChuyenDenThuMuc, Me.mTaiAnhVeMay, Me.mThuMucLuuTaiLieu, Me.mDungChungTaiLieu, Me.mDungChungHinhAnh, Me.mBoHinhAnh, Me.mMoThuMucLuuTruTaiLieu, Me.mXemAnhLon, Me.mBoSapXep, Me.mSapXep, Me.btfilterMaKH, Me.btfilterTakecare, Me.chkRutGon, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mXemChaoGia, Me.mXemXuatKho, Me.btKetXuat, Me.mTinhTrangVT, Me.cbTrangThai, Me.mXemCG, Me.mThuGon})
-        Me.BarManager1.MaxItemId = 61
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btfilterTenVT, Me.btFilterNhomVT, Me.btTaiLai, Me.btCM, Me.btChuyenMaRieng, Me.btChuyenMaChung, Me.pCMChuyenMaChung, Me.btFilterHangSX, Me.chkLocThongDung, Me.chkLocTon, Me.chkLocKhoBan, Me.chkHienDongLocDuLieu, Me.btFilterMaVT, Me.mSuaHinhAnh, Me.BarButtonItem1, Me.mSaoChep, Me.mLuuLai, Me.mChuyenDenThuMuc, Me.mTaiAnhVeMay, Me.mThuMucLuuTaiLieu, Me.mDungChungTaiLieu, Me.mDungChungHinhAnh, Me.mBoHinhAnh, Me.mMoThuMucLuuTruTaiLieu, Me.mXemAnhLon, Me.mBoSapXep, Me.mSapXep, Me.btfilterMaKH, Me.btfilterTakecare, Me.chkRutGon, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mXemChaoGia, Me.mXemXuatKho, Me.btKetXuat, Me.mTinhTrangVT, Me.cbTrangThai, Me.mXemCG, Me.mThuGon, Me.chkBlank})
+        Me.BarManager1.MaxItemId = 63
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rcbTenVatTu, Me.rcbMaVT, Me.rcbNhomVT, Me.RepositoryItemCheckEdit4, Me.rcbHangSX, Me.tbThongSo, Me.rtbMaVT, Me.rtbThongSo, Me.rpQuaTrinh, Me.rcbMaKH, Me.rcbTakecare, Me.rtbTuNgay, Me.rtbDenNgay, Me.RepositoryItemComboBox1})
         '
         'Bar1
@@ -167,7 +174,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterMaKH), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTakecare), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterNhomVT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTenVT), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterHangSX), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterMaVT), New DevExpress.XtraBars.LinkPersistInfo(Me.chkRutGon), New DevExpress.XtraBars.LinkPersistInfo(Me.btTaiLai), New DevExpress.XtraBars.LinkPersistInfo(Me.btKetXuat)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterMaKH), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTakecare), New DevExpress.XtraBars.LinkPersistInfo(Me.chkBlank), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterNhomVT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btfilterTenVT), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterHangSX), New DevExpress.XtraBars.LinkPersistInfo(Me.btFilterMaVT), New DevExpress.XtraBars.LinkPersistInfo(Me.chkRutGon), New DevExpress.XtraBars.LinkPersistInfo(Me.btTaiLai), New DevExpress.XtraBars.LinkPersistInfo(Me.btKetXuat)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.MultiLine = True
@@ -233,7 +240,7 @@ Partial Class frmVatTuDaChaoGiaTest
         '
         Me.rcbMaKH.AutoHeight = False
         Me.rcbMaKH.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-        Me.rcbMaKH.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name5", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttcMa", "Name6")})
+        Me.rcbMaKH.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name5", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttcMa", "Name6"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PhuTrach", "Name3")})
         Me.rcbMaKH.DisplayMember = "ttcMa"
         Me.rcbMaKH.DropDownItemHeight = 22
         Me.rcbMaKH.Name = "rcbMaKH"
@@ -263,6 +270,14 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.rcbTakecare.ShowHeader = False
         Me.rcbTakecare.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.rcbTakecare.ValueMember = "ID"
+        '
+        'chkBlank
+        '
+        Me.chkBlank.Caption = "Hiện blank"
+        Me.chkBlank.Glyph = Global.BACSOFT.My.Resources.Resources.UnCheck
+        Me.chkBlank.Id = 62
+        Me.chkBlank.Name = "chkBlank"
+        Me.chkBlank.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'cbTrangThai
         '
@@ -379,9 +394,9 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.btTaiLai.Id = 8
         Me.btTaiLai.Name = "btTaiLai"
         Me.btTaiLai.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem1.Text = "Tải lại danh sách vật tư "
-        SuperToolTip1.Items.Add(ToolTipTitleItem1)
-        Me.btTaiLai.SuperTip = SuperToolTip1
+        ToolTipTitleItem9.Text = "Tải lại danh sách vật tư "
+        SuperToolTip9.Items.Add(ToolTipTitleItem9)
+        Me.btTaiLai.SuperTip = SuperToolTip9
         '
         'btKetXuat
         '
@@ -396,28 +411,28 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(1020, 65)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1263, 65)
         '
         'BarDockControl2
         '
         Me.BarDockControl2.CausesValidation = False
         Me.BarDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BarDockControl2.Location = New System.Drawing.Point(0, 463)
-        Me.BarDockControl2.Size = New System.Drawing.Size(1020, 0)
+        Me.BarDockControl2.Location = New System.Drawing.Point(0, 581)
+        Me.BarDockControl2.Size = New System.Drawing.Size(1263, 0)
         '
         'BarDockControl3
         '
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.BarDockControl3.Location = New System.Drawing.Point(0, 65)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 398)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 516)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(1020, 65)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 398)
+        Me.BarDockControl4.Location = New System.Drawing.Point(1263, 65)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 516)
         '
         'btCM
         '
@@ -587,6 +602,12 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.mXemCG.Id = 59
         Me.mXemCG.Name = "mXemCG"
         '
+        'mThuGon
+        '
+        Me.mThuGon.Caption = "Thu gọn"
+        Me.mThuGon.Id = 60
+        Me.mThuGon.Name = "mThuGon"
+        '
         'rcbMaVT
         '
         Me.rcbMaVT.AutoHeight = False
@@ -629,7 +650,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit2, Me.RepositoryItemPopupContainerEdit1, Me.RepositoryItemHyperLinkEdit2})
-        Me.gdv.Size = New System.Drawing.Size(1020, 398)
+        Me.gdv.Size = New System.Drawing.Size(1263, 516)
         Me.gdv.TabIndex = 7
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
         '
@@ -653,17 +674,18 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colMaKH, Me.colSoPhieu, Me.GridColumn28, Me.colDXNgayThang, Me.colCXSTT, Me.colCXTenVT, Me.colCXHangSX, Me.colMaHang, Me.colCXDonGia, Me.colGiaGoc, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.colDVT, Me.GridColumn25, Me.colPTBL, Me.colCXThanhTien, Me.GridColumn7, Me.GridColumn3, Me.GridColumn8, Me.GridColumn11, Me.colCXPhuTrach, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn1, Me.GridColumn4, Me.colLoaiDN, Me.colNgayNhan, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn12})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colMaKH, Me.colSoPhieu, Me.GridColumn28, Me.colDXNgayThang, Me.colCXSTT, Me.colCXTenVT, Me.colCXHangSX, Me.colMaHang, Me.colCXDonGia, Me.colGiaGoc, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.colDVT, Me.GridColumn25, Me.colPTBL, Me.colCXThanhTien, Me.GridColumn7, Me.GridColumn3, Me.GridColumn8, Me.GridColumn11, Me.colCXPhuTrach, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn1, Me.GridColumn4, Me.colLoaiDN, Me.colNgayNhan, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn12, Me.GridColumn2, Me.GridColumn9, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.GroupCount = 1
+        Me.gdvCT.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.gdvCT.GroupFormat = "{0}:{1}"
         Me.gdvCT.GroupPanelText = "Kéo thả cột cần nhóm vào vị trí này"
         Me.gdvCT.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ThanhTien", Me.colCXThanhTien, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SLXuat", Me.GridColumn25, "{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TienThue", Me.GridColumn8, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GiaGoc", Me.colGiaGoc, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LoiNhuan", Me.GridColumn15, "{0:N0}")})
         Me.gdvCT.Name = "gdvCT"
         Me.gdvCT.OptionsBehavior.AutoExpandAllGroups = True
         Me.gdvCT.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDownFocused
         Me.gdvCT.OptionsBehavior.ReadOnly = True
-        Me.gdvCT.OptionsBehavior.SummariesIgnoreNullValues = True
         Me.gdvCT.OptionsFind.AllowFindPanel = False
         Me.gdvCT.OptionsView.ColumnAutoWidth = False
         Me.gdvCT.OptionsView.EnableAppearanceEvenRow = True
@@ -1012,7 +1034,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.GridColumn10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 24
+        Me.GridColumn10.VisibleIndex = 29
         '
         'GridColumn12
         '
@@ -1021,7 +1043,58 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.GridColumn12.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 25
+        Me.GridColumn12.VisibleIndex = 30
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "IDPhuTrachKH"
+        Me.GridColumn2.FieldName = "IDPhuTrachKH"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Phụ trách KH"
+        Me.GridColumn9.FieldName = "PhuTrachKH"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 24
+        Me.GridColumn9.Width = 100
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Tỉnh"
+        Me.GridColumn17.FieldName = "TinhThanh"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 25
+        Me.GridColumn17.Width = 115
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "KCN"
+        Me.GridColumn18.FieldName = "KhuCN"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 26
+        Me.GridColumn18.Width = 80
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Chủ SH"
+        Me.GridColumn19.FieldName = "ChuSoHuu"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 27
+        Me.GridColumn19.Width = 82
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Loại hình DN"
+        Me.GridColumn20.FieldName = "LoaiHinhDN"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 28
+        Me.GridColumn20.Width = 86
         '
         'RepositoryItemPopupContainerEdit1
         '
@@ -1040,12 +1113,6 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.menu.Manager = Me.BarManager1
         Me.menu.Name = "menu"
         '
-        'mThuGon
-        '
-        Me.mThuGon.Caption = "Thu gọn"
-        Me.mThuGon.Id = 60
-        Me.mThuGon.Name = "mThuGon"
-        '
         'frmVatTuDaChaoGiaTest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1056,7 +1123,7 @@ Partial Class frmVatTuDaChaoGiaTest
         Me.Controls.Add(Me.BarDockControl2)
         Me.Controls.Add(Me.BarDockControl1)
         Me.Name = "frmVatTuDaChaoGiaTest"
-        Me.Size = New System.Drawing.Size(1020, 463)
+        Me.Size = New System.Drawing.Size(1263, 581)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbTuNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbTuNgay, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1182,5 +1249,12 @@ Partial Class frmVatTuDaChaoGiaTest
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents mThuGon As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents chkBlank As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

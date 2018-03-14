@@ -22,7 +22,10 @@ Partial Class frmHinhThucTT2
         Me.components = New System.ComponentModel.Container()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.btnThem = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSua = New DevExpress.XtraBars.BarButtonItem()
         Me.btXoa = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnTai = New DevExpress.XtraBars.BarButtonItem()
         Me.barChkHuy = New DevExpress.XtraBars.BarCheckItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -38,29 +41,33 @@ Partial Class frmHinhThucTT2
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.gc = New DevExpress.XtraGrid.GridControl()
         Me.gv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.riLueNhom = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.riChkTrangThai = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.mnu_Them = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnu_Sua = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,8 +86,8 @@ Partial Class frmHinhThucTT2
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btThem, Me.pmThem, Me.pmXoa, Me.pmLuuLai, Me.btSua, Me.btXoa, Me.mnu_Xoa, Me.barChkHuy})
-        Me.BarManager1.MaxItemId = 15
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btThem, Me.pmThem, Me.pmXoa, Me.pmLuuLai, Me.btSua, Me.btXoa, Me.mnu_Xoa, Me.barChkHuy, Me.btnTai, Me.btnThem, Me.btnSua, Me.mnu_Them, Me.mnu_Sua})
+        Me.BarManager1.MaxItemId = 20
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemComboBox1, Me.RepositoryItemCheckEdit1})
         '
         'Bar1
@@ -91,11 +98,25 @@ Partial Class frmHinhThucTT2
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btXoa), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barChkHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btXoa), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnTai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barChkHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
         Me.Bar1.Text = "Tools"
+        '
+        'btnThem
+        '
+        Me.btnThem.Caption = "Thêm"
+        Me.btnThem.Glyph = Global.BACSOFT.My.Resources.Resources.AddNew_18
+        Me.btnThem.Id = 16
+        Me.btnThem.Name = "btnThem"
+        '
+        'btnSua
+        '
+        Me.btnSua.Caption = "Sửa"
+        Me.btnSua.Glyph = Global.BACSOFT.My.Resources.Resources.Edit_18
+        Me.btnSua.Id = 17
+        Me.btnSua.Name = "btnSua"
         '
         'btXoa
         '
@@ -104,6 +125,13 @@ Partial Class frmHinhThucTT2
         Me.btXoa.Id = 10
         Me.btXoa.Name = "btXoa"
         Me.btXoa.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        '
+        'btnTai
+        '
+        Me.btnTai.Caption = "Tải lại"
+        Me.btnTai.Glyph = Global.BACSOFT.My.Resources.Resources.refresh_18
+        Me.btnTai.Id = 15
+        Me.btnTai.Name = "btnTai"
         '
         'barChkHuy
         '
@@ -117,28 +145,28 @@ Partial Class frmHinhThucTT2
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(870, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1019, 33)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 383)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(870, 0)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 585)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1019, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 350)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 552)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(870, 33)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 350)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1019, 33)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 552)
         '
         'btThem
         '
@@ -203,7 +231,7 @@ Partial Class frmHinhThucTT2
         Me.gc.MenuManager = Me.BarManager1
         Me.gc.Name = "gc"
         Me.gc.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riLueNhom, Me.riChkTrangThai})
-        Me.gc.Size = New System.Drawing.Size(870, 350)
+        Me.gc.Size = New System.Drawing.Size(1019, 552)
         Me.gc.TabIndex = 4
         Me.gc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv})
         '
@@ -217,43 +245,25 @@ Partial Class frmHinhThucTT2
         Me.gv.Appearance.BandPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gv.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gv.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gv.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand6, Me.GridBand9, Me.GridBand10, Me.GridBand11})
-        Me.gv.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9})
+        Me.gv.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand6, Me.GridBand9, Me.GridBand10, Me.GridBand11, Me.GridBand12})
+        Me.gv.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn10, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9})
         Me.gv.GridControl = Me.gc
         Me.gv.GroupCount = 1
         Me.gv.GroupFormat = "[#image]{1} {2}"
         Me.gv.GroupRowHeight = 25
         Me.gv.Name = "gv"
         Me.gv.NewItemRowText = "THÊM MỚI HÌNH THỨC THANH TOÁN"
-        Me.gv.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.gv.OptionsBehavior.AutoExpandAllGroups = True
         Me.gv.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDownFocused
         Me.gv.OptionsNavigation.EnterMoveNextColumn = True
         Me.gv.OptionsView.ColumnAutoWidth = False
         Me.gv.OptionsView.EnableAppearanceEvenRow = True
-        Me.gv.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top
         Me.gv.OptionsView.ShowColumnHeaders = False
         Me.gv.OptionsView.ShowFooter = True
         Me.gv.OptionsView.ShowGroupPanel = False
         Me.gv.OptionsView.ShowIndicator = False
         Me.gv.RowHeight = 25
         Me.gv.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn6, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "ID"
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.Visible = False
-        Me.gridBand1.Width = 75
-        '
-        'GridBand2
-        '
-        Me.GridBand2.Caption = "Nhóm"
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand2.Columns.Add(Me.BandedGridColumn6)
-        Me.GridBand2.MinWidth = 20
-        Me.GridBand2.Name = "GridBand2"
-        Me.GridBand2.Width = 307
         '
         'BandedGridColumn1
         '
@@ -271,7 +281,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value
         Me.BandedGridColumn6.Visible = True
-        Me.BandedGridColumn6.Width = 307
+        Me.BandedGridColumn6.Width = 268
         '
         'riLueNhom
         '
@@ -285,21 +295,6 @@ Partial Class frmHinhThucTT2
         Me.riLueNhom.ShowHeader = False
         Me.riLueNhom.ValueMember = "ID"
         '
-        'GridBand3
-        '
-        Me.GridBand3.Caption = "Trả trước"
-        Me.GridBand3.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand4, Me.GridBand5})
-        Me.GridBand3.MinWidth = 20
-        Me.GridBand3.Name = "GridBand3"
-        Me.GridBand3.Width = 150
-        '
-        'GridBand4
-        '
-        Me.GridBand4.Caption = "Lần 1"
-        Me.GridBand4.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand4.Name = "GridBand4"
-        Me.GridBand4.Width = 75
-        '
         'BandedGridColumn2
         '
         Me.BandedGridColumn2.Caption = "Trước 1"
@@ -308,13 +303,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn2.FieldName = "TraTruoc1"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.Visible = True
-        '
-        'GridBand5
-        '
-        Me.GridBand5.Caption = "Lần 2"
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand5.Name = "GridBand5"
-        Me.GridBand5.Width = 75
+        Me.BandedGridColumn2.Width = 50
         '
         'BandedGridColumn3
         '
@@ -324,21 +313,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn3.FieldName = "TraTruoc2"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.Visible = True
-        '
-        'GridBand6
-        '
-        Me.GridBand6.Caption = "Trả sau"
-        Me.GridBand6.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand7, Me.GridBand8})
-        Me.GridBand6.MinWidth = 20
-        Me.GridBand6.Name = "GridBand6"
-        Me.GridBand6.Width = 150
-        '
-        'GridBand7
-        '
-        Me.GridBand7.Caption = "Lần 1"
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand7.Name = "GridBand7"
-        Me.GridBand7.Width = 75
+        Me.BandedGridColumn3.Width = 50
         '
         'BandedGridColumn4
         '
@@ -348,13 +323,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn4.FieldName = "TraSau1"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
-        '
-        'GridBand8
-        '
-        Me.GridBand8.Caption = "Lần 2"
-        Me.GridBand8.Columns.Add(Me.BandedGridColumn5)
-        Me.GridBand8.Name = "GridBand8"
-        Me.GridBand8.Width = 75
+        Me.BandedGridColumn4.Width = 50
         '
         'BandedGridColumn5
         '
@@ -364,14 +333,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn5.FieldName = "TraSau2"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
-        '
-        'GridBand9
-        '
-        Me.GridBand9.Caption = "Số ngày HT"
-        Me.GridBand9.Columns.Add(Me.BandedGridColumn9)
-        Me.GridBand9.MinWidth = 20
-        Me.GridBand9.Name = "GridBand9"
-        Me.GridBand9.Width = 58
+        Me.BandedGridColumn5.Width = 50
         '
         'BandedGridColumn9
         '
@@ -381,29 +343,13 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn9.Visible = True
         Me.BandedGridColumn9.Width = 58
         '
-        'GridBand10
-        '
-        Me.GridBand10.Caption = "Giải thích"
-        Me.GridBand10.Columns.Add(Me.BandedGridColumn8)
-        Me.GridBand10.MinWidth = 20
-        Me.GridBand10.Name = "GridBand10"
-        Me.GridBand10.Width = 595
-        '
         'BandedGridColumn8
         '
         Me.BandedGridColumn8.Caption = "Giải thích"
         Me.BandedGridColumn8.FieldName = "GiaiThich"
         Me.BandedGridColumn8.Name = "BandedGridColumn8"
         Me.BandedGridColumn8.Visible = True
-        Me.BandedGridColumn8.Width = 595
-        '
-        'GridBand11
-        '
-        Me.GridBand11.Caption = "Áp dụng"
-        Me.GridBand11.Columns.Add(Me.BandedGridColumn7)
-        Me.GridBand11.MinWidth = 20
-        Me.GridBand11.Name = "GridBand11"
-        Me.GridBand11.Width = 39
+        Me.BandedGridColumn8.Width = 700
         '
         'BandedGridColumn7
         '
@@ -412,7 +358,7 @@ Partial Class frmHinhThucTT2
         Me.BandedGridColumn7.FieldName = "TrangThai"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
         Me.BandedGridColumn7.Visible = True
-        Me.BandedGridColumn7.Width = 39
+        Me.BandedGridColumn7.Width = 48
         '
         'riChkTrangThai
         '
@@ -420,11 +366,124 @@ Partial Class frmHinhThucTT2
         Me.riChkTrangThai.Name = "riChkTrangThai"
         Me.riChkTrangThai.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "Số TT"
+        Me.BandedGridColumn10.FieldName = "SoTT"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Visible = True
+        Me.BandedGridColumn10.Width = 43
+        '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_Xoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_Them), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_Sua), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_Xoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "ID"
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.Visible = False
+        Me.gridBand1.Width = 75
+        '
+        'GridBand2
+        '
+        Me.GridBand2.Caption = "Nhóm"
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand2.MinWidth = 20
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.Width = 268
+        '
+        'GridBand3
+        '
+        Me.GridBand3.Caption = "Trả trước"
+        Me.GridBand3.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand4, Me.GridBand5})
+        Me.GridBand3.MinWidth = 20
+        Me.GridBand3.Name = "GridBand3"
+        Me.GridBand3.Width = 100
+        '
+        'GridBand4
+        '
+        Me.GridBand4.Caption = "Lần 1"
+        Me.GridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand4.Name = "GridBand4"
+        Me.GridBand4.Width = 50
+        '
+        'GridBand5
+        '
+        Me.GridBand5.Caption = "Lần 2"
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.Width = 50
+        '
+        'GridBand6
+        '
+        Me.GridBand6.Caption = "Trả sau"
+        Me.GridBand6.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand7, Me.GridBand8})
+        Me.GridBand6.MinWidth = 20
+        Me.GridBand6.Name = "GridBand6"
+        Me.GridBand6.Width = 100
+        '
+        'GridBand7
+        '
+        Me.GridBand7.Caption = "Lần 1"
+        Me.GridBand7.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand7.Name = "GridBand7"
+        Me.GridBand7.Width = 50
+        '
+        'GridBand8
+        '
+        Me.GridBand8.Caption = "Lần 2"
+        Me.GridBand8.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand8.Name = "GridBand8"
+        Me.GridBand8.Width = 50
+        '
+        'GridBand9
+        '
+        Me.GridBand9.Caption = "Số ngày HT"
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand9.MinWidth = 20
+        Me.GridBand9.Name = "GridBand9"
+        Me.GridBand9.Width = 58
+        '
+        'GridBand10
+        '
+        Me.GridBand10.Caption = "Giải thích"
+        Me.GridBand10.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand10.MinWidth = 20
+        Me.GridBand10.Name = "GridBand10"
+        Me.GridBand10.Width = 700
+        '
+        'GridBand11
+        '
+        Me.GridBand11.Caption = "Áp dụng"
+        Me.GridBand11.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand11.MinWidth = 20
+        Me.GridBand11.Name = "GridBand11"
+        Me.GridBand11.Width = 48
+        '
+        'GridBand12
+        '
+        Me.GridBand12.Caption = "Ưu tiên"
+        Me.GridBand12.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand12.Name = "GridBand12"
+        Me.GridBand12.Width = 43
+        '
+        'mnu_Them
+        '
+        Me.mnu_Them.Caption = "Thêm"
+        Me.mnu_Them.Glyph = Global.BACSOFT.My.Resources.Resources.AddNew_18
+        Me.mnu_Them.Id = 18
+        Me.mnu_Them.Name = "mnu_Them"
+        '
+        'mnu_Sua
+        '
+        Me.mnu_Sua.Caption = "Sửa"
+        Me.mnu_Sua.Glyph = Global.BACSOFT.My.Resources.Resources.Edit_18
+        Me.mnu_Sua.Id = 19
+        Me.mnu_Sua.Name = "mnu_Sua"
         '
         'frmHinhThucTT2
         '
@@ -436,7 +495,7 @@ Partial Class frmHinhThucTT2
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmHinhThucTT2"
-        Me.Size = New System.Drawing.Size(870, 383)
+        Me.Size = New System.Drawing.Size(1019, 585)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -478,6 +537,10 @@ Partial Class frmHinhThucTT2
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents barChkHuy As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents btnTai As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btnThem As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btnSua As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -489,5 +552,8 @@ Partial Class frmHinhThucTT2
     Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents mnu_Them As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnu_Sua As DevExpress.XtraBars.BarButtonItem
 
 End Class

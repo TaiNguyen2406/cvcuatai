@@ -89,10 +89,10 @@ Public Class frmCNChi2
             Dim sql As String = ""
             If UNC Then
                 sql = "SELECT ID,SoPhieuT,Diengiaichung,SoPhieu,NgayThang AS NgayThangCT,NgayThang AS NgayThangVS,rtrim(TaiKhoanDi)TaiKhoanDi,NganHangDi,rtrim(TaiKhoanDen)TaiKhoanDen,NganHangDen,IDKH,DienGiai,SoTien,TienTe,MucDich,IDUser,PhieuTC0 ,PhieuTC1,TamUng,(SELECT Ten FROM NHANSU WHERE ID=UNC.IDUser)NguoiLap,DienGiaiNH,"
-                sql &= "IdChungTu,(select soct from chungtu where id=UNC.IdChungTu)SoCT,(select diengiai from chungtu where id=UNC.IdChungTu)DienGiaiThue FROm UNC WHERE SoPhieuT=@SoPhieu"
+                sql &= "IdChungTu,(select soct from chungtu where id=UNC.IdChungTu)SoCT,(select diengiai from chungtu where id=UNC.IdChungTu)DienGiaiThue,UNC.TyGia,UNC.ChiPhiNhap  FROm UNC WHERE SoPhieuT=@SoPhieu"
             Else
                 sql = "SELECT ID,SoPhieuT,Diengiaichung,SoPhieu,NgayThangCT,NgayThangVS,NguoiNhan,IDKH,DienGiai,SoTien,TienTe,ChungTuGoc,MucDich,IDUser,PhieuTC0,PhieuTC1,TamUng,rtrim(MaTK)MaTK,(SELECT Ten FROM NHANSU WHERE ID=CHI.IDUser)NguoiLap,"
-                sql &= "IdChungTu,(select soct from chungtu where id=CHI.IdChungTu)SoCT,(select diengiai from chungtu where id=CHI.IdChungTu)DienGiaiThue FROM CHI WHERE SoPhieuT=@SoPhieu"
+                sql &= "IdChungTu,(select soct from chungtu where id=CHI.IdChungTu)SoCT,(select diengiai from chungtu where id=CHI.IdChungTu)DienGiaiThue,Chi.TyGia,Chi.ChiPhiNhap  FROM CHI WHERE SoPhieuT=@SoPhieu"
             End If
             AddParameterWhere("@SoPhieu", PhieuChi)
             Dim tb As DataTable = ExecuteSQLDataTable(sql)
@@ -103,9 +103,11 @@ Public Class frmCNChi2
                 gdvMaKH.EditValue = tb.Rows(0)("IDKH")
                 'tbSoTien.EditValue = tb.Rows(0)("SoTien")
                 cbTienTe.EditValue = tb.Rows(0)("TienTe")
+                txtTyGia.EditValue = tb.Rows(0)("TyGia")
                 cbMucDich.EditValue = Convert.ToInt32(tb.Rows(0)("MucDich"))
                 'cbMucDich.EditValue = tb.Rows(0)("MucDich")
                 'tbDienGiai.EditValue = tb.Rows(0)("DienGiai")
+                chkChiPhiNhap.Checked = Convert.ToBoolean(tb.Rows(0)("ChiPhiNhap"))
                 If UNC Then
                     cbTKDoiUng.EditValue = tb.Rows(0)("TaiKhoanDi")
                     tbNoiMoTKDU.EditValue = tb.Rows(0)("NganHangDi")
@@ -210,7 +212,11 @@ Public Class frmCNChi2
     Public Sub LoadCGXK()
         Dim sql As String = ""
         If Not gdvMaKH.EditValue Is Nothing Then
-            sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,TienChietKhau*TyGia AS TienChietKhau,IDKhachHang,Isnull(tbChi.DaChi,0)DaChi FROM BANGCHAOGIA "
+            'sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,TienChietKhau*TyGia AS TienChietKhau,IDKhachHang,Isnull(tbChi.DaChi,0)DaChi "
+            'sql &= ", DaTamUng, ((TienTruocThue+TienThue)*TyGia-DaTamUng) ConLai "
+            sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue AS TienTruocThue, TienThue AS TienThue, (TienTruocThue+TienThue) AS TongTien,TienChietKhau AS TienChietKhau,IDKhachHang,Isnull(tbChi.DaChi,0)/TyGia DaChi "
+            sql &= ", DaTamUng/TyGia DaTamUng, ((TienTruocThue+TienThue)-DaTamUng/TyGia) ConLai "
+            sql &= "FROM BANGCHAOGIA "
             sql &= " LEFT JOIN "
             sql &= " (SELECT SUM(SoTien)DaChi,PhieuTC0 FROM (SELECT SoTien,PhieuTC0,PhieuTC1 FROM CHI"
             sql &= " WHERE MucDich IN (200, 224, 244, 235, 205, 230) AND CHI.IDKH= " & gdvMaKH.EditValue
@@ -228,8 +234,8 @@ Public Class frmCNChi2
 
 
         If Not gdvMaKH.EditValue Is Nothing Then
-            sql &= " SELECT Chon,SoPhieu,TienTruocThue,TienThue,TongTien,TienChietKhau,IDKhachHang,ISNULL(SUM(tb.SoTien),0) As DaChi FROM"
-            sql &= " (SELECT   convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,TienChietKhau*TyGia AS TienChietKhau,IDKhachHang,tbChi.SoTien FROM PHIEUXUATKHO "
+            sql &= " SELECT Chon,SoPhieu,TienTruocThue,TienThue,TongTien,TienChietKhau,IDKhachHang,ISNULL(SUM(tb.SoTien),0) As DaChi,PhanBoTamUng PhanBo,TongTien-PhanBoTamUng as ConLai  FROM"
+            sql &= " (SELECT   convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,TienChietKhau*TyGia AS TienChietKhau,IDKhachHang,tbChi.SoTien,PhanBoTamUng FROM PHIEUXUATKHO "
             sql &= " LEFT JOIN "
             sql &= " (SELECT SoTien,PhieuTC0,PhieuTC1 FROM CHI"
             sql &= " WHERE MucDich IN (200, 224, 244, 235, 205, 230) AND CHI.IDKH= " & gdvMaKH.EditValue
@@ -238,7 +244,7 @@ Public Class frmCNChi2
             sql &= " WHERE MucDich IN (200, 224, 244, 235, 205, 230) AND UNC.IDKH= " & gdvMaKH.EditValue
             sql &= " )tbChi  ON PHIEUXUATKHO.Sophieu = tbChi.PhieuTC1 OR PHIEUXUATKHO.SoPhieuCG=tbChi.PhieuTC0 "
             sql &= " WHERE IDKhachhang = " & gdvMaKH.EditValue
-            sql &= " )tb GROUP BY Chon,SoPhieu,TienTruocThue,TienThue,TongTien,TienChietKhau,IDKhachHang"
+            sql &= " )tb GROUP BY Chon,SoPhieu,TienTruocThue,TienThue,TongTien,TienChietKhau,IDKhachHang,PhanBoTamUng "
             '   sql &= " WHERE IDKhachhang = " & gdvMaKH.EditValue
         Else
             sql &= " SELECT TOP 1000  convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,TienChietKhau*TyGia AS TienChietKhau,IDKhachHang FROM PHIEUXUATKHO "
@@ -298,36 +304,48 @@ Public Class frmCNChi2
     Public Sub LoadDHNK()
         Dim sql As String = ""
         If Not gdvMaKH.EditValue Is Nothing Then
-            sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang,ISNULL(tbChi.DaChi,0)DaChi FROM PHIEUDATHANG "
+            'sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang,ISNULL(tbChi.DaChi,0)DaChi "
+            'sql &= ", DaTamUng, ((TienTruocThue+TienThue)*TyGia-DaTamUng) ConLai "
+            sql &= " SELECT convert(bit,0)Chon, SoPhieu,TienTruocThue AS TienTruocThue, TienThue AS TienThue, (TienTruocThue+TienThue) AS TongTien,IDKhachHang,Isnull(tbChi.DaChi,0) DaChi "
+            sql &= ", DaTamUngDonTe DaTamUng, ((TienTruocThue+TienThue)-isnull(DaTamUngDonTe,0)) ConLai "
+            sql &= " ,(Select Ten from tblTienTe where ID=PHIEUDATHANG.Tiente) TienTe, PHIEUDATHANG.Tiente IDTienTe"
+            sql &= " FROM PHIEUDATHANG "
 
             sql &= " LEFT JOIN "
             sql &= " (SELECT SUM(SoTien)DaChi,PhieuTC0 FROM (SELECT SoTien,PhieuTC0,PhieuTC1 FROM CHI"
-            sql &= " WHERE MucDich IN (210, 228, 205) AND CHI.IDKH= " & gdvMaKH.EditValue
+            'sql &= " WHERE MucDich IN (210, 228, 205) AND CHI.IDKH= " & gdvMaKH.EditValue
+            sql &= " WHERE MucDich IN (210) AND CHI.IDKH= " & gdvMaKH.EditValue
             sql &= " UNION ALL "
             sql &= " SELECT SoTien,PhieuTC0,PhieuTC1 FROM UNC "
-            sql &= " WHERE MucDich IN (210, 228, 205) AND UNC.IDKH= " & gdvMaKH.EditValue
+            'sql &= " WHERE MucDich IN (210, 228, 205) AND UNC.IDKH= " & gdvMaKH.EditValue
+            sql &= " WHERE MucDich IN (210) AND UNC.IDKH= " & gdvMaKH.EditValue
             sql &= " )tb GROUP BY PhieuTC0"
             sql &= " )tbChi  ON PHIEUDATHANG.Sophieu = tbChi.PhieuTC0 "
             sql &= " WHERE IDKhachhang = " & gdvMaKH.EditValue
         Else
-            sql &= " SELECT TOP 1000 convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang FROM PHIEUDATHANG "
+            '   sql &= " SELECT TOP 1000 convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang FROM PHIEUDATHANG "
+            sql &= " SELECT TOP 1000 convert(bit,0)Chon, SoPhieu,TienTruocThue AS TienTruocThue, TienThue AS TienThue, (TienTruocThue+TienThue) AS TongTien,IDKhachHang,(Select Ten from tblTienTe where ID=PHIEUDATHANG.Tiente) TienTe, PHIEUDATHANG.Tiente IDTienTe FROM PHIEUDATHANG "
 
         End If
         sql &= " ORDER BY SoPhieu DESC "
         If Not gdvMaKH.EditValue Is Nothing Then
-            sql &= " SELECT Chon,SoPhieu,TienTruocThue,TienThue,TongTien,IDKhachHang,ISNULL(SUM(tb.SoTien),0) As DaChi FROM"
-            sql &= " (SELECT   convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang,tbChi.SoTien FROM PHIEUNHAPKHO "
+            sql &= " SELECT Chon,SoPhieu,TienTruocThue,TienThue,TongTien,IDKhachHang,ISNULL(SUM(tb.SoTien),0) As DaChi,PhanBoTamUngDonTe PhanBo,TongTien-PhanBoTamUngDonTe as ConLai,TienTe, IDTienTe FROM"
+            'sql &= " (SELECT   convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang,tbChi.SoTien,PhanBoTamUng  FROM PHIEUNHAPKHO "
+            sql &= " (SELECT   convert(bit,0)Chon, SoPhieu,TienTruocThue AS TienTruocThue, TienThue AS TienThue, (TienTruocThue+TienThue) AS TongTien,IDKhachHang,tbChi.SoTien,isnull(PhanBoTamUngDonTe,0)PhanBoTamUngDonTe ,(Select Ten from tblTienTe where ID=PHIEUNHAPKHO.Tiente) TienTe,PHIEUNHAPKHO.Tiente IDTienTe  FROM PHIEUNHAPKHO "
             sql &= " LEFT JOIN "
             sql &= " (SELECT SoTien,PhieuTC0,PhieuTC1 FROM CHI"
-            sql &= " WHERE MucDich IN (210, 228, 205) AND CHI.IDKH= " & gdvMaKH.EditValue
+            'sql &= " WHERE MucDich IN (210, 228, 205) AND CHI.IDKH= " & gdvMaKH.EditValue
+            sql &= " WHERE CHI.IDKH= " & gdvMaKH.EditValue & " AND replace(PhieuTC1,'0','') <> '' "
             sql &= " UNION ALL "
             sql &= " SELECT SoTien,PhieuTC0,PhieuTC1 FROM UNC "
-            sql &= " WHERE MucDich IN (210, 228, 205) AND UNC.IDKH= " & gdvMaKH.EditValue
+            'sql &= " WHERE MucDich IN (210, 228, 205) AND UNC.IDKH= " & gdvMaKH.EditValue
+            sql &= " WHERE UNC.IDKH= " & gdvMaKH.EditValue & " AND replace(PhieuTC1,'0','') <> '' "
             sql &= " )tbChi  ON PHIEUNHAPKHO.Sophieu = tbChi.PhieuTC1 OR PHIEUNHAPKHO.SoPhieuDH=tbChi.PhieuTC0 "
             sql &= " WHERE IDKhachhang = " & gdvMaKH.EditValue
-            sql &= " )tb GROUP BY Chon,SoPhieu,TienTruocThue,TienThue,TongTien,IDKhachHang"
+            sql &= " )tb GROUP BY Chon,SoPhieu,TienTruocThue,TienThue,TongTien,IDKhachHang,PhanBoTamUngDonTe, Tiente,IDTienTe "
         Else
-            sql &= " SELECT TOP 1000  convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang FROM PHIEUNHAPKHO "
+            'sql &= " SELECT TOP 1000  convert(bit,0)Chon, SoPhieu,TienTruocThue*TyGia AS TienTruocThue, TienThue*TyGia AS TienThue, (TienTruocThue+TienThue)*TyGia AS TongTien,IDKhachHang FROM PHIEUNHAPKHO "
+            sql &= " SELECT TOP 1000  convert(bit,0)Chon, SoPhieu,TienTruocThue AS TienTruocThue, TienThue AS TienThue, (TienTruocThue+TienThue) AS TongTien,IDKhachHang,(Select Ten from tblTienTe where ID=PHIEUNHAPKHO.Tiente) TienTe,PHIEUNHAPKHO.Tiente IDTienTe FROM PHIEUNHAPKHO "
 
         End If
         sql &= " ORDER BY SoPhieu DESC "
@@ -484,6 +502,7 @@ Public Class frmCNChi2
 
                 AddParameter("@IDkh", gdvMaKH.EditValue)
                 AddParameter("@TienTe", cbTienTe.EditValue)
+                AddParameter("@TyGia", txtTyGia.EditValue)
                 AddParameter("@Mucdich", cbMucDich.EditValue)
                 AddParameter("@IDUser", TaiKhoan)
                 AddParameter("@ChiPhiNhap", chkChiPhiNhap.Checked)
@@ -552,6 +571,60 @@ Public Class frmCNChi2
                             Throw New Exception(LoiNgoaiLe)
                         End If
                     End If
+                    If UNC Then
+                        Dim _sql As String
+                        Dim LoaiDH As Integer
+                        Dim TyGiaTB As Double = 0
+
+                        If gdvData.GetRowCellValue(i, "PhieuDH") <> 0 Then
+
+                            AddParameter("@PhieuTC0", gdvData.GetRowCellValue(i, "PhieuDH"))
+                            _sql = "select LoaiDH from PHIEUDATHANG where SoPhieu=@PhieuTC0"
+                            LoaiDH = ExecuteSQLScalar(_sql)
+                            If LoaiDH = 1 Then
+                                AddParameter("@PhieuTC0", gdvData.GetRowCellValue(i, "PhieuDH"))
+                                AddParameter("@SoPhieuDH", gdvData.GetRowCellValue(i, "PhieuDH"))
+                                _sql = "select isnull(sum(TyGia*Sotien)/sum(SoTien),1)  from UNC where PhieuTC0=@PhieuTC0 or PhieuTC1 in(Select SoPhieu from PHIEUNHAPKHO where SoPhieuDH=@SoPhieuDH)"
+                                TyGiaTB = ExecuteSQLScalar(_sql)
+                                AddParameter("@TyGia", TyGiaTB)
+                                AddParameterWhere("@PhieuTC0", gdvData.GetRowCellValue(i, "PhieuDH"))
+                                If doUpdate("PHIEUDATHANG", "SoPhieu=@PhieuTC0") Is Nothing Then
+                                    ShowBaoLoi(LoiNgoaiLe)
+                                Else
+                                    AddParameter("@TyGia", TyGiaTB)
+                                    AddParameterWhere("@PhieuTC0", gdvData.GetRowCellValue(i, "PhieuDH"))
+                                    If doUpdate("PHIEUNHAPKHO", "SoPhieuDH=@PhieuTC0") Is Nothing Then
+                                        ShowBaoLoi(LoiNgoaiLe)
+                                    End If
+                                End If
+                            End If
+
+                        ElseIf gdvData.GetRowCellValue(i, "PhieuNK") <> 0 Then
+                            AddParameter("@PhieuTC1", gdvData.GetRowCellValue(i, "PhieuNK"))
+                            Dim SoPhieuDH As String = ExecuteSQLScalar("Select SoPhieuDH from PHIEUNHAPKHO Where SoPhieuDH=@PhieuTC1")
+                            AddParameter("@PhieuTC0", SoPhieuDH)
+                            _sql = "select LoaiDH from PHIEUDATHANG where SoPhieu=@PhieuTC0"
+                            LoaiDH = ExecuteSQLScalar(_sql)
+                            If LoaiDH = 1 Then
+                                AddParameter("@PhieuTC0", SoPhieuDH)
+                                AddParameter("@SoPhieuDH", SoPhieuDH)
+                                _sql = "select isnull(sum(TyGia*Sotien)/sum(SoTien),1)  from UNC where PhieuTC0=@PhieuTC0 or PhieuTC1 in(Select SoPhieu from PHIEUNHAPKHO where SoPhieuDH=@SoPhieuDH)"
+                                TyGiaTB = ExecuteSQLScalar(_sql)
+                                AddParameter("@TyGia", TyGiaTB)
+                                AddParameterWhere("@PhieuTC0", SoPhieuDH)
+                                If doUpdate("PHIEUDATHANG", "SoPhieu=@PhieuTC0") Is Nothing Then
+                                    ShowBaoLoi(LoiNgoaiLe)
+                                Else
+                                    AddParameter("@TyGia", TyGiaTB)
+                                    AddParameterWhere("@PhieuTC0", SoPhieuDH)
+                                    If doUpdate("PHIEUNHAPKHO", "SoPhieuDH=@PhieuTC0") Is Nothing Then
+                                        ShowBaoLoi(LoiNgoaiLe)
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+
                 Else
                     If _TrangThai.isAddNew = True Then
                         AddParameter("@SophieuT", tbSoPhieu.Text)
@@ -581,76 +654,86 @@ Public Class frmCNChi2
             'Đưa sang bên thuế
             '***********************************************************************************************
             If chkLapPhieuThu.Checked And chkLapPhieuThu.Enabled = True Then
-
-                If idChungTuThue Is Nothing Then
-                    If UNC Then
-                        txtSoPhieuCT.Text = ChungTu.LaySoPhieu(ChungTu.LoaiChungTu.UyNhiemChi)
-                    Else
-                        txtSoPhieuCT.Text = ChungTu.LaySoPhieu(ChungTu.LoaiChungTu.PhieuChiTienMat)
+                If _TrangThai.isAddNew Then
+                    If idChungTuThue Is Nothing Then
+                        If UNC Then
+                            txtSoPhieuCT.Text = ChungTu.LaySoPhieu(ChungTu.LoaiChungTu.UyNhiemChi)
+                        Else
+                            txtSoPhieuCT.Text = ChungTu.LaySoPhieu(ChungTu.LoaiChungTu.PhieuChiTienMat)
+                        End If
+                        AddParameter("@NgayCT", tbNgayCT.EditValue)
+                        AddParameter("@SoCT", txtSoPhieuCT.Text)
                     End If
-                    AddParameter("@NgayCT", tbNgayCT.EditValue)
-                    AddParameter("@SoCT", txtSoPhieuCT.Text)
+
+
+                    If UNC Then
+                        AddParameter("@LoaiCT", ChungTu.LoaiChungTu.UyNhiemChi)
+                    Else
+                        AddParameter("@LoaiCT", ChungTu.LoaiChungTu.PhieuChiTienMat)
+                    End If
+
+                    AddParameter("@IdKH", gdvMaKH.EditValue)
+                    AddParameter("@TenKH", CType(gdvMaKH.Properties.DataSource, DataTable).Select("ID=" & gdvMaKH.EditValue)(0)("Ten"))
+                    AddParameter("@NguoiLienHe", cbNguoiNhan.EditValue)
+                    AddParameter("@TienTe", cbTienTe.EditValue)
+                    AddParameter("@DienGiai", txtNoiDungPhieuThu.EditValue)
+                    AddParameter("@ThanhTien", tbSoTien.EditValue)
+                    AddParameter("@TongTien", tbSoTien.EditValue)
+
+                    If idChungTuThue Is Nothing Then
+                        AddParameter("@NguoiLap", TaiKhoan)
+                    End If
+                    Dim isAddNew As Boolean = False
+                    If idChungTuThue Is Nothing Then
+                        isAddNew = True
+                        idChungTuThue = doInsert("CHUNGTU")
+                    Else
+                        AddParameterWhere("@Id", idChungTuThue)
+                        doUpdate("CHUNGTU", "Id=@Id")
+                    End If
+
+                    '--Ben chi tiet--
+                    AddParameter("@Id_CT", idChungTuThue)
+                    AddParameter("@DienGiai", txtNoiDungPhieuThu.EditValue)
+                    AddParameter("@ThanhTien", tbSoTien.EditValue)
+
+                    If UNC Then
+                        AddParameter("@TaiKhoanNo", "131")
+                        AddParameter("@TaiKhoanCo", "1121")
+                    Else
+                        AddParameter("@TaiKhoanNo", "131")
+                        AddParameter("@TaiKhoanCo", "1111")
+                    End If
+
+                    AddParameter("@ButToan", ChungTu.LoaiButToan.HangTien)
+                    AddParameter("@GhiChuKhac", tbSoPhieu.EditValue)
+
+                    If isAddNew Then
+                        doInsert("CHUNGTUCHITIET")
+                    Else
+                        AddParameterWhere("@Id_CT", idChungTuThue)
+                        doUpdate("CHUNGTUCHITIET", "Id_CT=@Id_CT")
+                    End If
+
+                    For Each objId As Object In _arrIdPhieuChi
+                        AddParameter("@IdChungTu", idChungTuThue)
+                        AddParameterWhere("@Id", objId)
+                        doUpdate(_TenBang, "Id=@Id")
+                    Next
+
+                    txtSoPhieuCT.Enabled = True
+
                 End If
-
-
-                If UNC Then
-                    AddParameter("@LoaiCT", ChungTu.LoaiChungTu.UyNhiemChi)
-                Else
-                    AddParameter("@LoaiCT", ChungTu.LoaiChungTu.PhieuChiTienMat)
-                End If
-
-                AddParameter("@IdKH", gdvMaKH.EditValue)
-                AddParameter("@TenKH", CType(gdvMaKH.Properties.DataSource, DataTable).Select("ID=" & gdvMaKH.EditValue)(0)("Ten"))
-                AddParameter("@NguoiLienHe", cbNguoiNhan.EditValue)
-                AddParameter("@TienTe", cbTienTe.EditValue)
-                AddParameter("@DienGiai", txtNoiDungPhieuThu.EditValue)
-                AddParameter("@ThanhTien", tbSoTien.EditValue)
-                AddParameter("@TongTien", tbSoTien.EditValue)
-
-                If idChungTuThue Is Nothing Then
-                    AddParameter("@NguoiLap", TaiKhoan)
-                End If
-                Dim isAddNew As Boolean = False
-                If idChungTuThue Is Nothing Then
-                    isAddNew = True
-                    idChungTuThue = doInsert("CHUNGTU")
-                Else
-                    AddParameterWhere("@Id", idChungTuThue)
-                    doUpdate("CHUNGTU", "Id=@Id")
-                End If
-
-                '--Ben chi tiet--
-                AddParameter("@Id_CT", idChungTuThue)
-                AddParameter("@DienGiai", txtNoiDungPhieuThu.EditValue)
-                AddParameter("@ThanhTien", tbSoTien.EditValue)
-
-                If UNC Then
-                    AddParameter("@TaiKhoanNo", "131")
-                    AddParameter("@TaiKhoanCo", "112")
-                Else
-                    AddParameter("@TaiKhoanNo", "131")
-                    AddParameter("@TaiKhoanCo", "111")
-                End If
-
-                AddParameter("@ButToan", ChungTu.LoaiButToan.HangTien)
-                AddParameter("@GhiChuKhac", tbSoPhieu.EditValue)
-
-                If isAddNew Then
-                    doInsert("CHUNGTUCHITIET")
-                Else
-                    AddParameterWhere("@Id_CT", idChungTuThue)
-                    doUpdate("CHUNGTUCHITIET", "Id_CT=@Id_CT")
-                End If
-
-                For Each objId As Object In _arrIdPhieuChi
-                    AddParameter("@IdChungTu", idChungTuThue)
-                    AddParameterWhere("@Id", objId)
-                    doUpdate(_TenBang, "Id=@Id")
-                Next
-
-                txtSoPhieuCT.Enabled = True
 
             End If
+
+
+
+            '************* PHAN BO TAM UNG ************************'
+            For i As Integer = 0 To gdvData.RowCount - 1
+                If gdvData.GetRowCellValue(i, "PhieuDH").ToString.Replace("0", "").Trim = "" Then Continue For
+                frmCNNhapKho.CapNhatPhanBoTamUng(gdvData.GetRowCellValue(i, "PhieuDH"))
+            Next
 
             If _TrangThai.isAddNew Then
                 ShowAlert("Đã thêm phiếu chi!")
@@ -659,6 +742,13 @@ Public Class frmCNChi2
             Else
                 ShowAlert("Đã cập nhật phiếu chi!")
             End If
+
+
+
+
+
+
+
 
             ' ComitTransaction()
             CapNhatDaChi()
@@ -1019,11 +1109,13 @@ Public Class frmCNChi2
                 tbSoTienTC1.Value = dr("TienChietKhau")
                 If _TrangThai.isAddNew Then tbSoTien.EditValue = dr("TienChietKhau")
             Else
-                tbSoTienTC1.Value = dr("TongTien")
+                'tbSoTienTC1.Value = dr("TongTien")
+                tbSoTienTC1.Value = dr("ConLai")
                 'If _TrangThai.isAddNew Then tbSoTien.EditValue = dr("TongTien")
             End If
 
             gdvMaKH.EditValue = dr("IDKhachHang")
+            cbTienTe.EditValue = dr("IDTienTe")
         Else
             If gdvPhieuTC0.EditValue = "000000000" Or gdvPhieuTC0.EditValue Is Nothing Then
                 '   tbDienGiai.EditValue = ""
@@ -1142,6 +1234,8 @@ Public Class frmCNChi2
     End Sub
 
     Private Sub mnuXoaDong_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuXoaDong.ItemClick
+
+        Exit Sub
         If gdvData.FocusedRowHandle < 0 Then Exit Sub
         If ShowCauHoi("Xóa nội dung vừa chọn ?") Then
             Dim _TenBang As String = ""
@@ -1294,6 +1388,7 @@ Public Class frmCNChi2
                             gdvData.SetFocusedRowCellValue("NoiDung", cbMucDich.Text & " NK" & gdvSoPhieuTC1.GetRowCellValue(i, "SoPhieu"))
                             ' tbDienGiai.EditValue = cbMucDich.Text & " NK" & gdvPhieuTC1.Text
                         Case 200, 224, 244, 235, 230
+
                             gdvData.SetFocusedRowCellValue("NoiDung", cbMucDich.Text & " XK" & gdvSoPhieuTC1.GetRowCellValue(i, "SoPhieu"))
                             ' tbDienGiai.EditValue = cbMucDich.Text & " XK" & gdvPhieuTC1.Text
                     End Select
@@ -1550,15 +1645,17 @@ Public Class frmCNChi2
                 tbSoTienTC0.Value = dr("TienChietKhau")
                 If _TrangThai.isAddNew Then tbSoTien.EditValue = dr("TienChietKhau")
             Else
-                tbSoTienTC0.Value = dr("TongTien")
+                'tbSoTienTC0.Value = dr("TongTien")
+                tbSoTienTC0.Value = dr("ConLai")
                 ' If _TrangThai.isAddNew Then tbSoTien.EditValue = dr("TongTien")
             End If
             gdvMaKH.EditValue = dr("IDKhachHang")
+            cbTienTe.EditValue = dr("IDTienTe")
         Else
             If gdvPhieuTC1.EditValue = "000000000" Or gdvPhieuTC1.EditValue Is Nothing Then
                 '      tbDienGiai.EditValue = ""
             End If
-            tbSoTienTC0.Value = 0
+            tbSoTienTC0.Value = 0S
         End If
     End Sub
 
@@ -1735,4 +1832,15 @@ Public Class frmCNChi2
     '        ShowBaoLoi(LoiNgoaiLe)
     '    End If
     'End Sub
+
+    Private Sub cbTienTe_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles cbTienTe.EditValueChanged
+        Try
+            AddParameter("@Id", cbTienTe.EditValue)
+            Dim sql As String = "select TyGia from tblTienTe where ID = @Id"
+            Dim dt As DataTable = ExecuteSQLDataTable(sql)
+            txtTyGia.EditValue = dt.Rows(0)(0)
+        Catch ex As Exception
+            txtTyGia.EditValue = DBNull.Value
+        End Try
+    End Sub
 End Class

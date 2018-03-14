@@ -263,8 +263,7 @@ PhanBoTrongKy &lt;&gt; 0
 ORDER BY ttcMa</value>
   </data>
   <data name="txtTongHopCongNoPhaiThu.EditValue" xml:space="preserve">
-    <value>
-
+    <value>--Tổng hợp công nợ phải thu
 DECLARE @TuNgay as datetime
 DECLARE @DenNgay as datetime
 
@@ -274,17 +273,21 @@ set @TuNgay = '01/01/2016'
 set @DenNgay = '31/12/2016'
 
 declare @NgayChot as datetime
-set @NgayChot = '01/08/2017'
+-- set @NgayChot = '01/08/2017'
+set @NgayChot = '01/01/2017'
+
 
 DECLARE @tblKQ as table(
 	ID int,
 	ttcMa nvarchar(50),
 	TamUngDauKy float,
 	ConPhaiThuDauKy float,
-	TamUngTrongKyConLai float,
+	TamUngTrongKy float,
+	PhanboTamungTrongky float,
 	PhaiThuTrongKy float,
 	DaThuTrongKy float,
 	HoanTamUngTrongKy float,
+	HoanTamUngTrongKyTC1 float,
 	UngTruocCuoiKy float,
 	ConPhaiThuCuoiKy float
 )
@@ -294,95 +297,121 @@ insert into @tblKQ(Id,ttcMa)  SELECT Id,ttcMa FROM KHACHHANG
 update tbl 
 
 set
-	-- KH tạm ứng trước =Tổng Kh tạm ứng trước (TC0) (đến thời điểm A) – Thu phân bổ (đến thời điểm A) – Hoàn tạm ứng (đến thời điểm A).
-	TamUngDauKy = (	select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+	-- KH tạm ứng trước =Tạm ứng đầu kỳ+ Tổng Kh tạm ứng trước (TC0) (đến thời điểm A) – Thu phân bổ (đến thời điểm A) – Hoàn tạm ứng theo TC0 (đến thời điểm A).
+	TamUngDauKy = 
+				case when (@TuNgay &lt; Convert(datetime,CONVERT(nvarchar,'1/1/2017',103),103))
+				then
+				0
+				else
+				(	select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				+ 
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
+				+	
+					isnull((select TamUng from congnohethongdauky where idKH = tbl.id and TrangThai = 1 and Nam = year(@NgayChot)), 0)
 				-
 					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id 
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from chi where MucDich = 230 and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230  and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from unc where MucDich = 230 and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230  and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay
-					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot)
-				+	
-					isnull((select TamUng from congnohethongdauky where idKH = tbl.id and TrangThai = 1),0)
-				,
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot) 
+					end,
 
-	-- Số phải thu ( tống tất cả các giá trị xuất kho) -  Thu phân bổ – thu ngân hàng (Thu cho XK)– thu tiền mặt (Thu cho XK) 
-	ConPhaiThuDauKy = (select isnull(sum(Tientruocthue+tienthue),0) from phieuxuatkho
+	--  Còn nợ (trước 1/1/2017) + Số phải thu ( tống tất cả các giá trị xuất kho) - Thu phân bổ – thu ngân hàng (Thu cho XK) – thu tiền mặt (Thu cho XK) - Chi hoàn cho XK TC1
+	ConPhaiThuDauKy = 
+	            case when (@TuNgay &lt; Convert(datetime,CONVERT(nvarchar,'1/1/2017',103),103))
+				then
+				   isnull((select ConThieu from congnohethongdauky where idKH = tbl.id and TrangThai = 1 and Nam = year(@NgayChot)), 0)
+				else
+	               isnull((select ConThieu from congnohethongdauky where idKH = tbl.id and TrangThai = 1 and Nam = year(@NgayChot)), 0)
+			   +
+	               (select isnull(sum(Tientruocthue+tienthue),0) from phieuxuatkho
 					where IdKhachHang = tbl.id and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot) 
+			
 				-	
 					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id 
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
-				+
-					isnull((select ConThieu from congnohethongdauky where idKH = tbl.id and TrangThai = 1),0)
+				+ 
+				    (select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot) 
+				+ 
+				    (select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot)
+					end
 				,
 					
 	-- Kh tạm ứng trước (TC0) – Thu phân bổ (chi tính trong khoảng A -&gt; B)
-	TamUngTrongKyConLai = (	select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+	TamUngTrongKy = (select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
 				+ 
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
-					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103)  between @TuNgay and @DenNgay)
-				-
-					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and 
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103)  between @TuNgay and @DenNgay),
+    
+	-- Phân bổ tạm ứng
+	PhanboTamungTrongky = (select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and 
 					Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay),
 	
 	-- Tổng giá trị các xuất kho (chi tính trong khoảng A -&gt; B)
 	PhaiThuTrongKy = (select isnull(sum(Tientruocthue+tienthue),0) from phieuxuatkho
 					where IdKhachHang = tbl.id and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay),
 
-	-- Thu phân bổ + Thu tiền mặt (Thu cho XK) + Thu ngân hàng (Thu cho XK) (chi tính trong khoảng A -&gt; B)
-	DaThuTrongKy = (select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = tbl.Id and 
-					Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay)
-				+
-					(select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+	-- Thu tiền mặt (Thu cho XK) + Thu ngân hàng (Thu cho XK) (chi tính trong khoảng A -&gt; B)
+	DaThuTrongKy =
+					(select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
 				+
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103)  between @TuNgay and @DenNgay),
 
 	-- phiếu chi có mục đích hoàn tạm ứng (chi tính trong khoảng A -&gt; B)
-	HoanTamUngTrongKy = (select isnull(sum(Sotien),0) from unc where MucDich = 230 and Idkh = tbl.id
-					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)			
+	HoanTamUngTrongKy = (select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)
+					+(select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay),
+			
+    HoanTamUngTrongKyTC1 = (select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)
+    + (select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = tbl.id
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
 
 from @tblKQ tbl
 
 
 -- Xoa du lieu thua
-delete from @tblKQ where TamUngDauKy + ConPhaiThuDauKy + TamUngTrongKyConLai + PhaiThuTrongKy + DaThuTrongKy + HoanTamUngTrongKy = 0
+delete from @tblKQ where TamUngDauKy + ConPhaiThuDauKy + TamUngTrongKy + PhanboTamungTrongky + PhaiThuTrongKy + DaThuTrongKy + HoanTamUngTrongKy + HoanTamUngTrongKyTC1 = 0
 
 -- CUOI KY -----------------
 -- KH tạm ứng trước = Tổng Kh tạm ứng trước (TC0) (đến thời điểm B) – Thu phân bổ (đến thời điểm B) – Hoàn tạm ứng (đến thời điểm B).
 update @tblKQ
-		SET UngTruocCuoiKy = TamUngTrongKyConLai + TamUngDauKy - HoanTamUngTrongKy,
-			ConPhaiThuCuoiKy = ConPhaiThuDauKy + PhaiThuTrongKy - DaThuTrongKy
+		SET UngTruocCuoiKy = TamUngDauKy + TamUngTrongKy - PhanboTamungTrongky - HoanTamUngTrongKy,
+			ConPhaiThuCuoiKy = ConPhaiThuDauKy + PhaiThuTrongKy - DaThuTrongKy - PhanboTamungTrongky + HoanTamUngTrongKyTC1
 
-select * from @tblKQ</value>
+select * from @tblKQ order by ttcMa asc</value>
   </data>
   <data name="txtChiTietCongNoPhaiThu.EditValue" xml:space="preserve">
     <value>
-
+--chi tiet cong no phai thu
 declare @TuNgay as datetime
 declare @DenNgay as datetime
 declare @IdKH as int
@@ -393,9 +422,9 @@ set @TuNgay = '01/01/2016'
 set @DenNgay = '31/12/2016'
 
 declare @NgayChot as datetime
-set @NgayChot = '01/08/2017'
+set @NgayChot = '01/01/2017'
 
-set @IdKH = 20 * 1 * 1 * 1
+set @IdKH =  20 * 1 * 1 * 1
 
 declare @tblKetQua as table(
 	SoPhieu nvarchar(30),
@@ -418,7 +447,8 @@ declare @tblKetQua as table(
 	SapXep int,
 	Ngay2 datetime,
 	SoPhieu2 nvarchar(30),
-	SoCG nvarchar(30)
+	SoCG nvarchar(30),
+	LoaiHoanTamUng int
 )
 
 -- thông tin đầu kỳ -----------------
@@ -435,33 +465,41 @@ set @ConPhaiThuDauKy = (select isnull(sum(Tientruocthue+tienthue),0) from phieux
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
+					(select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				+
-					isnull((select ConThieu from congnohethongdauky where idKH = @IdKH and TrangThai = 1),0)
+					isnull((select ConThieu from congnohethongdauky where idKH = @IdKH and TrangThai = 1 and Nam = year(@NgayChot)),0)
+				+ 
+				    (select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
+					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot) 
+				+ 
+				    (select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230 and replace(PhieuTC1,'0','') &lt;&gt; '' and Idkh = @IdKH
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay
+					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot)
 
-set @UngTruocDauKy = (	select isnull(sum(Sotien),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = @IdKH
+set @UngTruocDauKy = (	select isnull(sum(SoTien*TyGia),0) from thu where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = @IdKH
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				+ 
-					(select isnull(sum(Sotien),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = @IdKH
+					(select isnull(sum(SoTien*TyGia),0) from thunh where MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' and Idkh = @IdKH
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = @IdKH
+					(select isnull(sum(PhanBoTamUng),0) from phieuxuatkho where IDkhachhang = @IdKH 
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from chi where MucDich = 230 and Idkh = @IdKH
+					(select isnull(sum(SoTien*TyGia),0) from chi where MucDich = 230 and Idkh = @IdKH and replace(PhieuTC0,'0','') &lt;&gt; ''
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) &gt;= @NgayChot)
 				-
-					(select isnull(sum(Sotien),0) from unc where MucDich = 230 and Idkh = @IdKH
+					(select isnull(sum(SoTien*TyGia),0) from unc where MucDich = 230 and Idkh = @IdKH and replace(PhieuTC0,'0','') &lt;&gt; ''
 					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &lt; @TuNgay
 					and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) &gt;= @NgayChot)
 				+	
@@ -478,12 +516,12 @@ insert into @tblKetQua(TenVatTu,TongTienTamUng,PhatSinhNo,LuyKe) SELECT N' -- Đ
 
 -- Lấy thông tin thu tạm ứng --
 insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, TongTienTamUng, LoaiCT,SapXep,SoCG)
-select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Tạm ứng TM',1,PhieuTC0
+select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien*TyGia, N'Tạm ứng TM',1,PhieuTC0
 from THU WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
 AND MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' AND IdKH = @IdKH
 
 insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, TongTienTamUng, LoaiCT,SapXep,SoCG)
-select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Tạm ứng NH',2,PhieuTC0
+select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien*TyGia, N'Tạm ứng NH',2,PhieuTC0
 from THUNH WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
 AND MucDich = 100 and replace(PhieuTC0,'0','') &lt;&gt; '' AND IdKH = @IdKH
 
@@ -495,7 +533,7 @@ XUATKHO.Soluong, XUATKHO.Dongia, (XUATKHO.Soluong * XUATKHO.Dongia)ThanhTien, XU
 (case when XUATKHO.Xuatthue = 1 then (SoLuong * DonGia) * (MucThue / 100.0) else 0 end)TienThue, 
 N'Xuất kho',6,SophieuCG FROM				 
 XUATKHO LEFT OUTER JOIN VATTU LEFT OUTER JOIN
-TENDONVITINH ON VATTU.IDTenvattu = TENDONVITINH.ID LEFT OUTER JOIN
+TENDONVITINH ON VATTU.IDDonvitinh = TENDONVITINH.ID LEFT OUTER JOIN
 TENVATTU ON VATTU.IDTenvattu = TENVATTU.ID ON XUATKHO.IDvattu = VATTU.ID RIGHT OUTER JOIN
 PHIEUXUATKHO ON XUATKHO.Sophieu = PHIEUXUATKHO.Sophieu where PHIEUXUATKHO.IdKhachHang = @IdKH AND 
 Convert(datetime,CONVERT(nvarchar,PHIEUXUATKHO.NgayThang,103),103) between @TuNgay and @DenNgay 
@@ -516,29 +554,41 @@ from phieuxuatkho where IDkhachhang =  @IdKH
 and PhanBoTamUng &lt;&gt; 0 and Convert(datetime,CONVERT(nvarchar,NgayThang,103),103) between @TuNgay and @DenNgay)
 
 
--- Hoàn tạm ứng --------------------
-insert into @tblKetQua(SoPhieu,Ngay,PhatSinhNo,LoaiCT,SapXep,SoCG)
-(select 'HTM ' + SoPhieu, NgayThangCT, Sotien,N'Hoàn tạm ứng TM',10,
-(SELECT SophieuCG from PHIEUXUATKHO WHERE SoPhieu = PhieuTC1)
+-- Hoàn tạm ứng TC1 --------------------
+insert into @tblKetQua(SoPhieu,Ngay,TenVatTu,PhatSinhNo,LoaiCT,SapXep,SoCG,LoaiHoanTamUng)
+(select 'HTM ' + SoPhieu, NgayThangCT,DienGiai, SoTien*TyGia,N'Hoàn tạm ứng TM',10,
+(SELECT SophieuCG from PHIEUXUATKHO WHERE SoPhieu = PhieuTC1),1
 from chi where MucDich = 230 and IdKh = @IdKH 
-and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay)
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay and replace(PhieuTC1,'0','') &lt;&gt; '')
 
-insert into @tblKetQua(SoPhieu,Ngay,PhatSinhNo,LoaiCT,SapXep,SoCG)
-(select 'HNH ' + SoPhieu, NgayThang, Sotien,N'Hoàn tạm ứng NH',11,
-(SELECT SophieuCG from PHIEUXUATKHO WHERE SoPhieu = PhieuTC1)
+insert into @tblKetQua(SoPhieu,Ngay,TenVatTu,PhatSinhNo,LoaiCT,SapXep,SoCG,LoaiHoanTamUng)
+(select 'HNH ' + SoPhieu, NgayThang,DienGiai, SoTien*TyGia,N'Hoàn tạm ứng NH',11,
+(SELECT SophieuCG from PHIEUXUATKHO WHERE SoPhieu = PhieuTC1),1
  from unc where MucDich = 230 and IdKh = @IdKH 
-and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay)
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay and replace(PhieuTC1,'0','') &lt;&gt; '')
 
+-- Hoàn tạm ứng TC0 --------------------
+insert into @tblKetQua(SoPhieu,Ngay,TenVatTu,PhatSinhNo,LoaiCT,SapXep,SoCG, LoaiHoanTamUng)
+(select 'HTM ' + SoPhieu, NgayThangCT,DienGiai, SoTien*TyGia,N'Hoàn tạm ứng TM',10,
+PhieuTC0,0
+from chi where MucDich = 230 and IdKh = @IdKH 
+and Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay and replace(PhieuTC0,'0','') &lt;&gt; '')
+
+insert into @tblKetQua(SoPhieu,Ngay,TenVatTu,PhatSinhNo,LoaiCT,SapXep,SoCG,LoaiHoanTamUng)
+(select 'HNH ' + SoPhieu, NgayThang,DienGiai, SoTien*TyGia,N'Hoàn tạm ứng NH',11,
+PhieuTC0,0
+ from unc where MucDich = 230 and IdKh = @IdKH 
+and Convert(datetime,CONVERT(nvarchar,Ngaythang,103),103) between @TuNgay and @DenNgay and replace(PhieuTC0,'0','') &lt;&gt; '')
 
 -- Thu xuất kho -------------------
 insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, PhatSinhCo, LoaiCT,SapXep,SoCG)
-select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Thu xuất kho TM',8,
+select 'PT ' + SoPhieu, DienGiai, NgaythangCT, SoTien*TyGia, N'Thu xuất kho TM',8,
 (select SophieuCG from phieuxuatkho where sophieu = PhieuTC1)
 from THU WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
 AND MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' AND IdKH = @IdKH
 
 insert into @tblKetQua(SoPhieu, TenVatTu, Ngay, PhatSinhCo, LoaiCT,SapXep,SoCG)
-select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien, N'Thu xuất kho NH',9,
+select 'NT ' + SoPhieu, DienGiai, NgaythangCT, SoTien*TyGia, N'Thu xuất kho NH',9,
 (select SophieuCG from phieuxuatkho where sophieu = PhieuTC1)
 from THUNH WHERE Convert(datetime,CONVERT(nvarchar,NgaythangCT,103),103) between @TuNgay and @DenNgay 
 AND MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' AND IdKH = @IdKH
@@ -546,8 +596,8 @@ AND MucDich = 100 and replace(PhieuTC1,'0','') &lt;&gt; '' AND IdKH = @IdKH
 
 -- tạo phiếu xuất kho tổng bên cột phát sinh nợ ---------------------------------------------
 
-insert into @tblKetQua(SoPhieu,Ngay,PhatSinhNo,LoaiCT,SapXep,SoCG)
-select SoPhieu,Ngay,SUM(TienHang+TienThue),N'Phiếu XK',4,SoCG from @tblKetQua 
+insert into @tblKetQua(SoPhieu,Ngay,TenVatTu,PhatSinhNo,LoaiCT,SapXep,SoCG)
+select SoPhieu,Ngay,'',SUM(TienHang+TienThue),N'Phiếu XK',4,SoCG from @tblKetQua 
 where LoaiCT = N'Xuất kho' or LoaiCT = N'Xuất kho CT' 
 group by SoPhieu,Ngay,SoCG
 
@@ -557,12 +607,9 @@ update @tblKetQua set SoPhieu = SoTT, Ngay = null
 where  LoaiCT = N'Xuất kho' or  LoaiCT = N'Xuất kho CT'
 
 -- trừ tạm ứng còn lại sau phiếu thu phân bổ ----------------------------------------------
-insert into @tblKetQua(TenVatTu,LoaiCT,SapXep,Ngay2,SoPhieu2,SoTT,SoCG)
-select N'T.Ứ CG' + SoCG + N' còn lại' ,N'Tạm ứng còn lại',4,Ngay2,SoPhieu2,-1,SoCG from @tblKetQua where LoaiCT = N'Phân bổ'
+--insert into @tblKetQua(TenVatTu,LoaiCT,SapXep,Ngay2,SoPhieu2,SoTT,SoCG)
+--select N'T.Ứ CG' + SoCG + N' còn lại' ,N'Tạm ứng còn lại',4,Ngay2,SoPhieu2,-1,SoCG from @tblKetQua where LoaiCT = N'Phân bổ'
 
-select * from @tblKetQua order by Ngay2,SapXep,SoPhieu2,SoTT,LoaiCT
-
-
-</value>
+select * from @tblKetQua order by Ngay2,SoPhieu2,SapXep,SoTT,LoaiCT</value>
   </data>
 </root>

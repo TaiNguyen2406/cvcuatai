@@ -38,10 +38,19 @@ Public Class frmCNTrangThai
         tb.Rows.Add(r4)
 
         Dim r5 As DataRow = tb.NewRow
-        r5("ID") = 41
+        r5("ID") = 42
         r5("Ten") = "Nguồn khách mới"
         tb.Rows.Add(r5)
 
+        Dim r6 As DataRow = tb.NewRow
+        r6("ID") = 43
+        r6("Ten") = "Loại tài sản"
+        tb.Rows.Add(r6)
+
+        Dim r7 As DataRow = tb.NewRow
+        r7("ID") = 44
+        r7("Ten") = "Mục đích xuất cho BAC"
+        tb.Rows.Add(r7)
         rcbTrangThai.DataSource = tb
         cbTrangThai.EditValue = Convert.ToByte(0)
 

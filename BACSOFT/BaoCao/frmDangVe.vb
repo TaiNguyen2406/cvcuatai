@@ -200,6 +200,12 @@ Public Class frmDangVe
         sql &= "       FROM          dbo.XUATKHO"
         sql &= "       WHERE      (IDvattu = dbo.VATTU.ID)) AS SLTon, (CASE WHEN PHIEUDATHANG.LoaiDH=2 THEN PHIEUDATHANG.NgayNhan ELSE ISNULL(DATHANG.NgayVe,PHIEUDATHANG.NgayNhan) END )NgayNhan,"
         sql &= "    (CASE WHEN PHIEUDATHANG.LoaiDH=2 THEN PHIEUDATHANG.NgayNhan ELSE ISNULL(DATHANG.NgayVe2,ISNULL(DATHANG.NgayVe,PHIEUDATHANG.NgayNhan)) END )NgayVe2, NHANSU.Ten AS TakeCare,DATHANG.GhiChu"
+        'Tai
+        sql &= ",  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = DATHANG.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = DATHANG.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = DATHANG.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = DATHANG.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam"
+        'Tai
         sql &= " FROM  DATHANG "
         sql &= " 	INNER JOIN PHIEUDATHANG ON PHIEUDATHANG.Sophieu = ISNULL(DATHANG.Sophieu,DATHANG.SoPhieuPhu)"
         If Not btfilterMaKH.EditValue Is Nothing Then

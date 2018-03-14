@@ -350,7 +350,7 @@ Partial Class frmKetQuaXuatKho
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1405, 31)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1405, 33)
         '
         'barDockControlBottom
         '
@@ -363,15 +363,15 @@ Partial Class frmKetQuaXuatKho
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 31)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 498)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 496)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1405, 31)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 498)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1405, 33)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 496)
         '
         'btXemPhieuThu
         '
@@ -510,12 +510,12 @@ Partial Class frmKetQuaXuatKho
         'gdv
         '
         Me.gdv.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdv.Location = New System.Drawing.Point(0, 31)
+        Me.gdv.Location = New System.Drawing.Point(0, 33)
         Me.gdv.MainView = Me.gdvCT
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rpopupFile, Me.RepositoryItemHyperLinkEdit1, Me.rcbDVVC, Me.tbDate, Me.rtbSoTien, Me.rcbTienTe})
-        Me.gdv.Size = New System.Drawing.Size(1405, 498)
+        Me.gdv.Size = New System.Drawing.Size(1405, 496)
         Me.gdv.TabIndex = 6
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
         '

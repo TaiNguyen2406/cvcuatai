@@ -19,7 +19,6 @@ Partial Class frmDSYCLamHQ
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
@@ -51,7 +50,7 @@ Partial Class frmDSYCLamHQ
         Me.gvSoCG = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.barCbbXem = New DevExpress.XtraBars.BarEditItem()
         Me.riCbbXem = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
@@ -132,7 +131,9 @@ Partial Class frmDSYCLamHQ
         Me.mnu_CnPTTT = New DevExpress.XtraBars.BarButtonItem()
         Me.mnu_CnDiaChiLamHQ = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.mnu_CnSdtvaFax = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnu_CnTenEng = New DevExpress.XtraBars.BarButtonItem()
+        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController()
         Me.gColTenVT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -263,9 +264,9 @@ Partial Class frmDSYCLamHQ
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.rcbFileDinhKem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.pChiTiet = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.pChiTiet = New DevExpress.XtraBars.PopupMenu()
         Me.BarButtonItem8 = New DevExpress.XtraBars.BarButtonItem()
-        Me.pMain = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.pMain = New DevExpress.XtraBars.PopupMenu()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.gvDsVatTuHaiQuanCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riPcSoChaoGia, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -507,9 +508,9 @@ Partial Class frmDSYCLamHQ
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.DockControls.Add(Me.StandaloneBarDockControl1)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnTaiLai, Me.barGlueNguoiLap, Me.mnu_ThemCT, Me.BarButtonItem3, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarEditItem7, Me.BarEditItem8, Me.BarButtonItem6, Me.btnGhiLai, Me.btnXoa, Me.btnXoaCT, Me.btnNhanXuLy, Me.barCbbXem, Me.barDeTuNgay, Me.barDeDenNgay, Me.btnCapNhat, Me.barCiLoc, Me.barPCTTDongGoi, Me.barSeCanTinh, Me.barSeCanKhoi, Me.barSeSLThung, Me.barTeLoaiThung, Me.btnThemCT, Me.barLueMaKH, Me.barLueTinhTrang, Me.btnExcel, Me.mnu_XoaCT, Me.barBtnGopVT, Me.barChkHienVtDaGop, Me.btnPhanHoi, Me.mnu_CanXuLy, Me.btnTraLaiKD, Me.barChkBoSungVTCT, Me.mnu_NhanXuLy, Me.mnu_HoanThanh, Me.mnu_CapNhatLaiMoTa, Me.mnu_CapNhatLaiMaHS, Me.mnu_ChinhSua, Me.btnExcelLamHQ, Me.pcInovice, Me.mnu_CnPTTT, Me.mnu_CnDiaChiLamHQ, Me.BarButtonItem2})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnTaiLai, Me.barGlueNguoiLap, Me.mnu_ThemCT, Me.BarButtonItem3, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarEditItem7, Me.BarEditItem8, Me.BarButtonItem6, Me.btnGhiLai, Me.btnXoa, Me.btnXoaCT, Me.btnNhanXuLy, Me.barCbbXem, Me.barDeTuNgay, Me.barDeDenNgay, Me.btnCapNhat, Me.barCiLoc, Me.barPCTTDongGoi, Me.barSeCanTinh, Me.barSeCanKhoi, Me.barSeSLThung, Me.barTeLoaiThung, Me.btnThemCT, Me.barLueMaKH, Me.barLueTinhTrang, Me.btnExcel, Me.mnu_XoaCT, Me.barBtnGopVT, Me.barChkHienVtDaGop, Me.btnPhanHoi, Me.mnu_CanXuLy, Me.btnTraLaiKD, Me.barChkBoSungVTCT, Me.mnu_NhanXuLy, Me.mnu_HoanThanh, Me.mnu_CapNhatLaiMoTa, Me.mnu_CapNhatLaiMaHS, Me.mnu_ChinhSua, Me.btnExcelLamHQ, Me.pcInovice, Me.mnu_CnPTTT, Me.mnu_CnDiaChiLamHQ, Me.BarButtonItem2, Me.mnu_CnSdtvaFax, Me.mnu_CnTenEng})
         Me.BarManager1.MainMenu = Me.Bar1
-        Me.BarManager1.MaxItemId = 99
+        Me.BarManager1.MaxItemId = 101
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riDeTuNgay, Me.riDeDenNgay, Me.riCbbXem, Me.riLueNhomVT, Me.riLueHang, Me.riLueTenVT, Me.riGlueNguoiLap, Me.RepositoryItemTextEdit1, Me.riLueMaKh, Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.riTeLoaiThung, Me.riSeCanTinh, Me.riSeCanKhoi, Me.riSeSLThung, Me.riPCTTDongGoi, Me.barriLueTinhTrang, Me.rpcInovice})
         Me.BarManager1.StatusBar = Me.Bar2
         Me.BarManager1.ToolTipController = Me.ToolTipController1
@@ -1218,6 +1219,18 @@ Partial Class frmDSYCLamHQ
         Me.BarButtonItem2.Caption = "CN địa chỉ làm hải quan"
         Me.BarButtonItem2.Id = 98
         Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'mnu_CnSdtvaFax
+        '
+        Me.mnu_CnSdtvaFax.Caption = "CN số điện thoại và fax"
+        Me.mnu_CnSdtvaFax.Id = 99
+        Me.mnu_CnSdtvaFax.Name = "mnu_CnSdtvaFax"
+        '
+        'mnu_CnTenEng
+        '
+        Me.mnu_CnTenEng.Caption = "CN Tên Eng"
+        Me.mnu_CnTenEng.Id = 100
+        Me.mnu_CnTenEng.Name = "mnu_CnTenEng"
         '
         'ToolTipController1
         '
@@ -2074,6 +2087,7 @@ Partial Class frmDSYCLamHQ
         '
         Me.gColMaKH.Caption = "Mã KH"
         Me.gColMaKH.FieldName = "ttcMa"
+        Me.gColMaKH.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gColMaKH.Name = "gColMaKH"
         Me.gColMaKH.OptionsColumn.AllowEdit = False
         Me.gColMaKH.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Count
@@ -2375,6 +2389,8 @@ Partial Class frmDSYCLamHQ
         '
         'GridColumn15
         '
+        Me.GridColumn15.AppearanceHeader.ForeColor = System.Drawing.Color.Blue
+        Me.GridColumn15.AppearanceHeader.Options.UseForeColor = True
         Me.GridColumn15.Caption = "Tên ENG"
         Me.GridColumn15.FieldName = "TenENG"
         Me.GridColumn15.Name = "GridColumn15"
@@ -2383,6 +2399,8 @@ Partial Class frmDSYCLamHQ
         '
         'gcolDiaChiLamHQ
         '
+        Me.gcolDiaChiLamHQ.AppearanceHeader.ForeColor = System.Drawing.Color.Blue
+        Me.gcolDiaChiLamHQ.AppearanceHeader.Options.UseForeColor = True
         Me.gcolDiaChiLamHQ.Caption = "Địa chỉ làm HQ"
         Me.gcolDiaChiLamHQ.FieldName = "ttcDiachiHQ"
         Me.gcolDiaChiLamHQ.Name = "gcolDiaChiLamHQ"
@@ -2393,6 +2411,8 @@ Partial Class frmDSYCLamHQ
         '
         'GridColumn18
         '
+        Me.GridColumn18.AppearanceHeader.ForeColor = System.Drawing.Color.Blue
+        Me.GridColumn18.AppearanceHeader.Options.UseForeColor = True
         Me.GridColumn18.Caption = "Điện thoại"
         Me.GridColumn18.FieldName = "ttcDienthoai"
         Me.GridColumn18.Name = "GridColumn18"
@@ -2401,6 +2421,8 @@ Partial Class frmDSYCLamHQ
         '
         'GridColumn19
         '
+        Me.GridColumn19.AppearanceHeader.ForeColor = System.Drawing.Color.Blue
+        Me.GridColumn19.AppearanceHeader.Options.UseForeColor = True
         Me.GridColumn19.Caption = "FAX"
         Me.GridColumn19.FieldName = "ttcFax"
         Me.GridColumn19.Name = "GridColumn19"
@@ -2412,6 +2434,8 @@ Partial Class frmDSYCLamHQ
         Me.gColPTTT.AppearanceCell.Options.UseTextOptions = True
         Me.gColPTTT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gColPTTT.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gColPTTT.AppearanceHeader.ForeColor = System.Drawing.Color.Blue
+        Me.gColPTTT.AppearanceHeader.Options.UseForeColor = True
         Me.gColPTTT.Caption = "PTTT hải quan"
         Me.gColPTTT.ColumnEdit = Me.RepositoryItemMemoEdit7
         Me.gColPTTT.FieldName = "PhuongThucThanhToanHQ"
@@ -2483,7 +2507,7 @@ Partial Class frmDSYCLamHQ
         '
         'pMain
         '
-        Me.pMain.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CanXuLy), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_NhanXuLy, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_HoanThanh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_ChinhSua), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_CnPTTT, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CnDiaChiLamHQ)})
+        Me.pMain.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CanXuLy), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_NhanXuLy, DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_HoanThanh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_ChinhSua), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.mnu_CnPTTT, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CnDiaChiLamHQ), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CnSdtvaFax), New DevExpress.XtraBars.LinkPersistInfo(Me.mnu_CnTenEng)})
         Me.pMain.Manager = Me.BarManager1
         Me.pMain.Name = "pMain"
         '
@@ -2836,4 +2860,6 @@ Partial Class frmDSYCLamHQ
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents gcolNgayThongQuan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents riDeNgayThongQuan As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents mnu_CnSdtvaFax As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnu_CnTenEng As DevExpress.XtraBars.BarButtonItem
 End Class

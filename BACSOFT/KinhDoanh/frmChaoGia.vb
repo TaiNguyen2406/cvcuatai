@@ -16,6 +16,7 @@ Public Class frmChaoGia
         tbDenNgay.Enabled = False
         cbTieuChi.EditValue = "Top 500"
         cbLoai.EditValue = "Tất cả"
+        riLueCongTrinh.DataSource = TAI.tableCongTrinh()
         LoadrCbNhanVien()
         LoadrCbKH()
         LoadDS()
@@ -46,6 +47,7 @@ Public Class frmChaoGia
         sql &= "	NHANSU_1.Ten AS TenNgd,NHANSU_2.Ten AS TenTakeCare,tblTienTe.Ten AS TenTienTe,BANGCHAOGIA.IDtakecare,"
         sql &= "	Congtrinh,( SELECT NoiDung FROM tblTuDien WHERE Loai=2 AND Ma= BANGCHAOGIA.Trangthai) AS Trangthai,Khautru, BANGCHAOGIA.FileDinhKem,BANGCHAOGIA.Trangthai as IDTrangThai"
         sql &= "    ,SoPO,TGKDCanXuat,GhiChuKD,PHUTRACHHD.Ten as PhuTrachHD, PHUTRACHCT.Ten as PhuTrachCT"
+        sql &= "   , case IDHinhThucCT when 1 then N'Không lấy VAT' when 2 then N'Lấy VAT' when 3 then N'Hải Quan' end HTCT"
         sql &= " FROM BANGCHAOGIA LEFT OUTER JOIN KHACHHANG ON BANGCHAOGIA.IDKhachhang=KHACHHANG.ID"
         sql &= "        LEFT OUTER JOIN NHANSU ON BANGCHAOGIA.IDUSer=NHANSU.ID"
         sql &= "        LEFT OUTER JOIN NHANSU AS NHANSU_1 ON BANGCHAOGIA.IDNgd=NHANSU_1.ID"
@@ -213,13 +215,20 @@ Public Class frmChaoGia
         sql &= " 	Canxuat float,"
         sql &= " 	GhiChu nvarchar(500),"
         sql &= " 	ID int,"
-        sql &= " 	IDXK int"
+        sql &= " 	IDXK int, "
+        sql &= " 	XuatTam float"
         sql &= " )"
-        sql &= " INSERT INTO @tb(SoPhieu,IDVatTu,NoiDung,TenHang,Model,ThongSo,TenDVT,SoLuong,DonGia,ChietKhau,ThanhTien,XuatThue,MucThue,slTon,TienTe,TyGia,HangTon,AZ,Canxuat,GhiChu,ID,IDXK)"
+        sql &= " INSERT INTO @tb(SoPhieu,IDVatTu,NoiDung,TenHang,Model,ThongSo,TenDVT,SoLuong,DonGia,ChietKhau,ThanhTien,XuatThue,MucThue,slTon,TienTe,TyGia,HangTon,AZ,Canxuat,GhiChu,ID,IDXK,XuatTam)"
         sql &= " SELECT CHAOGIA.Sophieu,CHAOGIA.IDVatTu,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,VATTU.Model,VATTU.Thongso,"
         sql &= " TENDONVITINH.Ten AS TenDVT,CHAOGIA.Soluong,ISNULL(CHAOGIA.Dongia,0)DonGia,ISNULL(CHAOGIA.Chietkhau,0) ChietKhau,(CHAOGIA.Dongia * CHAOGIA.Soluong) AS ThanhTien,CHAOGIA.Xuatthue,CHAOGIA.Mucthue,"
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=CHAOGIA.IDVattu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=CHAOGIA.IDVattu)) AS slTon,"
         sql &= " tblTienTe.Ten AS TenTienTe,CHAOGIA.TyGia, VATTU.HangTon, ISNULL(CHAOGIA.AZ,0)AZ,(select isnull(SUM(canxuat),0) from CHAOGIA CG where CG.IDVattu= CHAOGIA.IDVattu) AS Canxuat,CHAOGIA.GhiChu,CHAOGIA.ID,XUATKHO.ID as IDXK"
+        'tai
+        sql &= ",  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam"
+        'tai
         sql &= " FROM CHAOGIA LEFT OUTER JOIN VATTU ON CHAOGIA.IDvattu=VATTU.ID"
         sql &= " LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID"
         sql &= " LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID"
@@ -415,13 +424,19 @@ Public Class frmChaoGia
             End If
 
         Else
-            Utils.XuatExcel.CreateExcelFileChaoGia(gdvCT.GetFocusedRowCellValue("Sophieu"), chkXuatHangSX.Checked, chkXuatMaVT.Checked, chkXuatThongSo.Checked, chkXuatTinhTrangHang.Checked, chkVIE.Checked, chkN0.Checked, gdvCT.GetFocusedRowCellValue("Congtrinh"), chkGhiChu.Checked, gdvCT.GetFocusedRowCellValue("MaKH"))
+            Dim isCT As Boolean
+            If gdvCT.GetFocusedRowCellValue("Congtrinh") = 1 Then
+                isCT = True
+            Else
+                isCT = False
+            End If
+            Utils.XuatExcel.CreateExcelFileChaoGia(gdvCT.GetFocusedRowCellValue("Sophieu"), chkXuatHangSX.Checked, chkXuatMaVT.Checked, chkXuatThongSo.Checked, chkXuatTinhTrangHang.Checked, chkVIE.Checked, chkN0.Checked, isCT, chkGhiChu.Checked, gdvCT.GetFocusedRowCellValue("MaKH"))
             panelXuatExcel.Visible = False
         End If
     End Sub
 
     Private Sub btInBangKe_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btInBangKe.ItemClick
-        If Not gdvCT.GetFocusedRowCellValue("Congtrinh") Then
+        If gdvCT.GetFocusedRowCellValue("Congtrinh") <> 1 Then
             ShowCanhBao("Tính năng này chỉ áp dụng với chào giá công trình !")
             Exit Sub
         End If
@@ -447,7 +462,8 @@ Public Class frmChaoGia
         fCNChaoGia.TrangThaiCG.isCopy = True
         fCNChaoGia.SPChaoGia = gdvCT.GetFocusedRowCellValue("Sophieu")
         fCNChaoGia.SPYeuCau = gdvCT.GetFocusedRowCellValue("Masodathang")
-        fCNChaoGia.chkCongTrinh.Checked = gdvCT.GetFocusedRowCellValue("Congtrinh")
+        '    fCNChaoGia.chkCongTrinh.Checked = gdvCT.GetFocusedRowCellValue("Congtrinh")
+        fCNChaoGia.lueCongTrinh.EditValue = gdvCT.GetFocusedRowCellValue("Congtrinh")
         fCNChaoGia.Tag = Me.Tag
         fCNChaoGia.ShowDialog()
     End Sub
@@ -661,7 +677,7 @@ Public Class frmChaoGia
 
     Private Sub mChuyenThanhCGKH_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mChuyenThanhCGKH.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then Exit Sub
-        If Not gdvCT.GetFocusedRowCellValue("Congtrinh") Then
+        If gdvCT.GetFocusedRowCellValue("Congtrinh") <> 1 Then
             ShowCanhBao("Chức năng này chỉ áp dụng đối với chào giá công trình lập bằng hệ thống cũ !")
             Exit Sub
         End If
@@ -689,7 +705,7 @@ Public Class frmChaoGia
 
     Private Sub btTachChaoGia_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btTachChaoGia.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then Exit Sub
-        If gdvCT.GetFocusedRowCellValue("Congtrinh") Then
+        If gdvCT.GetFocusedRowCellValue("Congtrinh") = 1 Then
             ShowCanhBao("Không sử dụng được tính năng này cho chào giá công trình !")
             Exit Sub
         End If
@@ -869,7 +885,7 @@ Public Class frmChaoGia
 
     Private Sub mChuyenThanhCGChoKhach_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mChuyenThanhCGChoKhach.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then Exit Sub
-        If Not gdvCT.GetFocusedRowCellValue("Congtrinh") Then
+        If gdvCT.GetFocusedRowCellValue("Congtrinh") <> 1 Then
             ShowCanhBao("Chức năng này chỉ áp dụng đối với chào giá công trình!")
             Exit Sub
         End If

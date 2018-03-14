@@ -20,6 +20,7 @@ Partial Class frmCauHinh
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.chkNhoMKLan = New DevExpress.XtraEditors.CheckEdit()
         Me.txtMKSQL = New DevExpress.XtraEditors.TextEdit()
         Me.txtCSDL = New DevExpress.XtraEditors.TextEdit()
         Me.txtTKSQL = New DevExpress.XtraEditors.TextEdit()
@@ -32,6 +33,7 @@ Partial Class frmCauHinh
         Me.btnKiemTra = New DevExpress.XtraEditors.SimpleButton()
         Me.btnGhiLai = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.chkNhoMKInternet = New DevExpress.XtraEditors.CheckEdit()
         Me.tbMKSQLInternet = New DevExpress.XtraEditors.TextEdit()
         Me.tbCSDLInternet = New DevExpress.XtraEditors.TextEdit()
         Me.tbTKSQLInternet = New DevExpress.XtraEditors.TextEdit()
@@ -41,6 +43,7 @@ Partial Class frmCauHinh
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.chkNhoMKLocal = New DevExpress.XtraEditors.CheckEdit()
         Me.tbMKSQLCN = New DevExpress.XtraEditors.TextEdit()
         Me.tbCSDLCN = New DevExpress.XtraEditors.TextEdit()
         Me.tbTKSQLCN = New DevExpress.XtraEditors.TextEdit()
@@ -53,23 +56,23 @@ Partial Class frmCauHinh
         Me.rdLocal = New DevExpress.XtraEditors.CheckEdit()
         Me.rdLan = New DevExpress.XtraEditors.CheckEdit()
         Me.rdInternet = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkNhoMKInternet = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkNhoMKLan = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkNhoMKLocal = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.chkNhoMKLan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMKSQL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCSDL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTKSQL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMayChu.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.chkNhoMKInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbMKSQLInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbCSDLInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbTKSQLInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbMayChuInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.chkNhoMKLocal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbMKSQLCN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbCSDLCN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbTKSQLCN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,9 +80,6 @@ Partial Class frmCauHinh
         CType(Me.rdLocal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rdLan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rdInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkNhoMKInternet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkNhoMKLan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkNhoMKLocal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -98,6 +98,16 @@ Partial Class frmCauHinh
         Me.GroupControl1.Size = New System.Drawing.Size(391, 159)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Máy chủ kết nối mạng nội bộ (LAN)"
+        '
+        'chkNhoMKLan
+        '
+        Me.chkNhoMKLan.Location = New System.Drawing.Point(126, 136)
+        Me.chkNhoMKLan.Name = "chkNhoMKLan"
+        Me.chkNhoMKLan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
+        Me.chkNhoMKLan.Properties.Appearance.Options.UseFont = True
+        Me.chkNhoMKLan.Properties.Caption = "Ghi nhớ mật khẩu"
+        Me.chkNhoMKLan.Size = New System.Drawing.Size(154, 19)
+        Me.chkNhoMKLan.TabIndex = 4
         '
         'txtMKSQL
         '
@@ -240,6 +250,16 @@ Partial Class frmCauHinh
         Me.GroupControl2.TabIndex = 0
         Me.GroupControl2.Text = "Máy chủ kết nối Internet"
         '
+        'chkNhoMKInternet
+        '
+        Me.chkNhoMKInternet.Location = New System.Drawing.Point(126, 137)
+        Me.chkNhoMKInternet.Name = "chkNhoMKInternet"
+        Me.chkNhoMKInternet.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
+        Me.chkNhoMKInternet.Properties.Appearance.Options.UseFont = True
+        Me.chkNhoMKInternet.Properties.Caption = "Ghi nhớ mật khẩu"
+        Me.chkNhoMKInternet.Size = New System.Drawing.Size(154, 19)
+        Me.chkNhoMKInternet.TabIndex = 4
+        '
         'tbMKSQLInternet
         '
         Me.tbMKSQLInternet.Location = New System.Drawing.Point(128, 114)
@@ -337,6 +357,16 @@ Partial Class frmCauHinh
         Me.GroupControl3.Size = New System.Drawing.Size(391, 159)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "Máy chủ dùng dữ liệu cá nhân (Local)"
+        '
+        'chkNhoMKLocal
+        '
+        Me.chkNhoMKLocal.Location = New System.Drawing.Point(126, 135)
+        Me.chkNhoMKLocal.Name = "chkNhoMKLocal"
+        Me.chkNhoMKLocal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
+        Me.chkNhoMKLocal.Properties.Appearance.Options.UseFont = True
+        Me.chkNhoMKLocal.Properties.Caption = "Ghi nhớ mật khẩu"
+        Me.chkNhoMKLocal.Size = New System.Drawing.Size(154, 19)
+        Me.chkNhoMKLocal.TabIndex = 4
         '
         'tbMKSQLCN
         '
@@ -467,36 +497,6 @@ Partial Class frmCauHinh
         Me.rdInternet.TabIndex = 7
         Me.rdInternet.TabStop = False
         '
-        'chkNhoMKInternet
-        '
-        Me.chkNhoMKInternet.Location = New System.Drawing.Point(126, 137)
-        Me.chkNhoMKInternet.Name = "chkNhoMKInternet"
-        Me.chkNhoMKInternet.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
-        Me.chkNhoMKInternet.Properties.Appearance.Options.UseFont = True
-        Me.chkNhoMKInternet.Properties.Caption = "Ghi nhớ mật khẩu"
-        Me.chkNhoMKInternet.Size = New System.Drawing.Size(154, 19)
-        Me.chkNhoMKInternet.TabIndex = 4
-        '
-        'chkNhoMKLan
-        '
-        Me.chkNhoMKLan.Location = New System.Drawing.Point(126, 136)
-        Me.chkNhoMKLan.Name = "chkNhoMKLan"
-        Me.chkNhoMKLan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
-        Me.chkNhoMKLan.Properties.Appearance.Options.UseFont = True
-        Me.chkNhoMKLan.Properties.Caption = "Ghi nhớ mật khẩu"
-        Me.chkNhoMKLan.Size = New System.Drawing.Size(154, 19)
-        Me.chkNhoMKLan.TabIndex = 4
-        '
-        'chkNhoMKLocal
-        '
-        Me.chkNhoMKLocal.Location = New System.Drawing.Point(126, 135)
-        Me.chkNhoMKLocal.Name = "chkNhoMKLocal"
-        Me.chkNhoMKLocal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(163, Byte))
-        Me.chkNhoMKLocal.Properties.Appearance.Options.UseFont = True
-        Me.chkNhoMKLocal.Properties.Caption = "Ghi nhớ mật khẩu"
-        Me.chkNhoMKLocal.Size = New System.Drawing.Size(154, 19)
-        Me.chkNhoMKLocal.TabIndex = 4
-        '
         'frmCauHinh
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -521,6 +521,7 @@ Partial Class frmCauHinh
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.chkNhoMKLan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMKSQL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCSDL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTKSQL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -528,6 +529,7 @@ Partial Class frmCauHinh
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.chkNhoMKInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbMKSQLInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbCSDLInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbTKSQLInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -535,6 +537,7 @@ Partial Class frmCauHinh
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.chkNhoMKLocal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbMKSQLCN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbCSDLCN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbTKSQLCN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -542,9 +545,6 @@ Partial Class frmCauHinh
         CType(Me.rdLocal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rdLan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rdInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkNhoMKInternet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkNhoMKLan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkNhoMKLocal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

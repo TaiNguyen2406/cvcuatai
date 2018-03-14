@@ -749,7 +749,7 @@ Partial Class frmTHCongNo
         '
         Me.tabPhaiTra.Controls.Add(Me.gdvPhaiTra)
         Me.tabPhaiTra.Name = "tabPhaiTra"
-        Me.tabPhaiTra.Size = New System.Drawing.Size(1256, 383)
+        Me.tabPhaiTra.Size = New System.Drawing.Size(1256, 378)
         Me.tabPhaiTra.Text = "Tổng hợp công nợ phải trả"
         '
         'gdvPhaiTra
@@ -759,7 +759,7 @@ Partial Class frmTHCongNo
         Me.gdvPhaiTra.MainView = Me.gdvPhaiTraCT
         Me.gdvPhaiTra.MenuManager = Me.BarManager1
         Me.gdvPhaiTra.Name = "gdvPhaiTra"
-        Me.gdvPhaiTra.Size = New System.Drawing.Size(1256, 383)
+        Me.gdvPhaiTra.Size = New System.Drawing.Size(1256, 378)
         Me.gdvPhaiTra.TabIndex = 9
         Me.gdvPhaiTra.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvPhaiTraCT})
         '
@@ -1208,7 +1208,7 @@ Partial Class frmTHCongNo
         '
         Me.tabChiTietPhaiThu.Controls.Add(Me.gdvCTNoPhaiThu)
         Me.tabChiTietPhaiThu.Name = "tabChiTietPhaiThu"
-        Me.tabChiTietPhaiThu.Size = New System.Drawing.Size(1256, 383)
+        Me.tabChiTietPhaiThu.Size = New System.Drawing.Size(1256, 378)
         Me.tabChiTietPhaiThu.Text = "Chi tiết nợ phải thu"
         '
         'gdvCTNoPhaiThu
@@ -1218,7 +1218,7 @@ Partial Class frmTHCongNo
         Me.gdvCTNoPhaiThu.MainView = Me.gdvCTNoPhaiThuCT
         Me.gdvCTNoPhaiThu.MenuManager = Me.BarManager1
         Me.gdvCTNoPhaiThu.Name = "gdvCTNoPhaiThu"
-        Me.gdvCTNoPhaiThu.Size = New System.Drawing.Size(1256, 383)
+        Me.gdvCTNoPhaiThu.Size = New System.Drawing.Size(1256, 378)
         Me.gdvCTNoPhaiThu.TabIndex = 10
         Me.gdvCTNoPhaiThu.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCTNoPhaiThuCT})
         '
@@ -1406,7 +1406,7 @@ Partial Class frmTHCongNo
         '
         Me.tabChiTietPhaiTra.Controls.Add(Me.gdvCTNoPhaiTra)
         Me.tabChiTietPhaiTra.Name = "tabChiTietPhaiTra"
-        Me.tabChiTietPhaiTra.Size = New System.Drawing.Size(1256, 378)
+        Me.tabChiTietPhaiTra.Size = New System.Drawing.Size(1256, 383)
         Me.tabChiTietPhaiTra.Text = "Chi tiết nợ phải trả"
         '
         'gdvCTNoPhaiTra
@@ -1416,7 +1416,7 @@ Partial Class frmTHCongNo
         Me.gdvCTNoPhaiTra.MainView = Me.gdvCTNoPhaiTraCT
         Me.gdvCTNoPhaiTra.MenuManager = Me.BarManager1
         Me.gdvCTNoPhaiTra.Name = "gdvCTNoPhaiTra"
-        Me.gdvCTNoPhaiTra.Size = New System.Drawing.Size(1256, 378)
+        Me.gdvCTNoPhaiTra.Size = New System.Drawing.Size(1256, 383)
         Me.gdvCTNoPhaiTra.TabIndex = 11
         Me.gdvCTNoPhaiTra.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCTNoPhaiTraCT})
         '

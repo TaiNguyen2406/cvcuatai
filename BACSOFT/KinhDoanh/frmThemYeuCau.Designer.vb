@@ -33,6 +33,7 @@ Partial Class frmThemYeuCau
         Me.tbNgay = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.cboCongtrinh = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cbNguonKH = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -59,16 +60,19 @@ Partial Class frmThemYeuCau
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.tbSoPhieu.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbNgay.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbNgay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.cboCongtrinh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbNguonKH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbLoaiYeuCau.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvLoaiCongTrinh, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,7 +129,6 @@ Partial Class frmThemYeuCau
         '
         'LabelControl1
         '
-        Me.LabelControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl1.Location = New System.Drawing.Point(13, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(41, 13)
@@ -134,7 +137,6 @@ Partial Class frmThemYeuCau
         '
         'tbSoPhieu
         '
-        Me.tbSoPhieu.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbSoPhieu.Enabled = False
         Me.tbSoPhieu.Location = New System.Drawing.Point(68, 12)
         Me.tbSoPhieu.Name = "tbSoPhieu"
@@ -149,7 +151,6 @@ Partial Class frmThemYeuCau
         '
         'LabelControl2
         '
-        Me.LabelControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl2.Location = New System.Drawing.Point(176, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(43, 13)
@@ -158,7 +159,6 @@ Partial Class frmThemYeuCau
         '
         'tbNgay
         '
-        Me.tbNgay.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbNgay.EditValue = Nothing
         Me.tbNgay.Enabled = False
         Me.tbNgay.Location = New System.Drawing.Point(225, 12)
@@ -186,6 +186,8 @@ Partial Class frmThemYeuCau
         '
         Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.Controls.Add(Me.LabelControl10)
+        Me.GroupControl2.Controls.Add(Me.cboCongtrinh)
         Me.GroupControl2.Controls.Add(Me.cbNguonKH)
         Me.GroupControl2.Controls.Add(Me.LabelControl9)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
@@ -217,6 +219,19 @@ Partial Class frmThemYeuCau
         Me.GroupControl2.TabIndex = 0
         Me.GroupControl2.Text = "Thông tin chính"
         '
+        'cboCongtrinh
+        '
+        Me.cboCongtrinh.EditValue = "Thương mại"
+        Me.cboCongtrinh.Location = New System.Drawing.Point(68, 180)
+        Me.cboCongtrinh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.cboCongtrinh.Name = "cboCongtrinh"
+        Me.cboCongtrinh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCongtrinh.Properties.Items.AddRange(New Object() {"Thương mại", "Công trình", "Phần mềm"})
+        Me.cboCongtrinh.Properties.NullText = "Công trình"
+        Me.cboCongtrinh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cboCongtrinh.Size = New System.Drawing.Size(119, 20)
+        Me.cboCongtrinh.TabIndex = 19
+        '
         'cbNguonKH
         '
         Me.cbNguonKH.Location = New System.Drawing.Point(68, 68)
@@ -241,7 +256,7 @@ Partial Class frmThemYeuCau
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(13, 392)
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 182)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl8.TabIndex = 13
@@ -249,7 +264,7 @@ Partial Class frmThemYeuCau
         '
         'cbLoaiYeuCau
         '
-        Me.cbLoaiYeuCau.Location = New System.Drawing.Point(68, 389)
+        Me.cbLoaiYeuCau.Location = New System.Drawing.Point(70, 205)
         Me.cbLoaiYeuCau.Name = "cbLoaiYeuCau"
         Me.cbLoaiYeuCau.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cbLoaiYeuCau.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -292,7 +307,7 @@ Partial Class frmThemYeuCau
         '
         Me.btXoaFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btXoaFile.Image = Global.BACSOFT.My.Resources.Resources.Delete_File_16
-        Me.btXoaFile.Location = New System.Drawing.Point(655, 333)
+        Me.btXoaFile.Location = New System.Drawing.Point(657, 359)
         Me.btXoaFile.Name = "btXoaFile"
         Me.btXoaFile.Size = New System.Drawing.Size(75, 23)
         Me.btXoaFile.TabIndex = 13
@@ -302,7 +317,7 @@ Partial Class frmThemYeuCau
         '
         Me.btThemFile.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btThemFile.Image = Global.BACSOFT.My.Resources.Resources.attachment_16
-        Me.btThemFile.Location = New System.Drawing.Point(655, 304)
+        Me.btThemFile.Location = New System.Drawing.Point(657, 330)
         Me.btThemFile.Name = "btThemFile"
         Me.btThemFile.Size = New System.Drawing.Size(75, 23)
         Me.btThemFile.TabIndex = 12
@@ -310,7 +325,7 @@ Partial Class frmThemYeuCau
         '
         'cbTrangThai
         '
-        Me.cbTrangThai.Location = New System.Drawing.Point(68, 363)
+        Me.cbTrangThai.Location = New System.Drawing.Point(70, 389)
         Me.cbTrangThai.Name = "cbTrangThai"
         Me.cbTrangThai.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.cbTrangThai.Properties.Appearance.Options.UseFont = True
@@ -327,7 +342,7 @@ Partial Class frmThemYeuCau
         '
         'LabelControl19
         '
-        Me.LabelControl19.Location = New System.Drawing.Point(13, 366)
+        Me.LabelControl19.Location = New System.Drawing.Point(15, 392)
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl19.TabIndex = 9
@@ -336,7 +351,7 @@ Partial Class frmThemYeuCau
         'gListFile
         '
         Me.gListFile.Controls.Add(Me.gdvFile)
-        Me.gListFile.Location = New System.Drawing.Point(68, 205)
+        Me.gListFile.Location = New System.Drawing.Point(70, 231)
         Me.gListFile.Name = "gListFile"
         Me.gListFile.Size = New System.Drawing.Size(581, 152)
         Me.gListFile.TabIndex = 8
@@ -389,6 +404,7 @@ Partial Class frmThemYeuCau
         Me.chkCongTrinh.Properties.ValueGrayed = False
         Me.chkCongTrinh.Size = New System.Drawing.Size(75, 19)
         Me.chkCongTrinh.TabIndex = 7
+        Me.chkCongTrinh.Visible = False
         '
         'tbYeuCau
         '
@@ -424,12 +440,15 @@ Partial Class frmThemYeuCau
         '
         Me.cbNguoiGD.Location = New System.Drawing.Point(463, 40)
         Me.cbNguoiGD.Name = "cbNguoiGD"
+        Me.cbNguoiGD.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.cbNguoiGD.Properties.Appearance.Options.UseBackColor = True
         Me.cbNguoiGD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("cbNguoiGD.Properties.Buttons"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, CType(resources.GetObject("cbNguoiGD.Properties.Buttons1"), System.Drawing.Image), New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
-        Me.cbNguoiGD.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Tên"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Chamsoc", "Name3", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.cbNguoiGD.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Người GD"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Chamsoc", "Name3", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenChamSoc", "Người Take Care")})
         Me.cbNguoiGD.Properties.DisplayMember = "Ten"
         Me.cbNguoiGD.Properties.DropDownItemHeight = 22
         Me.cbNguoiGD.Properties.NullText = ""
-        Me.cbNguoiGD.Properties.ShowHeader = False
+        Me.cbNguoiGD.Properties.ShowFooter = False
+        Me.cbNguoiGD.Properties.ShowLines = False
         Me.cbNguoiGD.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cbNguoiGD.Properties.ValueMember = "ID"
         Me.cbNguoiGD.Size = New System.Drawing.Size(267, 24)
@@ -464,14 +483,13 @@ Partial Class frmThemYeuCau
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.Options.UseFont = True
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn2})
+        Me.GridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn2, Me.GridColumn6})
         Me.GridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridLookUpEdit1View.Name = "GridLookUpEdit1View"
         Me.GridLookUpEdit1View.OptionsBehavior.AutoExpandAllGroups = True
         Me.GridLookUpEdit1View.OptionsBehavior.Editable = False
         Me.GridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridLookUpEdit1View.OptionsView.ColumnAutoWidth = False
-        Me.GridLookUpEdit1View.OptionsView.EnableAppearanceEvenRow = True
         Me.GridLookUpEdit1View.OptionsView.ShowAutoFilterRow = True
         Me.GridLookUpEdit1View.OptionsView.ShowGroupPanel = False
         Me.GridLookUpEdit1View.RowHeight = 17
@@ -508,9 +526,15 @@ Partial Class frmThemYeuCau
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 350
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "IDTakecare"
+        Me.GridColumn6.FieldName = "IDTakecare"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(13, 209)
+        Me.LabelControl7.Location = New System.Drawing.Point(15, 235)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(16, 13)
         Me.LabelControl7.TabIndex = 0
@@ -550,6 +574,14 @@ Partial Class frmThemYeuCau
         Me.GridColumn32.VisibleIndex = 1
         Me.GridColumn32.Width = 334
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(13, 208)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl10.TabIndex = 20
+        Me.LabelControl10.Text = "Loại CT" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'frmThemYeuCau
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -560,6 +592,8 @@ Partial Class frmThemYeuCau
         Me.Controls.Add(Me.btDong)
         Me.Controls.Add(Me.btGhi)
         Me.Controls.Add(Me.btThem)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmThemYeuCau"
         Me.ShowInTaskbar = False
@@ -571,6 +605,7 @@ Partial Class frmThemYeuCau
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.cboCongtrinh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbNguonKH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbLoaiYeuCau.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gdvLoaiCongTrinh, System.ComponentModel.ISupportInitialize).EndInit()
@@ -588,7 +623,7 @@ Partial Class frmThemYeuCau
         CType(Me.GridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
-    End Sub
+End Sub
     Friend WithEvents btThem As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btGhi As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btDong As DevExpress.XtraEditors.SimpleButton
@@ -620,8 +655,6 @@ Partial Class frmThemYeuCau
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents cbTrangThai As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents btXoaFile As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents btThemFile As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cbLoaiYeuCau As DevExpress.XtraEditors.GridLookUpEdit
     Friend WithEvents gdvLoaiCongTrinh As DevExpress.XtraGrid.Views.Grid.GridView
@@ -629,4 +662,9 @@ Partial Class frmThemYeuCau
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cbNguonKH As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cboCongtrinh As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents btXoaFile As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btThemFile As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

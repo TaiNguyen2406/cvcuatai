@@ -35,6 +35,9 @@ Partial Class frmCNChaoGia
         Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.btGhi = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl39 = New DevExpress.XtraEditors.LabelControl()
+        Me.lueMucDichXuat = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cmbHTCT = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl38 = New DevExpress.XtraEditors.LabelControl()
         Me.cbHinhThucTT2 = New DevExpress.XtraEditors.GridLookUpEdit()
         Me.BarManager2 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -191,23 +194,10 @@ Partial Class frmCNChaoGia
         Me.colSLTrongBo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colTenBoVT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn86 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn97 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.tabHangMucKhac = New DevExpress.XtraTab.XtraTabPage()
-        Me.popupXuatExcel = New DevExpress.XtraBars.PopupControlContainer(Me.components)
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-        Me.chkGhiChu = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatTheoBo = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkDungFileCuaKhach = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkN2 = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkN0 = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkENG = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkVIE = New DevExpress.XtraEditors.CheckEdit()
-        Me.btXuat = New DevExpress.XtraEditors.SimpleButton()
-        Me.chkXuatTinhTrangHang = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatThongSo = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatHangSX = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkXuatMaVT = New DevExpress.XtraEditors.CheckEdit()
         Me.gdvCongTrinh = New DevExpress.XtraGrid.GridControl()
         Me.gdvCongTrinhCT = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -227,6 +217,20 @@ Partial Class frmCNChaoGia
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cbTienTeCT = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.popupXuatExcel = New DevExpress.XtraBars.PopupControlContainer(Me.components)
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.chkGhiChu = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatTheoBo = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkDungFileCuaKhach = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkN2 = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkN0 = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkENG = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkVIE = New DevExpress.XtraEditors.CheckEdit()
+        Me.btXuat = New DevExpress.XtraEditors.SimpleButton()
+        Me.chkXuatTinhTrangHang = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatThongSo = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatHangSX = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkXuatMaVT = New DevExpress.XtraEditors.CheckEdit()
         Me.pmenuXuatThue = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.riLueNhom = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -265,6 +269,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn96 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.tbNgayHuy = New DevExpress.XtraEditors.DateEdit()
         Me.tbNgayGiao = New DevExpress.XtraEditors.DateEdit()
@@ -274,6 +279,7 @@ Partial Class frmCNChaoGia
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.lueCongTrinh = New DevExpress.XtraEditors.LookUpEdit()
         Me.pTinhGia = New DevExpress.XtraEditors.PanelControl()
         Me.tbSoDong = New DevExpress.XtraEditors.ButtonEdit()
         Me.btDongPTinhGia = New DevExpress.XtraEditors.SimpleButton()
@@ -349,8 +355,11 @@ Partial Class frmCNChaoGia
         Me.GridColumn87 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn88 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn89 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn95 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.lueMucDichXuat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmbHTCT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbHinhThucTT2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbNhomVT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -405,6 +414,13 @@ Partial Class frmCNChaoGia
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.tabHangMucKhac.SuspendLayout()
+        CType(Me.gdvCongTrinh, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gdvCongTrinhCT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbDVTAUX, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbN0CT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbN2CT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkXuatThue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbTienTeCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.popupXuatExcel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.popupXuatExcel.SuspendLayout()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,13 +436,6 @@ Partial Class frmCNChaoGia
         CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gdvCongTrinh, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gdvCongTrinhCT, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbDVTAUX, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbN0CT, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbN2CT, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkXuatThue, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbTienTeCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pmenuXuatThue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -451,6 +460,7 @@ Partial Class frmCNChaoGia
         CType(Me.tbNgayGiao.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbNgayNhan.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbNgayNhan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueCongTrinh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pTinhGia, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pTinhGia.SuspendLayout()
         CType(Me.tbSoDong.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -499,7 +509,7 @@ Partial Class frmCNChaoGia
         Me.btGhi.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btGhi.Appearance.Options.UseFont = True
         Me.btGhi.Image = CType(resources.GetObject("btGhi.Image"), System.Drawing.Image)
-        Me.btGhi.Location = New System.Drawing.Point(902, 39)
+        Me.btGhi.Location = New System.Drawing.Point(864, 39)
         Me.btGhi.Name = "btGhi"
         Me.btGhi.Size = New System.Drawing.Size(94, 29)
         Me.btGhi.TabIndex = 14
@@ -509,6 +519,9 @@ Partial Class frmCNChaoGia
         '
         Me.GroupControl2.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl2.Controls.Add(Me.LabelControl39)
+        Me.GroupControl2.Controls.Add(Me.lueMucDichXuat)
+        Me.GroupControl2.Controls.Add(Me.cmbHTCT)
         Me.GroupControl2.Controls.Add(Me.LabelControl38)
         Me.GroupControl2.Controls.Add(Me.cbHinhThucTT2)
         Me.GroupControl2.Controls.Add(Me.LabelControl37)
@@ -545,30 +558,74 @@ Partial Class frmCNChaoGia
         Me.GroupControl2.Controls.Add(Me.LabelControl3)
         Me.GroupControl2.Controls.Add(Me.LabelControl24)
         Me.GroupControl2.Controls.Add(Me.LabelControl13)
+        Me.GroupControl2.Controls.Add(Me.lueCongTrinh)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.ShowCaption = False
-        Me.GroupControl2.Size = New System.Drawing.Size(808, 163)
+        Me.GroupControl2.Size = New System.Drawing.Size(770, 163)
         Me.GroupControl2.TabIndex = 0
         Me.GroupControl2.Text = "Thông tin chính"
         '
+        'LabelControl39
+        '
+        Me.LabelControl39.Location = New System.Drawing.Point(245, 119)
+        Me.LabelControl39.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
+        Me.LabelControl39.Name = "LabelControl39"
+        Me.LabelControl39.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl39.TabIndex = 23
+        Me.LabelControl39.Text = "Mục đích xuất"
+        '
+        'lueMucDichXuat
+        '
+        Me.lueMucDichXuat.Enabled = False
+        Me.lueMucDichXuat.Location = New System.Drawing.Point(317, 116)
+        Me.lueMucDichXuat.Name = "lueMucDichXuat"
+        Me.lueMucDichXuat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueMucDichXuat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("NoiDung", "Tên")})
+        Me.lueMucDichXuat.Properties.DisplayMember = "NoiDung"
+        Me.lueMucDichXuat.Properties.DropDownItemHeight = 25
+        Me.lueMucDichXuat.Properties.DropDownRows = 3
+        Me.lueMucDichXuat.Properties.NullText = ""
+        Me.lueMucDichXuat.Properties.ShowFooter = False
+        Me.lueMucDichXuat.Properties.ShowHeader = False
+        Me.lueMucDichXuat.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.lueMucDichXuat.Properties.ValueMember = "ID"
+        Me.lueMucDichXuat.Size = New System.Drawing.Size(138, 20)
+        Me.lueMucDichXuat.TabIndex = 22
+        '
+        'cmbHTCT
+        '
+        Me.cmbHTCT.Location = New System.Drawing.Point(92, 116)
+        Me.cmbHTCT.Name = "cmbHTCT"
+        Me.cmbHTCT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmbHTCT.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Tên")})
+        Me.cmbHTCT.Properties.DisplayMember = "Ten"
+        Me.cmbHTCT.Properties.DropDownItemHeight = 25
+        Me.cmbHTCT.Properties.DropDownRows = 3
+        Me.cmbHTCT.Properties.NullText = ""
+        Me.cmbHTCT.Properties.ShowFooter = False
+        Me.cmbHTCT.Properties.ShowHeader = False
+        Me.cmbHTCT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.cmbHTCT.Properties.ValueMember = "Id"
+        Me.cmbHTCT.Size = New System.Drawing.Size(138, 20)
+        Me.cmbHTCT.TabIndex = 20
+        '
         'LabelControl38
         '
-        Me.LabelControl38.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl38.Location = New System.Drawing.Point(410, 120)
+        Me.LabelControl38.Location = New System.Drawing.Point(14, 119)
         Me.LabelControl38.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.LabelControl38.Name = "LabelControl38"
-        Me.LabelControl38.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl38.Size = New System.Drawing.Size(62, 13)
         Me.LabelControl38.TabIndex = 19
-        Me.LabelControl38.Text = "HT CT"
+        Me.LabelControl38.Text = "HT Chứng từ"
         '
         'cbHinhThucTT2
         '
         Me.cbHinhThucTT2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbHinhThucTT2.EditValue = "[EditValue is dnull]"
-        Me.cbHinhThucTT2.Location = New System.Drawing.Point(92, 116)
+        Me.cbHinhThucTT2.Location = New System.Drawing.Point(92, 94)
         Me.cbHinhThucTT2.MenuManager = Me.BarManager2
         Me.cbHinhThucTT2.Name = "cbHinhThucTT2"
         Me.cbHinhThucTT2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -578,7 +635,7 @@ Partial Class frmCNChaoGia
         Me.cbHinhThucTT2.Properties.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riLueNhom})
         Me.cbHinhThucTT2.Properties.ValueMember = "ID"
         Me.cbHinhThucTT2.Properties.View = Me.GridView1
-        Me.cbHinhThucTT2.Size = New System.Drawing.Size(302, 20)
+        Me.cbHinhThucTT2.Size = New System.Drawing.Size(469, 20)
         Me.cbHinhThucTT2.TabIndex = 18
         '
         'BarManager2
@@ -803,14 +860,14 @@ Partial Class frmCNChaoGia
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(995, 65)
+        Me.BarDockControl1.Size = New System.Drawing.Size(957, 65)
         '
         'BarDockControl2
         '
         Me.BarDockControl2.CausesValidation = False
         Me.BarDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BarDockControl2.Location = New System.Drawing.Point(0, 206)
-        Me.BarDockControl2.Size = New System.Drawing.Size(995, 0)
+        Me.BarDockControl2.Size = New System.Drawing.Size(957, 0)
         '
         'BarDockControl3
         '
@@ -823,7 +880,7 @@ Partial Class frmCNChaoGia
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(995, 65)
+        Me.BarDockControl4.Location = New System.Drawing.Point(957, 65)
         Me.BarDockControl4.Size = New System.Drawing.Size(0, 141)
         '
         'tabChuyenMa
@@ -836,7 +893,7 @@ Partial Class frmCNChaoGia
         Me.tabChuyenMa.Controls.Add(Me.BarDockControl1)
         Me.tabChuyenMa.Name = "tabChuyenMa"
         Me.BarManager2.SetPopupContextMenu(Me.tabChuyenMa, Me.PopupMenu1)
-        Me.tabChuyenMa.Size = New System.Drawing.Size(995, 206)
+        Me.tabChuyenMa.Size = New System.Drawing.Size(957, 206)
         Me.tabChuyenMa.Text = "Chuyển mã"
         '
         'pNhapSoLuong
@@ -868,7 +925,7 @@ Partial Class frmCNChaoGia
         Me.gdvChuyenMa.MainView = Me.gdvChuyenMaCT
         Me.gdvChuyenMa.Name = "gdvChuyenMa"
         Me.gdvChuyenMa.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemMemoEdit2, Me.rcbTaiLieu, Me.rtHinhAnh})
-        Me.gdvChuyenMa.Size = New System.Drawing.Size(995, 141)
+        Me.gdvChuyenMa.Size = New System.Drawing.Size(957, 141)
         Me.gdvChuyenMa.TabIndex = 7
         Me.gdvChuyenMa.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvChuyenMaCT, Me.GridView2})
         '
@@ -1454,7 +1511,7 @@ Partial Class frmCNChaoGia
         Me.splitChiTiet.Panel2.Padding = New System.Windows.Forms.Padding(0, 2, 0, 0)
         Me.splitChiTiet.Panel2.Text = "Panel2"
         Me.BarManager2.SetPopupContextMenu(Me.splitChiTiet, Me.pmenuXuatThue)
-        Me.splitChiTiet.Size = New System.Drawing.Size(1005, 306)
+        Me.splitChiTiet.Size = New System.Drawing.Size(967, 306)
         Me.splitChiTiet.SplitterPosition = 238
         Me.splitChiTiet.TabIndex = 1
         Me.splitChiTiet.Text = "SplitContainerControl2"
@@ -1556,7 +1613,7 @@ Partial Class frmCNChaoGia
         Me.gdvVT.MainView = Me.gdvVTCT
         Me.gdvVT.Name = "gdvVT"
         Me.gdvVT.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN2, Me.rcbTrangThaiChiTiet, Me.cbThoiGianGH, Me.rcbTienTe, Me.RepositoryItemMemoEdit1})
-        Me.gdvVT.Size = New System.Drawing.Size(1005, 61)
+        Me.gdvVT.Size = New System.Drawing.Size(967, 61)
         Me.gdvVT.TabIndex = 0
         Me.gdvVT.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvVTCT})
         '
@@ -1572,7 +1629,7 @@ Partial Class frmCNChaoGia
         Me.gdvVTCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvVTCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvVTCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvVTCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.colGiaGoc, Me.GridColumn23, Me.colGiaNhapNew, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28, Me.colTTGiaNhap, Me.GridColumn26, Me.GridColumn27, Me.colThongSo, Me.colGiaList, Me.colGiaBanLe, Me.colGiaBanBuon, Me.colGiaNhap, Me.GridColumn9, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn6, Me.GridColumn30, Me.colTienTeChaoGia, Me.colTyGiaChaoGia, Me.GridColumn4, Me.GridColumn73, Me.GridColumn78, Me.GridColumn79, Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn83, Me.GridColumn84, Me.colSLTrongBo, Me.colTenBoVT, Me.GridColumn86})
+        Me.gdvVTCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.colGiaGoc, Me.GridColumn23, Me.colGiaNhapNew, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28, Me.colTTGiaNhap, Me.GridColumn26, Me.GridColumn27, Me.colThongSo, Me.colGiaList, Me.colGiaBanLe, Me.colGiaBanBuon, Me.colGiaNhap, Me.GridColumn9, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn6, Me.GridColumn30, Me.colTienTeChaoGia, Me.colTyGiaChaoGia, Me.GridColumn4, Me.GridColumn73, Me.GridColumn78, Me.GridColumn79, Me.GridColumn80, Me.GridColumn81, Me.GridColumn82, Me.GridColumn83, Me.GridColumn84, Me.colSLTrongBo, Me.colTenBoVT, Me.GridColumn86, Me.GridColumn97})
         Me.gdvVTCT.GridControl = Me.gdvVT
         Me.gdvVTCT.Name = "gdvVTCT"
         Me.gdvVTCT.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDownFocused
@@ -1700,7 +1757,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn20.OptionsColumn.FixedWidth = True
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 40
         '
         'GridColumn21
@@ -1710,7 +1767,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.FixedWidth = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 9
+        Me.GridColumn21.VisibleIndex = 10
         Me.GridColumn21.Width = 41
         '
         'GridColumn22
@@ -1723,7 +1780,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.FixedWidth = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 10
+        Me.GridColumn22.VisibleIndex = 11
         Me.GridColumn22.Width = 56
         '
         'tbN2
@@ -1756,7 +1813,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.FixedWidth = True
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 11
+        Me.GridColumn23.VisibleIndex = 12
         Me.GridColumn23.Width = 100
         '
         'colGiaNhapNew
@@ -1779,7 +1836,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.FixedWidth = True
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 12
+        Me.GridColumn24.VisibleIndex = 13
         Me.GridColumn24.Width = 61
         '
         'GridColumn25
@@ -1792,7 +1849,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.FixedWidth = True
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 13
+        Me.GridColumn25.VisibleIndex = 14
         Me.GridColumn25.Width = 90
         '
         'GridColumn28
@@ -1809,7 +1866,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn28.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn28.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 14
+        Me.GridColumn28.VisibleIndex = 15
         Me.GridColumn28.Width = 110
         '
         'colTTGiaNhap
@@ -1832,7 +1889,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.FixedWidth = True
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 15
+        Me.GridColumn26.VisibleIndex = 16
         Me.GridColumn26.Width = 53
         '
         'GridColumn27
@@ -1842,7 +1899,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.FixedWidth = True
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 16
+        Me.GridColumn27.VisibleIndex = 17
         Me.GridColumn27.Width = 40
         '
         'colThongSo
@@ -1856,7 +1913,7 @@ Partial Class frmCNChaoGia
         Me.colThongSo.OptionsColumn.FixedWidth = True
         Me.colThongSo.OptionsColumn.ReadOnly = True
         Me.colThongSo.Visible = True
-        Me.colThongSo.VisibleIndex = 24
+        Me.colThongSo.VisibleIndex = 25
         Me.colThongSo.Width = 269
         '
         'RepositoryItemMemoEdit1
@@ -1873,7 +1930,7 @@ Partial Class frmCNChaoGia
         Me.colGiaList.OptionsColumn.FixedWidth = True
         Me.colGiaList.OptionsColumn.ReadOnly = True
         Me.colGiaList.Visible = True
-        Me.colGiaList.VisibleIndex = 17
+        Me.colGiaList.VisibleIndex = 18
         Me.colGiaList.Width = 90
         '
         'colGiaBanLe
@@ -1886,7 +1943,7 @@ Partial Class frmCNChaoGia
         Me.colGiaBanLe.OptionsColumn.FixedWidth = True
         Me.colGiaBanLe.OptionsColumn.ReadOnly = True
         Me.colGiaBanLe.Visible = True
-        Me.colGiaBanLe.VisibleIndex = 18
+        Me.colGiaBanLe.VisibleIndex = 19
         Me.colGiaBanLe.Width = 90
         '
         'colGiaBanBuon
@@ -1899,7 +1956,7 @@ Partial Class frmCNChaoGia
         Me.colGiaBanBuon.OptionsColumn.FixedWidth = True
         Me.colGiaBanBuon.OptionsColumn.ReadOnly = True
         Me.colGiaBanBuon.Visible = True
-        Me.colGiaBanBuon.VisibleIndex = 19
+        Me.colGiaBanBuon.VisibleIndex = 20
         Me.colGiaBanBuon.Width = 90
         '
         'colGiaNhap
@@ -1912,7 +1969,7 @@ Partial Class frmCNChaoGia
         Me.colGiaNhap.OptionsColumn.FixedWidth = True
         Me.colGiaNhap.OptionsColumn.ReadOnly = True
         Me.colGiaNhap.Visible = True
-        Me.colGiaNhap.VisibleIndex = 20
+        Me.colGiaNhap.VisibleIndex = 21
         Me.colGiaNhap.Width = 50
         '
         'GridColumn9
@@ -1924,7 +1981,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.FixedWidth = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 30
+        Me.GridColumn9.VisibleIndex = 31
         Me.GridColumn9.Width = 56
         '
         'GridColumn46
@@ -1941,7 +1998,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn47.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 31
+        Me.GridColumn47.VisibleIndex = 32
         Me.GridColumn47.Width = 98
         '
         'rcbTrangThaiChiTiet
@@ -1963,7 +2020,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn48.FieldName = "IDTGGiaoHang"
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 23
+        Me.GridColumn48.VisibleIndex = 24
         Me.GridColumn48.Width = 91
         '
         'cbThoiGianGH
@@ -1986,7 +2043,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 21
+        Me.GridColumn6.VisibleIndex = 22
         Me.GridColumn6.Width = 70
         '
         'rcbTienTe
@@ -2007,7 +2064,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn30.FieldName = "TyGia"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 22
+        Me.GridColumn30.VisibleIndex = 23
         '
         'colTienTeChaoGia
         '
@@ -2042,7 +2099,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn73.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn73.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn73.Visible = True
-        Me.GridColumn73.VisibleIndex = 32
+        Me.GridColumn73.VisibleIndex = 33
         Me.GridColumn73.Width = 20
         '
         'GridColumn78
@@ -2053,7 +2110,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn78.FieldName = "GiaCungUng"
         Me.GridColumn78.Name = "GridColumn78"
         Me.GridColumn78.Visible = True
-        Me.GridColumn78.VisibleIndex = 25
+        Me.GridColumn78.VisibleIndex = 26
         Me.GridColumn78.Width = 100
         '
         'GridColumn79
@@ -2062,7 +2119,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn79.FieldName = "TienTeCungUng"
         Me.GridColumn79.Name = "GridColumn79"
         Me.GridColumn79.Visible = True
-        Me.GridColumn79.VisibleIndex = 26
+        Me.GridColumn79.VisibleIndex = 27
         Me.GridColumn79.Width = 61
         '
         'GridColumn80
@@ -2071,7 +2128,7 @@ Partial Class frmCNChaoGia
         Me.GridColumn80.FieldName = "TGCungUng"
         Me.GridColumn80.Name = "GridColumn80"
         Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 27
+        Me.GridColumn80.VisibleIndex = 28
         Me.GridColumn80.Width = 95
         '
         'GridColumn81
@@ -2110,7 +2167,7 @@ Partial Class frmCNChaoGia
         Me.colTenBoVT.FieldName = "TenBoVT"
         Me.colTenBoVT.Name = "colTenBoVT"
         Me.colTenBoVT.Visible = True
-        Me.colTenBoVT.VisibleIndex = 28
+        Me.colTenBoVT.VisibleIndex = 29
         '
         'GridColumn86
         '
@@ -2118,8 +2175,19 @@ Partial Class frmCNChaoGia
         Me.GridColumn86.FieldName = "GhiChu"
         Me.GridColumn86.Name = "GridColumn86"
         Me.GridColumn86.Visible = True
-        Me.GridColumn86.VisibleIndex = 29
+        Me.GridColumn86.VisibleIndex = 30
         Me.GridColumn86.Width = 150
+        '
+        'GridColumn97
+        '
+        Me.GridColumn97.AppearanceHeader.ForeColor = System.Drawing.Color.Magenta
+        Me.GridColumn97.AppearanceHeader.Options.UseForeColor = True
+        Me.GridColumn97.Caption = "Ngày giao"
+        Me.GridColumn97.FieldName = "NgayCan"
+        Me.GridColumn97.Name = "GridColumn97"
+        Me.GridColumn97.Visible = True
+        Me.GridColumn97.VisibleIndex = 8
+        Me.GridColumn97.Width = 84
         '
         'GroupControl3
         '
@@ -2128,7 +2196,7 @@ Partial Class frmCNChaoGia
         Me.GroupControl3.Location = New System.Drawing.Point(0, 2)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.ShowCaption = False
-        Me.GroupControl3.Size = New System.Drawing.Size(1005, 236)
+        Me.GroupControl3.Size = New System.Drawing.Size(967, 236)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "GroupControl3"
         '
@@ -2140,164 +2208,17 @@ Partial Class frmCNChaoGia
         Me.XtraTabControl1.Location = New System.Drawing.Point(2, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.tabHangMucKhac
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1001, 232)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(963, 232)
         Me.XtraTabControl1.TabIndex = 1
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabHangMucKhac, Me.tabChuyenMa})
         '
         'tabHangMucKhac
         '
-        Me.tabHangMucKhac.Controls.Add(Me.popupXuatExcel)
         Me.tabHangMucKhac.Controls.Add(Me.gdvCongTrinh)
+        Me.tabHangMucKhac.Controls.Add(Me.popupXuatExcel)
         Me.tabHangMucKhac.Name = "tabHangMucKhac"
-        Me.tabHangMucKhac.Size = New System.Drawing.Size(995, 206)
+        Me.tabHangMucKhac.Size = New System.Drawing.Size(957, 206)
         Me.tabHangMucKhac.Text = "Các hạng mục khác"
-        '
-        'popupXuatExcel
-        '
-        Me.popupXuatExcel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.popupXuatExcel.Controls.Add(Me.GroupControl4)
-        Me.popupXuatExcel.Location = New System.Drawing.Point(509, -37)
-        Me.popupXuatExcel.Name = "popupXuatExcel"
-        Me.popupXuatExcel.Size = New System.Drawing.Size(220, 198)
-        Me.popupXuatExcel.TabIndex = 1
-        Me.popupXuatExcel.Visible = False
-        '
-        'GroupControl4
-        '
-        Me.GroupControl4.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GroupControl4.AppearanceCaption.Options.UseFont = True
-        Me.GroupControl4.Controls.Add(Me.chkGhiChu)
-        Me.GroupControl4.Controls.Add(Me.chkXuatTheoBo)
-        Me.GroupControl4.Controls.Add(Me.chkDungFileCuaKhach)
-        Me.GroupControl4.Controls.Add(Me.chkN2)
-        Me.GroupControl4.Controls.Add(Me.chkN0)
-        Me.GroupControl4.Controls.Add(Me.chkENG)
-        Me.GroupControl4.Controls.Add(Me.chkVIE)
-        Me.GroupControl4.Controls.Add(Me.btXuat)
-        Me.GroupControl4.Controls.Add(Me.chkXuatTinhTrangHang)
-        Me.GroupControl4.Controls.Add(Me.chkXuatThongSo)
-        Me.GroupControl4.Controls.Add(Me.chkXuatHangSX)
-        Me.GroupControl4.Controls.Add(Me.chkXuatMaVT)
-        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(220, 198)
-        Me.GroupControl4.TabIndex = 0
-        Me.GroupControl4.Text = "Xuất Excel"
-        '
-        'chkGhiChu
-        '
-        Me.chkGhiChu.Location = New System.Drawing.Point(6, 148)
-        Me.chkGhiChu.Name = "chkGhiChu"
-        Me.chkGhiChu.Properties.Caption = "Ghi chú"
-        Me.chkGhiChu.Size = New System.Drawing.Size(81, 19)
-        Me.chkGhiChu.TabIndex = 4
-        '
-        'chkXuatTheoBo
-        '
-        Me.chkXuatTheoBo.Location = New System.Drawing.Point(6, 171)
-        Me.chkXuatTheoBo.Name = "chkXuatTheoBo"
-        Me.chkXuatTheoBo.Properties.Caption = "Xuất theo bộ"
-        Me.chkXuatTheoBo.Size = New System.Drawing.Size(128, 19)
-        Me.chkXuatTheoBo.TabIndex = 4
-        '
-        'chkDungFileCuaKhach
-        '
-        Me.chkDungFileCuaKhach.Location = New System.Drawing.Point(6, 124)
-        Me.chkDungFileCuaKhach.Name = "chkDungFileCuaKhach"
-        Me.chkDungFileCuaKhach.Properties.Caption = "Dùng file của khách"
-        Me.chkDungFileCuaKhach.Size = New System.Drawing.Size(128, 19)
-        Me.chkDungFileCuaKhach.TabIndex = 4
-        '
-        'chkN2
-        '
-        Me.chkN2.Location = New System.Drawing.Point(138, 101)
-        Me.chkN2.Name = "chkN2"
-        Me.chkN2.Properties.Caption = "..1.234,00"
-        Me.chkN2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkN2.Properties.RadioGroupIndex = 1
-        Me.chkN2.Size = New System.Drawing.Size(75, 19)
-        Me.chkN2.TabIndex = 8
-        Me.chkN2.TabStop = False
-        '
-        'chkN0
-        '
-        Me.chkN0.EditValue = True
-        Me.chkN0.Location = New System.Drawing.Point(138, 76)
-        Me.chkN0.Name = "chkN0"
-        Me.chkN0.Properties.Caption = "..1.234"
-        Me.chkN0.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkN0.Properties.RadioGroupIndex = 1
-        Me.chkN0.Size = New System.Drawing.Size(75, 19)
-        Me.chkN0.TabIndex = 7
-        '
-        'chkENG
-        '
-        Me.chkENG.Location = New System.Drawing.Point(138, 51)
-        Me.chkENG.Name = "chkENG"
-        Me.chkENG.Properties.Caption = "ENG"
-        Me.chkENG.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkENG.Properties.RadioGroupIndex = 0
-        Me.chkENG.Size = New System.Drawing.Size(75, 19)
-        Me.chkENG.TabIndex = 6
-        Me.chkENG.TabStop = False
-        '
-        'chkVIE
-        '
-        Me.chkVIE.EditValue = True
-        Me.chkVIE.Location = New System.Drawing.Point(138, 26)
-        Me.chkVIE.Name = "chkVIE"
-        Me.chkVIE.Properties.Caption = "VIE"
-        Me.chkVIE.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
-        Me.chkVIE.Properties.RadioGroupIndex = 0
-        Me.chkVIE.Size = New System.Drawing.Size(75, 19)
-        Me.chkVIE.TabIndex = 5
-        '
-        'btXuat
-        '
-        Me.btXuat.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.btXuat.Appearance.Options.UseFont = True
-        Me.btXuat.Image = Global.BACSOFT.My.Resources.Resources.Excel_18
-        Me.btXuat.Location = New System.Drawing.Point(140, 126)
-        Me.btXuat.Name = "btXuat"
-        Me.btXuat.Size = New System.Drawing.Size(61, 23)
-        Me.btXuat.TabIndex = 9
-        Me.btXuat.Text = "Xuất"
-        '
-        'chkXuatTinhTrangHang
-        '
-        Me.chkXuatTinhTrangHang.Location = New System.Drawing.Point(6, 101)
-        Me.chkXuatTinhTrangHang.Name = "chkXuatTinhTrangHang"
-        Me.chkXuatTinhTrangHang.Properties.Caption = "Tình trạng hàng"
-        Me.chkXuatTinhTrangHang.Size = New System.Drawing.Size(103, 19)
-        Me.chkXuatTinhTrangHang.TabIndex = 3
-        '
-        'chkXuatThongSo
-        '
-        Me.chkXuatThongSo.EditValue = True
-        Me.chkXuatThongSo.Location = New System.Drawing.Point(6, 76)
-        Me.chkXuatThongSo.Name = "chkXuatThongSo"
-        Me.chkXuatThongSo.Properties.Caption = "Thống số"
-        Me.chkXuatThongSo.Size = New System.Drawing.Size(75, 19)
-        Me.chkXuatThongSo.TabIndex = 2
-        '
-        'chkXuatHangSX
-        '
-        Me.chkXuatHangSX.EditValue = True
-        Me.chkXuatHangSX.Location = New System.Drawing.Point(6, 51)
-        Me.chkXuatHangSX.Name = "chkXuatHangSX"
-        Me.chkXuatHangSX.Properties.Caption = "Hãng sản xuất"
-        Me.chkXuatHangSX.Size = New System.Drawing.Size(102, 19)
-        Me.chkXuatHangSX.TabIndex = 1
-        '
-        'chkXuatMaVT
-        '
-        Me.chkXuatMaVT.EditValue = True
-        Me.chkXuatMaVT.Location = New System.Drawing.Point(6, 26)
-        Me.chkXuatMaVT.Name = "chkXuatMaVT"
-        Me.chkXuatMaVT.Properties.Caption = "Mã hàng"
-        Me.chkXuatMaVT.Size = New System.Drawing.Size(75, 19)
-        Me.chkXuatMaVT.TabIndex = 0
         '
         'gdvCongTrinh
         '
@@ -2306,7 +2227,7 @@ Partial Class frmCNChaoGia
         Me.gdvCongTrinh.MainView = Me.gdvCongTrinhCT
         Me.gdvCongTrinh.Name = "gdvCongTrinh"
         Me.gdvCongTrinh.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cbDVTAUX, Me.chkXuatThue, Me.tbN0CT, Me.tbN2CT, Me.cbTienTeCT})
-        Me.gdvCongTrinh.Size = New System.Drawing.Size(995, 206)
+        Me.gdvCongTrinh.Size = New System.Drawing.Size(957, 206)
         Me.gdvCongTrinh.TabIndex = 0
         Me.gdvCongTrinh.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCongTrinhCT})
         '
@@ -2518,6 +2439,153 @@ Partial Class frmCNChaoGia
         Me.cbTienTeCT.NullText = ""
         Me.cbTienTeCT.ValueMember = "ID"
         '
+        'popupXuatExcel
+        '
+        Me.popupXuatExcel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.popupXuatExcel.Controls.Add(Me.GroupControl4)
+        Me.popupXuatExcel.Location = New System.Drawing.Point(509, -37)
+        Me.popupXuatExcel.Name = "popupXuatExcel"
+        Me.popupXuatExcel.Size = New System.Drawing.Size(220, 198)
+        Me.popupXuatExcel.TabIndex = 1
+        Me.popupXuatExcel.Visible = False
+        '
+        'GroupControl4
+        '
+        Me.GroupControl4.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GroupControl4.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl4.Controls.Add(Me.chkGhiChu)
+        Me.GroupControl4.Controls.Add(Me.chkXuatTheoBo)
+        Me.GroupControl4.Controls.Add(Me.chkDungFileCuaKhach)
+        Me.GroupControl4.Controls.Add(Me.chkN2)
+        Me.GroupControl4.Controls.Add(Me.chkN0)
+        Me.GroupControl4.Controls.Add(Me.chkENG)
+        Me.GroupControl4.Controls.Add(Me.chkVIE)
+        Me.GroupControl4.Controls.Add(Me.btXuat)
+        Me.GroupControl4.Controls.Add(Me.chkXuatTinhTrangHang)
+        Me.GroupControl4.Controls.Add(Me.chkXuatThongSo)
+        Me.GroupControl4.Controls.Add(Me.chkXuatHangSX)
+        Me.GroupControl4.Controls.Add(Me.chkXuatMaVT)
+        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl4.Name = "GroupControl4"
+        Me.GroupControl4.Size = New System.Drawing.Size(220, 198)
+        Me.GroupControl4.TabIndex = 0
+        Me.GroupControl4.Text = "Xuất Excel"
+        '
+        'chkGhiChu
+        '
+        Me.chkGhiChu.Location = New System.Drawing.Point(6, 148)
+        Me.chkGhiChu.Name = "chkGhiChu"
+        Me.chkGhiChu.Properties.Caption = "Ghi chú"
+        Me.chkGhiChu.Size = New System.Drawing.Size(81, 19)
+        Me.chkGhiChu.TabIndex = 4
+        '
+        'chkXuatTheoBo
+        '
+        Me.chkXuatTheoBo.Location = New System.Drawing.Point(6, 171)
+        Me.chkXuatTheoBo.Name = "chkXuatTheoBo"
+        Me.chkXuatTheoBo.Properties.Caption = "Xuất theo bộ"
+        Me.chkXuatTheoBo.Size = New System.Drawing.Size(128, 19)
+        Me.chkXuatTheoBo.TabIndex = 4
+        '
+        'chkDungFileCuaKhach
+        '
+        Me.chkDungFileCuaKhach.Location = New System.Drawing.Point(6, 124)
+        Me.chkDungFileCuaKhach.Name = "chkDungFileCuaKhach"
+        Me.chkDungFileCuaKhach.Properties.Caption = "Dùng file của khách"
+        Me.chkDungFileCuaKhach.Size = New System.Drawing.Size(128, 19)
+        Me.chkDungFileCuaKhach.TabIndex = 4
+        '
+        'chkN2
+        '
+        Me.chkN2.Location = New System.Drawing.Point(138, 101)
+        Me.chkN2.Name = "chkN2"
+        Me.chkN2.Properties.Caption = "..1.234,00"
+        Me.chkN2.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkN2.Properties.RadioGroupIndex = 1
+        Me.chkN2.Size = New System.Drawing.Size(75, 19)
+        Me.chkN2.TabIndex = 8
+        Me.chkN2.TabStop = False
+        '
+        'chkN0
+        '
+        Me.chkN0.EditValue = True
+        Me.chkN0.Location = New System.Drawing.Point(138, 76)
+        Me.chkN0.Name = "chkN0"
+        Me.chkN0.Properties.Caption = "..1.234"
+        Me.chkN0.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkN0.Properties.RadioGroupIndex = 1
+        Me.chkN0.Size = New System.Drawing.Size(75, 19)
+        Me.chkN0.TabIndex = 7
+        '
+        'chkENG
+        '
+        Me.chkENG.Location = New System.Drawing.Point(138, 51)
+        Me.chkENG.Name = "chkENG"
+        Me.chkENG.Properties.Caption = "ENG"
+        Me.chkENG.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkENG.Properties.RadioGroupIndex = 0
+        Me.chkENG.Size = New System.Drawing.Size(75, 19)
+        Me.chkENG.TabIndex = 6
+        Me.chkENG.TabStop = False
+        '
+        'chkVIE
+        '
+        Me.chkVIE.EditValue = True
+        Me.chkVIE.Location = New System.Drawing.Point(138, 26)
+        Me.chkVIE.Name = "chkVIE"
+        Me.chkVIE.Properties.Caption = "VIE"
+        Me.chkVIE.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
+        Me.chkVIE.Properties.RadioGroupIndex = 0
+        Me.chkVIE.Size = New System.Drawing.Size(75, 19)
+        Me.chkVIE.TabIndex = 5
+        '
+        'btXuat
+        '
+        Me.btXuat.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btXuat.Appearance.Options.UseFont = True
+        Me.btXuat.Image = Global.BACSOFT.My.Resources.Resources.Excel_18
+        Me.btXuat.Location = New System.Drawing.Point(140, 126)
+        Me.btXuat.Name = "btXuat"
+        Me.btXuat.Size = New System.Drawing.Size(61, 23)
+        Me.btXuat.TabIndex = 9
+        Me.btXuat.Text = "Xuất"
+        '
+        'chkXuatTinhTrangHang
+        '
+        Me.chkXuatTinhTrangHang.Location = New System.Drawing.Point(6, 101)
+        Me.chkXuatTinhTrangHang.Name = "chkXuatTinhTrangHang"
+        Me.chkXuatTinhTrangHang.Properties.Caption = "Tình trạng hàng"
+        Me.chkXuatTinhTrangHang.Size = New System.Drawing.Size(103, 19)
+        Me.chkXuatTinhTrangHang.TabIndex = 3
+        '
+        'chkXuatThongSo
+        '
+        Me.chkXuatThongSo.EditValue = True
+        Me.chkXuatThongSo.Location = New System.Drawing.Point(6, 76)
+        Me.chkXuatThongSo.Name = "chkXuatThongSo"
+        Me.chkXuatThongSo.Properties.Caption = "Thống số"
+        Me.chkXuatThongSo.Size = New System.Drawing.Size(75, 19)
+        Me.chkXuatThongSo.TabIndex = 2
+        '
+        'chkXuatHangSX
+        '
+        Me.chkXuatHangSX.EditValue = True
+        Me.chkXuatHangSX.Location = New System.Drawing.Point(6, 51)
+        Me.chkXuatHangSX.Name = "chkXuatHangSX"
+        Me.chkXuatHangSX.Properties.Caption = "Hãng sản xuất"
+        Me.chkXuatHangSX.Size = New System.Drawing.Size(102, 19)
+        Me.chkXuatHangSX.TabIndex = 1
+        '
+        'chkXuatMaVT
+        '
+        Me.chkXuatMaVT.EditValue = True
+        Me.chkXuatMaVT.Location = New System.Drawing.Point(6, 26)
+        Me.chkXuatMaVT.Name = "chkXuatMaVT"
+        Me.chkXuatMaVT.Properties.Caption = "Mã hàng"
+        Me.chkXuatMaVT.Size = New System.Drawing.Size(75, 19)
+        Me.chkXuatMaVT.TabIndex = 0
+        '
         'pmenuXuatThue
         '
         Me.pmenuXuatThue.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mTinhGia), New DevExpress.XtraBars.LinkPersistInfo(Me.btTichThue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btTinhTrangVT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhomTheoBoVT)})
@@ -2589,17 +2657,18 @@ Partial Class frmCNChaoGia
         '
         'LabelControl37
         '
-        Me.LabelControl37.Location = New System.Drawing.Point(14, 120)
+        Me.LabelControl37.Location = New System.Drawing.Point(710, 115)
         Me.LabelControl37.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.LabelControl37.Name = "LabelControl37"
         Me.LabelControl37.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl37.TabIndex = 17
         Me.LabelControl37.Text = "HT TT (mới)"
+        Me.LabelControl37.Visible = False
         '
         'cbNhanKS
         '
         Me.cbNhanKS.EditValue = "KD"
-        Me.cbNhanKS.Location = New System.Drawing.Point(93, 140)
+        Me.cbNhanKS.Location = New System.Drawing.Point(92, 140)
         Me.cbNhanKS.MenuManager = Me.BarManager2
         Me.cbNhanKS.Name = "cbNhanKS"
         Me.cbNhanKS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -2612,7 +2681,7 @@ Partial Class frmCNChaoGia
         'mDuKienThanhToan
         '
         Me.mDuKienThanhToan.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.mDuKienThanhToan.Location = New System.Drawing.Point(581, 94)
+        Me.mDuKienThanhToan.Location = New System.Drawing.Point(578, 94)
         Me.mDuKienThanhToan.Name = "mDuKienThanhToan"
         Me.mDuKienThanhToan.Size = New System.Drawing.Size(146, 20)
         Me.mDuKienThanhToan.TabIndex = 15
@@ -2631,7 +2700,7 @@ Partial Class frmCNChaoGia
         '
         Me.cbHinhThucTT.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbHinhThucTT.Location = New System.Drawing.Point(92, 94)
+        Me.cbHinhThucTT.Location = New System.Drawing.Point(731, 91)
         Me.cbHinhThucTT.Name = "cbHinhThucTT"
         Me.cbHinhThucTT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbHinhThucTT.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HinhThucTT_VIE", "Hình thức TT", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -2640,8 +2709,9 @@ Partial Class frmCNChaoGia
         Me.cbHinhThucTT.Properties.NullText = "[Chọn hình thức thanh toán]"
         Me.cbHinhThucTT.Properties.ShowHeader = False
         Me.cbHinhThucTT.Properties.ValueMember = "ID"
-        Me.cbHinhThucTT.Size = New System.Drawing.Size(470, 20)
+        Me.cbHinhThucTT.Size = New System.Drawing.Size(34, 20)
         Me.cbHinhThucTT.TabIndex = 12
+        Me.cbHinhThucTT.Visible = False
         '
         'tbSoPO
         '
@@ -2761,16 +2831,17 @@ Partial Class frmCNChaoGia
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tbTenCongTrinh.Location = New System.Drawing.Point(92, 28)
         Me.tbTenCongTrinh.Name = "tbTenCongTrinh"
-        Me.tbTenCongTrinh.Size = New System.Drawing.Size(711, 20)
+        Me.tbTenCongTrinh.Size = New System.Drawing.Size(673, 20)
         Me.tbTenCongTrinh.TabIndex = 4
         '
         'chkCongTrinh
         '
-        Me.chkCongTrinh.Location = New System.Drawing.Point(11, 27)
+        Me.chkCongTrinh.Location = New System.Drawing.Point(593, 116)
         Me.chkCongTrinh.Name = "chkCongTrinh"
         Me.chkCongTrinh.Properties.Caption = "Công trình"
         Me.chkCongTrinh.Size = New System.Drawing.Size(75, 19)
         Me.chkCongTrinh.TabIndex = 4
+        Me.chkCongTrinh.Visible = False
         '
         'cbPhuTrachCT
         '
@@ -2798,7 +2869,7 @@ Partial Class frmCNChaoGia
         '
         'cbNVKyHD
         '
-        Me.cbNVKyHD.Location = New System.Drawing.Point(228, 138)
+        Me.cbNVKyHD.Location = New System.Drawing.Point(223, 138)
         Me.cbNVKyHD.Name = "cbNVKyHD"
         Me.cbNVKyHD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.cbNVKyHD.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Tên")})
@@ -2813,7 +2884,7 @@ Partial Class frmCNChaoGia
         '
         'LabelControl35
         '
-        Me.LabelControl35.Location = New System.Drawing.Point(176, 142)
+        Me.LabelControl35.Location = New System.Drawing.Point(171, 142)
         Me.LabelControl35.Name = "LabelControl35"
         Me.LabelControl35.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl35.TabIndex = 14
@@ -2886,7 +2957,7 @@ Partial Class frmCNChaoGia
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.Options.UseFont = True
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridLookUpEdit1View.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn34, Me.GridColumn93})
+        Me.GridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn34, Me.GridColumn93, Me.GridColumn96})
         Me.GridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridLookUpEdit1View.Name = "GridLookUpEdit1View"
         Me.GridLookUpEdit1View.OptionsBehavior.AutoExpandAllGroups = True
@@ -2944,6 +3015,14 @@ Partial Class frmCNChaoGia
         Me.GridColumn93.Name = "GridColumn93"
         Me.GridColumn93.Visible = True
         Me.GridColumn93.VisibleIndex = 3
+        '
+        'GridColumn96
+        '
+        Me.GridColumn96.Caption = "HinhThucChungTu"
+        Me.GridColumn96.FieldName = "HinhThucChungTu"
+        Me.GridColumn96.Name = "GridColumn96"
+        Me.GridColumn96.Visible = True
+        Me.GridColumn96.VisibleIndex = 4
         '
         'LabelControl4
         '
@@ -3044,6 +3123,23 @@ Partial Class frmCNChaoGia
         Me.LabelControl13.Size = New System.Drawing.Size(52, 13)
         Me.LabelControl13.TabIndex = 7
         Me.LabelControl13.Text = "Ngày nhận"
+        '
+        'lueCongTrinh
+        '
+        Me.lueCongTrinh.Location = New System.Drawing.Point(0, 29)
+        Me.lueCongTrinh.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.lueCongTrinh.Name = "lueCongTrinh"
+        Me.lueCongTrinh.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueCongTrinh.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Name1", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name2")})
+        Me.lueCongTrinh.Properties.DisplayMember = "Ten"
+        Me.lueCongTrinh.Properties.NullText = "Chọn loại"
+        Me.lueCongTrinh.Properties.PopupSizeable = False
+        Me.lueCongTrinh.Properties.ShowFooter = False
+        Me.lueCongTrinh.Properties.ShowHeader = False
+        Me.lueCongTrinh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.lueCongTrinh.Properties.ValueMember = "Id"
+        Me.lueCongTrinh.Size = New System.Drawing.Size(91, 20)
+        Me.lueCongTrinh.TabIndex = 21
         '
         'pTinhGia
         '
@@ -3364,7 +3460,7 @@ Partial Class frmCNChaoGia
         Me.gTong.Location = New System.Drawing.Point(0, 481)
         Me.gTong.Name = "gTong"
         Me.gTong.ShowCaption = False
-        Me.gTong.Size = New System.Drawing.Size(1005, 74)
+        Me.gTong.Size = New System.Drawing.Size(967, 74)
         Me.gTong.TabIndex = 0
         Me.gTong.Text = "GroupControl4"
         '
@@ -3374,7 +3470,7 @@ Partial Class frmCNChaoGia
         Me.btInBangKe.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btInBangKe.Appearance.Options.UseFont = True
         Me.btInBangKe.Image = Global.BACSOFT.My.Resources.Resources.print_18
-        Me.btInBangKe.Location = New System.Drawing.Point(779, 5)
+        Me.btInBangKe.Location = New System.Drawing.Point(741, 5)
         Me.btInBangKe.Name = "btInBangKe"
         Me.btInBangKe.Size = New System.Drawing.Size(117, 30)
         Me.btInBangKe.TabIndex = 15
@@ -3387,7 +3483,7 @@ Partial Class frmCNChaoGia
         Me.btXuatExcel.Appearance.Options.UseFont = True
         Me.btXuatExcel.DropDownControl = Me.popupXuatExcel
         Me.btXuatExcel.Image = Global.BACSOFT.My.Resources.Resources.Excel_24
-        Me.btXuatExcel.Location = New System.Drawing.Point(779, 39)
+        Me.btXuatExcel.Location = New System.Drawing.Point(741, 39)
         Me.btXuatExcel.MenuManager = Me.BarManager2
         Me.btXuatExcel.Name = "btXuatExcel"
         Me.btXuatExcel.Size = New System.Drawing.Size(117, 30)
@@ -3734,7 +3830,7 @@ Partial Class frmCNChaoGia
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1008, 163)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(970, 163)
         Me.SplitContainerControl1.SplitterPosition = 195
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -3811,7 +3907,7 @@ Partial Class frmCNChaoGia
         Me.gListFileCT.Controls.Add(Me.btXoaFile)
         Me.gListFileCT.Controls.Add(Me.btThemFile)
         Me.gListFileCT.Controls.Add(Me.gdvListFile)
-        Me.gListFileCT.Location = New System.Drawing.Point(725, 130)
+        Me.gListFileCT.Location = New System.Drawing.Point(687, 130)
         Me.gListFileCT.Name = "gListFileCT"
         Me.gListFileCT.Size = New System.Drawing.Size(231, 281)
         Me.gListFileCT.TabIndex = 17
@@ -3934,11 +4030,19 @@ Partial Class frmCNChaoGia
         Me.GridColumn89.Visible = True
         Me.GridColumn89.VisibleIndex = 0
         '
+        'GridColumn95
+        '
+        Me.GridColumn95.Caption = "IDHinhThucCT"
+        Me.GridColumn95.FieldName = "IDHinhThucCT"
+        Me.GridColumn95.Name = "GridColumn95"
+        Me.GridColumn95.Visible = True
+        Me.GridColumn95.VisibleIndex = 4
+        '
         'frmCNChaoGia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 558)
+        Me.ClientSize = New System.Drawing.Size(970, 558)
         Me.Controls.Add(Me.pTinhGia)
         Me.Controls.Add(Me.popupFile)
         Me.Controls.Add(Me.gListFileCT)
@@ -3948,11 +4052,13 @@ Partial Class frmCNChaoGia
         Me.Name = "frmCNChaoGia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Tag = "mChaoGia"
-        Me.Text = "frmCNChaoGia"
+        Me.Text = "1"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.lueMucDichXuat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmbHTCT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbHinhThucTT2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbNhomVT, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4007,6 +4113,13 @@ Partial Class frmCNChaoGia
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.tabHangMucKhac.ResumeLayout(False)
+        CType(Me.gdvCongTrinh, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gdvCongTrinhCT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbDVTAUX, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbN0CT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbN2CT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkXuatThue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbTienTeCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.popupXuatExcel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.popupXuatExcel.ResumeLayout(False)
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4022,13 +4135,6 @@ Partial Class frmCNChaoGia
         CType(Me.chkXuatThongSo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkXuatHangSX.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkXuatMaVT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gdvCongTrinh, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gdvCongTrinhCT, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbDVTAUX, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbN0CT, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbN2CT, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkXuatThue, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbTienTeCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pmenuXuatThue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueNhom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4053,6 +4159,7 @@ Partial Class frmCNChaoGia
         CType(Me.tbNgayGiao.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbNgayNhan.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbNgayNhan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueCongTrinh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pTinhGia, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pTinhGia.ResumeLayout(False)
         Me.pTinhGia.PerformLayout()
@@ -4415,4 +4522,11 @@ Partial Class frmCNChaoGia
     Friend WithEvents GridColumn93 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn94 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl38 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cmbHTCT As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumn95 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn97 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents lueCongTrinh As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl39 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lueMucDichXuat As DevExpress.XtraEditors.LookUpEdit
 End Class

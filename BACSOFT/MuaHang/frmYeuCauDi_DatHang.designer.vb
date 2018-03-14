@@ -20,17 +20,17 @@ Partial Class frmYeuCauDi_DatHang
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SuperToolTip6 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem6 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SuperToolTip8 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem8 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SuperToolTip5 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem5 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SuperToolTip7 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem7 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmYeuCauDi_DatHang))
         Me.tabYeuCauDi_DatHang = New DevExpress.XtraTab.XtraTabControl()
         Me.tabTongHop = New DevExpress.XtraTab.XtraTabPage()
@@ -95,6 +95,8 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemPopupContainerEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.btTHXuatExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -196,6 +198,8 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
         Me.gdvChiTietDH = New DevExpress.XtraGrid.GridControl()
@@ -812,7 +816,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.gdvTongHopCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvTongHopCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvTongHopCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvTongHopCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn48, Me.GridColumn50, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn106, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn20, Me.GridColumn67, Me.colThongSo, Me.GridColumn69, Me.GridColumn70, Me.GridColumn71, Me.GridColumn16, Me.GridColumn72, Me.GridColumn80, Me.GridColumn118, Me.colTHHinhAnh, Me.GridColumn120, Me.GridColumn121, Me.GridColumn68, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.colGiaNhap, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.gdvTongHopCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn48, Me.GridColumn50, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn106, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn20, Me.GridColumn67, Me.colThongSo, Me.GridColumn69, Me.GridColumn70, Me.GridColumn71, Me.GridColumn16, Me.GridColumn72, Me.GridColumn80, Me.GridColumn118, Me.colTHHinhAnh, Me.GridColumn120, Me.GridColumn121, Me.GridColumn68, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.colGiaNhap, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn25, Me.GridColumn26})
         Me.gdvTongHopCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvTongHopCT.GridControl = Me.gdvTongHop
         Me.gdvTongHopCT.Name = "gdvTongHopCT"
@@ -884,7 +888,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn54.Name = "GridColumn54"
         Me.GridColumn54.OptionsColumn.ReadOnly = True
         Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 21
+        Me.GridColumn54.VisibleIndex = 23
         Me.GridColumn54.Width = 55
         '
         'GridColumn55
@@ -894,7 +898,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn55.Name = "GridColumn55"
         Me.GridColumn55.OptionsColumn.ReadOnly = True
         Me.GridColumn55.Visible = True
-        Me.GridColumn55.VisibleIndex = 22
+        Me.GridColumn55.VisibleIndex = 24
         Me.GridColumn55.Width = 45
         '
         'GridColumn56
@@ -952,7 +956,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn61.Name = "GridColumn61"
         Me.GridColumn61.OptionsColumn.ReadOnly = True
         Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 11
+        Me.GridColumn61.VisibleIndex = 12
         Me.GridColumn61.Width = 49
         '
         'GridColumn62
@@ -962,7 +966,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.OptionsColumn.ReadOnly = True
         Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 13
+        Me.GridColumn62.VisibleIndex = 15
         Me.GridColumn62.Width = 46
         '
         'GridColumn106
@@ -973,7 +977,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn106.OptionsFilter.AllowAutoFilter = False
         Me.GridColumn106.OptionsFilter.AllowFilter = False
         Me.GridColumn106.Visible = True
-        Me.GridColumn106.VisibleIndex = 15
+        Me.GridColumn106.VisibleIndex = 17
         Me.GridColumn106.Width = 55
         '
         'GridColumn63
@@ -983,7 +987,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.OptionsColumn.ReadOnly = True
         Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 14
+        Me.GridColumn63.VisibleIndex = 16
         Me.GridColumn63.Width = 50
         '
         'GridColumn64
@@ -993,7 +997,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn64.Name = "GridColumn64"
         Me.GridColumn64.OptionsColumn.ReadOnly = True
         Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 16
+        Me.GridColumn64.VisibleIndex = 18
         Me.GridColumn64.Width = 55
         '
         'GridColumn65
@@ -1003,7 +1007,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn65.Name = "GridColumn65"
         Me.GridColumn65.OptionsColumn.ReadOnly = True
         Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 23
+        Me.GridColumn65.VisibleIndex = 25
         Me.GridColumn65.Width = 55
         '
         'GridColumn66
@@ -1021,7 +1025,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn20.FieldName = "TonNCC"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 12
+        Me.GridColumn20.VisibleIndex = 14
         Me.GridColumn20.Width = 61
         '
         'GridColumn67
@@ -1033,7 +1037,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn67.Name = "GridColumn67"
         Me.GridColumn67.OptionsColumn.ReadOnly = True
         Me.GridColumn67.Visible = True
-        Me.GridColumn67.VisibleIndex = 25
+        Me.GridColumn67.VisibleIndex = 27
         Me.GridColumn67.Width = 40
         '
         'colThongSo
@@ -1059,7 +1063,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn69.Name = "GridColumn69"
         Me.GridColumn69.OptionsColumn.ReadOnly = True
         Me.GridColumn69.Visible = True
-        Me.GridColumn69.VisibleIndex = 19
+        Me.GridColumn69.VisibleIndex = 21
         Me.GridColumn69.Width = 74
         '
         'GridColumn70
@@ -1068,7 +1072,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn70.FieldName = "ThongDung"
         Me.GridColumn70.Name = "GridColumn70"
         Me.GridColumn70.Visible = True
-        Me.GridColumn70.VisibleIndex = 17
+        Me.GridColumn70.VisibleIndex = 19
         '
         'GridColumn71
         '
@@ -1076,7 +1080,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn71.FieldName = "MaLoi"
         Me.GridColumn71.Name = "GridColumn71"
         Me.GridColumn71.Visible = True
-        Me.GridColumn71.VisibleIndex = 24
+        Me.GridColumn71.VisibleIndex = 26
         Me.GridColumn71.Width = 60
         '
         'GridColumn16
@@ -1085,7 +1089,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn16.FieldName = "ConSX"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 18
+        Me.GridColumn16.VisibleIndex = 20
         Me.GridColumn16.Width = 60
         '
         'GridColumn72
@@ -1102,7 +1106,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn80.Name = "GridColumn80"
         Me.GridColumn80.OptionsColumn.FixedWidth = True
         Me.GridColumn80.Visible = True
-        Me.GridColumn80.VisibleIndex = 20
+        Me.GridColumn80.VisibleIndex = 22
         Me.GridColumn80.Width = 58
         '
         'GridColumn118
@@ -1140,7 +1144,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn121.FieldName = "TaiLieu"
         Me.GridColumn121.Name = "GridColumn121"
         Me.GridColumn121.Visible = True
-        Me.GridColumn121.VisibleIndex = 26
+        Me.GridColumn121.VisibleIndex = 28
         '
         'rcbTaiLieuTH
         '
@@ -1202,11 +1206,11 @@ Partial Class frmYeuCauDi_DatHang
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "GridColumn10"
+        Me.GridColumn10.Caption = "KL"
         Me.GridColumn10.FieldName = "KhoiLuong"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 28
+        Me.GridColumn10.VisibleIndex = 30
         '
         'GridColumn11
         '
@@ -1258,7 +1262,25 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn19.FieldName = "SLMOQ3"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 27
+        Me.GridColumn19.VisibleIndex = 29
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "XT"
+        Me.GridColumn25.FieldName = "XuatTam"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 11
+        Me.GridColumn25.Width = 45
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "SLYCT"
+        Me.GridColumn26.FieldName = "SLYCTon"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 13
+        Me.GridColumn26.Width = 56
         '
         'RepositoryItemPopupContainerEdit1
         '
@@ -1552,9 +1574,9 @@ Partial Class frmYeuCauDi_DatHang
         Me.btXem.Id = 11
         Me.btXem.Name = "btXem"
         Me.btXem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem6.Text = "Tải danh sách chào giá"
-        SuperToolTip6.Items.Add(ToolTipTitleItem6)
-        Me.btXem.SuperTip = SuperToolTip6
+        ToolTipTitleItem1.Text = "Tải danh sách chào giá"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btXem.SuperTip = SuperToolTip1
         '
         'btThem
         '
@@ -1563,9 +1585,9 @@ Partial Class frmYeuCauDi_DatHang
         Me.btThem.Id = 42
         Me.btThem.Name = "btThem"
         Me.btThem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem8.Text = "Lập chào giá mới <Ctrl+N>"
-        SuperToolTip8.Items.Add(ToolTipTitleItem8)
-        Me.btThem.SuperTip = SuperToolTip8
+        ToolTipTitleItem2.Text = "Lập chào giá mới <Ctrl+N>"
+        SuperToolTip2.Items.Add(ToolTipTitleItem2)
+        Me.btThem.SuperTip = SuperToolTip2
         '
         'btSua
         '
@@ -1574,9 +1596,9 @@ Partial Class frmYeuCauDi_DatHang
         Me.btSua.Id = 1
         Me.btSua.Name = "btSua"
         Me.btSua.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem5.Text = "Sửa chào giá được chọn <Ctrl+E>"
-        SuperToolTip5.Items.Add(ToolTipTitleItem5)
-        Me.btSua.SuperTip = SuperToolTip5
+        ToolTipTitleItem3.Text = "Sửa chào giá được chọn <Ctrl+E>"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        Me.btSua.SuperTip = SuperToolTip3
         '
         'btSaoChep
         '
@@ -1585,9 +1607,9 @@ Partial Class frmYeuCauDi_DatHang
         Me.btSaoChep.Id = 37
         Me.btSaoChep.Name = "btSaoChep"
         Me.btSaoChep.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem7.Text = "Lập chào giá mới từ chào giá được chọn <Ctrl+C>"
-        SuperToolTip7.Items.Add(ToolTipTitleItem7)
-        Me.btSaoChep.SuperTip = SuperToolTip7
+        ToolTipTitleItem4.Text = "Lập chào giá mới từ chào giá được chọn <Ctrl+C>"
+        SuperToolTip4.Items.Add(ToolTipTitleItem4)
+        Me.btSaoChep.SuperTip = SuperToolTip4
         '
         'btXuatExcel
         '
@@ -1927,7 +1949,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn130, Me.colCBTT, Me.colSoDH, Me.colSoDHOmron, Me.colPhieuNhap, Me.colThoiGian, Me.colNgayNhan, Me.colMaKH, Me.colTenKH, Me.colNguoiGiaoDich, Me.colTakeCare, Me.colNguoiLap, Me.colTienTe, Me.colTruocThue, Me.colThue, Me.colNguoiDuyet, Me.colTrangThai, Me.colFile, Me.colTyGia, Me.colLoaiDH, Me.colHinhThucTT, Me.GridColumn22, Me.colNoiDungDN, Me.colTGDeNghi, Me.colTGDuyet, Me.colNoiDungPH, Me.GridColumn128, Me.GridColumn131, Me.GridColumn141, Me.GridColumn1, Me.GridColumn23, Me.GridColumn28, Me.GridColumn32, Me.GridColumn27})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn130, Me.colCBTT, Me.colSoDH, Me.colSoDHOmron, Me.colPhieuNhap, Me.colThoiGian, Me.colNgayNhan, Me.colMaKH, Me.colTenKH, Me.colNguoiGiaoDich, Me.colTakeCare, Me.colNguoiLap, Me.colTienTe, Me.colTruocThue, Me.colThue, Me.colNguoiDuyet, Me.colTrangThai, Me.colFile, Me.colTyGia, Me.colLoaiDH, Me.colHinhThucTT, Me.GridColumn22, Me.colNoiDungDN, Me.colTGDeNghi, Me.colTGDuyet, Me.colNoiDungPH, Me.GridColumn128, Me.GridColumn131, Me.GridColumn141, Me.GridColumn1, Me.GridColumn23, Me.GridColumn28, Me.GridColumn32, Me.GridColumn27, Me.GridColumn29, Me.GridColumn30})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.Name = "gdvCT"
@@ -2210,8 +2232,6 @@ Partial Class frmYeuCauDi_DatHang
         Me.colHinhThucTT.ColumnEdit = Me.RepositoryItemMemoEdit4
         Me.colHinhThucTT.FieldName = "HinhThucTT"
         Me.colHinhThucTT.Name = "colHinhThucTT"
-        Me.colHinhThucTT.Visible = True
-        Me.colHinhThucTT.VisibleIndex = 17
         Me.colHinhThucTT.Width = 200
         '
         'GridColumn22
@@ -2224,7 +2244,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn22.FieldName = "HinhThucTT2"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 18
+        Me.GridColumn22.VisibleIndex = 17
         Me.GridColumn22.Width = 184
         '
         'colNoiDungDN
@@ -2236,7 +2256,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.colNoiDungDN.FieldName = "NoiDungDeNghi"
         Me.colNoiDungDN.Name = "colNoiDungDN"
         Me.colNoiDungDN.Visible = True
-        Me.colNoiDungDN.VisibleIndex = 19
+        Me.colNoiDungDN.VisibleIndex = 18
         Me.colNoiDungDN.Width = 200
         '
         'colTGDeNghi
@@ -2247,7 +2267,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.colTGDeNghi.FieldName = "TGDeNghi"
         Me.colTGDeNghi.Name = "colTGDeNghi"
         Me.colTGDeNghi.Visible = True
-        Me.colTGDeNghi.VisibleIndex = 21
+        Me.colTGDeNghi.VisibleIndex = 20
         Me.colTGDeNghi.Width = 110
         '
         'colTGDuyet
@@ -2258,7 +2278,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.colTGDuyet.FieldName = "TGDuyet"
         Me.colTGDuyet.Name = "colTGDuyet"
         Me.colTGDuyet.Visible = True
-        Me.colTGDuyet.VisibleIndex = 22
+        Me.colTGDuyet.VisibleIndex = 21
         Me.colTGDuyet.Width = 110
         '
         'colNoiDungPH
@@ -2270,7 +2290,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.colNoiDungPH.FieldName = "NoiDungPhanHoi"
         Me.colNoiDungPH.Name = "colNoiDungPH"
         Me.colNoiDungPH.Visible = True
-        Me.colNoiDungPH.VisibleIndex = 20
+        Me.colNoiDungPH.VisibleIndex = 19
         Me.colNoiDungPH.Width = 200
         '
         'GridColumn128
@@ -2323,6 +2343,27 @@ Partial Class frmYeuCauDi_DatHang
         Me.GridColumn27.Caption = "SoPhieuO2"
         Me.GridColumn27.FieldName = "SoPhieuO2"
         Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "TG xử lý"
+        Me.GridColumn29.FieldName = "TGXL"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 22
+        Me.GridColumn29.Width = 60
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "HT"
+        Me.GridColumn30.FieldName = "Hoanthanh"
+        Me.GridColumn30.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.ReadOnly = True
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 25
+        Me.GridColumn30.Width = 30
         '
         'RepositoryItemHyperLinkEdit2
         '
@@ -2486,7 +2527,7 @@ Partial Class frmYeuCauDi_DatHang
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "N2"
         Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "N2"
@@ -3106,15 +3147,16 @@ Partial Class frmYeuCauDi_DatHang
         '
         'GroupControl9
         '
+        Me.GroupControl9.Controls.Add(Me.gFileDinhKemDH)
         Me.GroupControl9.Controls.Add(Me.pBackLog)
         Me.GroupControl9.Controls.Add(Me.pXuatExcel)
         Me.GroupControl9.Controls.Add(Me.gdvDatHang)
         Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl9.Location = New System.Drawing.Point(0, 148)
+        Me.GroupControl9.Location = New System.Drawing.Point(0, 131)
         Me.GroupControl9.Name = "GroupControl9"
         Me.BarManager1.SetPopupContextMenu(Me.GroupControl9, Me.pMenuDH)
         Me.GroupControl9.ShowCaption = False
-        Me.GroupControl9.Size = New System.Drawing.Size(1106, 505)
+        Me.GroupControl9.Size = New System.Drawing.Size(1106, 522)
         Me.GroupControl9.TabIndex = 1
         Me.GroupControl9.Text = "GroupControl9"
         '
@@ -3124,7 +3166,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.pBackLog.Controls.Add(Me.btChonFileBacklog)
         Me.pBackLog.Controls.Add(Me.LabelControl2)
         Me.pBackLog.Controls.Add(Me.tbNgayChot)
-        Me.pBackLog.Location = New System.Drawing.Point(508, 5)
+        Me.pBackLog.Location = New System.Drawing.Point(493, 158)
         Me.pBackLog.Name = "pBackLog"
         Me.pBackLog.Size = New System.Drawing.Size(200, 67)
         Me.pBackLog.TabIndex = 18
@@ -3331,7 +3373,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.gdvDatHang.MainView = Me.gdvDatHangCT
         Me.gdvDatHang.Name = "gdvDatHang"
         Me.gdvDatHang.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtbThongSoVTDH, Me.rcbTienTeDH, Me.tbN2, Me.RepositoryItemDateEdit5})
-        Me.gdvDatHang.Size = New System.Drawing.Size(1102, 501)
+        Me.gdvDatHang.Size = New System.Drawing.Size(1102, 518)
         Me.gdvDatHang.TabIndex = 8
         Me.gdvDatHang.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvDatHangCT})
         '
@@ -3528,7 +3570,7 @@ Partial Class frmYeuCauDi_DatHang
         'tbN2
         '
         Me.tbN2.AutoHeight = False
-        Me.tbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        Me.tbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.tbN2.DisplayFormat.FormatString = "N2"
         Me.tbN2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbN2.EditFormat.FormatString = "N2"
@@ -4423,7 +4465,6 @@ Partial Class frmYeuCauDi_DatHang
         '
         'tabDatHang
         '
-        Me.tabDatHang.Controls.Add(Me.gFileDinhKemDH)
         Me.tabDatHang.Controls.Add(Me.GroupControl9)
         Me.tabDatHang.Controls.Add(Me.GroupControl5)
         Me.tabDatHang.Controls.Add(Me.GroupControl4)
@@ -4437,7 +4478,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.gFileDinhKemDH.Controls.Add(Me.btXoaFileDH)
         Me.gFileDinhKemDH.Controls.Add(Me.btThemFileDH)
         Me.gFileDinhKemDH.Controls.Add(Me.gdvListFileDH)
-        Me.gFileDinhKemDH.Location = New System.Drawing.Point(753, 129)
+        Me.gFileDinhKemDH.Location = New System.Drawing.Point(772, 105)
         Me.gFileDinhKemDH.Name = "gFileDinhKemDH"
         Me.gFileDinhKemDH.Size = New System.Drawing.Size(256, 257)
         Me.gFileDinhKemDH.TabIndex = 46
@@ -4696,7 +4737,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.tbGiaNhapPT.Name = "tbGiaNhapPT"
         Me.tbGiaNhapPT.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbGiaNhapPT.Properties.Appearance.Options.UseFont = True
-        Me.tbGiaNhapPT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK)})
+        Me.tbGiaNhapPT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK)})
         Me.tbGiaNhapPT.Properties.DisplayFormat.FormatString = "{0:N2}"
         Me.tbGiaNhapPT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbGiaNhapPT.Properties.EditFormat.FormatString = "{0:N2}"
@@ -4761,7 +4802,7 @@ Partial Class frmYeuCauDi_DatHang
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.ShowCaption = False
-        Me.GroupControl4.Size = New System.Drawing.Size(1106, 148)
+        Me.GroupControl4.Size = New System.Drawing.Size(1106, 131)
         Me.GroupControl4.TabIndex = 0
         Me.GroupControl4.Text = "GroupControl4"
         '
@@ -4805,7 +4846,7 @@ Partial Class frmYeuCauDi_DatHang
         'cbHinhThucTT2
         '
         Me.cbHinhThucTT2.EditValue = "<Null>"
-        Me.cbHinhThucTT2.Location = New System.Drawing.Point(77, 99)
+        Me.cbHinhThucTT2.Location = New System.Drawing.Point(77, 79)
         Me.cbHinhThucTT2.Name = "cbHinhThucTT2"
         Me.cbHinhThucTT2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbHinhThucTT2.Properties.DisplayMember = "GiaiThich"
@@ -4872,7 +4913,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(9, 102)
+        Me.LabelControl4.Location = New System.Drawing.Point(9, 82)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl4.TabIndex = 48
@@ -4913,7 +4954,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'btBacklog
         '
-        Me.btBacklog.Location = New System.Drawing.Point(569, 122)
+        Me.btBacklog.Location = New System.Drawing.Point(569, 102)
         Me.btBacklog.Name = "btBacklog"
         Me.btBacklog.Size = New System.Drawing.Size(75, 21)
         Me.btBacklog.TabIndex = 43
@@ -4922,7 +4963,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'btChiPhiHQ
         '
-        Me.btChiPhiHQ.Location = New System.Drawing.Point(455, 122)
+        Me.btChiPhiHQ.Location = New System.Drawing.Point(455, 102)
         Me.btChiPhiHQ.Name = "btChiPhiHQ"
         Me.btChiPhiHQ.Size = New System.Drawing.Size(105, 20)
         Me.btChiPhiHQ.TabIndex = 41
@@ -4941,7 +4982,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'cbLoaiDH
         '
-        Me.cbLoaiDH.Location = New System.Drawing.Point(77, 122)
+        Me.cbLoaiDH.Location = New System.Drawing.Point(77, 102)
         Me.cbLoaiDH.MenuManager = Me.BarManager1
         Me.cbLoaiDH.Name = "cbLoaiDH"
         Me.cbLoaiDH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -5004,7 +5045,8 @@ Partial Class frmYeuCauDi_DatHang
         '
         'cbHinhThucTT
         '
-        Me.cbHinhThucTT.Location = New System.Drawing.Point(77, 75)
+        Me.cbHinhThucTT.Enabled = False
+        Me.cbHinhThucTT.Location = New System.Drawing.Point(706, 118)
         Me.cbHinhThucTT.Name = "cbHinhThucTT"
         Me.cbHinhThucTT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbHinhThucTT.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HinhThucTT_VIE", "Hình thức TT", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -5013,8 +5055,9 @@ Partial Class frmYeuCauDi_DatHang
         Me.cbHinhThucTT.Properties.NullText = "[Chọn hình thức thanh toán]"
         Me.cbHinhThucTT.Properties.ShowHeader = False
         Me.cbHinhThucTT.Properties.ValueMember = "ID"
-        Me.cbHinhThucTT.Size = New System.Drawing.Size(567, 20)
+        Me.cbHinhThucTT.Size = New System.Drawing.Size(400, 20)
         Me.cbHinhThucTT.TabIndex = 8
+        Me.cbHinhThucTT.Visible = False
         '
         'btXacNhanDatHang
         '
@@ -5031,7 +5074,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'cbTienTeNK
         '
-        Me.cbTienTeNK.Location = New System.Drawing.Point(331, 122)
+        Me.cbTienTeNK.Location = New System.Drawing.Point(331, 102)
         Me.cbTienTeNK.Name = "cbTienTeNK"
         Me.cbTienTeNK.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.cbTienTeNK.Properties.Appearance.Options.UseFont = True
@@ -5080,7 +5123,7 @@ Partial Class frmYeuCauDi_DatHang
         '
         'lbTienTeNK
         '
-        Me.lbTienTeNK.Location = New System.Drawing.Point(273, 125)
+        Me.lbTienTeNK.Location = New System.Drawing.Point(273, 105)
         Me.lbTienTeNK.Name = "lbTienTeNK"
         Me.lbTienTeNK.Size = New System.Drawing.Size(49, 13)
         Me.lbTienTeNK.TabIndex = 37
@@ -5099,7 +5142,7 @@ Partial Class frmYeuCauDi_DatHang
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl1.Location = New System.Drawing.Point(9, 125)
+        Me.LabelControl1.Location = New System.Drawing.Point(9, 105)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl1.TabIndex = 37
@@ -5365,11 +5408,12 @@ Partial Class frmYeuCauDi_DatHang
         '
         'LabelControl36
         '
-        Me.LabelControl36.Location = New System.Drawing.Point(10, 78)
+        Me.LabelControl36.Location = New System.Drawing.Point(650, 121)
         Me.LabelControl36.Name = "LabelControl36"
         Me.LabelControl36.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl36.TabIndex = 20
         Me.LabelControl36.Text = "Thanh toán"
+        Me.LabelControl36.Visible = False
         '
         'LabelControl29
         '
@@ -6047,6 +6091,8 @@ Partial Class frmYeuCauDi_DatHang
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lueHTTCT As DevExpress.XtraEditors.LookUpEdit
-
-
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -101,6 +101,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tbThoiGian = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemPopupContainerEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -589,7 +590,7 @@ Partial Class frmHangYCXuat
         Me.gdvCanXuatCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCanXuatCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCanXuatCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCanXuatCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colCXMaKH, Me.colCXSoPhieu, Me.colCXTenVT, Me.colCXHangSX, Me.GridColumn23, Me.GridColumn1, Me.GridColumn25, Me.GridColumn3, Me.GridColumn26, Me.colCXPhuTrach, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn2, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn4, Me.GridColumn11})
+        Me.gdvCanXuatCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colCXMaKH, Me.colCXSoPhieu, Me.colCXTenVT, Me.colCXHangSX, Me.GridColumn23, Me.GridColumn1, Me.GridColumn25, Me.GridColumn3, Me.GridColumn26, Me.colCXPhuTrach, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn2, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn4, Me.GridColumn11, Me.GridColumn12})
         Me.gdvCanXuatCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCanXuatCT.GridControl = Me.gdvCanXuat
         Me.gdvCanXuatCT.GroupPanelText = "Kéo thả cột cột nhóm nội dung vào đây"
@@ -708,7 +709,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.VisibleIndex = 9
         Me.GridColumn26.Width = 51
         '
         'colCXPhuTrach
@@ -720,7 +721,7 @@ Partial Class frmHangYCXuat
         Me.colCXPhuTrach.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.colCXPhuTrach.OptionsColumn.ReadOnly = True
         Me.colCXPhuTrach.Visible = True
-        Me.colCXPhuTrach.VisibleIndex = 9
+        Me.colCXPhuTrach.VisibleIndex = 10
         Me.colCXPhuTrach.Width = 144
         '
         'GridColumn33
@@ -759,7 +760,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn10.FieldName = "ThoiGianLapYCCX"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 14
+        Me.GridColumn10.VisibleIndex = 15
         Me.GridColumn10.Width = 110
         '
         'GridColumn5
@@ -769,7 +770,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 11
+        Me.GridColumn5.VisibleIndex = 12
         Me.GridColumn5.Width = 200
         '
         'GridColumn6
@@ -793,7 +794,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 12
+        Me.GridColumn8.VisibleIndex = 13
         Me.GridColumn8.Width = 110
         '
         'GridColumn9
@@ -802,7 +803,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn9.FieldName = "NoiDungPhanHoiCuaKho"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 13
+        Me.GridColumn9.VisibleIndex = 14
         Me.GridColumn9.Width = 200
         '
         'GridColumn4
@@ -815,7 +816,7 @@ Partial Class frmHangYCXuat
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 10
+        Me.GridColumn4.VisibleIndex = 11
         Me.GridColumn4.Width = 110
         '
         'tbThoiGian
@@ -835,6 +836,15 @@ Partial Class frmHangYCXuat
         '
         Me.GridColumn11.FieldName = "IDTakeCare"
         Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "XT"
+        Me.GridColumn12.FieldName = "XuatTam"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.Width = 43
         '
         'RepositoryItemMemoEdit2
         '
@@ -977,5 +987,6 @@ Partial Class frmHangYCXuat
     Friend WithEvents cbLocTheo As DevExpress.XtraBars.BarEditItem
     Friend WithEvents RepositoryItemComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents mHoanTat As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

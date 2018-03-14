@@ -1,5 +1,4 @@
 ﻿Imports BACSOFT.Db.SqlHelper
-Imports BACSOFT.BAC
 Imports DevExpress.XtraEditors.Repository
 Imports SpreadsheetGear
 Imports DevExpress
@@ -24,9 +23,14 @@ Public Class frmXuatKho
         LoadDS()
         LoadcbChiPhi()
         gdvDSCP.DataSource = LayDataSourceDSCP()
-        'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
-        '    btNhanVien.Enabled = False
-        'End If
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
+            colChietKhau.Visible = False
+
+        End If
+
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            mnuCapNhatNgayCT.Enabled = False
+        End If
 
         'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", "frmHoaDonDauRa", DanhMucQuyen.QuyenThem) Then mnuLapHoaDon.Enabled = False
 
@@ -1173,6 +1177,7 @@ Public Class frmXuatKho
             .SetFocusedRowCellValue("DVT", gdvVTCT.GetRowCellValue(indexRow, "TenDVT"))
             .SetFocusedRowCellValue("SoLuong", gdvVTCT.GetRowCellValue(indexRow, "SoLuong"))
             .SetFocusedRowCellValue("DonGia", gdvVTCT.GetRowCellValue(indexRow, "DonGia"))
+            .SetFocusedRowCellValue("ThanhTien", gdvVTCT.GetRowCellValue(indexRow, "DonGia") * gdvVTCT.GetRowCellValue(indexRow, "SoLuong"))
             .SetFocusedRowCellValue("TaiKhoanNo", "131")
             If gdvVTCT.GetRowCellValue(indexRow, "IDvattu") Is DBNull.Value Then
                 '.SetFocusedRowCellValue("TaiKhoanCo", "5113")
@@ -1259,7 +1264,7 @@ Public Class frmXuatKho
         If gHoaDon.Visible = False Then Exit Sub
         If e.RowHandle < 0 Then Exit Sub
         If e.Button = System.Windows.Forms.MouseButtons.Left Then
-            If e.Column.FieldName = "Chon" And _
+            If e.Column.FieldName = "Chon" And
                 gdvVTCT.GetRowCellValue(e.RowHandle, "SoHoaDon").ToString = "" Then
                 Dim st As Boolean = Convert.ToBoolean(CType(gdvVT.DataSource, DataTable).Rows(e.RowHandle)("Chon"))
                 CType(gdvVT.DataSource, DataTable).Rows(e.RowHandle)("Chon") = Not st
@@ -1356,7 +1361,7 @@ Public Class frmXuatKho
         gdv.Properties.DataSource = dt
 
 
-        AddHandler btnChon.Click, _
+        AddHandler btnChon.Click,
             Sub(senderX As System.Object, eX As System.EventArgs)
                 If gdv.EditValue Is DBNull.Value Then
                     ShowCanhBao("Chưa chọn hóa đơn nháp cần cập nhật!")
@@ -1489,6 +1494,23 @@ Public Class frmXuatKho
     End Sub
 
     Private Sub pMenuChinh_BeforePopup(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles pMenuChinh.BeforePopup
+
+
+        If gdvCT.GetFocusedRowCellValue("CongTrinh") = True Then
+            mnuNgayCTXuatKho.Visibility = XtraBars.BarItemVisibility.Always
+            Dim sql As String = "SELECT top 1 NgayCT FROM PHIEUXUATKHO WHERE SoPhieu = @SoPhieu"
+            AddParameter("@SoPhieu", gdvCT.GetFocusedRowCellValue("SoPhieu"))
+            Dim dt As DataTable = ExecuteSQLDataTable(sql)
+            If dt Is Nothing OrElse dt.Rows.Count = 0 OrElse dt.Rows(0)(0) Is DBNull.Value Then
+                mnuNgayCTXuatKho.Caption = "Chưa có ngày CT xuất kho"
+            Else
+                mnuNgayCTXuatKho.Caption = "Ngày CT xuất kho: " & Convert.ToDateTime(dt.Rows(0)(0)).ToString("dd/MM/yyyy")
+            End If
+        Else
+            mnuNgayCTXuatKho.Visibility = XtraBars.BarItemVisibility.Never
+        End If
+
+
         If colVCDVVC.Visible Then
             ' btLuuLai.Visibility = XtraBars.BarItemVisibility.Always
             mLuuLai.Visibility = XtraBars.BarItemVisibility.Always
@@ -1729,6 +1751,7 @@ Public Class frmXuatKho
 
 
     Private Sub btLuuVCGop_Click(sender As System.Object, e As System.EventArgs) Handles btLuuVCGop.Click
+
         gdvDSCPCT.CloseEditor()
         gdvDSCPCT.UpdateCurrentRow()
 
@@ -1808,9 +1831,137 @@ Public Class frmXuatKho
                 End If
             End If
         End If
-
     End Sub
 
 
+    Private Sub mnuThueGhepVatTuBoThue_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueGhepVatTuBoThue.ItemClick
+
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+        If Not ShowCauHoi("Ghép vật tư bộ từ danh sách vật tư trên xuất kho đang chọn?") Then Exit Sub
+
+        TrangThai.isAddNew = True
+        Dim f As New frmUpdateGhepVatTuBo
+
+        f.Text = "Lập chứng từ ghép vật tư bộ"
+
+        Dim nam As Integer = ChungTu.NamLamViec
+
+        For i As Integer = 0 To gdvVTCT.RowCount - 1
+
+            If gdvVTCT.GetRowCellValue(i, "IDvattu") Is DBNull.Value Then Continue For
+
+            f.gdvData.AddNewRow()
+
+            'f.gdvData.GetRowCellValue("Id_CT", 0)
+            f.gdvData.SetFocusedRowCellValue("IDVatTuPhu", gdvVTCT.GetRowCellValue(i, "IDvattu"))
+
+            Dim sql As String = "SELECT TenHoaDon,Model,Code, "
+            sql &= "(select ten from tendonvitinh where id = vattu.iddonvitinh)DVT,  "
+            sql &= "(select ten from tenhangsanxuat where id = vattu.idhangsanxuat)HangSX,  "
+            sql &= "(select ten from tennhom where id = vattu.idhangsanxuat)TenNhom,  "
+            sql &= "  "
+            sql &= "isnull((SELECT TOP 1 a.ThanhTien FROM CHUNGTU a LEFT OUTER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT   "
+            sql &= "WHERE b.IdVatTu = VATTU.ID AND b.ButToan = 3 ORDER BY a.NgayCT DESC),0)GiaNhap,   "
+            sql &= "  "
+            sql &= "(ISNULL((select DauKy from tonkhovattuthue where IdVatTu = VATTU.ID and Nam =  " & nam & " ),0)   "
+            sql &= " +   "
+            sql &= "ISNULL((SELECT SUM(CHUNGTUCHITIET.SoLuong) FROM CHUNGTU LEFT OUTER JOIN CHUNGTUCHITIET ON CHUNGTU.Id = CHUNGTUCHITIET.Id_CT   "
+            sql &= "WHERE CHUNGTUCHITIET.IdVatTu = VATTU.ID AND CHUNGTU.LOAICT IN (2) AND CHUNGTU.GhiSo = 1 AND YEAR(CHUNGTU.NgayHD) =  " & nam & "   "
+            sql &= "AND CHUNGTUCHITIET.ButToan = 1),0)   "
+            sql &= "-  "
+            sql &= "ISNULL((SELECT SUM(CHUNGTUCHITIET.SoLuong) FROM CHUNGTU LEFT OUTER JOIN CHUNGTUCHITIET ON CHUNGTU.Id = CHUNGTUCHITIET.Id_CT   "
+            sql &= "WHERE CHUNGTUCHITIET.IdVatTu = VATTU.ID AND CHUNGTU.LOAICT IN (1) AND CHUNGTU.GhiSo = 1 AND YEAR(CHUNGTU.NgayHD) =  " & nam & "   "
+            sql &= "AND CHUNGTUCHITIET.ButToan = 1),0)   "
+            sql &= ")TonThue,  "
+
+            sql &= "  "
+            sql &= "( ISNULL((SELECT SUM(NHAPKHO.SoLuong) FROM NHAPKHO RIGHT OUTER JOIN PHIEUNHAPKHO    "
+            sql &= "ON NHAPKHO.Sophieu = PHIEUNHAPKHO.Sophieu WHERE NHAPKHO.IdVattu = VATTU.ID),0)   "
+            sql &= "-   "
+            sql &= "ISNULL((SELECT SUM(XUATKHO.SoLuong) FROM XUATKHO RIGHT OUTER JOIN PHIEUXUATKHO    "
+            sql &= "ON XUATKHO.Sophieu = PHIEUXUATKHO.Sophieu WHERE XUATKHO.IdVattu = VATTU.ID AND PHIEUXUATKHO.Congtrinh = 0   "
+            sql &= "),0)  "
+            sql &= ")TonKho   "
+            sql &= " FROM VATTU WHERE ID =   " & gdvVTCT.GetRowCellValue(i, "IDvattu")
+            sql &= "  "
+
+
+            Dim dtX As DataTable = ExecuteSQLDataTable(sql)
+
+
+            f.gdvData.SetFocusedRowCellValue("ID", 0)
+            f.gdvData.SetFocusedRowCellValue("Id_CT", 0)
+
+            f.gdvData.SetFocusedRowCellValue("TenVatTu", dtX.Rows(0)("TenHoaDon"))
+            f.gdvData.SetFocusedRowCellValue("Model", dtX.Rows(0)("Model"))
+            f.gdvData.SetFocusedRowCellValue("Code", dtX.Rows(0)("Code"))
+            f.gdvData.SetFocusedRowCellValue("SoLuong", gdvVTCT.GetRowCellValue(i, "SoLuong"))
+            f.gdvData.SetFocusedRowCellValue("GiaNhap", dtX.Rows(0)("GiaNhap"))
+            f.gdvData.SetFocusedRowCellValue("TonKho", dtX.Rows(0)("TonKho"))
+            f.gdvData.SetFocusedRowCellValue("TonThue", dtX.Rows(0)("TonThue"))
+            f.gdvData.SetFocusedRowCellValue("DVT", dtX.Rows(0)("DVT"))
+            f.gdvData.SetFocusedRowCellValue("HangSX", dtX.Rows(0)("HangSX"))
+            f.gdvData.SetFocusedRowCellValue("NhomVT", dtX.Rows(0)("TenNhom"))
+
+        Next
+
+        f.ShowDialog()
+
+    End Sub
+
+    Private Sub mnuCapNhatNgayCT_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mnuCapNhatNgayCT.ItemClick
+
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+        Dim txtNgay As New DevExpress.XtraEditors.DateEdit
+        txtNgay.Dock = DockStyle.Top
+        txtNgay.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        txtNgay.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        txtNgay.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom
+        txtNgay.Properties.EditFormat.FormatString = "dd/MM/yyyy"
+        txtNgay.EditValue = GetServerTime()
+        txtNgay.Properties.ShowClear = True
+        txtNgay.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        txtNgay.Height = 25
+
+        Dim f As New DevExpress.XtraEditors.XtraForm
+        f.Text = "Ngày CT XK"
+        f.Height = 110
+        f.Width = 140
+        f.FormBorderStyle = FormBorderStyle.FixedSingle
+        f.StartPosition = FormStartPosition.CenterScreen
+        f.MaximizeBox = False
+        f.MinimizeBox = False
+
+        Dim btn As New DevExpress.XtraEditors.SimpleButton
+        btn.Top = 25
+        btn.Left = 28
+        btn.Text = "Cập nhật"
+        btn.Height = 35
+        btn.Cursor = Cursors.Hand
+        AddHandler btn.Click, AddressOf btnCapNhatNgayCT_Click
+
+        f.Controls.Add(txtNgay)
+        f.Controls.Add(btn)
+
+        f.ShowDialog()
+
+    End Sub
+
+    Private Sub btnCapNhatNgayCT_Click(sender As System.Object, e As System.EventArgs)
+        Dim d As Object = CType(CType(sender, SimpleButton).Parent.Controls(0), DateEdit).EditValue
+        If d Is Nothing Then
+            AddParameter("@NgayCT", DBNull.Value)
+        Else
+            AddParameter("@NgayCT", d)
+        End If
+        AddParameterWhere("@SoPhieu", gdvCT.GetFocusedRowCellValue("SoPhieu"))
+        If Not doUpdate("PHIEUXUATKHO", "SoPhieu=@SoPhieu") Is Nothing Then
+            ShowAlert("Đã cập nhật ngày CT XK  " & gdvCT.GetFocusedRowCellValue("SoPhieu") & "!")
+            CType(CType(sender, SimpleButton).Parent, XtraForm).Close()
+        Else
+            ShowBaoLoi(LoiNgoaiLe)
+        End If
+
+    End Sub
 
 End Class

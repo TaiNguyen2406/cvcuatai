@@ -23,6 +23,8 @@ Partial Class frmUpdateXuatKhoTam
         Me.txtSoPhieuYC = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.txtNgayLap = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.txtNguoiLap = New DevExpress.XtraEditors.TextEdit()
         Me.txtGhiChu = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -60,11 +62,11 @@ Partial Class frmUpdateXuatKhoTam
         Me.cbThoiGianGH = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.rcbTienTe = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.rtbNgay = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.txtNgayLap = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.txtSoPhieuYC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.txtNgayLap.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNgayLap.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNguoiLap.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtGhiChu.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSoPhieuXuatTam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,8 +82,6 @@ Partial Class frmUpdateXuatKhoTam
         CType(Me.rcbTienTe, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbNgay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNgayLap.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNgayLap.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtSoPhieuYC
@@ -124,6 +124,31 @@ Partial Class frmUpdateXuatKhoTam
         Me.GroupControl1.Size = New System.Drawing.Size(1158, 89)
         Me.GroupControl1.TabIndex = 10
         Me.GroupControl1.Text = "Thông tin chung"
+        '
+        'txtNgayLap
+        '
+        Me.txtNgayLap.EditValue = Nothing
+        Me.txtNgayLap.Enabled = False
+        Me.txtNgayLap.Location = New System.Drawing.Point(531, 30)
+        Me.txtNgayLap.Name = "txtNgayLap"
+        Me.txtNgayLap.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtNgayLap.Properties.DisplayFormat.FormatString = "{0:HH:mm dd/MM/yyyy}"
+        Me.txtNgayLap.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtNgayLap.Properties.EditFormat.FormatString = "{0:HH:mm dd/MM/yyyy}"
+        Me.txtNgayLap.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtNgayLap.Properties.Mask.EditMask = "{0:HH:mm dd/MM/yyyy}"
+        Me.txtNgayLap.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret
+        Me.txtNgayLap.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.txtNgayLap.Size = New System.Drawing.Size(115, 20)
+        Me.txtNgayLap.TabIndex = 44
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(463, 34)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl5.TabIndex = 43
+        Me.LabelControl5.Text = "Thời gian lập"
         '
         'txtNguoiLap
         '
@@ -550,31 +575,6 @@ Partial Class frmUpdateXuatKhoTam
         Me.rtbNgay.Name = "rtbNgay"
         Me.rtbNgay.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         '
-        'txtNgayLap
-        '
-        Me.txtNgayLap.EditValue = Nothing
-        Me.txtNgayLap.Enabled = False
-        Me.txtNgayLap.Location = New System.Drawing.Point(531, 30)
-        Me.txtNgayLap.Name = "txtNgayLap"
-        Me.txtNgayLap.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtNgayLap.Properties.DisplayFormat.FormatString = "{0:HH:mm dd/MM/yyyy}"
-        Me.txtNgayLap.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtNgayLap.Properties.EditFormat.FormatString = "{0:HH:mm dd/MM/yyyy}"
-        Me.txtNgayLap.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtNgayLap.Properties.Mask.EditMask = "{0:HH:mm dd/MM/yyyy}"
-        Me.txtNgayLap.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret
-        Me.txtNgayLap.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtNgayLap.Size = New System.Drawing.Size(115, 20)
-        Me.txtNgayLap.TabIndex = 44
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(463, 34)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(60, 13)
-        Me.LabelControl5.TabIndex = 43
-        Me.LabelControl5.Text = "Thời gian lập"
-        '
         'frmUpdateXuatKhoTam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -594,6 +594,8 @@ Partial Class frmUpdateXuatKhoTam
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.txtNgayLap.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNgayLap.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNguoiLap.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtGhiChu.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSoPhieuXuatTam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -609,8 +611,6 @@ Partial Class frmUpdateXuatKhoTam
         CType(Me.rcbTienTe, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbNgay.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbNgay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNgayLap.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNgayLap.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -28,16 +28,26 @@ Public Class frmNguoiSuDungCCDC
 
     Private Sub loadData()
         loadGV()
-        query = "select ID, Ten from nhansu where trangthai=1 and noictac=74"
+        query = "select ID,Ten from DEPATMENT   "
+        riLuePhongBan.DataSource = ExecuteSQLDataTable(query)
+        loadNhanSu()
+        'barGlueNSD.EditValue = 1
+        query = "  select TaiSan_CongCuDungCu.id, isnull(ten, TenCCDC) ten, isnull(Model,MaCCDC) Model from TaiSan_CongCuDungCu  left join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID  where IdGop is null"
+        '  query = "  select TaiSan_TaiSan.id,  isnull(ten, TenTaiSan) ten, isnull(Model,MaTS) Model from Taisan_TaiSan  left join VATTU on VATTU.ID=TaiSan_TaiSan.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID where IdGop is null"
+        riLueCCDC.DataSource = ExecuteSQLDataTable(query)
+        query = "select id, tenchitietccdc from TaiSan_ChiTietCCDC"
+        riLueChiTietCCDC.DataSource = ExecuteSQLDataTable(query)
+        'barLueCCDC.EditValue = 1
+    End Sub
+    Private Sub loadNhanSu()
+        Dim query = "select ID, Ten from nhansu where trangthai=1 and noictac=74"
+        If barLuePhongBan.EditValue IsNot Nothing Then
+            AddParameterWhere("@IDDepatment", barLuePhongBan.EditValue)
+            query &= " and IDDepatment=@IDDepatment"
+        End If
         riGlueNSD.DataSource = ExecuteSQLDataTable(query)
         riGlueNSD.View.PopulateColumns(riGlueNSD.DataSource)
         riGlueNSD.View.Columns(riGlueNSD.ValueMember).Visible = False
-        'barGlueNSD.EditValue = 1
-        query = " select TaiSan_CongCuDungCu.id,ten, Model from TaiSan_CongCuDungCu inner join XUATKHO on XUATKHO.Sophieu=TaiSan_CongCuDungCu.Sophieu inner join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
-        riLueCCDC.DataSource = ExecuteSQLDataTable(query)
-        query = "select id, tenchitiettaisan from TaiSan_ChiTietCCDC"
-        riLueChiTietCCDC.DataSource = ExecuteSQLDataTable(query)
-        'barLueCCDC.EditValue = 1
     End Sub
     Private Sub frmNguoiSuDung_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         loadData()
@@ -63,7 +73,7 @@ Public Class frmNguoiSuDungCCDC
     Private Sub btnXoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXoa.ItemClick
         Dim id = If(gvNguoiSuDung.GetFocusedRowCellValue("id").ToString = "", "0", gvNguoiSuDung.GetFocusedRowCellValue("id"))
         If id <> "0" Then
-            If ShowCauHoi("Bạn có muốn xóa sử dụng của:" + gvNguoiSuDung.GetFocusedRowCellValue("Ten").ToString + " với : """ + gvNguoiSuDung.GetFocusedRowCellValue("tenchitiettaisan").ToString + " không ?") Then
+            If ShowCauHoi("Bạn có muốn xóa sử dụng của:" + gvNguoiSuDung.GetFocusedRowCellValue("Ten").ToString + " với : """ + gvNguoiSuDung.GetFocusedRowCellValue("tenchitietccdc").ToString + " không ?") Then
                 AddParameterWhere("@id", gvNguoiSuDung.GetFocusedRowCellValue("id"))
                 If doDelete("TaiSan_NguoiSuDungCCDC", "id=@id") Is Nothing Then
                     ShowBaoLoi(LoiNgoaiLe)
@@ -141,12 +151,18 @@ Public Class frmNguoiSuDungCCDC
             barLueChiTietCCDC.EditValue = Nothing
         End If
     End Sub
-
+    Private Sub riLuePhongBan_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles riLuePhongBan.ButtonClick
+        If e.Button.Index = 1 Then
+            barLuePhongBan.EditValue = Nothing
+        End If
+    End Sub
     Private Sub PopupMenu1_BeforePopup(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles PopupMenu1.BeforePopup
         If gvNguoiSuDung.RowCount < 1 Then
             e.Cancel = True
         End If
     End Sub
-
+    Private Sub barLuePhongBan_EditValueChanged(sender As Object, e As EventArgs) Handles barLuePhongBan.EditValueChanged
+        loadNhanSu()
+    End Sub
 
 End Class

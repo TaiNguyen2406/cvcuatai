@@ -41,6 +41,8 @@ Partial Class frmNguoiSuDungCCDC
         Me.riLueCCDC = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.barLueChiTietCCDC = New DevExpress.XtraBars.BarEditItem()
         Me.riLueChiTietCCDC = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.barLuePhongBan = New DevExpress.XtraBars.BarEditItem()
+        Me.riLuePhongBan = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.barGlueNSD = New DevExpress.XtraBars.BarEditItem()
         Me.riGlueNSD = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
         Me.RepositoryItemGridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -60,6 +62,7 @@ Partial Class frmNguoiSuDungCCDC
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueCCDC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueChiTietCCDC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riLuePhongBan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riGlueNSD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,10 +186,10 @@ Partial Class frmNguoiSuDungCCDC
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.BarDockControl1)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnThem, Me.btnSua, Me.btnXoa, Me.BarButtonItem8, Me.barLueCCDC, Me.barGlueNSD, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.barLueChiTietCCDC})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnThem, Me.btnSua, Me.btnXoa, Me.BarButtonItem8, Me.barLueCCDC, Me.barGlueNSD, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.barLueChiTietCCDC, Me.barLuePhongBan})
         Me.BarManager1.MainMenu = Me.Bar2
-        Me.BarManager1.MaxItemId = 13
-        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riGlueNSD, Me.riLueCCDC, Me.RepositoryItemGridLookUpEdit1, Me.riLueChiTietCCDC})
+        Me.BarManager1.MaxItemId = 14
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riGlueNSD, Me.riLueCCDC, Me.RepositoryItemGridLookUpEdit1, Me.riLueChiTietCCDC, Me.riLuePhongBan})
         '
         'Bar2
         '
@@ -196,7 +199,7 @@ Partial Class frmNguoiSuDungCCDC
         Me.Bar2.DockCol = 0
         Me.Bar2.DockRow = 0
         Me.Bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barLueCCDC, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barLueChiTietCCDC, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barGlueNSD, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem8, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barLueCCDC, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barLueChiTietCCDC, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barLuePhongBan, "", True, True, True, 0, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.barGlueNSD, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem8, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar2.OptionsBar.AllowQuickCustomization = False
         Me.Bar2.OptionsBar.DrawDragBorder = False
         Me.Bar2.OptionsBar.MultiLine = True
@@ -240,6 +243,8 @@ Partial Class frmNguoiSuDungCCDC
         Me.riLueCCDC.DisplayMember = "ten"
         Me.riLueCCDC.Name = "riLueCCDC"
         Me.riLueCCDC.NullText = "Tất cả"
+        Me.riLueCCDC.ShowFooter = False
+        Me.riLueCCDC.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.riLueCCDC.ValueMember = "id"
         '
         'barLueChiTietCCDC
@@ -261,6 +266,27 @@ Partial Class frmNguoiSuDungCCDC
         Me.riLueChiTietCCDC.ShowHeader = False
         Me.riLueChiTietCCDC.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.riLueChiTietCCDC.ValueMember = "id"
+        '
+        'barLuePhongBan
+        '
+        Me.barLuePhongBan.Caption = "Phòng ban"
+        Me.barLuePhongBan.Edit = Me.riLuePhongBan
+        Me.barLuePhongBan.Id = 13
+        Me.barLuePhongBan.Name = "barLuePhongBan"
+        Me.barLuePhongBan.Width = 137
+        '
+        'riLuePhongBan
+        '
+        Me.riLuePhongBan.AutoHeight = False
+        Me.riLuePhongBan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.riLuePhongBan.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name53", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name54")})
+        Me.riLuePhongBan.DisplayMember = "Ten"
+        Me.riLuePhongBan.Name = "riLuePhongBan"
+        Me.riLuePhongBan.NullText = "Tất cả"
+        Me.riLuePhongBan.ShowFooter = False
+        Me.riLuePhongBan.ShowHeader = False
+        Me.riLuePhongBan.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.riLuePhongBan.ValueMember = "ID"
         '
         'barGlueNSD
         '
@@ -378,12 +404,14 @@ Partial Class frmNguoiSuDungCCDC
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmNguoiSuDungCCDC"
+        Me.BarManager1.SetPopupContextMenu(Me, Me.PopupMenu1)
         Me.Text = "Người sử dụng công cụ, dụng cụ"
         CType(Me.gcNguoiSuDung, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvNguoiSuDung, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueCCDC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueChiTietCCDC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riLuePhongBan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riGlueNSD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -427,4 +455,6 @@ Partial Class frmNguoiSuDungCCDC
     Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents barLuePhongBan As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents riLuePhongBan As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

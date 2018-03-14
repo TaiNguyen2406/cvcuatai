@@ -2005,15 +2005,33 @@ Public Class frmDiemSo3
 
     End Sub
 
+    Function CheckThangLuongDuyet() As Boolean
+        AddParameterWhere("@Month", cbThang.EditValue.ToString & "/" & tbNam.EditValue.ToString)
+        Dim tb As DataTable = ExecuteSQLDataTable("SELECT Duyet FROM tblDuyetLuong WHERE [Month]=@Month")
+        If tb IsNot Nothing Then
+            If tb.Rows.Count = 1 Then
+                Return tb.Rows(0)(0)
+            Else
+                Return False
+            End If
+        Else
+            Return False
+        End If
+    End Function
+
     Private Sub btXemCachMoi_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btXemCachMoi.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
+            chkXemTheoSLChot.Checked = CheckThangLuongDuyet()
+        End If
+
 
         Dim _prc As String = ""
         ShowWaiting("Đang tính điểm")
         If chkXemTheoSLChot.Checked Then
             AddParameterWhere("@Thang", cbThang.EditValue)
             AddParameterWhere("@Nam", tbNam.EditValue)
-            AddParameterWhere("@TieuChi", cbTieuChi.EditValue)
-            AddParameterWhere("@TinhTheo", cbTinhTheo.EditValue)
+            'AddParameterWhere("@TieuChi", cbTieuChi.EditValue)
+            'AddParameterWhere("@TinhTheo", cbTinhTheo.EditValue)
             AddParameterWhere("@IDPhong", cbPhong.EditValue)
             Dim tb As DataTable = ExecutePrcDataTable("prc_DiemSo_Chot")
             If Not tb Is Nothing Then
@@ -2489,6 +2507,7 @@ Public Class frmDiemSo3
 
 
     Private Sub mChotSoLieu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mChotSoLieu.ItemClick
+
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then Exit Sub
         Dim sql As String = ""
         Try
@@ -2512,6 +2531,9 @@ Public Class frmDiemSo3
                 AddParameter("@DoanhThu1", gdvCT.GetRowCellValue(i, "DaThu"))
                 AddParameter("@LoiNhuan1", gdvCT.GetRowCellValue(i, "LoiNhuan"))
                 AddParameter("@DiemNL", gdvCT.GetRowCellValue(i, "DiemNL"))
+                AddParameter("@DiemHTKHC", gdvCT.GetRowCellValue(i, "HTKHC"))
+                AddParameter("@DiemHT", gdvCT.GetRowCellValue(i, "HoanThanh"))
+                AddParameter("@DiemST", gdvCT.GetRowCellValue(i, "SangTao"))
                 AddParameterWhere("@Month", cbThang.EditValue.ToString & "/" & tbNam.EditValue.ToString)
                 AddParameterWhere("@IDNhanVien", gdvCT.GetRowCellValue(i, "IDNhanVien"))
                 If doUpdate("tblTHChamCong", "Month=@Month AND IDNhanVien=@IDNhanVien") Is Nothing Then Throw New Exception(LoiNgoaiLe)
@@ -2522,6 +2544,41 @@ Public Class frmDiemSo3
             ShowBaoLoi(ex.Message)
         End Try
 
-     
+
+    End Sub
+
+
+    Private Sub btChotSL2_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btChotSL2.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then Exit Sub
+        Dim sql As String = ""
+        Try
+            For i As Integer = 0 To gdvCT.RowCount - 1
+                'PTDiemTamUng
+                If gdvCT.GetRowCellValue(i, "IDNhanVien") Is Nothing Then Continue For
+                AddParameter("@DiemNL", gdvCT.GetRowCellValue(i, "DiemNL"))
+                AddParameter("@DiemHTKHC", gdvCT.GetRowCellValue(i, "HTKHC"))
+                AddParameter("@DiemHT", gdvCT.GetRowCellValue(i, "HoanThanh"))
+                AddParameter("@DiemST", gdvCT.GetRowCellValue(i, "SangTao"))
+                AddParameterWhere("@Month", cbThang.EditValue.ToString & "/" & tbNam.EditValue.ToString)
+                AddParameterWhere("@IDNhanVien", gdvCT.GetRowCellValue(i, "IDNhanVien"))
+                If doUpdate("tblTHChamCong", "Month=@Month AND IDNhanVien=@IDNhanVien") Is Nothing Then Throw New Exception(LoiNgoaiLe)
+
+            Next
+            ShowAlert("Đã cập nhật !")
+        Catch ex As Exception
+            ShowBaoLoi(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnChiTietLoiNhuan_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles btnChiTietLoiNhuan.ItemClick
+        Dim f As frmChiTietLoiNhuan2 = New frmChiTietLoiNhuan2
+        f.Dock = DockStyle.Fill
+        f.Tag = f.Name
+        f._Thang = cbThang.EditValue
+        f._Nam = tbNam.EditValue
+        Dim f2 As New DevExpress.XtraEditors.XtraForm
+        f2.WindowState = FormWindowState.Maximized
+        f2.Controls.Add(f)
+        f2.Show()
     End Sub
 End Class

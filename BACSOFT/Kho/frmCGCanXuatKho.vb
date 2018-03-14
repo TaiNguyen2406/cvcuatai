@@ -101,6 +101,7 @@ Public Class frmCGCanXuatKho
         sql &= " 	XuatThue bit,"
         sql &= " 	MucThue tinyint,"
         sql &= " 	slTon Float,"
+        sql &= " 	XuatTam Float,"
         sql &= " 	DangVe Float,"
         sql &= " 	TienTe nvarchar(20),"
         sql &= " 	TyGia float,"
@@ -108,10 +109,18 @@ Public Class frmCGCanXuatKho
         sql &= "    IDVatTu int,"
         sql &= " 	AZ int"
         sql &= " )"
-        sql &= " INSERT INTO @tb(SoPhieu,TenVT,HangSX,Model,ThongSo,DVT,SoLuong,SLDaXuat,SLCanXuat,DonGia,ChietKhau,ThanhTien,XuatThue,MucThue,slTon,DangVe,TienTe,TyGia,HangTon,IDVatTu,AZ)"
+        sql &= " INSERT INTO @tb(SoPhieu,TenVT,HangSX,Model,ThongSo,DVT,SoLuong,SLDaXuat,SLCanXuat,DonGia,ChietKhau,ThanhTien,XuatThue,MucThue,slTon,XuatTam,DangVe,TienTe,TyGia,HangTon,IDVatTu,AZ)"
         sql &= " SELECT CHAOGIA.Sophieu,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,VATTU.Model,VATTU.Thongso,"
         sql &= " TENDONVITINH.Ten AS TenDVT,Soluong,(Soluong-CanXuat)AS SLDaXuat,CanXuat AS SLCanXuat,ISNULL(CHAOGIA.Dongia,0)DonGia,ISNULL(CHAOGIA.Chietkhau,0) ChietKhau,(CHAOGIA.Dongia * CHAOGIA.Soluong) AS ThanhTien,CHAOGIA.Xuatthue,CHAOGIA.Mucthue,"
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=CHAOGIA.IDVattu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=CHAOGIA.IDVattu)) AS slTon,"
+
+        'xuattam
+
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam, "
+
         sql &= "  (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= CHAOGIA.IDVatTu) AS DangVe,"
         sql &= " tblTienTe.Ten AS TenTienTe,CHAOGIA.TyGia, VATTU.HangTon, CHAOGIA.IDVatTu,ISNULL(CHAOGIA.AZ,0)AZ"
         sql &= " FROM CHAOGIA LEFT OUTER JOIN VATTU ON CHAOGIA.IDvattu=VATTU.ID"
@@ -405,16 +414,16 @@ Public Class frmCGCanXuatKho
             End If
 
             Dim f As New frmIn("Biên bản giao nhận")
-            'Dim rpt As New rptBienBanGiaoNhan
+            Dim rpt As New rptBienBanGiaoNhan
 
-            'rpt.pLogo.Image = My.Resources.Logo3
-            'rpt.DataSource = ds
+            rpt.pLogo.Image = My.Resources.Logo3
+            rpt.DataSource = ds
 
 
 
-            'rpt.CreateDocument()
+            rpt.CreateDocument()
 
-            '  f.printControl.PrintingSystem = rpt.PrintingSystem
+            f.printControl.PrintingSystem = rpt.PrintingSystem
             CloseWaiting()
             f.ShowDialog()
 

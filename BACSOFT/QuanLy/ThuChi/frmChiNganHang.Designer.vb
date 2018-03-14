@@ -76,6 +76,7 @@ Partial Class frmChiNganHang
         Me.GridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand16 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -263,7 +264,7 @@ Partial Class frmChiNganHang
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(1041, 61)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1041, 65)
         '
         'BarDockControl2
         '
@@ -276,15 +277,15 @@ Partial Class frmChiNganHang
         '
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl3.Location = New System.Drawing.Point(0, 61)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 477)
+        Me.BarDockControl3.Location = New System.Drawing.Point(0, 65)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 473)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(1041, 61)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 477)
+        Me.BarDockControl4.Location = New System.Drawing.Point(1041, 65)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 473)
         '
         'BarButtonItem1
         '
@@ -412,12 +413,12 @@ Partial Class frmChiNganHang
         'gdvUNC
         '
         Me.gdvUNC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvUNC.Location = New System.Drawing.Point(0, 61)
+        Me.gdvUNC.Location = New System.Drawing.Point(0, 65)
         Me.gdvUNC.MainView = Me.gdvUNCCT
         Me.gdvUNC.MenuManager = Me.BarManager1
         Me.gdvUNC.Name = "gdvUNC"
         Me.gdvUNC.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit2, Me.RepositoryItemPopupContainerEdit1, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit1})
-        Me.gdvUNC.Size = New System.Drawing.Size(1041, 477)
+        Me.gdvUNC.Size = New System.Drawing.Size(1041, 473)
         Me.gdvUNC.TabIndex = 9
         Me.gdvUNC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvUNCCT})
         '
@@ -446,7 +447,7 @@ Partial Class frmChiNganHang
         Me.gdvUNCCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvUNCCT.Appearance.HideSelectionRow.Options.UseBackColor = True
         Me.gdvUNCCT.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand9, Me.GridBand10, Me.GridBand11, Me.GridBand12, Me.GridBand13, Me.GridBand14, Me.GridBand15, Me.GridBand16, Me.GridBand23, Me.GridBand24, Me.GridBand27})
-        Me.gdvUNCCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn2, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn32, Me.BandedGridColumn35, Me.BandedGridColumn41, Me.BandedGridColumn38, Me.BandedGridColumn43, Me.BandedGridColumn1})
+        Me.gdvUNCCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn2, Me.BandedGridColumn11, Me.BandedGridColumn12, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn32, Me.BandedGridColumn35, Me.BandedGridColumn41, Me.BandedGridColumn38, Me.BandedGridColumn43, Me.BandedGridColumn1, Me.BandedGridColumn3})
         Me.gdvUNCCT.GridControl = Me.gdvUNC
         Me.gdvUNCCT.GroupPanelText = "Kéo thả cột cần nhóm vào vị trí này"
         Me.gdvUNCCT.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SoTien", Me.BandedGridColumn17, "{0:N0}")})
@@ -604,9 +605,10 @@ Partial Class frmChiNganHang
         Me.GridBand14.Caption = "Số tiền"
         Me.GridBand14.Columns.Add(Me.BandedGridColumn17)
         Me.GridBand14.Columns.Add(Me.BandedGridColumn18)
+        Me.GridBand14.Columns.Add(Me.BandedGridColumn3)
         Me.GridBand14.MinWidth = 20
         Me.GridBand14.Name = "GridBand14"
-        Me.GridBand14.Width = 166
+        Me.GridBand14.Width = 241
         '
         'BandedGridColumn17
         '
@@ -629,6 +631,13 @@ Partial Class frmChiNganHang
         Me.BandedGridColumn18.Name = "BandedGridColumn18"
         Me.BandedGridColumn18.Visible = True
         Me.BandedGridColumn18.Width = 57
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Tỷ giá"
+        Me.BandedGridColumn3.FieldName = "TyGia"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
         '
         'GridBand15
         '
@@ -857,23 +866,24 @@ Partial Class frmChiNganHang
     Friend WithEvents mInUNCTheoNguoiNhan As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mInUNCTheoDoiTuongCongNo As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand15 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand16 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand23 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand24 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand27 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents mnuChuyenSangBenThue As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuChuyenCacPhieuDaChon As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuChonBoChonTatCa As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mXemPhieuTC0 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mXemPhieuTC1 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand15 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand16 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand23 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand24 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand27 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 
 End Class

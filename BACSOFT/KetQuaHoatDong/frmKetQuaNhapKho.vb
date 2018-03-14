@@ -1,5 +1,6 @@
 ﻿Imports BACSOFT.Db.SqlHelper
 Imports DevExpress
+Imports BACSOFT.TAI
 
 Public Class frmKetQuaNhapKho
 
@@ -92,14 +93,14 @@ Public Class frmKetQuaNhapKho
                 colPhieuChi.Visible = False
                 sql &= " Select DISTINCT"
                 sql &= "   KHACHHANG.ttcMa, "
-                sql &= "   PHIEUNHAPKHO.SoPhieu AS SoPhieuNK,PHIEUNHAPKHO.SoPhieuDH, "
+                sql &= "   PHIEUNHAPKHO.SoPhieu AS SoPhieuNK,PHIEUNHAPKHO.SoPhieuDH, PHIEUNHAPKHO.Ngaythang, "
                 sql &= "   PHIEUNHAPKHO.TientruocThue * PHIEUNHAPKHO.Tygia AS TienTruocThue, PHIEUNHAPKHO.Tienthue * PHIEUNHAPKHO.Tygia AS TienThue, "
                 sql &= "   (ISNULL((SELECT SUM (SoTien) FROM CHI WHERE ChiPhiNhap=1 AND MucDich IN (205,208) AND ( PhieuTC1=PHIEUNHAPKHO.SoPhieu OR PHIEUTC0=PHIEUNHAPKHO.SoPHieuDH)), 0) + "
                 sql &= "   ISNULL((SELECT SUM (SoTien) FROM UNC WHERE ChiPhiNhap=1 AND MucDich IN (205,208) AND (PhieuTC1=PHIEUNHAPKHO.SoPhieu OR PHIEUTC0=PHIEUNHAPKHO.SoPHieuDH)), 0)) AS ChiPhi,"
                 sql &= "   (ISNULL((SELECT SUM (SoTien) FROM CHI WHERE MucDich =210 AND ( PhieuTC1=PHIEUNHAPKHO.SoPhieu OR PHIEUTC0=PHIEUNHAPKHO.SoPHieuDH)), 0) + "
                 sql &= "   ISNULL((SELECT SUM (SoTien) FROM UNC WHERE MucDich =210 AND (PhieuTC1=PHIEUNHAPKHO.SoPhieu OR PHIEUTC0=PHIEUNHAPKHO.SoPHieuDH)), 0)) AS Chi,"
                 sql &= "   PHIEUNHAPKHO.IDNguoiDat, LEFT(PHIEUNHAPKHO.Sophieu, 4) AS YearMonth,"
-                sql &= "    PHIEUDATHANG.PheDuyet,NHANSU.Ten AS TakeCare,DEPATMENT.Ten AS Phong,PHIEUNHAPKHO.SoPhieuDH, '' AS CBCT, "
+                sql &= "    PHIEUDATHANG.PheDuyet,NHANSU.Ten AS TakeCare,DEPATMENT.Ten AS Phong,PHIEUNHAPKHO.SoPhieuDH, '' AS CBCT,PHIEUDATHANG.IDHinhThucCT, "
                 sql &= "    (CASE WHEN tbCT.SoTien is null then 0 ELSE (CASE WHEN tbCT.SoTien <> (PHIEUNHAPKHO.TienTruocThue + PHIEUNHAPKHO.TienThue) THEN 2 ELSE 1 END) END) AS TTCT,"
                 sql &= "    tbVC.ID AS IDVC,tbVC.IDDVVC,tbVC.ThoiGian,tbVC.SoBill,tbVC.SoTien,tbVC.SoTienTC,tbVC.TienTe,tbVC.TyGia,tbVC.CanNang,tbVC.GhiChu,tbVC.SL,Convert(bit,0)Modify,NGUOINHAP.Ten As NguoiNhapCP"
                 sql &= " FROM PHIEUNHAPKHO "
@@ -138,7 +139,7 @@ Public Class frmKetQuaNhapKho
                 colUNC.VisibleIndex = 2
                 sql &= " SELECT KHACHHANG.ttcMa,"
                 sql &= "    tbChi.NgaythangCT AS Ngay, tbChi.SoPhieu,tbChi.Loai, PHIEUNHAPKHO.SoPhieuDH, PHIEUNHAPKHO.Sophieu AS SoPhieuNK,  "
-                sql &= " 	PHIEUNHAPKHO.Tientruocthue * PHIEUNHAPKHO.Tygia AS TienTruocThue, "
+                sql &= " 	PHIEUNHAPKHO.Tientruocthue * PHIEUNHAPKHO.Tygia AS TienTruocThue, PHIEUNHAPKHO.Ngaythang, "
                 sql &= " 	PHIEUNHAPKHO.Tienthue * PHIEUNHAPKHO.Tygia AS TienThue,tbChi.Sotien AS TienChi,  "
                 sql &= " 	PHIEUNHAPKHO.IDNguoiDat,NHANSU.Ten AS TakeCare,DEPATMENT.Ten AS Phong,PHIEUNHAPKHO.IDNguoiDat,'' AS CBCT,"
                 sql &= "    (CASE WHEN tbCT.SoTien is null then 0 ELSE (CASE WHEN tbCT.SoTien <> (PHIEUNHAPKHO.TienTruocThue + PHIEUNHAPKHO.TienThue) THEN 2 ELSE 1 END) END) AS TTCT"
@@ -169,9 +170,7 @@ Public Class frmKetQuaNhapKho
             Dim tb As DataTable = ExecuteSQLDataTable(sql)
             If tb Is Nothing Then Throw New Exception(LoiNgoaiLe)
             gdv.DataSource = tb
-
-
-
+            rcbHinhThucCT.DataSource = tableHinhThucCT()
             CloseWaiting()
         Catch ex As Exception
             ShowBaoLoi(ex.Message)
@@ -235,6 +234,34 @@ Public Class frmKetQuaNhapKho
             If IsDBNull(e.CellValue) Then Exit Sub
             If gdvCT.GetRowCellValue(e.RowHandle, "SoTien") <> gdvCT.GetRowCellValue(e.RowHandle, "SoTienTC") Then
                 e.Appearance.BackColor = Color.Yellow
+            End If
+        End If
+
+        'Kiểm tra đã đủ chứng từ hay chưa? Chưa thì bôi đỏ cột số phiếu nhập hàng
+        If e.Column.FieldName = "SoPhieuNK" Then
+            Dim str As String = ""
+            Dim dt As New DataTable
+
+            If Year(gdvCT.GetRowCellValue(e.RowHandle, "Ngaythang")) >= 2018 Then
+                If gdvCT.GetRowCellValue(e.RowHandle, "IDHinhThucCT") = 2 And gdvCT.GetRowCellValue(e.RowHandle, "TienTruocThue") > 0 Then
+                    str = "SELECT count(Id_CT) from NHAPKHO where Sophieu = @SOPHIEU"
+                ElseIf gdvCT.GetRowCellValue(e.RowHandle, "IDHinhThucCT") = 3 And gdvCT.GetRowCellValue(e.RowHandle, "TienTruocThue") > 0 Then
+                    str = " select count(idlamhaiquan) from HaiQuan_ChiTietLamHaiQuan ct inner join HaiQuan_LamHaiQuan on idlamhaiquan =HaiQuan_LamHaiQuan.id"
+                    str &= " right join  NHAPKHO  on ct.idchaogia =NHAPKHO .IDDathang where NHAPKHO.Sophieu = tbl.Sophieu And NgayThongQuan Is Not null"
+                End If
+                If str <> "" Then
+                    AddParameterWhere("@SOPHIEU", gdvCT.GetRowCellValue(e.RowHandle, "SoPhieuNK"))
+                    dt = ExecuteSQLDataTable(str)
+                    If dt Is Nothing Then
+                        ShowBaoLoi(LoiNgoaiLe)
+                        Exit Sub
+                    End If
+                    If dt.Rows.Count > 0 Then
+                        If dt.Rows(0)(0) = 0 Then
+                            e.Appearance.BackColor = Color.Red
+                        End If
+                    End If
+                End If
             End If
         End If
     End Sub
@@ -312,7 +339,7 @@ Public Class frmKetQuaNhapKho
                     mSuaChiPhiVCChung.Visibility = XtraBars.BarItemVisibility.Never
                 End If
             End If
-            
+
         Else
             btLuuLai.Visibility = XtraBars.BarItemVisibility.Never
             mLuuLai.Visibility = XtraBars.BarItemVisibility.Never
@@ -388,7 +415,6 @@ Public Class frmKetQuaNhapKho
             fCNNhapKho.mChonBoChon.Enabled = False
         End If
         fCNNhapKho.ShowDialog()
-
     End Sub
 
     Private Sub mDuKienTT_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mDuKienTT.ItemClick
@@ -432,7 +458,7 @@ Public Class frmKetQuaNhapKho
             btLuuLai.Visibility = XtraBars.BarItemVisibility.Never
 
         End If
-       
+
 
     End Sub
 
@@ -522,7 +548,6 @@ Public Class frmKetQuaNhapKho
                         ShowBaoLoi("Không cập nhật được chi phí tại PN: " & gdvCT.GetRowCellValue(i, "SoPhieuNK") & vbCrLf & LoiNgoaiLe)
                     End If
                 End If
-
             End If
         Next
 
@@ -719,7 +744,7 @@ Public Class frmKetQuaNhapKho
                 End If
             End If
         End If
-       
+
     End Sub
 
     Private Sub gdvCT_FocusedRowChanged(sender As System.Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles gdvCT.FocusedRowChanged
@@ -741,4 +766,5 @@ Public Class frmKetQuaNhapKho
         Dim f As New frmPhanBoChiPhiNhap
         f.ShowDialog()
     End Sub
+
 End Class

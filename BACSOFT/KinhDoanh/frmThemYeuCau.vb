@@ -6,18 +6,26 @@ Public Class frmThemYeuCau
     Public tmpMaTuDien As Object
     Public _Exit As Boolean = False
     'Public SoYeuCau As Object
-
+    Public _tag As Object
+    Public _YeuCauWeb As Object
 
     Private Sub frmThemYeuCau_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        cboCongtrinh.EditValue = "Thương mại" 
         LoadCbTrangThai()
         loadKhachHang()
         loadTakeCare()
         setSourceGdvFileDinhKem()
         loadDSLoaiCongTrinh()
         LoadDSNguonKH()
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", _tag, DanhMucQuyen.TPKinhDoanh) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", _tag, DanhMucQuyen.Admin) Then
+            cbTakeCare.Enabled = False
+        End If
         If TrangThai.isAddNew Then
             Me.Text = "Thêm yêu cầu"
             cbTrangThai.EditValue = Convert.ToByte(TrangThaiYeuCau.CanChaoGia)
+            If Not _YeuCauWeb Is Nothing Or Not IsDBNull(_YeuCauWeb) Then
+
+            End If
         Else
             Me.Text = "Cập nhật yêu cầu"
             AddParameterWhere("@MaYC", MaTuDien)
@@ -34,10 +42,21 @@ Public Class frmThemYeuCau
                 cbNguoiGD.EditValue = tb.Rows(0)("IDNgd")
                 _Exit = False
                 cbTrangThai.EditValue = tb.Rows(0)("TrangThai")
+
                 If IsDBNull(tb.Rows(0)("Congtrinh")) Then
-                    chkCongTrinh.Checked = False
+                    'chkCongTrinh.Checked = False
+                    cboCongtrinh.EditValue = Nothing
                 Else
-                    chkCongTrinh.Checked = tb.Rows(0)("Congtrinh")
+                    'chkCongTrinh.Checked = tb.Rows(0)("Congtrinh")
+                    If tb.Rows(0)("Congtrinh") = 1 Then
+                        cboCongtrinh.EditValue = "Công trình"
+                    End If
+                    If tb.Rows(0)("Congtrinh") = 0 Then
+                        cboCongtrinh.EditValue = "Thương mại"
+                    End If
+                    If tb.Rows(0)("Congtrinh") = 2 Then
+                        cboCongtrinh.EditValue = "Phần mềm"
+                    End If
                 End If
 
                 If tb.Rows(0)("FileDinhKem").ToString <> "" Then
@@ -49,7 +68,7 @@ Public Class frmThemYeuCau
                     gdvFileCT.CloseEditor()
                     gdvFileCT.UpdateCurrentRow()
                 End If
-                'SoYeuCau = 
+                'SoYeuCau =
             Else
                 ShowBaoLoi(LoiNgoaiLe)
             End If
@@ -94,18 +113,30 @@ Public Class frmThemYeuCau
     End Sub
 
     Public Sub loadKhachHang()
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,ttcMa,Ten,IDTakecare FROM KHACHHANG ORDER BY ttcMa")
+        Dim sql As String = "SELECT distinct KHACHHANG. * from KHACHHANG left join NHANSU on KHACHHANG .ID=NHANSU .Noictac where 1=1"
+        '  Dim sql As String = "SELECT ID,ttcMa,Ten,IDTakecare FROM KHACHHANG "
+        If cbTakeCare.EditValue IsNot Nothing Then
+            sql &= " and( (NHANSU .Chamsoc=@Chamsoc  OR KHACHHANG.IDTakecare is null  ) or  KHACHHANG.IDTakecare=@Chamsoc )"
+            AddParameterWhere("@Chamsoc", cbTakeCare.EditValue)
+            ' Else
+            '    sql &= " AND KHACHHANG.IDTakecare is null   "
+        End If
+        '   sql &= " OR KHACHHANG.IDTakecare is null   "
+        sql &= "  ORDER BY ttcMa "
+
+        Dim tb As DataTable = ExecuteSQLDataTable(Sql)
         If Not tb Is Nothing Then
             gdvMaKH.Properties.DataSource = tb
         Else
             ShowBaoLoi(LoiNgoaiLe)
         End If
 
+
     End Sub
 
     Public Sub loadNguoiGD()
         AddParameterWhere("@IDCTY", gdvMaKH.EditValue)
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,Ten,Chamsoc FROM NHANSU WHERE Noictac=@IDCTY")
+        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,Ten,Chamsoc, (select Ten from NHANSU CS where CS.ID=NhanSu.Chamsoc) TenChamSoc FROM NHANSU WHERE Noictac=@IDCTY")
         If Not tb Is Nothing Then
             cbNguoiGD.Properties.DataSource = tb
         Else
@@ -134,7 +165,7 @@ Public Class frmThemYeuCau
         If _Exit Then Exit Sub
         Dim edit As GridLookUpEdit = CType(sender, GridLookUpEdit)
         Dim dr As DataRowView = edit.GetSelectedDataRow
-        cbTakeCare.EditValue = dr("IDTakecare")
+        '   cbTakeCare.EditValue = dr("IDTakecare")
     End Sub
 
     Private Sub cbNguoiGD_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles cbNguoiGD.EditValueChanged
@@ -142,7 +173,7 @@ Public Class frmThemYeuCau
         If _Exit Then Exit Sub
         Dim edit As LookUpEdit = CType(sender, LookUpEdit)
         Dim dr As DataRowView = edit.GetSelectedDataRow
-        cbTakeCare.EditValue = dr("Chamsoc")
+        '    cbTakeCare.EditValue = dr("Chamsoc")
     End Sub
 
     Private Sub btGhi_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGhi.Click
@@ -159,7 +190,8 @@ Public Class frmThemYeuCau
         gdvMaKH.EditValue = Nothing
         cbNguoiGD.EditValue = Nothing
         tbYeuCau.EditValue = ""
-        chkCongTrinh.Checked = False
+        'chkCongTrinh.Checked = False
+        cboCongtrinh.EditValue = "Công trình" 
         For i As Integer = 0 To gdvFileCT.RowCount - 1
             gdvFileCT.DeleteRow(i)
         Next
@@ -233,12 +265,56 @@ Public Class frmThemYeuCau
                 AddParameter("@FileDinhKem", "")
             End If
 
-            AddParameter("@Congtrinh", chkCongTrinh.Checked)
+
+            'AddParameter("@Congtrinh", chkCongTrinh.Checked)
+
+            If cboCongtrinh.EditValue = "Công trình" Then
+                AddParameter("@Congtrinh", 1)
+            End If
+
+            If cboCongtrinh.EditValue = "Thương mại" Then
+                AddParameter("@Congtrinh", 0)
+            End If
+
+            If cboCongtrinh.EditValue = "Phần mềm" Then
+                AddParameter("@Congtrinh", 2)
+            End If
+
             AddParameter("@ID", MaTuDien)
             AddParameter("@IsAddnew", TrangThai.isAddNew)
             AddParameter("@TrangThai", cbTrangThai.EditValue)
 
             Dim tb As DataTable = ExecuteSQLDataTable(sql)
+            ' Cap nhat yeu cau tu web
+            If Not _YeuCauWeb Is Nothing And Not IsDBNull(_YeuCauWeb) Then
+                If TrangThai.isAddNew Then
+                    AddParameter("@SoYCDen", tb.Rows(0)(0).ToString)
+                    AddParameter("@MaKH", gdvMaKH.EditValue)
+                    AddParameter("@TrangThai", 2)
+                    AddParameterWhere("@IDWeb", _YeuCauWeb.ToString)
+                    If doUpdate("YeuCauTuWeb", "ID = @IDWeb") Is Nothing Then
+                        ShowCanhBao(LoiNgoaiLe)
+                    Else
+                        Dim ds_sp As New DataTable
+                        AddParameterWhere("@ID_Web", _YeuCauWeb.ToString)
+                        ds_sp = ExecuteSQLDataTable("SELECT (TenSanPham + ' ' + Model)NoiDung, SoLuong FROM YeuCauTuWebCT WHERE IdYc = @ID_Web")
+                        If ds_sp Is Nothing Then
+                            ShowBaoLoi(LoiNgoaiLe)
+                        Else
+                            For i = 0 To ds_sp.Rows.Count - 1
+                                AddParameter("@NoiDung", ds_sp.Rows(0)("NoiDung"))
+                                AddParameter("@Soluong", ds_sp.Rows(0)("Soluong"))
+                                AddParameter("@Sophieu", tb.Rows(0)(0).ToString)
+                                If doInsert("YEUCAUDEN") Is Nothing Then
+                                    ShowBaoLoi(LoiNgoaiLe)
+                                End If
+                            Next
+                        End If
+                        _YeuCauWeb = Nothing
+                    End If
+                End If
+            End If
+            'end yeu cau tu web
 
             If tb Is Nothing Then Throw New Exception(LoiNgoaiLe)
 
@@ -271,18 +347,14 @@ Public Class frmThemYeuCau
                     AddParameter("@NoiDung", tbYeuCau.EditValue)
                     AddParameter("@IDNgd", cbNguoiGD.EditValue)
                     AddParameter("@IDKhachHang", gdvMaKH.EditValue)
-
                     AddParameter("@IDNhanVien", TaiKhoan)
 
                     If doInsert("tblNguonKhachMoi") Is Nothing Then
                         ShowBaoLoi(LoiNgoaiLe)
                     Else
                     End If
-
                 End If
-
             End If
-
 
             If TrangThai.isUpdate Then
                 If ShowCauHoi("Bạn có muốn chuyển trạng thái toàn bộ yêu cầu chi tiết theo trạng thái yêu cầu chính không ?") Then
@@ -295,6 +367,32 @@ Public Class frmThemYeuCau
                         ShowBaoLoi(LoiNgoaiLe)
                     End If
                 End If
+
+                ' Yeu cau web
+                'Dim yc_web As New DataTable
+                'yc_web = ExecuteSQLDataTable("SELECT Sophieu FROM YEUCAUTUWEB WHERE SoYCDen = '" & tb.Rows(0)(0) & "'")
+                'If yc_web Is Nothing Then
+                '    ShowBaoLoi(LoiNgoaiLe)
+                'Else
+                '    If yc_web.Rows.Count > 0 Then
+                '        If (cbTrangThai.EditValue = 7) Then
+                '            AddParameter("@TrangThai", 1)
+                '            AddParameter("@SoYCDen", Nothing)
+                '            AddParameter("@MaKH", Nothing)
+
+                '        Else
+                '            AddParameter("@SoYCDen", tb.Rows(0)(0).ToString)
+                '            AddParameter("@MaKH", gdvMaKH.EditValue)
+                '            AddParameter("@TrangThai", 2)
+                '        End If
+                '        AddParameterWhere("@Sophieuycweb", yc_web.Rows(0)(0).ToString)
+                '        If doUpdate("YeuCauTuWeb", "Sophieu = @Sophieuycweb") Is Nothing Then
+                '            ShowBaoLoi(LoiNgoaiLe)
+                '        End If
+                '    End If
+                'End If
+                ' end
+
             End If
 
             TrangThai.isUpdate = True
@@ -501,6 +599,17 @@ Public Class frmThemYeuCau
     Private Sub cbNguonKH_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cbNguonKH.ButtonClick
         If e.Button.Index = 1 Then
             cbNguonKH.EditValue = Nothing
+        End If
+    End Sub
+
+    Private Sub cbTakeCare_EditValueChanged(sender As Object, e As EventArgs) Handles cbTakeCare.EditValueChanged
+        loadKhachHang()
+    End Sub
+
+    Private Sub GridLookUpEdit1View_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GridLookUpEdit1View.RowCellStyle
+        Dim view = GridLookUpEdit1View
+        If (IsDBNull(view.GetRowCellValue(e.RowHandle, "IDTakecare")) Or view.GetRowCellValue(e.RowHandle, "IDTakecare") Is Nothing) And Not view.IsFilterRow(e.RowHandle) Then
+            e.Appearance.BackColor = Color.FromArgb(255, 192, 192)
         End If
     End Sub
 End Class

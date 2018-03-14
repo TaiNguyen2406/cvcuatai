@@ -10,52 +10,53 @@ Public Class frmThongTinCCDC
     Private Shared dt As DataTable
     Public check As Integer = 1
     Private Sub loadGV()
+        Dim hientai As DateTime = GetServerTime()
         Dim query As String = " SELECT "
         If barCbbXem.EditValue = "Top 500" Then
             query &= "  TOP 500 "
         End If
-        query &= " * from("
-        query &= " select  TaiSan_CongCuDungCu.*, PHIEUXUATKHO.NgayThang, SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang, VATTU.Model, VATTU.Thongso AS ThongSo, datediff(day, NgayThang,DATEADD (month,thoigiankh,NgayThang)) as SoNgayKH, isnull(Congtrinh ,0) Congtrinh"
-        query &= " from TaiSan_CongCuDungCu inner join XUATKHO on TaiSan_CongCuDungCu.idxuatkho=XUATKHO.ID INNER JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID INNER JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID  where isnull(0,Congtrinh)=0"
+        'query &= " *, (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id) SLHong, (SoLuong- (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id)) SoLuongConLai  "
+        'query &= ", case when SoNgayKH< datediff(day, NgayThang,@time) then 0 else tongtien- ((SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ SoLuongHongDauKy*DonGia) end   as saupb"
+        query &= " id, idvattu, sophieu, idloaiccdc, ghichuccdc, idxuatkho, thoigiankh, IdBoPhan, CheckLuu, IdGop, Gop, isnull(DonGia,GiaTri) DonGia, isnull(TenVT,TenCCDC) TenVT, isnull(Model,MaCCDC) Model, isnull(NgayThang,NgayNhap) NgayThang, isnull(TenHang,HangSX) TenHang, isnull(ThongSo,ThongSoCCDC) ThongSo, isnull(SoLuong,SoLuongCCDC) SoLuong,SoNgayKH, Congtrinh, (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id) SLHong, (SoLuong- (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id)) SoLuongConLai,tongtien"
+        query &= ", case when SoNgayKH< datediff(day, NgayThang,@time) then 0 else tongtien- ((SoLuong-SoLuongHongDauKy)*DonGia/SoNgayKH*  datediff(day, NgayThang,@time)+ (SoLuongHongDauKy)*DonGia) end as saupb"
+        query &= " from("
+        query &= " select  TaiSan_CongCuDungCu.*, PHIEUXUATKHO.NgayThang, SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang, VATTU.Model, VATTU.Thongso AS ThongSo, datediff(day, NgayThang,DATEADD (month,thoigiankh,NgayThang)) as SoNgayKH, isnull(Congtrinh ,0) Congtrinh, (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@time and idccdc =TaiSan_CongCuDungCu .id) as SoLuongHongDauKy"
+
+        query &= " from TaiSan_CongCuDungCu inner join XUATKHO on TaiSan_CongCuDungCu.idxuatkho=XUATKHO.ID and isnull(isCT,0)=0 INNER JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID INNER JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID  where isnull(0,Congtrinh)=0"
         If barCbbXem.EditValue = "Tuỳ chỉnh" Then
-            AddParameterWhere("@TuNgay", barDeTuNgay.EditValue)
-            AddParameterWhere("@DenNgay", barDeDenNgay.EditValue)
+            ' AddParameterWhere("@TuNgay", barDeTuNgay.EditValue)
+            'AddParameterWhere("@DenNgay", barDeDenNgay.EditValue)
             query &= " AND Convert(datetime,CONVERT(nvarchar,PHIEUXUATKHO.NgayThang,103),103) BETWEEN @TuNgay AND @DenNgay "
         End If
         If deskTop.tabMain.SelectedTabPage.Text = "Hàng hóa xuất cho Bảo An" Then
             query &= " and CheckLuu=0"
         End If
         query &= " union"
-        query &= "  select   TaiSan_CongCuDungCu.*, PHIEUXUATKHO.NgayThang, 1 as SoLuong, BANGCHAOGIA.Tienthucthu as DonGia, BANGCHAOGIA.Tienthucthu as tongtien,TenDuan AS TenVT, null AS TenHang,  null as Model, null AS ThongSo, datediff(day, PHIEUXUATKHO.NgayThang,DATEADD (month,thoigiankh,PHIEUXUATKHO.NgayThang)) as SoNgayKH, isnull(PHIEUXUATKHO.Congtrinh ,0) Congtrinh from TaiSan_CongCuDungCu inner join BANGCHAOGIA on TaiSan_CongCuDungCu.idxuatkho=BANGCHAOGIA.ID inner join PHIEUXUATKHO on PHIEUXUATKHO .SophieuCG =BANGCHAOGIA.Sophieu where PHIEUXUATKHO.Congtrinh=1"
+        query &= "  select   TaiSan_CongCuDungCu.*, PHIEUXUATKHO.NgayThang, 1 as SoLuong, BANGCHAOGIA.Tienthucthu as DonGia, BANGCHAOGIA.TienTruocthue as tongtien,TenDuan AS TenVT, null AS TenHang,  null as Model, null AS ThongSo, datediff(day, PHIEUXUATKHO.NgayThang,DATEADD (month,thoigiankh,PHIEUXUATKHO.NgayThang)) as SoNgayKH, isnull(PHIEUXUATKHO.Congtrinh ,0) Congtrinh, (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@time and idccdc =TaiSan_CongCuDungCu .id) as SoLuongHongDauKy"
+        query &= " from TaiSan_CongCuDungCu inner join BANGCHAOGIA on TaiSan_CongCuDungCu.idxuatkho=BANGCHAOGIA.ID and isnull(isCT,0)=1 inner join PHIEUXUATKHO on PHIEUXUATKHO .SophieuCG =BANGCHAOGIA.Sophieu where PHIEUXUATKHO.Congtrinh=1"
         If barCbbXem.EditValue = "Tuỳ chỉnh" Then
-            AddParameterWhere("@TuNgay", barDeTuNgay.EditValue)
-            AddParameterWhere("@DenNgay", barDeDenNgay.EditValue)
+           
             query &= " AND Convert(datetime,CONVERT(nvarchar,PHIEUXUATKHO.NgayThang,103),103) BETWEEN @TuNgay AND @DenNgay "
+      
         End If
         If deskTop.tabMain.SelectedTabPage.Text = "Hàng hóa xuất cho Bảo An" Then
             query &= " and CheckLuu=0"
         End If
+        query &= " union"
+        query &= " select TaiSan_CongCuDungCu.*, NgayNhap NgayThang, SoLuongCCDC as SoLuong, GiaTri as DonGia,GiaTri*SoLuongCCDC as tongtien,TenCCDC AS TenVT, HangSX AS TenHang,  MaCCDC as Model, ThongSoCCDC AS ThongSo, datediff(day, NgayNhap,DATEADD (month,thoigiankh,NgayNhap)) as SoNgayKH, CongTrinhCCDC,(select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@time and idccdc =TaiSan_CongCuDungCu .id) as SoLuongHongDauKy from TaiSan_CongCuDungCu where sophieu is null"
 
-        'If barLueNhomVT.EditValue IsNot Nothing Then
-        '    AddParameterWhere("@IDTennhom", barLueNhomVT.EditValue)
-        '    query &= " and IDTennhom=@IDTennhom"
-        'End If
-        'If barLueHang.EditValue IsNot Nothing Then
-        '    AddParameterWhere("@IDHangSanxuat", barLueHang.EditValue)
-        '    query &= " and IDHangSanxuat=@IDHangSanxuat"
-        'End If
-        'If barLueTenVT.EditValue IsNot Nothing Then
-        '    AddParameterWhere("@IDTenvattu", barLueTenVT.EditValue)
-        '    query &= " and IDTenvattu=@IDTenvattu"
-        'End If
-        'If barTxtMaVT.EditValue IsNot Nothing Then
-        '    query &= " and Model Like N'%" & barTxtMaVT.EditValue.ToString & "%' "
-        'End If
-        'If barLueLoaiTS.EditValue IsNot Nothing Then
-        '    AddParameterWhere("@idloaiccdc", barLueLoaiTS.EditValue)
-        '    query &= " and idloaiccdc=@idloaiccdc"
-        'End If
-        query &= ")tb "
+        If barCbbXem.EditValue = "Tuỳ chỉnh" Then
+            AddParameterWhere("@TuNgay", barDeTuNgay.EditValue)
+            AddParameterWhere("@DenNgay", barDeDenNgay.EditValue)
+            AddParameterWhere("@time", barDeDenNgay.EditValue)
+            query &= " AND Convert(datetime,CONVERT(nvarchar,NgayNhap,103),103) BETWEEN @TuNgay AND @DenNgay "
+        Else
+            AddParameterWhere("@time", hientai)
+        End If
+        If deskTop.tabMain.SelectedTabPage.Text = "Hàng hóa xuất cho Bảo An" Then
+            query &= " and CheckLuu=0"
+        End If
+        query &= ")tb where IdGop is null  "
         'Còn khấu hao
         'Khấu hao hết
         If barcbbTinhTrang.EditValue = "Còn khấu hao" Then
@@ -63,12 +64,26 @@ Public Class frmThongTinCCDC
         ElseIf barcbbTinhTrang.EditValue = "Khấu hao hết" Then
             query &= " where SoNgayKH<datediff(day, NgayThang,Getdate())"
         End If
-        query &= " order by NgayThang asc "
-        Dim dt As DataTable = ExecuteSQLDataTable(query)
-        If Not dt Is Nothing Then
-            Dim row = gv.FocusedRowHandle
-            gc.DataSource = dt
-            gv.FocusedRowHandle = row
+        query &= " order by NgayThang desc, Id desc "
+        query &= "select "
+        If barCbbXem.EditValue = "Top 500" Then
+            query &= "  TOP 500 "
+        End If
+        query &= " id, idvattu, sophieu, idloaiccdc, ghichuccdc, idxuatkho, thoigiankh, IdBoPhan, CheckLuu, IdGop, Gop, isnull(DonGia,GiaTri) DonGia, isnull(TenVT,TenCCDC) TenVT, isnull(Model,MaCCDC) Model, isnull(NgayThang,NgayNhap) NgayThang, isnull(TenHang,HangSX) TenHang, isnull(ThongSo,ThongSoCCDC) ThongSo, isnull(SoLuong,SoLuongCCDC) SoLuong,SoNgayKH, Congtrinh, (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id) SLHong, (SoLuong- (select COUNT(id) from Taisan_ChiTietCCDC where ngaythanhly <=@Time and idccdc =tb.id)) SoLuongConLai,tongtien from("
+        query &= " select TaiSan_CongCuDungCu.*, PHIEUXUATKHO.NgayThang, SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang, VATTU.Model, VATTU.Thongso AS ThongSo,  datediff(day, NgayThang,DATEADD (month,thoigiankh,NgayThang)) as SoNgayKH,Congtrinh "
+        query &= " from TaiSan_CongCuDungCu inner join XUATKHO on TaiSan_CongCuDungCu.idxuatkho=XUATKHO.ID inner JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID inner JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID   where isnull(0,Congtrinh)=0 )tb where IdGop is not null order by NgayThang desc, Id desc"
+        Dim ds As DataSet = ExecuteSQLDataSet(query)
+        gc.DataSource = Nothing
+        If Not ds Is Nothing Then
+            Dim _relation As New System.Data.DataRelation("table2", ds.Tables(0).Columns("id"), ds.Tables(1).Columns("IdGop"), False)
+
+            ds.Relations.Add(_relation)
+            ds.Tables(0).TableName = "table1"
+            ds.Tables(1).TableName = "table2"
+            '    Dim row = gv.FocusedRowHandle
+            gc.DataMember = "table1"
+            gc.DataSource = ds.Tables(0)
+            '   gv.FocusedRowHandle = row
         Else
             ShowBaoLoi(LoiNgoaiLe)
         End If
@@ -105,6 +120,8 @@ Public Class frmThongTinCCDC
         griLueLoaiCCDC.DataSource = tableLoaiCCDC()
         If deskTop.tabMain.SelectedTabPage.Text = "Hàng hóa xuất cho Bảo An" Then
             btnLuu.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            btnSua.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            gv.OptionsBehavior.Editable = True
         Else
             btnLuu.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
@@ -123,6 +140,15 @@ Public Class frmThongTinCCDC
     End Sub
 
     Private Sub btnXoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXoa.ItemClick
+        If deskTop.tabMain.SelectedTabPage.Text = "Hàng hóa xuất cho Bảo An" Then
+            If Not KiemTraQuyenSuDung("Menu", Me.Tag, DanhMucQuyen.KeToan) Then
+                Exit Sub
+            End If
+        Else
+            If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+                Exit Sub
+            End If
+        End If
         Dim id = If(gv.GetFocusedRowCellValue("id") Is Nothing, "0", gv.GetFocusedRowCellValue("id"))
         If id <> 0 Then
             If ShowCauHoi("Bạn có muốn xóa tài sản: """ + gv.GetFocusedRowCellValue("TenVT").ToString + " không ?") Then
@@ -134,7 +160,13 @@ Public Class frmThongTinCCDC
                     If doDelete("TaiSan_CongCuDungCu", "id=@id") Is Nothing Then
                         ShowBaoLoi(LoiNgoaiLe)
                     Else
-                        loadData()
+                        AddParameterWhere("@id", gv.GetFocusedRowCellValue("id"))
+                        If doDelete("TaiSan_TaiSan", "IdGop=@id") Is Nothing Then
+                            ShowBaoLoi(LoiNgoaiLe)
+                        Else
+                            loadData()
+                        End If
+
 
                     End If
                 End If
@@ -180,9 +212,7 @@ Public Class frmThongTinCCDC
         If e.KeyCode = Keys.Delete Then
             btnXoa.PerformClick()
         End If
-        If e.KeyCode = Keys.Enter Then
-            btnChiTietCCDC.PerformClick()
-        End If
+       
     End Sub
     Private Sub PopupMenu1_BeforePopup(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles PopupMenu1.BeforePopup
         If gv.RowCount < 1 Then
@@ -212,9 +242,6 @@ Public Class frmThongTinCCDC
         '  loadGV()
     End Sub
 
-    Private Sub barDeDenNgay_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles barDeDenNgay.EditValueChanged
-        '  loadGV()
-    End Sub
 
     Private Sub barLueNhomVT_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles barLueNhomVT.EditValueChanged
         '   loadData()
@@ -251,18 +278,33 @@ Public Class frmThongTinCCDC
     End Sub
 
     Private Sub gvCCDC_RowUpdated(sender As System.Object, e As DevExpress.XtraGrid.Views.Base.RowObjectEventArgs) Handles gv.RowUpdated
-        gv.CloseEditor()
-        gv.UpdateCurrentRow()
-        AddParameter("@ghichuccdc", gv.GetFocusedRowCellValue("ghichuccdc"))
-        AddParameter("@idnhomccdc", gv.GetFocusedRowCellValue("idnhomccdc"))
-        AddParameter("@idloaiccdc", gv.GetFocusedRowCellValue("idloaiccdc"))
-        AddParameter("@thoigiankh", gv.GetFocusedRowCellValue("thoigiankh"))
-        AddParameter("@IdBoPhan", gv.GetFocusedRowCellValue("IdBoPhan"))
-        AddParameterWhere("@id", gv.GetFocusedRowCellValue("id"))
-        If doUpdate("Taisan_CongCuDungCu", "id=@id") Is Nothing Then
-            ShowBaoLoi(LoiNgoaiLe)
+        If KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            If gv.GetFocusedRowCellValue("CheckLuu") = 1 Then
+                gv.CloseEditor()
+                gv.UpdateCurrentRow()
+                AddParameter("@ghichuccdc", gv.GetFocusedRowCellValue("ghichuccdc"))
+                AddParameter("@idnhomccdc", gv.GetFocusedRowCellValue("idnhomccdc"))
+                AddParameter("@idloaiccdc", gv.GetFocusedRowCellValue("idloaiccdc"))
+                AddParameter("@thoigiankh", gv.GetFocusedRowCellValue("thoigiankh"))
+                AddParameter("@IdBoPhan", gv.GetFocusedRowCellValue("IdBoPhan"))
+                AddParameter("@TenCCDC", gv.GetFocusedRowCellValue("TenVT"))
+                AddParameter("@MaCCDC", gv.GetFocusedRowCellValue("Model"))
+                AddParameter("@NgayNhap", gv.GetFocusedRowCellValue("NgayThang"))
+                AddParameter("@HangSX", gv.GetFocusedRowCellValue("TenHang"))
+                AddParameter("@ThongSoCCDC", gv.GetFocusedRowCellValue("ThongSo"))
+                AddParameter("@SoLuongCCDC", gv.GetFocusedRowCellValue("SoLuong"))
+                AddParameter("@GiaTri", gv.GetFocusedRowCellValue("DonGia"))
+                AddParameter("@CongTrinhCCDC", gv.GetFocusedRowCellValue("Congtrinh"))
+                AddParameterWhere("@id", gv.GetFocusedRowCellValue("id"))
+                If doUpdate("Taisan_CongCuDungCu", "id=@id") Is Nothing Then
+                    ShowBaoLoi(LoiNgoaiLe)
+                Else
+                    Dim r = gv.FocusedRowHandle
+                    loadGV()
+                    gv.FocusedRowHandle = r
+                End If
+            End If
         End If
-        loadGV()
     End Sub
 
     Private Sub griLueLoaiTS_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles griLueLoaiCCDC.EditValueChanged
@@ -281,6 +323,9 @@ Public Class frmThongTinCCDC
     End Sub
 
     Private Sub BarButtonItem8_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem8.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            Exit Sub
+        End If
         Dim frm = New frmDinhMucPhanBoCCDC()
         frm.ShowDialog()
         loadGV()
@@ -288,6 +333,7 @@ Public Class frmThongTinCCDC
 
     Private Sub btnChiTietCCDC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnChiTietCCDC.ItemClick
         Dim frm = New frmChiTietCCDC
+        frm.Tag = Me.Parent.Tag
         frm.Message = gv.GetFocusedRowCellValue("id").ToString()
         Dim row = gv.FocusedRowHandle
         frm.ShowDialog()
@@ -295,13 +341,19 @@ Public Class frmThongTinCCDC
         gv.FocusedRowHandle = row
     End Sub
 
-    Private Sub BarButtonItem9_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem9.ItemClick
+    Private Sub BarButtonItem9_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnNSD.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            Exit Sub
+        End If
         Dim frm = New frmNguoiSuDungCCDC
         frm.ShowDialog()
         loadGV()
     End Sub
 
-    Private Sub BarButtonItem10_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem10.ItemClick
+    Private Sub BarButtonItem10_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnCCDCHong.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            Exit Sub
+        End If
         Dim frm = New frmCCDCHong
         frm.ShowDialog()
         loadGV()
@@ -327,15 +379,49 @@ Public Class frmThongTinCCDC
         End If
     End Sub
     Private Sub btnLuu_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnLuu.ItemClick
-        For i As Integer = 0 To gv.RowCount - 1
-            AddParameter("@CheckLuu", 1)
-            AddParameterWhere("@id", gv.GetRowCellValue(i, "id"))
-            If doUpdate("Taisan_CongCuDungCu", "id=@id") Is Nothing Then
-                ShowBaoLoi(LoiNgoaiLe)
-            Else
-                gv.SetRowCellValue(i, "CheckLuu", 1)
-            End If
-        Next
+        If KiemTraQuyenSuDung("Menu", Me.Tag, DanhMucQuyen.KeToan) Then
+            gv.PostEditor()
+            gv.UpdateCurrentRow()
+            For i As Integer = 0 To gv.RowCount - 1
+
+                AddParameter("@ghichuccdc", gv.GetRowCellValue(i, "ghichuccdc"))
+                AddParameter("@idnhomccdc", gv.GetRowCellValue(i, "idnhomccdc"))
+                AddParameter("@idloaiccdc", gv.GetRowCellValue(i, "idloaiccdc"))
+                AddParameter("@thoigiankh", gv.GetRowCellValue(i, "thoigiankh"))
+                AddParameter("@IdBoPhan", gv.GetRowCellValue(i, "IdBoPhan"))
+                If IsDBNull(gv.GetRowCellValue(i, "sophieu")) Then
+                 
+                End If
+                AddParameter("@TenCCDC", gv.GetRowCellValue(i, "TenVT"))
+                AddParameter("@MaCCDC", gv.GetRowCellValue(i, "Model"))
+                AddParameter("@NgayNhap", gv.GetRowCellValue(i, "NgayThang"))
+                AddParameter("@HangSX", gv.GetRowCellValue(i, "TenHang"))
+                AddParameter("@ThongSoCCDC", gv.GetRowCellValue(i, "ThongSo"))
+                AddParameter("@SoLuongCCDC", gv.GetRowCellValue(i, "SoLuong"))
+                AddParameter("@GiaTri", gv.GetRowCellValue(i, "DonGia"))
+                AddParameter("@CongTrinhCCDC", gv.GetRowCellValue(i, "Congtrinh"))
+                AddParameter("@CheckLuu", 1)
+                AddParameterWhere("@id", gv.GetRowCellValue(i, "id"))
+                If doUpdate("Taisan_CongCuDungCu", "id=@id") Is Nothing Then
+                    ShowBaoLoi(LoiNgoaiLe)
+                Else
+                    gv.SetRowCellValue(i, "CheckLuu", 1)
+                    If IsDBNull(gv.GetRowCellValue(i, "sophieu")) Then
+                        AddParameter("@CheckLuu", 1)
+                        AddParameterWhere("@IdGop", gv.GetRowCellValue(i, "id"))
+                        If doUpdate("Taisan_CongCuDungCu", "IdGop=@IdGop") Is Nothing Then
+                            ShowBaoLoi(LoiNgoaiLe)
+                            Exit Sub
+                        Else
+                            '  loadGV()
+                            ShowAlert("Đã lưu")
+                        End If
+                    End If
+
+                End If
+            Next
+        End If
+       
         '  loadGV()
     End Sub
 
@@ -352,6 +438,14 @@ Public Class frmThongTinCCDC
                         If doDelete("Taisan_CongCuDungCu", "id=@id and CheckLuu=@CheckLuu") Is Nothing Then
                             ShowBaoLoi(LoiNgoaiLe)
                         Else
+                            If IsDBNull(gv.GetRowCellValue(i, "sophieu")) Then
+                                AddParameterWhere("@CheckLuu", 0)
+                                AddParameterWhere("@IdGop", gv.GetRowCellValue(i, "id"))
+                                If doDelete("Taisan_CongCuDungCu", "IdGop=@IdGop and CheckLuu=@CheckLuu") Is Nothing Then
+                                    ShowBaoLoi(LoiNgoaiLe)
+                                    Exit Sub
+                                End If
+                            End If
                         End If
                     End If
                 End If
@@ -422,5 +516,33 @@ Public Class frmThongTinCCDC
             ShowBaoLoi(LoiNgoaiLe)
             CloseWaiting()
         End Try
+    End Sub
+
+    Private Sub btnSua_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSua.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            Exit Sub
+        End If
+        gv.OptionsBehavior.Editable = Not gv.OptionsBehavior.Editable
+        If btnSua.Caption = "Sửa" Then
+            btnSua.Caption = "Đã sửa xong"
+        Else
+            btnSua.Caption = "Sửa"
+        End If
+        SendKeys.Send("{Enter}")
+    End Sub
+    Private Sub gv_HiddenEditor(sender As Object, e As EventArgs) 'Handles gv.HiddenEditor
+        If deskTop.tabMain.SelectedTabPage.Text <> "Hàng hóa xuất cho Bảo An" Then
+            gv.OptionsBehavior.Editable = False
+        End If
+
+    End Sub
+    Private Sub gv_CalcRowHeight(sender As Object, e As RowHeightEventArgs) Handles gv.CalcRowHeight
+        If e.RowHeight > 70 Then
+            e.RowHeight = 70
+        End If
+    End Sub
+    Private Sub barDeDenNgay_EditValueChanged(sender As Object, e As EventArgs) Handles barDeDenNgay.EditValueChanged
+        Dim time As DateTime = barDeDenNgay.EditValue
+        barDeTuNgay.EditValue = New DateTime(time.Year, time.Month, 1)
     End Sub
 End Class

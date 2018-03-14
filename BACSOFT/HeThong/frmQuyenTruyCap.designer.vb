@@ -40,6 +40,7 @@ Partial Class frmQuyenTruyCap
         Me.TreeListColumn8 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TreeListColumn9 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.TreeListColumn10 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TreeListColumn11 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -52,7 +53,6 @@ Partial Class frmQuyenTruyCap
         Me.btChonHet = New DevExpress.XtraBars.BarButtonItem()
         Me.btLuuLai = New DevExpress.XtraBars.BarButtonItem()
         Me.btXemBangPhanQuyen = New DevExpress.XtraBars.BarButtonItem()
-        Me.TreeListColumn11 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,13 +71,12 @@ Partial Class frmQuyenTruyCap
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainerControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1123, 628)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(963, 510)
         Me.SplitContainerControl1.SplitterPosition = 257
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -89,21 +88,18 @@ Partial Class frmQuyenTruyCap
         Me.GroupControl1.Controls.Add(Me.gdvNhomNgDung)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(257, 628)
+        Me.GroupControl1.Size = New System.Drawing.Size(257, 510)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Nhóm người dùng"
         '
         'gdvNhomNgDung
         '
         Me.gdvNhomNgDung.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvNhomNgDung.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.gdvNhomNgDung.Location = New System.Drawing.Point(2, 25)
+        Me.gdvNhomNgDung.Location = New System.Drawing.Point(2, 22)
         Me.gdvNhomNgDung.MainView = Me.gdvNhomNgDungCT
-        Me.gdvNhomNgDung.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvNhomNgDung.Name = "gdvNhomNgDung"
-        Me.gdvNhomNgDung.Size = New System.Drawing.Size(253, 601)
+        Me.gdvNhomNgDung.Size = New System.Drawing.Size(253, 486)
         Me.gdvNhomNgDung.TabIndex = 0
         Me.gdvNhomNgDung.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvNhomNgDungCT})
         '
@@ -161,10 +157,9 @@ Partial Class frmQuyenTruyCap
         Me.GroupControl2.Controls.Add(Me.barDockControlTop)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl2.Name = "GroupControl2"
         Me.BarManager1.SetPopupContextMenu(Me.GroupControl2, Me.pMenu)
-        Me.GroupControl2.Size = New System.Drawing.Size(861, 628)
+        Me.GroupControl2.Size = New System.Drawing.Size(701, 510)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Quyền truy cập"
         '
@@ -175,8 +170,7 @@ Partial Class frmQuyenTruyCap
         Me.treePQ.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.TreeListColumn1, Me.TreeListColumn2, Me.TreeListColumn3, Me.TreeListColumn4, Me.TreeListColumn5, Me.TreeListColumn6, Me.TreeListColumn7, Me.TreeListColumn8, Me.TreeListColumn9, Me.TreeListColumn10, Me.TreeListColumn11})
         Me.treePQ.Dock = System.Windows.Forms.DockStyle.Fill
         Me.treePQ.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.treePQ.Location = New System.Drawing.Point(2, 62)
-        Me.treePQ.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.treePQ.Location = New System.Drawing.Point(2, 55)
         Me.treePQ.Name = "treePQ"
         Me.treePQ.OptionsBehavior.PopulateServiceColumns = True
         Me.treePQ.OptionsSelection.MultiSelect = True
@@ -186,7 +180,7 @@ Partial Class frmQuyenTruyCap
         Me.treePQ.OptionsView.ShowHorzLines = False
         Me.treePQ.OptionsView.ShowIndicator = False
         Me.treePQ.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.treePQ.Size = New System.Drawing.Size(857, 564)
+        Me.treePQ.Size = New System.Drawing.Size(697, 453)
         Me.treePQ.TabIndex = 12
         '
         'TreeListColumn1
@@ -331,37 +325,45 @@ Partial Class frmQuyenTruyCap
         Me.TreeListColumn10.VisibleIndex = 9
         Me.TreeListColumn10.Width = 50
         '
+        'TreeListColumn11
+        '
+        Me.TreeListColumn11.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.TreeListColumn11.AppearanceHeader.Options.UseFont = True
+        Me.TreeListColumn11.Caption = "Kế toán"
+        Me.TreeListColumn11.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.TreeListColumn11.FieldName = "KeToan"
+        Me.TreeListColumn11.Name = "TreeListColumn11"
+        Me.TreeListColumn11.Visible = True
+        Me.TreeListColumn11.VisibleIndex = 10
+        Me.TreeListColumn11.Width = 65
+        '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(2, 62)
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 564)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(2, 55)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 453)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(859, 62)
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 564)
+        Me.barDockControlRight.Location = New System.Drawing.Point(699, 55)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 453)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(2, 626)
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(857, 0)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(2, 508)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(697, 0)
         '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(2, 25)
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlTop.Size = New System.Drawing.Size(857, 37)
+        Me.barDockControlTop.Location = New System.Drawing.Point(2, 22)
+        Me.barDockControlTop.Size = New System.Drawing.Size(697, 33)
         '
         'BarManager1
         '
@@ -433,26 +435,13 @@ Partial Class frmQuyenTruyCap
         Me.btXemBangPhanQuyen.Name = "btXemBangPhanQuyen"
         Me.btXemBangPhanQuyen.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
-        'TreeListColumn11
-        '
-        Me.TreeListColumn11.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.TreeListColumn11.AppearanceHeader.Options.UseFont = True
-        Me.TreeListColumn11.Caption = "Kế toán"
-        Me.TreeListColumn11.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.TreeListColumn11.FieldName = "KeToan"
-        Me.TreeListColumn11.Name = "TreeListColumn11"
-        Me.TreeListColumn11.Visible = True
-        Me.TreeListColumn11.VisibleIndex = 10
-        Me.TreeListColumn11.Width = 65
-        '
         'frmQuyenTruyCap
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.SplitContainerControl1)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmQuyenTruyCap"
-        Me.Size = New System.Drawing.Size(1123, 628)
+        Me.Size = New System.Drawing.Size(963, 510)
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

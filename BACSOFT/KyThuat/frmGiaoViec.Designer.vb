@@ -392,7 +392,7 @@ Partial Class frmGiaoViec
         Me.Controls.Add(Me.gdvThiCong)
         Me.MaximizeBox = False
         Me.Name = "frmGiaoViec"
-        Me.Text = "frmGiaoViec"
+        Me.Text = "Giao việc kỹ thuật"
         CType(Me.gdvThiCong, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gdvThiCongCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rgdvHangMucThiCong, System.ComponentModel.ISupportInitialize).EndInit()

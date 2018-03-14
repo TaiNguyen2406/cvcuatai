@@ -1,15 +1,19 @@
 ﻿Imports BACSOFT.Db.SqlHelper
-Imports System.IO
 Imports DevExpress.XtraPrinting
+Imports System.IO
+
 Public Class frmTongHopCongNoPhaiTraMoi
 
     Private source As String
+
+    Private Property txtTongHopCongNoPhaiThu As Object
+
     Private Sub frmTongHopCongNoPhaiThuPhaiTra_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
         Dim tg As DateTime = GetServerTime()
+        txtTuNgay.EditValue = New Date(2017, 1, 1)
+        'tg = tg.AddMonths(-1)
         txtDenNgay.EditValue = New Date(tg.Year, tg.Month, tg.Day)
-        ' tg = tg.AddMonths(-1)
-        txtTuNgay.EditValue = New Date(tg.Year, tg.Month, 1)
 
         Select Case Me.Tag
             Case "TONGHOPCONGNOPHAITHU"
@@ -18,7 +22,7 @@ Public Class frmTongHopCongNoPhaiTraMoi
             Case "TONGHOPCONGNOPHAITRA"
                 tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI TRẢ"
                 tab2.Text = "CHI TIẾT CÔNG NỢ PHẢI TRẢ"
-                source = txtChiTietCongNoPhaiTra2.EditValue
+                source = txtChiTietCongNoPhaiTra.EditValue
         End Select
 
 
@@ -29,11 +33,14 @@ Public Class frmTongHopCongNoPhaiTraMoi
     Private Sub btnTaiDuLieu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnTaiDuLieu.ItemClick
         Select Case Me.Tag
             Case "TONGHOPCONGNOPHAITHU"
-                LoadTongHopCongNoPhaiThu()
-                tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI THU"
-                PhaiThu()
+                '    LoadTongHopCongNoPhaiThu()
+                '  tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI THU"
+                '  PhaiThu()
             Case "TONGHOPCONGNOPHAITRA"
                 LoadTongHopCongNoPhaiTra()
+                If gdvData.FocusedRowHandle >= 0 Then
+                    LoadChiTietCongNoPhaiTra()
+                End If
 
                 tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI TRẢ"
                 PhaiTra()
@@ -59,7 +66,7 @@ Public Class frmTongHopCongNoPhaiTraMoi
 
     Private Sub LoadTongHopCongNoPhaiThu()
 
-        Dim sql As String = txtTongHopCongNoPhaiThu.EditValue
+        Dim sql As String = txtTongHopCongNoPhaiTra.EditValue
 
         sql = sql.Replace("01/01/2016", Convert.ToDateTime(txtTuNgay.EditValue).ToString("dd/MM/yyyy"))
         sql = sql.Replace("31/12/2016", Convert.ToDateTime(txtDenNgay.EditValue).ToString("dd/MM/yyyy"))
@@ -167,71 +174,72 @@ Public Class frmTongHopCongNoPhaiTraMoi
     End Sub
     Private Sub LoadChiTietCongNoPhaiTra()
 
-        Dim sql As String = source ' txtChiTietCongNoPhaiTra2.EditValue
+
+        Dim sql As String = txtChiTietCongNoPhaiTra.EditValue
 
         sql = sql.Replace("01/01/2016", Convert.ToDateTime(txtTuNgay.EditValue).ToString("dd/MM/yyyy"))
         sql = sql.Replace("31/12/2016", Convert.ToDateTime(txtDenNgay.EditValue).ToString("dd/MM/yyyy"))
-        sql = sql.Replace("7 * 1 * 1 * 1", gdvData.GetFocusedRowCellValue("ID"))
+        sql = sql.Replace("20 * 1 * 1 * 1", gdvData.GetFocusedRowCellValue("ID"))
+
 
         Dim dt As DataTable = Nothing
         Dim isOK As Boolean = False
 
         dt = ExecuteSQLDataTable(sql)
+
         If dt Is Nothing Then
             ShowBaoLoi(LoiNgoaiLe)
         End If
+
         Dim LuyKe As Double = dt.Rows(0)("LuyKe")
         Dim SoTT As Integer = 1
-        Dim dem As Integer = 1
         If Not dt Is Nothing Then
             For i As Integer = 1 To dt.Rows.Count - 1
-               
-                If IsDBNull(dt.Rows(i)("SoTT")) And Not IsDBNull(dt.Rows(i)("SoPhieu")) Then
+                If dt.Rows(i)("SoTT") Is DBNull.Value Then
                     dt.Rows(i)("SoTT") = SoTT
                     SoTT += 1
-                    dem = 1
                 Else
                     dt.Rows(i)("SoTT") = DBNull.Value
-                    If IsDBNull(dt.Rows(i)("SoPhieu")) Then
-                        dt.Rows(i)("SoPhieu") = dem
-                        dem += 1
-                    End If
                 End If
                 '-- Tính dòng tạm ứng còn lại --
                 If dt.Rows(i)("LoaiCT") = "Tạm ứng còn lại" Then
-                    Dim TienTamUng As Double = obj2N(dt.Compute("SUM(TongTienTamUng)", "SoDH='" & dt.Rows(i)("SoDH") & "' AND (LoaiCT = 'Tạm ứng TM' OR LoaiCT ='Tạm ứng NH')"))
-                    Dim TienPhanBo As Double = obj2N(dt.Compute("SUM(PhatSinhNo)", "SoDH='" & dt.Rows(i)("SoDH") & "' AND (LoaiCT = 'Phân bổ')"))
-                    Dim TienHoan As Double = obj2N(dt.Compute("SUM(PhatSinhCo)", "SoDH='" & dt.Rows(i)("SoDH") & "' AND (LoaiCT='Hoàn tạm ứng TM' or LoaiCT='Hoàn tạm ứng NH')"))
-                    dt.Rows(i)("ConLaiTamUng") = TienTamUng - TienPhanBo - TienHoan
+                    Dim TienTamUng As Double = obj2N(dt.Compute("SUM(TongTienTamUng)", "SoCG='" & dt.Rows(i)("SoCG") & "' AND (LoaiCT = 'Tạm ứng TM' OR LoaiCT ='Tạm ứng NH')"))
+                    Dim TienPhanBo As Double = obj2N(dt.Compute("SUM(PhatSinhCo)", "SoCG='" & dt.Rows(i)("SoCG") & "' AND (LoaiCT = 'Phân bổ')"))
+                    Dim HoanTamUng As Double = obj2N(dt.Compute("SUM(PhatSinhNo)", "SoCG='" & dt.Rows(i)("SoCG") & "' AND (LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH')"))
+                    dt.Rows(i)("ConLaiTamUng") = TienTamUng - TienPhanBo - HoanTamUng
                 End If
-                '--Lũy kế
+
+                '-- Tính lũy kế -- - PsNo - Tong Tam Ung - Thu xuat kho tm,nh
                 Select Case dt.Rows(i)("LoaiCT").ToString
-                    Case "Nhập kho"
+                    Case "Xuất kho", "Xuất kho CT"
                         Continue For
-                    Case "Phiếu NK"
+                    Case "Phiếu XK"
                         LuyKe += obj2N(dt.Rows(i)("PhatSinhCo"))
                     Case "Tạm ứng TM", "Tạm ứng NH"
                         LuyKe -= obj2N(dt.Rows(i)("TongTienTamUng"))
-                    Case "Thu nhập kho TM", "Thu nhập kho NH"
+                    Case "Thu xuất kho TM", "Thu xuất kho NH"
                         LuyKe -= obj2N(dt.Rows(i)("PhatSinhNo"))
                     Case "Hoàn tạm ứng TM", "Hoàn tạm ứng NH"
                         LuyKe += obj2N(dt.Rows(i)("PhatSinhCo"))
-                        'Case "Tạm ứng còn lại"
-                        '    LuyKe += obj2N(dt.Rows(i)("ConLaiTamUng"))
-                        'Case "Phân bổ"
-                        '    LuyKe -= obj2N(dt.Rows(i)("PhatSinhNo"))
+                    Case "Vay tiền TM", "Vay tiền NH"
+                        LuyKe += obj2N(dt.Rows(i)("PhatSinhCo"))
+                    Case "Trả tiền vay TM", "Trả tiền vay NH"
+                        LuyKe -= obj2N(dt.Rows(i)("PhatSinhNo"))
                 End Select
+
                 dt.Rows(i)("LuyKe") = LuyKe
+                _LuyKe = LuyKe
             Next
         End If
-        Dim rCuoiKy As DataRow = dt.NewRow
-        rCuoiKy("TenVatTu") = "Cuối kỳ:"
-        rCuoiKy("PhatSinhNo") = obj2N(dt.Compute("SUM(PhatSinhNo)", ""))
-        rCuoiKy("TongTienTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", ""))
-        rCuoiKy("ConLaiTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", "")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "LoaiCT='Phân bổ'")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Hoàn tạm ứng TM' or LoaiCT='Hoàn tạm ứng NH'"))
-        rCuoiKy("PhatSinhCo") = obj2N(dt.Compute("SUM(PhatSinhCo)", ""))
-        rCuoiKy("LuyKe") = LuyKe
-        dt.Rows.InsertAt(rCuoiKy, dt.Rows.Count)
+
+        'Dim rCuoiKy As DataRow = dt.NewRow
+        'rCuoiKy("TenVatTu") = " -- Cuối kỳ:"
+        'rCuoiKy("PhatSinhNo") = obj2N(dt.Compute("SUM(PhatSinhNo)", ""))
+        'rCuoiKy("TongTienTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", ""))
+        'rCuoiKy("ConLaiTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", "")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Phân bổ'")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH'"))
+        'rCuoiKy("PhatSinhCo") = obj2N(dt.Compute("SUM(PhatSinhCo)", ""))
+        'rCuoiKy("LuyKe") = LuyKe
+        'dt.Rows.InsertAt(rCuoiKy, dt.Rows.Count)
 
         gdvChiTiet.DataSource = dt
 
@@ -260,7 +268,7 @@ Public Class frmTongHopCongNoPhaiTraMoi
             End Select
         Else
             Try
-                tab2.Text = gdvData.GetFocusedRowCellValue("ttcMa") & ": " & ExecuteSQLDataTable("SELECT Ten FROM KHACHHANG WHERE ttcMa = N'" & gdvData.GetFocusedRowCellValue("ttcMa") & "'").Rows(0)(0)
+                tab2.Text = gdvData.GetFocusedRowCellValue("ttcMa") & ": " & ExecuteSQLDataTable("SELECT Ten FROM KHACHHANG WHERE Id = " & gdvData.GetFocusedRowCellValue("ID")).Rows(0)(0)
                 Select Case Me.Tag
                     Case "TONGHOPCONGNOPHAITHU"
 
@@ -285,43 +293,42 @@ Public Class frmTongHopCongNoPhaiTraMoi
             Case "Phiếu NK"
                 e.Appearance.ForeColor = Color.Orange
             Case "Phân bổ"
-                e.Appearance.ForeColor = Color.Navy
-            Case "Nhập kho"
-                e.Appearance.ForeColor = Color.Gray
+                e.Appearance.ForeColor = Color.DarkGreen
+                '    Case "Nhập kho"
+                '      e.Appearance.ForeColor = Color.Gray
             Case "Tạm ứng TM", "Tạm ứng NH"
                 e.Appearance.ForeColor = Color.Blue
-            Case "Tạm ứng còn lại"
-                e.Appearance.ForeColor = Color.Navy
+            Case "Vay tiền TM", "Vay tiền NH"
+                e.Appearance.ForeColor = Color.SaddleBrown
+            Case "Trả tiền vay TM", "Trả tiền vay NH"
+                e.Appearance.ForeColor = Color.Teal
             Case "Thu nhập kho TM", "Thu nhập kho NH"
                 e.Appearance.ForeColor = Color.Green
         End Select
     End Sub
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
-        If keyData = (Keys.Shift Or Keys.C) Then
-            If source = txtChiTietCongNoPhaiTra.EditValue Then
-                source = txtChiTietCongNoPhaiTra2.EditValue
+        If keyData = (Keys.Alt Or Keys.O) Then
+            If txtTongHopCongNoPhaiTra.Visible = True Then
+                txtTongHopCongNoPhaiTra.Visible = False
+                txtChiTietCongNoPhaiTra.Visible = False
             Else
-                source = txtChiTietCongNoPhaiTra.EditValue
+                txtTongHopCongNoPhaiTra.Visible = True
+                txtChiTietCongNoPhaiTra.Visible = True
             End If
+            Return True
         End If
-
         Return False
     End Function
 
     Private Sub btnKetXuat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKetXuat.ItemClick
-      
-        Dim saveDialog As SaveFileDialog = New SaveFileDialog() 'tgchuyentuchaogia
+        Dim gvexprort As Object = gdvData
+        Dim tu As DateTime = txtTuNgay.EditValue
+        Dim den As DateTime = txtDenNgay.EditValue
+        Dim filename As String = "Công nợ phải trả từ " & tu.ToString("dd-MM-yyyy") & " đến " & den.ToString("dd-MM-yyyy")
+        Dim saveDialog As SaveFileDialog = New SaveFileDialog()
         Try
-            Dim gvexprort As DevExpress.XtraGrid.Views.Grid.GridView
-            If tabCongNo.SelectedTabPage Is tab1 Then
-                gvexprort = gdvData
-                saveDialog.FileName = "Tổng hợp công nợ phải trả"
-            Else
-                gvexprort = gdvDataChiTiet
-                saveDialog.FileName = "Chi tiết công nợ phải trả của " & ExecuteSQLDataTable("SELECT Ten FROM KHACHHANG WHERE ttcMa = N'" & gdvData.GetFocusedRowCellValue("ttcMa") & "'").Rows(0)(0)
-            End If
-            saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
-
+            saveDialog.Filter = "Excel (2010) (.xlsx)|*.xlsx"
+            saveDialog.FileName = filename
             If saveDialog.ShowDialog() = DialogResult.OK Then
                 ShowWaiting("Đang kết xuất ...")
                 Dim exportFilePath As String = saveDialog.FileName
@@ -333,12 +340,6 @@ Public Class frmTongHopCongNoPhaiTraMoi
                 tuychon.ShowGridLines() = True
                 tuychonx.ShowGridLines() = True
                 Select Case fileExtenstion
-                    Case ".xls"
-                        Try
-                            gvexprort.ExportToXls(exportFilePath, tuychon)
-                        Catch ex As Exception
-                            ShowBaoLoi(LoiNgoaiLe)
-                        End Try
 
                     Case (".xlsx")
                         Try
@@ -350,7 +351,7 @@ Public Class frmTongHopCongNoPhaiTraMoi
                 End Select
 
                 If ShowCauHoi("Mở file vừa kết xuất ?") Then
-                    '                       
+                    CloseWaiting()
                     If File.Exists(exportFilePath) Then
                         Try
                             System.Diagnostics.Process.Start(exportFilePath)
@@ -364,11 +365,46 @@ Public Class frmTongHopCongNoPhaiTraMoi
                     End If
                 End If
             End If
-            CloseWaiting()
+
         Catch ex As Exception
             ShowBaoLoi(LoiNgoaiLe)
             CloseWaiting()
         End Try
+    End Sub
+    Dim _LuyKe As Double
+    Private Sub gdvDataChiTiet_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles gdvDataChiTiet.CustomSummaryCalculate
+        Dim dt As DataTable = CType(gdvChiTiet.DataSource, DataTable)
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem).FieldName
+                Case "TenVatTu"
+                    e.TotalValue = " -- Cuối kỳ:"
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "PhatSinhNo"
+                    e.TotalValue = obj2N(dt.Compute("SUM(PhatSinhNo)", ""))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "TongTienTamUng"
+                    e.TotalValue = obj2N(dt.Compute("SUM(TongTienTamUng)", ""))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "ConLaiTamUng"
+                    e.TotalValue = obj2N(dt.Compute("SUM(TongTienTamUng)", "")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Phân bổ'")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "(LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH') and LoaiHoanTamUng=0"))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "PhatSinhCo"
+                    e.TotalValue = obj2N(dt.Compute("SUM(PhatSinhCo)", ""))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "LuyKe"
+                    e.TotalValue = _LuyKe
+                    e.TotalValueReady = True
+                    Exit Select
+            End Select
+        End If
 
+    End Sub
+    Private Sub txtDenNgay_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles txtDenNgay.EditValueChanged
+        txtTuNgay.EditValue = New DateTime(Convert.ToDateTime(txtDenNgay.EditValue).Year, Convert.ToDateTime(txtTuNgay.EditValue).Month, 1)
     End Sub
 End Class

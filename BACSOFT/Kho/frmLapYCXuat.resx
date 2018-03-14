@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="txtSQL_PhaiThu.EditValue" xml:space="preserve">
+    <value>
+declare @TuNgay as datetime
+declare @DenNgay as datetime
+declare @NgayXem as datetime
+set dateformat dmy
+set @TuNgay = '01/01/2017' 
+set @DenNgay = '31/12/2017' 
+set @NgayXem = getdate() 
+declare @LaiSuat as float
+set @LaiSuat = 12/100.0
+
+If(OBJECT_ID('tblTempKQ') Is Not Null)
+Begin
+    Drop Table tblTempKQ
+End
+
+create table tblTempKQ
+(
+	SoPhieuGroup nvarchar(15),
+	LoaiPhieu nvarchar(150),
+	SoTT tinyint,
+
+	IdKH int,
+	ttcMa nvarchar(250),
+	SoPhieuXK nvarchar(15),
+	NgayXK datetime,
+	NgayCT datetime,
+	PhaiThu float,
+
+	SoPhieuThu nvarchar(150),
+	NgayThuTien nvarchar(150),
+	TienThu float,
+	LuyKe float,
+	ConNo float,
+
+	KinhDoanh nvarchar(250),
+	HinhThucCT nvarchar(250),
+	HinhThucThanhToan nvarchar(500),
+	SoNgayTT int,
+	HanThu datetime,
+	NgayQH int,
+	SoTienNo float,
+	TienLai float,
+	NhomHTTT int,
+
+	SoPhieuCG nvarchar(15),
+	NgayGiaHan datetime,
+
+	ThuChi int, -- 1: thu; -1: chi
+	DaThuTienLai float,
+	ConThuTienLai float
+)
+
+-- danh sách xuất kho ----------------------------
+insert into tblTempKQ(SoPhieuGroup,LoaiPhieu,SoTT,IdKH,ttcMa,SoPhieuXK,NgayXK,PhaiThu,KinhDoanh,HinhThucCT,HinhThucThanhToan,NgayCT,SoNgayTT,NhomHTTT,SoPhieuCG,NgayGiaHan,DaThuTienLai)
+
+select phieuxuatkho.Sophieu,N'Phiếu xuất kho',0,phieuxuatkho.IdKhachHang,ttcMa,phieuxuatkho.Sophieu,
+phieuxuatkho.NgayThang,(phieuxuatkho.TienTruocThue+phieuxuatkho.TienThue) * phieuxuatkho.tygia, nhansu.Ten,
+(case when IDHinhThucCT = 1 then N'Không lấy VAT'
+	when IDHinhThucCT = 2 then  N'Xuất VAT'
+	else N'Hải Quan' end) HinhThucCT,
+(select GiaiThich from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2) HinhThucThanhToan,
+
+--- begin ngày chứng từ -------
+(case when NgayCT is not null then NgayCT
+else
+	(case when IDHinhThucCT = 1 then phieuxuatkho.Ngaythang -- không lấy VAT -&gt; Ngày xuất kho.
+	when IDHinhThucCT = 2 then  -- Xuất VAT -&gt; Ngày hóa đơn.		
+		(select top 1 NgayHD from chungtu where id in (select distinct id_CT from xuatkho where Sophieu=phieuxuatkho.SoPhieu) order by NgayHD)
+	else -- ngày hải quan --
+		(select top 1 NgayTHongQuan from HaiQuan_ChiTietLamHaiQuan ct 
+		inner join HaiQuan_LamHaiQuan on idlamhaiquan =HaiQuan_LamHaiQuan.id 
+		right join  XUATKHO on ct.idchaogia =XUATKHO.idchaogia
+		where XUATKHO.Sophieu = phieuxuatkho.SoPhieu and idtinhtrang_haiquan=3)
+	end)
+end)
+ NgayCT,
+
+--- end ngày chứng từ -------
+isnull((select SoNgayHT from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2),0) SoNgayTT,
+isnull((select Nhom from DM_HINH_THUC_TT where ID = bangchaogia.IDHinhThucTT2),0) NhomHTT,
+phieuxuatkho.SophieuCG,phieuxuatkho.HanThu, 
+
+-- thu tiền lãi đến ngày @NgayXem ------------
+isnull((select sum(Sotien*TyGia) from thu where mucdich = 117 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieuxuatkho.Sophieu),0)
++ 
+isnull((select sum(Sotien*TyGia) from thunh where mucdich = 117 and CONVERT(datetime,Convert(nvarchar,NgaythangCT,103),103) &lt;= @NgayXem and PhieuTC1 = phieuxuatkho.Sophieu),0)
+from phieuxuatkho 
+left join khachhang on phieuxuatkho.Idkhachhang = khachhang.id
+left join nhansu on phieuxuatkho.IDTakecare = nhansu.id
+left join bangchaogia on phieuxuatkho.SoPhieuCG = bangchaogia.sophieu
+where CONVERT(datetime,Convert(nvarchar,phieuxuatkho.Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+-- danh sách chi phân bổ tiền mặt, ngân hàng ----------------
+insert into tblTempKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1,Sophieu,N'Phân bổ tiền' ,1,PhanBoTamUng, 
+
+isnull((select 'PBTM' + SoPhieu + ' ' from thu where phieutc0 = phieuxuatkho.SoPhieuCG and mucdich = 100 for xml path('')),'') + 
+isnull((select 'PBNH' + SoPhieu + ' ' from thunh where phieutc0 = phieuxuatkho.SoPhieuCG and mucdich = 100 for xml path('')),''), 
+
+isnull((select convert(nvarchar,NgaythangCT,103) + ' ' from thu where phieutc0 = phieuxuatkho.SoPhieuCG and mucdich = 100 for xml path('')),'') + 
+isnull((select convert(nvarchar,NgaythangCT,103) + ' ' from thunh where phieutc0 = phieuxuatkho.SoPhieuCG and mucdich = 100 for xml path('')),'') 
+
+from phieuxuatkho 
+where CONVERT(datetime,Convert(nvarchar,Ngaythang,103),103) BETWEEN @TuNgay AND @DenNgay AND 1 = 1 
+
+
+-- xóa kết quả thu phân bổ không dùng -----------
+delete from tblTempKQ where rtrim(ltrim(SoPhieuThu + NgayThuTien)) = '' And SoTT = 1
+
+
+-- danh sách thu tiền mặt -----------------------
+insert into tblTempKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1, PhieuTC1, N'Thu tiền mặt', 2, SoTien*TyGia, 'TTM ' + Sophieu, convert(nvarchar,NgaythangCT,103)
+from thu inner join tblTempKQ tbl on thu.PhieuTC1 = tbl.SoPhieuXK 
+where thu.mucdich = 100
+
+
+-- danh sách thu ngân hàng -----------------------
+insert into tblTempKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select 1, PhieuTC1, N'Thu ngân hàng', 2, SoTien*TyGia, 'TNH ' + Sophieu, convert(nvarchar,NgaythangCT,103)
+from thunh inner join tblTempKQ tbl on thunh.PhieuTC1 = tbl.SoPhieuXK
+where thunh.mucdich = 100
+
+-- danh sách chi hoàn tạm ứng tiền mặt -----------------------
+insert into tblTempKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select -1, PhieuTC1, N'Hoàn tạm ứng tiền mặt', 2, SoTien*TyGia, 'CTM ' + Sophieu,  convert(nvarchar,NgaythangCT,103)
+from chi inner join tblTempKQ tbl on chi.PhieuTC1 = tbl.SoPhieuXK 
+where chi.mucdich = 230
+
+-- danh sách chi hoàn tạm ứng ngân hàng -----------------------
+insert into tblTempKQ(ThuChi,SoPhieuGroup,LoaiPhieu,SoTT,TienThu,SoPhieuThu,NgayThuTien )
+select -1, PhieuTC1, N'Hoàn tạm ứng ngân hàng', 2, SoTien*TyGia, 'UNC ' + Sophieu,  convert(nvarchar,Ngaythang,103)
+from unc inner join tblTempKQ tbl on unc.PhieuTC1 = tbl.SoPhieuXK 
+where unc.mucdich = 230
+
+-- tính số còn nợ, ngày CT ---------------------------------
+update tbl
+
+	set ConNo = PhaiThu - isnull((select sum(TienThu*ThuChi) from tblTempKQ where SoPhieuGroup = tbl.SoPhieuGroup and SoTT &lt;&gt; 0),0) ,
+
+	HanThu = (case when NgayCT is null then dateadd(day,SoNgayTT,NgayXK) -- nếu ngày ct null thì lấy ngày xk
+			else 
+				(case when HinhThucCT = N'Hải Quan' then -- nếu làm hải quan kiểm tra ngày hải quan trước ngày xk thì lấy ngày xk
+					(case when datediff(day,NgayXK,NgayCT) &lt; 0 then dateadd(day,SoNgayTT,NgayXK) else dateadd(day,SoNgayTT,NgayCT)  end )
+				else
+					dateadd(day,SoNgayTT,NgayCT) 
+				end)
+			end)
+
+from tblTempKQ tbl where SoTT = 0
+
+-- update lại hạn thu theo nhóm hình thức thanh toán kể từ ngày cuối tháng ------
+update tbl
+	set HanThu = DATEADD(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0)) )
+from tblTempKQ tbl where SoTT = 0 and NhomHTTT = 4
+
+-- update lại hạn thu theo nhóm hình thức thanh toán theo lịch cố định ------
+update tbl
+	set HanThu = (case when day(DATEADD(day,SoNgayTT*-1,HanThu)) &gt;= SoNgayTT then
+						dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0))) 
+					else
+						-- dateadd(month, -1, dateadd(day, SoNgayTT, DATEADD(day, -1, DATEADD(m, DATEDIFF(m, 0, DATEADD(day,SoNgayTT*-1,HanThu)) + 1, 0))) )
+						dateadd(day,SoNgayTT-1, dateadd(month, datediff(month, 0 , dateadd(day, SoNgayTT*-1,HanThu) ) , 0))
+					end)
+from tblTempKQ tbl where SoTT = 0 and NhomHTTT = 5
+
+-- update lại hạn thu == null nếu không có ngày CT, tuy nhiên NhomHTTT = 1 vẫn phải tính hạn thu --
+update tbl set HanThu = null from tblTempKQ tbl where SoTT = 0 and NhomHTTT &lt;&gt; 1 AND NgayCT is null
+
+-- cập nhật lại cột ---------
+update tbl set ConNo = 0 from tblTempKQ tbl where SoTT = 0 and ConNo between -10000 and 10000
+
+-- tính quá hạn, tiền lãi ---------------------------------
+update tbl
+	set NgayQH = (case when conno = 0 or (tbl.HanThu is null and tbl.NgayGiaHan is null) then 0 else 
+					(
+						case when isnull(tbl.NgayGiaHan,tbl.HanThu) &lt; @NgayXem then
+						        datediff(day, isnull(tbl.NgayGiaHan,tbl.HanThu), @NgayXem)
+						else datediff(day, isnull(tbl.NgayGiaHan,tbl.HanThu), @NgayXem)
+						end
+					)
+				 end)
+
+from tblTempKQ tbl where SoTT = 0</value>
+  </data>
+</root>

@@ -64,7 +64,7 @@ Public Class frmTongHopDiemKyNang
             sql &= " tblTuDien.NoiDung as NhomKN"
             sql &= " FROM NhanSu_DiemKyNang"
             sql &= " INNER JOIN tblTuDien ON NhanSu_DiemKyNang.IDNhomKN=tblTuDien.Ma AND Loai=11"
-            sql &= " INNER JOIN NHANSU ON NHANSU.ID=NhanSU_DiemKyNang.IDNhanVien"
+            sql &= " INNER JOIN NHANSU ON NHANSU.ID=NhanSU_DiemKyNang.IDNhanVien and NHANSU.TrangThai=1"
             sql &= " WHERE 1=1 "
             If tbThang.EditValue Is Nothing Then
                 If tbNam.EditValue > 0 Then

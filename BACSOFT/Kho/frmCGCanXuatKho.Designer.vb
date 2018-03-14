@@ -117,6 +117,7 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rcbFileDinhKem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.gdvCG = New DevExpress.XtraGrid.GridControl()
@@ -131,6 +132,7 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDonGiaCG = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colThueCG = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -155,7 +157,6 @@ Partial Class frmCGCanXuatKho
         Me.tbNoiDungThongBao = New DevExpress.XtraEditors.MemoEdit()
         Me.pMenuPhu = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.tAutoLoadChuaXL = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -437,7 +438,7 @@ Partial Class frmCGCanXuatKho
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1020, 61)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1020, 65)
         '
         'barDockControlBottom
         '
@@ -450,15 +451,15 @@ Partial Class frmCGCanXuatKho
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 61)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 499)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 65)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 495)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1020, 61)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 499)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1020, 65)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 495)
         '
         'btXoa
         '
@@ -685,13 +686,13 @@ Partial Class frmCGCanXuatKho
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 61)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 65)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.gdv)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1020, 499)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1020, 495)
         Me.SplitContainerControl1.SplitterPosition = 321
         Me.SplitContainerControl1.TabIndex = 9
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1094,6 +1095,17 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn31.VisibleIndex = 6
         Me.GridColumn31.Width = 255
         '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "TG lập YC Xuất"
+        Me.GridColumn33.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn33.FieldName = "TGLapYCXuat"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 20
+        Me.GridColumn33.Width = 110
+        '
         'rcbFileDinhKem
         '
         Me.rcbFileDinhKem.AutoHeight = False
@@ -1108,7 +1120,7 @@ Partial Class frmCGCanXuatKho
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1020, 172)
+        Me.GroupControl1.Size = New System.Drawing.Size(1020, 169)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Hàng cần xuất kho"
         '
@@ -1120,7 +1132,7 @@ Partial Class frmCGCanXuatKho
         Me.gdvCG.MenuManager = Me.BarManager1
         Me.gdvCG.Name = "gdvCG"
         Me.gdvCG.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.N0, Me.cbMucDoCan, Me.cbTrangThai, Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.cbNhanVien, Me.cbDVT, Me.chkChon})
-        Me.gdvCG.Size = New System.Drawing.Size(1016, 148)
+        Me.gdvCG.Size = New System.Drawing.Size(1016, 145)
         Me.gdvCG.TabIndex = 6
         Me.gdvCG.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCGCT})
         '
@@ -1134,7 +1146,7 @@ Partial Class frmCGCanXuatKho
         Me.gdvCGCT.Appearance.HeaderPanel.Options.UseFont = True
         Me.gdvCGCT.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.gdvCGCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gdvCGCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn37, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn23, Me.GridColumn24, Me.GridColumn26, Me.GridColumn41, Me.colDonGiaCG, Me.colThueCG, Me.colXuatThueCG, Me.colCKCG, Me.GridColumn22, Me.colTienTeCG, Me.GridColumn7, Me.GridColumn27, Me.GridColumn28})
+        Me.gdvCGCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn37, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn23, Me.GridColumn24, Me.GridColumn26, Me.GridColumn34, Me.GridColumn41, Me.colDonGiaCG, Me.colThueCG, Me.colXuatThueCG, Me.colCKCG, Me.GridColumn22, Me.colTienTeCG, Me.GridColumn7, Me.GridColumn27, Me.GridColumn28})
         Me.gdvCGCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCGCT.GridControl = Me.gdvCG
         Me.gdvCGCT.Name = "gdvCGCT"
@@ -1258,8 +1270,17 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn26.FieldName = "slTon"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.VisibleIndex = 9
         Me.GridColumn26.Width = 54
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Xuất tạm"
+        Me.GridColumn34.FieldName = "XuatTam"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 8
+        Me.GridColumn34.Width = 62
         '
         'GridColumn41
         '
@@ -1270,7 +1291,7 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.OptionsColumn.FixedWidth = True
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 10
+        Me.GridColumn41.VisibleIndex = 11
         Me.GridColumn41.Width = 45
         '
         'colDonGiaCG
@@ -1345,7 +1366,7 @@ Partial Class frmCGCanXuatKho
         Me.GridColumn27.FieldName = "DangVe"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 9
+        Me.GridColumn27.VisibleIndex = 10
         Me.GridColumn27.Width = 50
         '
         'GridColumn28
@@ -1488,17 +1509,6 @@ Partial Class frmCGCanXuatKho
         'tAutoLoadChuaXL
         '
         Me.tAutoLoadChuaXL.Interval = 5000
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "TG lập YC Xuất"
-        Me.GridColumn33.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm"
-        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn33.FieldName = "TGLapYCXuat"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 20
-        Me.GridColumn33.Width = 110
         '
         'frmCGCanXuatKho
         '
@@ -1701,5 +1711,6 @@ Partial Class frmCGCanXuatKho
     Friend WithEvents mInBBGiaoNhan As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mInBBGiaoNhanConTon As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

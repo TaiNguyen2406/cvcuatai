@@ -19,9 +19,8 @@ Partial Class frmHoaDonDauRa
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmHoaDonDauRa))
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.txtTuNgay = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -37,10 +36,12 @@ Partial Class frmHoaDonDauRa
         Me.mnuInHoaDon = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuInBangKe = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuInXuatKho = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuHoaDonTuyChinh = New DevExpress.XtraBars.BarButtonItem()
         Me.btnThemHoaDon = New DevExpress.XtraBars.BarButtonItem()
         Me.btnChep = New DevExpress.XtraBars.BarButtonItem()
         Me.btnSuaHoaDon = New DevExpress.XtraBars.BarButtonItem()
         Me.btnXoaHoaDon = New DevExpress.XtraBars.BarButtonItem()
+        Me.chkLocHoaDonKhongVatTu = New DevExpress.XtraBars.BarCheckItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -53,6 +54,7 @@ Partial Class frmHoaDonDauRa
         Me.BarButtonItem5 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem7 = New DevExpress.XtraBars.BarButtonItem()
+        Me.mnuInHoaDonTuyChinh = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuXoa = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuDuaVaoXuatKho = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
@@ -90,6 +92,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCalcEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit()
@@ -181,10 +185,10 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.pMnHD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.pXoaXK = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.pThemXK = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.pLsNhapXuat = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.pMnHD = New DevExpress.XtraBars.PopupMenu()
+        Me.pXoaXK = New DevExpress.XtraBars.PopupMenu()
+        Me.pThemXK = New DevExpress.XtraBars.PopupMenu()
+        Me.pLsNhapXuat = New DevExpress.XtraBars.PopupMenu()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,8 +251,8 @@ Partial Class frmHoaDonDauRa
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTuNgay, Me.txtDenNgay, Me.cmbTrangThai, Me.btnTaiHoaDon, Me.btnThemHoaDon, Me.btnSuaHoaDon, Me.btnXoaHoaDon, Me.btnLoc, Me.btnIn, Me.mnuInHoaDon, Me.mnuInBangKe, Me.mnuInXuatKho, Me.chkThuGon, Me.mnuInNhap, Me.mnuThem, Me.mnuSua, Me.mnuGhiSo, Me.mnuIn, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.BarButtonItem7, Me.mnuXoa, Me.mnuDuaVaoXuatKho, Me.BarButtonItem1, Me.mnuDiChuyen, Me.mnuHoaDonBanHang, Me.mnuHoaDonDichVu, Me.mnuXuLyCongTrinh, Me.mnuLichSuNhapXuat, Me.btnChep, Me.mnuChep, Me.mnuXuatBangKe})
-        Me.BarManager1.MaxItemId = 34
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTuNgay, Me.txtDenNgay, Me.cmbTrangThai, Me.btnTaiHoaDon, Me.btnThemHoaDon, Me.btnSuaHoaDon, Me.btnXoaHoaDon, Me.btnLoc, Me.btnIn, Me.mnuInHoaDon, Me.mnuInBangKe, Me.mnuInXuatKho, Me.chkThuGon, Me.mnuInNhap, Me.mnuThem, Me.mnuSua, Me.mnuGhiSo, Me.mnuIn, Me.BarButtonItem4, Me.BarButtonItem5, Me.BarButtonItem6, Me.BarButtonItem7, Me.mnuXoa, Me.mnuDuaVaoXuatKho, Me.BarButtonItem1, Me.mnuDiChuyen, Me.mnuHoaDonBanHang, Me.mnuHoaDonDichVu, Me.mnuXuLyCongTrinh, Me.mnuLichSuNhapXuat, Me.btnChep, Me.mnuChep, Me.mnuXuatBangKe, Me.mnuHoaDonTuyChinh, Me.mnuInHoaDonTuyChinh, Me.chkLocHoaDonKhongVatTu})
+        Me.BarManager1.MaxItemId = 37
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.rCmbTrangThai})
         '
         'Bar1
@@ -257,7 +261,7 @@ Partial Class frmHoaDonDauRa
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.txtDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cmbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.chkThuGon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnTaiHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnLoc, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btnIn), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThemHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnChep), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSuaHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnXoaHoaDon)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.txtDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cmbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.chkThuGon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnTaiHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnLoc, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btnIn), New DevExpress.XtraBars.LinkPersistInfo(Me.btnThemHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnChep), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSuaHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.btnXoaHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.chkLocHoaDonKhongVatTu, True)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -355,7 +359,7 @@ Partial Class frmHoaDonDauRa
         Me.btnIn.Caption = "In"
         Me.btnIn.Glyph = Global.BACSOFT.My.Resources.Resources.invoice_18
         Me.btnIn.Id = 9
-        Me.btnIn.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInBangKe), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInXuatKho)})
+        Me.btnIn.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInNhap), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInHoaDon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInBangKe), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInXuatKho), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuHoaDonTuyChinh, True)})
         Me.btnIn.Name = "btnIn"
         Me.btnIn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
@@ -382,6 +386,12 @@ Partial Class frmHoaDonDauRa
         Me.mnuInXuatKho.Caption = "Xuất kho"
         Me.mnuInXuatKho.Id = 12
         Me.mnuInXuatKho.Name = "mnuInXuatKho"
+        '
+        'mnuHoaDonTuyChinh
+        '
+        Me.mnuHoaDonTuyChinh.Caption = "Hoá đơn tuỳ chỉnh"
+        Me.mnuHoaDonTuyChinh.Id = 34
+        Me.mnuHoaDonTuyChinh.Name = "mnuHoaDonTuyChinh"
         '
         'btnThemHoaDon
         '
@@ -423,37 +433,40 @@ Partial Class frmHoaDonDauRa
         Me.btnXoaHoaDon.Name = "btnXoaHoaDon"
         Me.btnXoaHoaDon.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
+        'chkLocHoaDonKhongVatTu
+        '
+        Me.chkLocHoaDonKhongVatTu.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.chkLocHoaDonKhongVatTu.Caption = "Lọc HĐ ko có vật tư"
+        Me.chkLocHoaDonKhongVatTu.Id = 36
+        Me.chkLocHoaDonKhongVatTu.Name = "chkLocHoaDonKhongVatTu"
+        '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1044, 37)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1102, 33)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 655)
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1044, 0)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 580)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1102, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 37)
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 618)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 547)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1044, 37)
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 618)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1102, 33)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 547)
         '
         'mnuThem
         '
@@ -481,7 +494,7 @@ Partial Class frmHoaDonDauRa
         Me.mnuIn.Caption = "In"
         Me.mnuIn.Glyph = Global.BACSOFT.My.Resources.Resources.print_18
         Me.mnuIn.Id = 18
-        Me.mnuIn.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem6), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem7)})
+        Me.mnuIn.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem4), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem5), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem6), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem7), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuInHoaDonTuyChinh, True)})
         Me.mnuIn.Name = "mnuIn"
         '
         'BarButtonItem4
@@ -507,6 +520,12 @@ Partial Class frmHoaDonDauRa
         Me.BarButtonItem7.Caption = "In xuất kho"
         Me.BarButtonItem7.Id = 22
         Me.BarButtonItem7.Name = "BarButtonItem7"
+        '
+        'mnuInHoaDonTuyChinh
+        '
+        Me.mnuInHoaDonTuyChinh.Caption = "In hoá đơn tuỳ chỉnh"
+        Me.mnuInHoaDonTuyChinh.Id = 35
+        Me.mnuInHoaDonTuyChinh.Name = "mnuInHoaDonTuyChinh"
         '
         'mnuXoa
         '
@@ -578,15 +597,14 @@ Partial Class frmHoaDonDauRa
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 37)
-        Me.SplitContainerControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 33)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.tabHoaDon)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.chkXemTheoHoaDon)
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XtraTabControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1044, 618)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1102, 547)
         Me.SplitContainerControl1.SplitterPosition = 283
         Me.SplitContainerControl1.TabIndex = 4
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -600,32 +618,28 @@ Partial Class frmHoaDonDauRa
         Me.tabHoaDon.HeaderButtons = DevExpress.XtraTab.TabButtons.None
         Me.tabHoaDon.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Never
         Me.tabHoaDon.Location = New System.Drawing.Point(0, 0)
-        Me.tabHoaDon.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.tabHoaDon.Name = "tabHoaDon"
         Me.tabHoaDon.SelectedTabPage = Me.tabcHoaDon
         Me.tabHoaDon.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.tabHoaDon.Size = New System.Drawing.Size(1044, 283)
+        Me.tabHoaDon.Size = New System.Drawing.Size(1102, 283)
         Me.tabHoaDon.TabIndex = 2
         Me.tabHoaDon.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabcHoaDon, Me.tabcLinkXuatKho})
         '
         'tabcHoaDon
         '
         Me.tabcHoaDon.Controls.Add(Me.gdv)
-        Me.tabcHoaDon.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.tabcHoaDon.Name = "tabcHoaDon"
-        Me.tabcHoaDon.Size = New System.Drawing.Size(1038, 277)
+        Me.tabcHoaDon.Size = New System.Drawing.Size(1096, 277)
         Me.tabcHoaDon.Text = "XtraTabPage1"
         '
         'gdv
         '
         Me.gdv.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdv.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdv.Location = New System.Drawing.Point(0, 0)
         Me.gdv.MainView = Me.gdvData
-        Me.gdv.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemMemoExEdit1, Me.RepositoryItemMemoEdit1})
-        Me.gdv.Size = New System.Drawing.Size(1038, 277)
+        Me.gdv.Size = New System.Drawing.Size(1096, 277)
         Me.gdv.TabIndex = 1
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvData})
         '
@@ -640,10 +654,11 @@ Partial Class frmHoaDonDauRa
         Me.gdvData.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.gdvData.Appearance.VertLine.Options.UseBackColor = True
         Me.gdvData.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.gdvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn11, Me.GridColumn12, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn41, Me.GridColumn42, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn46, Me.GridColumn61})
+        Me.gdvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn11, Me.GridColumn12, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn41, Me.GridColumn42, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn79, Me.GridColumn80, Me.GridColumn46, Me.GridColumn61})
         Me.gdvData.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvData.GridControl = Me.gdv
         Me.gdvData.Name = "gdvData"
+        Me.gdvData.OptionsBehavior.Editable = False
         Me.gdvData.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDownFocused
         Me.gdvData.OptionsCustomization.AllowColumnMoving = False
         Me.gdvData.OptionsCustomization.AllowGroup = False
@@ -926,6 +941,24 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn31.VisibleIndex = 19
         Me.GridColumn31.Width = 187
         '
+        'GridColumn79
+        '
+        Me.GridColumn79.Caption = "Số TK ngân hàng"
+        Me.GridColumn79.FieldName = "SoTkNganHang"
+        Me.GridColumn79.Name = "GridColumn79"
+        Me.GridColumn79.Visible = True
+        Me.GridColumn79.VisibleIndex = 20
+        Me.GridColumn79.Width = 150
+        '
+        'GridColumn80
+        '
+        Me.GridColumn80.Caption = "Tên TK ngân hàng"
+        Me.GridColumn80.FieldName = "TenTkNganHang"
+        Me.GridColumn80.Name = "GridColumn80"
+        Me.GridColumn80.Visible = True
+        Me.GridColumn80.VisibleIndex = 21
+        Me.GridColumn80.Width = 250
+        '
         'GridColumn46
         '
         Me.GridColumn46.FieldName = "GhiSo"
@@ -953,21 +986,18 @@ Partial Class frmHoaDonDauRa
         '
         Me.tabcLinkXuatKho.Controls.Add(Me.gdvXuatKho)
         Me.tabcLinkXuatKho.Controls.Add(Me.gXuatKho)
-        Me.tabcLinkXuatKho.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.tabcLinkXuatKho.Name = "tabcLinkXuatKho"
-        Me.tabcLinkXuatKho.Size = New System.Drawing.Size(1038, 277)
+        Me.tabcLinkXuatKho.Size = New System.Drawing.Size(1096, 277)
         Me.tabcLinkXuatKho.Text = "XtraTabPage2"
         '
         'gdvXuatKho
         '
         Me.gdvXuatKho.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvXuatKho.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.gdvXuatKho.Location = New System.Drawing.Point(0, 76)
+        Me.gdvXuatKho.Location = New System.Drawing.Point(0, 62)
         Me.gdvXuatKho.MainView = Me.gdvDataXuatKho
-        Me.gdvXuatKho.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvXuatKho.Name = "gdvXuatKho"
         Me.gdvXuatKho.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit4, Me.RepositoryItemMemoExEdit2, Me.RepositoryItemMemoEdit4, Me.RepositoryItemCheckEdit1})
-        Me.gdvXuatKho.Size = New System.Drawing.Size(1038, 201)
+        Me.gdvXuatKho.Size = New System.Drawing.Size(1096, 215)
         Me.gdvXuatKho.TabIndex = 9
         Me.gdvXuatKho.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvDataXuatKho})
         '
@@ -1230,30 +1260,27 @@ Partial Class frmHoaDonDauRa
         Me.gXuatKho.Location = New System.Drawing.Point(0, 0)
         Me.gXuatKho.LookAndFeel.SkinName = "Money Twins"
         Me.gXuatKho.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.gXuatKho.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gXuatKho.Name = "gXuatKho"
-        Me.gXuatKho.Size = New System.Drawing.Size(1038, 76)
+        Me.gXuatKho.Size = New System.Drawing.Size(1096, 62)
         Me.gXuatKho.TabIndex = 8
         Me.gXuatKho.Text = "gXuatKho"
         '
         'chkChuaVaoHD
         '
         Me.chkChuaVaoHD.EditValue = True
-        Me.chkChuaVaoHD.Location = New System.Drawing.Point(446, 41)
-        Me.chkChuaVaoHD.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkChuaVaoHD.Location = New System.Drawing.Point(382, 33)
         Me.chkChuaVaoHD.Name = "chkChuaVaoHD"
         Me.chkChuaVaoHD.Properties.Caption = "Chưa vào hóa đơn"
         Me.chkChuaVaoHD.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
         Me.chkChuaVaoHD.Properties.PictureChecked = CType(resources.GetObject("chkChuaVaoHD.Properties.PictureChecked"), System.Drawing.Image)
         Me.chkChuaVaoHD.Properties.PictureUnchecked = CType(resources.GetObject("chkChuaVaoHD.Properties.PictureUnchecked"), System.Drawing.Image)
-        Me.chkChuaVaoHD.Size = New System.Drawing.Size(138, 21)
+        Me.chkChuaVaoHD.Size = New System.Drawing.Size(118, 20)
         Me.chkChuaVaoHD.TabIndex = 56
         '
         'txtDenNgayXK
         '
         Me.txtDenNgayXK.EditValue = Nothing
-        Me.txtDenNgayXK.Location = New System.Drawing.Point(302, 41)
-        Me.txtDenNgayXK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtDenNgayXK.Location = New System.Drawing.Point(259, 33)
         Me.txtDenNgayXK.Name = "txtDenNgayXK"
         Me.txtDenNgayXK.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtDenNgayXK.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -1269,32 +1296,29 @@ Partial Class frmHoaDonDauRa
         Me.txtDenNgayXK.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.txtDenNgayXK.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret
         Me.txtDenNgayXK.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtDenNgayXK.Size = New System.Drawing.Size(136, 22)
+        Me.txtDenNgayXK.Size = New System.Drawing.Size(117, 20)
         Me.txtDenNgayXK.TabIndex = 55
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(226, 46)
-        Me.LabelControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl1.Location = New System.Drawing.Point(194, 37)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(60, 17)
+        Me.LabelControl1.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl1.TabIndex = 54
         Me.LabelControl1.Text = "Đến ngày"
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(14, 46)
-        Me.LabelControl7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 37)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(52, 17)
+        Me.LabelControl7.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl7.TabIndex = 53
         Me.LabelControl7.Text = "Từ ngày"
         '
         'txtTuNgayXK
         '
         Me.txtTuNgayXK.EditValue = Nothing
-        Me.txtTuNgayXK.Location = New System.Drawing.Point(71, 41)
-        Me.txtTuNgayXK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtTuNgayXK.Location = New System.Drawing.Point(61, 33)
         Me.txtTuNgayXK.Name = "txtTuNgayXK"
         Me.txtTuNgayXK.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtTuNgayXK.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
@@ -1310,7 +1334,7 @@ Partial Class frmHoaDonDauRa
         Me.txtTuNgayXK.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.txtTuNgayXK.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret
         Me.txtTuNgayXK.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtTuNgayXK.Size = New System.Drawing.Size(136, 22)
+        Me.txtTuNgayXK.Size = New System.Drawing.Size(117, 20)
         Me.txtTuNgayXK.TabIndex = 52
         '
         'btnHuyThaoTacHoaDon
@@ -1320,10 +1344,9 @@ Partial Class frmHoaDonDauRa
         Me.btnHuyThaoTacHoaDon.Appearance.Options.UseFont = True
         Me.btnHuyThaoTacHoaDon.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnHuyThaoTacHoaDon.Image = Global.BACSOFT.My.Resources.Resources.Delete_File_16
-        Me.btnHuyThaoTacHoaDon.Location = New System.Drawing.Point(909, 34)
-        Me.btnHuyThaoTacHoaDon.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnHuyThaoTacHoaDon.Location = New System.Drawing.Point(985, 28)
         Me.btnHuyThaoTacHoaDon.Name = "btnHuyThaoTacHoaDon"
-        Me.btnHuyThaoTacHoaDon.Size = New System.Drawing.Size(124, 37)
+        Me.btnHuyThaoTacHoaDon.Size = New System.Drawing.Size(106, 30)
         Me.btnHuyThaoTacHoaDon.TabIndex = 50
         Me.btnHuyThaoTacHoaDon.Text = "Hủy thao tác"
         '
@@ -1333,10 +1356,9 @@ Partial Class frmHoaDonDauRa
         Me.btnTaiLai.Appearance.Options.UseFont = True
         Me.btnTaiLai.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnTaiLai.Image = Global.BACSOFT.My.Resources.Resources.refresh_24
-        Me.btnTaiLai.Location = New System.Drawing.Point(590, 34)
-        Me.btnTaiLai.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnTaiLai.Location = New System.Drawing.Point(506, 28)
         Me.btnTaiLai.Name = "btnTaiLai"
-        Me.btnTaiLai.Size = New System.Drawing.Size(175, 37)
+        Me.btnTaiLai.Size = New System.Drawing.Size(150, 30)
         Me.btnTaiLai.TabIndex = 51
         Me.btnTaiLai.Text = "Tải lại danh sách"
         '
@@ -1344,8 +1366,7 @@ Partial Class frmHoaDonDauRa
         '
         Me.chkXemTheoHoaDon.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkXemTheoHoaDon.EditValue = True
-        Me.chkXemTheoHoaDon.Location = New System.Drawing.Point(649, -2)
-        Me.chkXemTheoHoaDon.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.chkXemTheoHoaDon.Location = New System.Drawing.Point(912, -2)
         Me.chkXemTheoHoaDon.Name = "chkXemTheoHoaDon"
         Me.chkXemTheoHoaDon.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.chkXemTheoHoaDon.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -1355,17 +1376,18 @@ Partial Class frmHoaDonDauRa
         Me.chkXemTheoHoaDon.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
         Me.chkXemTheoHoaDon.Properties.PictureChecked = CType(resources.GetObject("chkXemTheoHoaDon.Properties.PictureChecked"), System.Drawing.Image)
         Me.chkXemTheoHoaDon.Properties.PictureUnchecked = CType(resources.GetObject("chkXemTheoHoaDon.Properties.PictureUnchecked"), System.Drawing.Image)
-        Me.chkXemTheoHoaDon.Size = New System.Drawing.Size(309, 22)
+        Me.chkXemTheoHoaDon.Size = New System.Drawing.Size(265, 20)
         Me.chkXemTheoHoaDon.TabIndex = 7
         '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.XtraTabControl1.LookAndFeel.SkinName = "Office 2007 Blue"
+        Me.XtraTabControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.tabHangTien
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1044, 330)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1102, 259)
         Me.XtraTabControl1.TabIndex = 36
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabHangTien, Me.tabTienThue, Me.tabGiaVon})
         '
@@ -1376,21 +1398,18 @@ Partial Class frmHoaDonDauRa
         Me.tabHangTien.Appearance.Header.Options.UseFont = True
         Me.tabHangTien.Appearance.Header.Options.UseForeColor = True
         Me.tabHangTien.Controls.Add(Me.gdvHangTien)
-        Me.tabHangTien.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.tabHangTien.Name = "tabHangTien"
-        Me.tabHangTien.Size = New System.Drawing.Size(1038, 300)
+        Me.tabHangTien.Size = New System.Drawing.Size(1096, 233)
         Me.tabHangTien.Text = "Hàng tiền"
         '
         'gdvHangTien
         '
         Me.gdvHangTien.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvHangTien.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvHangTien.Location = New System.Drawing.Point(0, 0)
         Me.gdvHangTien.MainView = Me.gdvHangTienCT
-        Me.gdvHangTien.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvHangTien.Name = "gdvHangTien"
         Me.gdvHangTien.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit2, Me.RepositoryItemMemoEdit2})
-        Me.gdvHangTien.Size = New System.Drawing.Size(1038, 300)
+        Me.gdvHangTien.Size = New System.Drawing.Size(1096, 233)
         Me.gdvHangTien.TabIndex = 0
         Me.gdvHangTien.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvHangTienCT})
         '
@@ -1414,6 +1433,7 @@ Partial Class frmHoaDonDauRa
         Me.gdvHangTienCT.OptionsCustomization.AllowSort = False
         Me.gdvHangTienCT.OptionsView.ColumnAutoWidth = False
         Me.gdvHangTienCT.OptionsView.RowAutoHeight = True
+        Me.gdvHangTienCT.OptionsView.ShowFooter = True
         Me.gdvHangTienCT.OptionsView.ShowGroupPanel = False
         Me.gdvHangTienCT.OptionsView.ShowIndicator = False
         Me.gdvHangTienCT.RowHeight = 30
@@ -1507,6 +1527,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn19.FieldName = "SoLuong"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.ReadOnly = True
+        Me.GridColumn19.SummaryItem.DisplayFormat = "{0:N2}"
+        Me.GridColumn19.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 4
         Me.GridColumn19.Width = 72
@@ -1543,6 +1565,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn21.FieldName = "ThanhTien"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.ReadOnly = True
+        Me.GridColumn21.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.GridColumn21.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 6
         Me.GridColumn21.Width = 129
@@ -1600,21 +1624,18 @@ Partial Class frmHoaDonDauRa
         Me.tabTienThue.Appearance.Header.Options.UseFont = True
         Me.tabTienThue.Appearance.Header.Options.UseForeColor = True
         Me.tabTienThue.Controls.Add(Me.gdvThue)
-        Me.tabTienThue.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.tabTienThue.Name = "tabTienThue"
-        Me.tabTienThue.Size = New System.Drawing.Size(1038, 300)
+        Me.tabTienThue.Size = New System.Drawing.Size(1096, 233)
         Me.tabTienThue.Text = "Thuế"
         '
         'gdvThue
         '
         Me.gdvThue.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvThue.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvThue.Location = New System.Drawing.Point(0, 0)
         Me.gdvThue.MainView = Me.gdvThueCT
-        Me.gdvThue.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvThue.Name = "gdvThue"
         Me.gdvThue.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit3, Me.RepositoryItemMemoEdit3})
-        Me.gdvThue.Size = New System.Drawing.Size(1038, 300)
+        Me.gdvThue.Size = New System.Drawing.Size(1096, 233)
         Me.gdvThue.TabIndex = 1
         Me.gdvThue.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvThueCT})
         '
@@ -1639,6 +1660,7 @@ Partial Class frmHoaDonDauRa
         Me.gdvThueCT.OptionsCustomization.AllowSort = False
         Me.gdvThueCT.OptionsView.ColumnAutoWidth = False
         Me.gdvThueCT.OptionsView.RowAutoHeight = True
+        Me.gdvThueCT.OptionsView.ShowFooter = True
         Me.gdvThueCT.OptionsView.ShowGroupPanel = False
         Me.gdvThueCT.OptionsView.ShowIndicator = False
         Me.gdvThueCT.RowHeight = 30
@@ -1695,6 +1717,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn37.FieldName = "ThanhTien"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.OptionsColumn.ReadOnly = True
+        Me.GridColumn37.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.GridColumn37.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 1
         Me.GridColumn37.Width = 129
@@ -1748,20 +1772,19 @@ Partial Class frmHoaDonDauRa
         Me.tabGiaVon.Appearance.Header.Options.UseFont = True
         Me.tabGiaVon.Appearance.Header.Options.UseForeColor = True
         Me.tabGiaVon.Controls.Add(Me.gdvGiaVon)
+        Me.tabGiaVon.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.tabGiaVon.Name = "tabGiaVon"
-        Me.tabGiaVon.Size = New System.Drawing.Size(1038, 300)
+        Me.tabGiaVon.Size = New System.Drawing.Size(1096, 233)
         Me.tabGiaVon.Text = "Giá vốn"
         '
         'gdvGiaVon
         '
         Me.gdvGiaVon.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdvGiaVon.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvGiaVon.Location = New System.Drawing.Point(0, 0)
         Me.gdvGiaVon.MainView = Me.gdvDataGiaVon
-        Me.gdvGiaVon.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdvGiaVon.Name = "gdvGiaVon"
         Me.gdvGiaVon.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit5, Me.RepositoryItemMemoEdit5})
-        Me.gdvGiaVon.Size = New System.Drawing.Size(1038, 300)
+        Me.gdvGiaVon.Size = New System.Drawing.Size(1096, 233)
         Me.gdvGiaVon.TabIndex = 1
         Me.gdvGiaVon.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvDataGiaVon})
         '
@@ -1785,6 +1808,7 @@ Partial Class frmHoaDonDauRa
         Me.gdvDataGiaVon.OptionsCustomization.AllowSort = False
         Me.gdvDataGiaVon.OptionsView.ColumnAutoWidth = False
         Me.gdvDataGiaVon.OptionsView.RowAutoHeight = True
+        Me.gdvDataGiaVon.OptionsView.ShowFooter = True
         Me.gdvDataGiaVon.OptionsView.ShowGroupPanel = False
         Me.gdvDataGiaVon.OptionsView.ShowIndicator = False
         Me.gdvDataGiaVon.RowHeight = 30
@@ -1874,6 +1898,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn72.FieldName = "SoLuong"
         Me.GridColumn72.Name = "GridColumn72"
         Me.GridColumn72.OptionsColumn.ReadOnly = True
+        Me.GridColumn72.SummaryItem.DisplayFormat = "{0:N2}"
+        Me.GridColumn72.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn72.Visible = True
         Me.GridColumn72.VisibleIndex = 1
         Me.GridColumn72.Width = 72
@@ -1910,6 +1936,8 @@ Partial Class frmHoaDonDauRa
         Me.GridColumn74.FieldName = "ThanhTien"
         Me.GridColumn74.Name = "GridColumn74"
         Me.GridColumn74.OptionsColumn.ReadOnly = True
+        Me.GridColumn74.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.GridColumn74.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn74.Visible = True
         Me.GridColumn74.VisibleIndex = 4
         Me.GridColumn74.Width = 129
@@ -1982,16 +2010,15 @@ Partial Class frmHoaDonDauRa
         '
         'frmHoaDonDauRa
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmHoaDonDauRa"
-        Me.Size = New System.Drawing.Size(1044, 655)
+        Me.Size = New System.Drawing.Size(1102, 580)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2212,5 +2239,10 @@ Partial Class frmHoaDonDauRa
     Friend WithEvents GridColumn76 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn77 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn78 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn79 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn80 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents mnuHoaDonTuyChinh As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mnuInHoaDonTuyChinh As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents chkLocHoaDonKhongVatTu As DevExpress.XtraBars.BarCheckItem
 
 End Class

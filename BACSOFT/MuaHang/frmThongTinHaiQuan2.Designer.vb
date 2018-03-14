@@ -19,6 +19,7 @@ Partial Class frmThongTinHaiQuan2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -30,7 +31,6 @@ Partial Class frmThongTinHaiQuan2
         Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tbSoToKhai = New DevExpress.XtraEditors.TextEdit()
         Me.tbPhieuDH = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -112,6 +112,9 @@ Partial Class frmThongTinHaiQuan2
         Me.rcbNhom = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.rtbN2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.btnDuaSangHoaDon = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.tbThueNKMoi = New DevExpress.XtraEditors.SpinEdit()
         CType(Me.tbSoToKhai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPhieuDH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPhieuNK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,20 +148,19 @@ Partial Class frmThongTinHaiQuan2
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbNhom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rtbN2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbThueNKMoi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tbSoToKhai
         '
-        Me.tbSoToKhai.Location = New System.Drawing.Point(120, 62)
-        Me.tbSoToKhai.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbSoToKhai.Location = New System.Drawing.Point(103, 50)
         Me.tbSoToKhai.Name = "tbSoToKhai"
-        Me.tbSoToKhai.Size = New System.Drawing.Size(127, 22)
+        Me.tbSoToKhai.Size = New System.Drawing.Size(109, 20)
         Me.tbSoToKhai.TabIndex = 0
         '
         'tbPhieuDH
         '
-        Me.tbPhieuDH.Location = New System.Drawing.Point(352, 31)
-        Me.tbPhieuDH.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbPhieuDH.Location = New System.Drawing.Point(302, 25)
         Me.tbPhieuDH.Name = "tbPhieuDH"
         Me.tbPhieuDH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbPhieuDH.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -167,40 +169,36 @@ Partial Class frmThongTinHaiQuan2
         Me.tbPhieuDH.Properties.Appearance.Options.UseTextOptions = True
         Me.tbPhieuDH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.tbPhieuDH.Properties.ReadOnly = True
-        Me.tbPhieuDH.Size = New System.Drawing.Size(127, 23)
+        Me.tbPhieuDH.Size = New System.Drawing.Size(109, 20)
         Me.tbPhieuDH.TabIndex = 15
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(35, 126)
-        Me.LabelControl5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl5.Location = New System.Drawing.Point(30, 102)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(79, 17)
+        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl5.TabIndex = 0
         Me.LabelControl5.Text = "Số kiện hàng"
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(32, 95)
-        Me.LabelControl4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl4.Location = New System.Drawing.Point(27, 77)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(82, 17)
+        Me.LabelControl4.Size = New System.Drawing.Size(64, 13)
         Me.LabelControl4.TabIndex = 0
         Me.LabelControl4.Text = "Cửa khẩu HQ"
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(53, 65)
-        Me.LabelControl3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl3.Location = New System.Drawing.Point(45, 53)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(61, 17)
+        Me.LabelControl3.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl3.TabIndex = 0
         Me.LabelControl3.Text = "Số tờ khai"
         '
         'tbPhieuNK
         '
-        Me.tbPhieuNK.Location = New System.Drawing.Point(120, 31)
-        Me.tbPhieuNK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbPhieuNK.Location = New System.Drawing.Point(103, 25)
         Me.tbPhieuNK.Name = "tbPhieuNK"
         Me.tbPhieuNK.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbPhieuNK.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -209,103 +207,92 @@ Partial Class frmThongTinHaiQuan2
         Me.tbPhieuNK.Properties.Appearance.Options.UseTextOptions = True
         Me.tbPhieuNK.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.tbPhieuNK.Properties.ReadOnly = True
-        Me.tbPhieuNK.Size = New System.Drawing.Size(127, 23)
+        Me.tbPhieuNK.Size = New System.Drawing.Size(109, 20)
         Me.tbPhieuNK.TabIndex = 15
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(253, 35)
-        Me.LabelControl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl2.Location = New System.Drawing.Point(217, 28)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(92, 17)
+        Me.LabelControl2.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl2.TabIndex = 0
         Me.LabelControl2.Text = "Phiếu đặt hàng"
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 34)
-        Me.LabelControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl1.Location = New System.Drawing.Point(10, 28)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(102, 17)
+        Me.LabelControl1.Size = New System.Drawing.Size(79, 13)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Phiếu nhập khẩu"
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(538, 34)
-        Me.LabelControl6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl6.Location = New System.Drawing.Point(461, 28)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(100, 17)
+        Me.LabelControl6.Size = New System.Drawing.Size(77, 13)
         Me.LabelControl6.TabIndex = 0
         Me.LabelControl6.Text = "Khối lượng hàng"
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(554, 64)
-        Me.LabelControl7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl7.Location = New System.Drawing.Point(475, 52)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(84, 17)
+        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl7.TabIndex = 0
         Me.LabelControl7.Text = "Thể tích hàng"
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(11, 156)
-        Me.LabelControl8.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl8.Location = New System.Drawing.Point(9, 127)
         Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(103, 17)
+        Me.LabelControl8.Size = New System.Drawing.Size(81, 13)
         Me.LabelControl8.TabIndex = 0
         Me.LabelControl8.Text = "Tiền tệ hàng hóa"
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(285, 126)
-        Me.LabelControl9.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl9.Location = New System.Drawing.Point(244, 102)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(60, 17)
+        Me.LabelControl9.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl9.TabIndex = 0
         Me.LabelControl9.Text = "Tỷ giá HQ"
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(560, 126)
-        Me.LabelControl10.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl10.Location = New System.Drawing.Point(480, 102)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(78, 17)
+        Me.LabelControl10.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl10.TabIndex = 0
         Me.LabelControl10.Text = "Tỷ giá N Kho"
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(777, 126)
-        Me.LabelControl11.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl11.Location = New System.Drawing.Point(666, 102)
         Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(109, 17)
+        Me.LabelControl11.Size = New System.Drawing.Size(85, 13)
         Me.LabelControl11.TabIndex = 0
         Me.LabelControl11.Text = "Tỷ giá thanh toán"
         '
         'LabelControl24
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(529, 158)
-        Me.LabelControl24.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl24.Location = New System.Drawing.Point(453, 128)
         Me.LabelControl24.Name = "LabelControl24"
-        Me.LabelControl24.Size = New System.Drawing.Size(109, 17)
+        Me.LabelControl24.Size = New System.Drawing.Size(85, 13)
         Me.LabelControl24.TabIndex = 0
         Me.LabelControl24.Text = "Tiền hàng dự kiến"
         '
         'LabelControl26
         '
-        Me.LabelControl26.Location = New System.Drawing.Point(28, 464)
-        Me.LabelControl26.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl26.Location = New System.Drawing.Point(24, 377)
         Me.LabelControl26.Name = "LabelControl26"
-        Me.LabelControl26.Size = New System.Drawing.Size(42, 16)
+        Me.LabelControl26.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl26.TabIndex = 2
         Me.LabelControl26.Text = "Ghi chú"
         '
         'gdvCuaKhauHQ
         '
-        Me.gdvCuaKhauHQ.Location = New System.Drawing.Point(120, 92)
-        Me.gdvCuaKhauHQ.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.gdvCuaKhauHQ.Location = New System.Drawing.Point(103, 75)
         Me.gdvCuaKhauHQ.Name = "gdvCuaKhauHQ"
         Me.gdvCuaKhauHQ.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gdvCuaKhauHQ.Properties.Appearance.Options.UseFont = True
@@ -319,7 +306,7 @@ Partial Class frmThongTinHaiQuan2
         Me.gdvCuaKhauHQ.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.gdvCuaKhauHQ.Properties.ValueMember = "ID"
         Me.gdvCuaKhauHQ.Properties.View = Me.GridView3
-        Me.gdvCuaKhauHQ.Size = New System.Drawing.Size(359, 23)
+        Me.gdvCuaKhauHQ.Size = New System.Drawing.Size(308, 20)
         Me.gdvCuaKhauHQ.TabIndex = 2
         '
         'GridView3
@@ -383,49 +370,45 @@ Partial Class frmThongTinHaiQuan2
         'tbSoKienHang
         '
         Me.tbSoKienHang.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbSoKienHang.Location = New System.Drawing.Point(120, 123)
-        Me.tbSoKienHang.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbSoKienHang.Location = New System.Drawing.Point(103, 100)
         Me.tbSoKienHang.Name = "tbSoKienHang"
-        Me.tbSoKienHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.tbSoKienHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, "", Nothing, Nothing, True)})
         Me.tbSoKienHang.Properties.DisplayFormat.FormatString = "N2"
         Me.tbSoKienHang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbSoKienHang.Properties.EditFormat.FormatString = "N2"
         Me.tbSoKienHang.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbSoKienHang.Size = New System.Drawing.Size(127, 22)
+        Me.tbSoKienHang.Size = New System.Drawing.Size(109, 20)
         Me.tbSoKienHang.TabIndex = 3
         '
         'tbKhoiLuongHang
         '
         Me.tbKhoiLuongHang.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbKhoiLuongHang.Location = New System.Drawing.Point(644, 31)
-        Me.tbKhoiLuongHang.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbKhoiLuongHang.Location = New System.Drawing.Point(552, 25)
         Me.tbKhoiLuongHang.Name = "tbKhoiLuongHang"
-        Me.tbKhoiLuongHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.tbKhoiLuongHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.tbKhoiLuongHang.Properties.DisplayFormat.FormatString = "N2"
         Me.tbKhoiLuongHang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbKhoiLuongHang.Properties.EditFormat.FormatString = "N2"
         Me.tbKhoiLuongHang.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbKhoiLuongHang.Size = New System.Drawing.Size(127, 22)
+        Me.tbKhoiLuongHang.Size = New System.Drawing.Size(109, 20)
         Me.tbKhoiLuongHang.TabIndex = 7
         '
         'tbTheTichHang
         '
         Me.tbTheTichHang.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTheTichHang.Location = New System.Drawing.Point(644, 63)
-        Me.tbTheTichHang.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTheTichHang.Location = New System.Drawing.Point(552, 51)
         Me.tbTheTichHang.Name = "tbTheTichHang"
-        Me.tbTheTichHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        Me.tbTheTichHang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.tbTheTichHang.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTheTichHang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTheTichHang.Properties.EditFormat.FormatString = "N2"
         Me.tbTheTichHang.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTheTichHang.Size = New System.Drawing.Size(127, 22)
+        Me.tbTheTichHang.Size = New System.Drawing.Size(109, 20)
         Me.tbTheTichHang.TabIndex = 9
         '
         'cbTienTeHH
         '
-        Me.cbTienTeHH.Location = New System.Drawing.Point(120, 153)
-        Me.cbTienTeHH.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.cbTienTeHH.Location = New System.Drawing.Point(103, 124)
         Me.cbTienTeHH.Name = "cbTienTeHH"
         Me.cbTienTeHH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.cbTienTeHH.Properties.Appearance.Options.UseFont = True
@@ -438,77 +421,75 @@ Partial Class frmThongTinHaiQuan2
         Me.cbTienTeHH.Properties.NullText = ""
         Me.cbTienTeHH.Properties.ShowHeader = False
         Me.cbTienTeHH.Properties.ValueMember = "ID"
-        Me.cbTienTeHH.Size = New System.Drawing.Size(127, 23)
+        Me.cbTienTeHH.Size = New System.Drawing.Size(109, 20)
         Me.cbTienTeHH.TabIndex = 5
         '
         'tbTyGiaHQ
         '
         Me.tbTyGiaHQ.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTyGiaHQ.Location = New System.Drawing.Point(352, 123)
-        Me.tbTyGiaHQ.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTyGiaHQ.Location = New System.Drawing.Point(302, 100)
         Me.tbTyGiaHQ.Name = "tbTyGiaHQ"
-        Me.tbTyGiaHQ.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        Me.tbTyGiaHQ.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
         Me.tbTyGiaHQ.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTyGiaHQ.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTyGiaHQ.Properties.EditFormat.FormatString = "N2"
         Me.tbTyGiaHQ.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTyGiaHQ.Size = New System.Drawing.Size(127, 22)
+        Me.tbTyGiaHQ.Size = New System.Drawing.Size(109, 20)
         Me.tbTyGiaHQ.TabIndex = 4
         '
         'tbTyGiaNK
         '
         Me.tbTyGiaNK.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTyGiaNK.Location = New System.Drawing.Point(644, 123)
-        Me.tbTyGiaNK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTyGiaNK.Location = New System.Drawing.Point(552, 100)
         Me.tbTyGiaNK.Name = "tbTyGiaNK"
-        Me.tbTyGiaNK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
+        Me.tbTyGiaNK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
         Me.tbTyGiaNK.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTyGiaNK.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTyGiaNK.Properties.EditFormat.FormatString = "N2"
         Me.tbTyGiaNK.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTyGiaNK.Size = New System.Drawing.Size(127, 22)
+        Me.tbTyGiaNK.Size = New System.Drawing.Size(109, 20)
         Me.tbTyGiaNK.TabIndex = 11
         '
         'tbTyGiaThanhToan
         '
         Me.tbTyGiaThanhToan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTyGiaThanhToan.Location = New System.Drawing.Point(892, 123)
-        Me.tbTyGiaThanhToan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTyGiaThanhToan.Location = New System.Drawing.Point(765, 100)
         Me.tbTyGiaThanhToan.Name = "tbTyGiaThanhToan"
-        Me.tbTyGiaThanhToan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True)})
+        Me.tbTyGiaThanhToan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, "", Nothing, Nothing, True)})
         Me.tbTyGiaThanhToan.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTyGiaThanhToan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTyGiaThanhToan.Properties.EditFormat.FormatString = "N2"
         Me.tbTyGiaThanhToan.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTyGiaThanhToan.Size = New System.Drawing.Size(127, 22)
+        Me.tbTyGiaThanhToan.Size = New System.Drawing.Size(109, 20)
         Me.tbTyGiaThanhToan.TabIndex = 12
         '
         'tbGhiChu
         '
-        Me.tbGhiChu.Location = New System.Drawing.Point(134, 444)
-        Me.tbGhiChu.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbGhiChu.Location = New System.Drawing.Point(115, 361)
         Me.tbGhiChu.Name = "tbGhiChu"
-        Me.tbGhiChu.Size = New System.Drawing.Size(925, 59)
+        Me.tbGhiChu.Size = New System.Drawing.Size(793, 48)
         Me.tbGhiChu.TabIndex = 2
         '
         'tbTienHangDuKien
         '
         Me.tbTienHangDuKien.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTienHangDuKien.Location = New System.Drawing.Point(644, 153)
-        Me.tbTienHangDuKien.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTienHangDuKien.Location = New System.Drawing.Point(552, 124)
         Me.tbTienHangDuKien.Name = "tbTienHangDuKien"
-        Me.tbTienHangDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject7, "", Nothing, Nothing, True)})
+        Me.tbTienHangDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject6, "", Nothing, Nothing, True)})
         Me.tbTienHangDuKien.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTienHangDuKien.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTienHangDuKien.Properties.EditFormat.FormatString = "N2"
         Me.tbTienHangDuKien.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTienHangDuKien.Size = New System.Drawing.Size(127, 22)
+        Me.tbTienHangDuKien.Size = New System.Drawing.Size(109, 20)
         Me.tbTienHangDuKien.TabIndex = 13
         '
         'GroupControl1
         '
         Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
+        Me.GroupControl1.Controls.Add(Me.LabelControl13)
+        Me.GroupControl1.Controls.Add(Me.LabelControl14)
+        Me.GroupControl1.Controls.Add(Me.tbThueNKMoi)
         Me.GroupControl1.Controls.Add(Me.LabelControl12)
         Me.GroupControl1.Controls.Add(Me.tbTyGiaHQVC)
         Me.GroupControl1.Controls.Add(Me.cbTienTeHH)
@@ -547,148 +528,134 @@ Partial Class frmThongTinHaiQuan2
         Me.GroupControl1.Controls.Add(Me.tbThueNK)
         Me.GroupControl1.Controls.Add(Me.tbSoKienHang)
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1113, 193)
+        Me.GroupControl1.Size = New System.Drawing.Size(954, 176)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Thông tin chung"
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(805, 157)
-        Me.LabelControl12.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl12.Location = New System.Drawing.Point(690, 128)
         Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(81, 17)
+        Me.LabelControl12.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl12.TabIndex = 16
         Me.LabelControl12.Text = "Tỷ giá HQ VC"
         '
         'tbTyGiaHQVC
         '
         Me.tbTyGiaHQVC.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTyGiaHQVC.Location = New System.Drawing.Point(892, 155)
-        Me.tbTyGiaHQVC.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTyGiaHQVC.Location = New System.Drawing.Point(765, 126)
         Me.tbTyGiaHQVC.Name = "tbTyGiaHQVC"
-        Me.tbTyGiaHQVC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject8, "", Nothing, Nothing, True)})
+        Me.tbTyGiaHQVC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject7, "", Nothing, Nothing, True)})
         Me.tbTyGiaHQVC.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTyGiaHQVC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTyGiaHQVC.Properties.EditFormat.FormatString = "N2"
         Me.tbTyGiaHQVC.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTyGiaHQVC.Size = New System.Drawing.Size(127, 22)
+        Me.tbTyGiaHQVC.Size = New System.Drawing.Size(109, 20)
         Me.tbTyGiaHQVC.TabIndex = 14
         '
         'LabelControl28
         '
-        Me.LabelControl28.Location = New System.Drawing.Point(839, 65)
-        Me.LabelControl28.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl28.Location = New System.Drawing.Point(719, 53)
         Me.LabelControl28.Name = "LabelControl28"
-        Me.LabelControl28.Size = New System.Drawing.Size(47, 17)
+        Me.LabelControl28.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl28.TabIndex = 0
         Me.LabelControl28.Text = "Dự kiến"
         '
         'LabelControl33
         '
-        Me.LabelControl33.Location = New System.Drawing.Point(1025, 66)
-        Me.LabelControl33.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl33.Location = New System.Drawing.Point(879, 54)
         Me.LabelControl33.Name = "LabelControl33"
-        Me.LabelControl33.Size = New System.Drawing.Size(18, 16)
+        Me.LabelControl33.Size = New System.Drawing.Size(14, 13)
         Me.LabelControl33.TabIndex = 0
         Me.LabelControl33.Text = "m3"
         '
         'LabelControl37
         '
-        Me.LabelControl37.Location = New System.Drawing.Point(486, 65)
-        Me.LabelControl37.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl37.Location = New System.Drawing.Point(417, 53)
         Me.LabelControl37.Name = "LabelControl37"
-        Me.LabelControl37.Size = New System.Drawing.Size(25, 16)
+        Me.LabelControl37.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl37.TabIndex = 0
         Me.LabelControl37.Text = "VNĐ"
         '
         'LabelControl32
         '
-        Me.LabelControl32.Location = New System.Drawing.Point(1025, 34)
-        Me.LabelControl32.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl32.Location = New System.Drawing.Point(879, 28)
         Me.LabelControl32.Name = "LabelControl32"
-        Me.LabelControl32.Size = New System.Drawing.Size(14, 16)
+        Me.LabelControl32.Size = New System.Drawing.Size(12, 13)
         Me.LabelControl32.TabIndex = 0
         Me.LabelControl32.Text = "Kg"
         '
         'LabelControl27
         '
-        Me.LabelControl27.Location = New System.Drawing.Point(839, 35)
-        Me.LabelControl27.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl27.Location = New System.Drawing.Point(719, 28)
         Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(47, 17)
+        Me.LabelControl27.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl27.TabIndex = 0
         Me.LabelControl27.Text = "Dự kiến"
         '
         'LabelControl36
         '
-        Me.LabelControl36.Location = New System.Drawing.Point(294, 64)
-        Me.LabelControl36.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl36.Location = New System.Drawing.Point(252, 52)
         Me.LabelControl36.Name = "LabelControl36"
-        Me.LabelControl36.Size = New System.Drawing.Size(52, 17)
+        Me.LabelControl36.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl36.TabIndex = 0
         Me.LabelControl36.Text = "Thuế NK"
         '
         'LabelControl34
         '
-        Me.LabelControl34.Location = New System.Drawing.Point(284, 156)
-        Me.LabelControl34.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl34.Location = New System.Drawing.Point(243, 127)
         Me.LabelControl34.Name = "LabelControl34"
-        Me.LabelControl34.Size = New System.Drawing.Size(61, 17)
+        Me.LabelControl34.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl34.TabIndex = 0
         Me.LabelControl34.Text = "Tổng FOB"
         '
         'tbTheTichDuKien
         '
         Me.tbTheTichDuKien.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTheTichDuKien.Location = New System.Drawing.Point(892, 64)
-        Me.tbTheTichDuKien.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTheTichDuKien.Location = New System.Drawing.Point(765, 52)
         Me.tbTheTichDuKien.Name = "tbTheTichDuKien"
-        Me.tbTheTichDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, "", Nothing, Nothing, True)})
+        Me.tbTheTichDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject8, "", Nothing, Nothing, True)})
         Me.tbTheTichDuKien.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTheTichDuKien.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTheTichDuKien.Properties.EditFormat.FormatString = "N2"
         Me.tbTheTichDuKien.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbTheTichDuKien.Size = New System.Drawing.Size(127, 22)
+        Me.tbTheTichDuKien.Size = New System.Drawing.Size(109, 20)
         Me.tbTheTichDuKien.TabIndex = 10
         '
         'tbKhoiLuongDuKien
         '
         Me.tbKhoiLuongDuKien.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbKhoiLuongDuKien.Location = New System.Drawing.Point(892, 32)
-        Me.tbKhoiLuongDuKien.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbKhoiLuongDuKien.Location = New System.Drawing.Point(765, 26)
         Me.tbKhoiLuongDuKien.Name = "tbKhoiLuongDuKien"
-        Me.tbKhoiLuongDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
+        Me.tbKhoiLuongDuKien.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, "", Nothing, Nothing, True)})
         Me.tbKhoiLuongDuKien.Properties.DisplayFormat.FormatString = "N2"
         Me.tbKhoiLuongDuKien.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbKhoiLuongDuKien.Properties.EditFormat.FormatString = "N2"
         Me.tbKhoiLuongDuKien.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.tbKhoiLuongDuKien.Size = New System.Drawing.Size(127, 22)
+        Me.tbKhoiLuongDuKien.Size = New System.Drawing.Size(109, 20)
         Me.tbKhoiLuongDuKien.TabIndex = 8
         '
         'tbTongFOB
         '
         Me.tbTongFOB.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbTongFOB.Location = New System.Drawing.Point(352, 153)
-        Me.tbTongFOB.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbTongFOB.Location = New System.Drawing.Point(302, 124)
         Me.tbTongFOB.Name = "tbTongFOB"
         Me.tbTongFOB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.tbTongFOB.Properties.Appearance.Options.UseFont = True
-        Me.tbTongFOB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject11, "", Nothing, Nothing, True)})
+        Me.tbTongFOB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject10, "", Nothing, Nothing, True)})
         Me.tbTongFOB.Properties.DisplayFormat.FormatString = "N2"
         Me.tbTongFOB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTongFOB.Properties.EditFormat.FormatString = "N2"
         Me.tbTongFOB.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbTongFOB.Properties.ReadOnly = True
-        Me.tbTongFOB.Size = New System.Drawing.Size(127, 23)
+        Me.tbTongFOB.Size = New System.Drawing.Size(109, 20)
         Me.tbTongFOB.TabIndex = 6
         '
         'tbThueNK
         '
         Me.tbThueNK.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.tbThueNK.Location = New System.Drawing.Point(352, 62)
-        Me.tbThueNK.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.tbThueNK.Location = New System.Drawing.Point(302, 50)
         Me.tbThueNK.Name = "tbThueNK"
         Me.tbThueNK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.tbThueNK.Properties.DisplayFormat.FormatString = "N0"
@@ -696,7 +663,7 @@ Partial Class frmThongTinHaiQuan2
         Me.tbThueNK.Properties.EditFormat.FormatString = "N0"
         Me.tbThueNK.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.tbThueNK.Properties.ReadOnly = True
-        Me.tbThueNK.Size = New System.Drawing.Size(127, 22)
+        Me.tbThueNK.Size = New System.Drawing.Size(109, 20)
         Me.tbThueNK.TabIndex = 1
         '
         'btLuuLai
@@ -705,10 +672,9 @@ Partial Class frmThongTinHaiQuan2
         Me.btLuuLai.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btLuuLai.Appearance.Options.UseFont = True
         Me.btLuuLai.Image = Global.BACSOFT.My.Resources.Resources.Save_18
-        Me.btLuuLai.Location = New System.Drawing.Point(910, 570)
-        Me.btLuuLai.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btLuuLai.Location = New System.Drawing.Point(780, 463)
         Me.btLuuLai.Name = "btLuuLai"
-        Me.btLuuLai.Size = New System.Drawing.Size(87, 28)
+        Me.btLuuLai.Size = New System.Drawing.Size(75, 23)
         Me.btLuuLai.TabIndex = 3
         Me.btLuuLai.Text = "Lưu lại"
         '
@@ -718,50 +684,45 @@ Partial Class frmThongTinHaiQuan2
         Me.btDong.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btDong.Appearance.Options.UseFont = True
         Me.btDong.Image = Global.BACSOFT.My.Resources.Resources.close_18
-        Me.btDong.Location = New System.Drawing.Point(1005, 570)
-        Me.btDong.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btDong.Location = New System.Drawing.Point(861, 463)
         Me.btDong.Name = "btDong"
-        Me.btDong.Size = New System.Drawing.Size(87, 28)
+        Me.btDong.Size = New System.Drawing.Size(75, 23)
         Me.btDong.TabIndex = 4
         Me.btDong.Text = "Đóng"
         '
         'LabelControl38
         '
         Me.LabelControl38.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic)
-        Me.LabelControl38.Location = New System.Drawing.Point(479, 511)
-        Me.LabelControl38.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl38.Location = New System.Drawing.Point(411, 415)
         Me.LabelControl38.Name = "LabelControl38"
-        Me.LabelControl38.Size = New System.Drawing.Size(261, 17)
+        Me.LabelControl38.Size = New System.Drawing.Size(201, 13)
         Me.LabelControl38.TabIndex = 0
         Me.LabelControl38.Text = "- Tỷ giá HQ: Dùng để tính thuế nhập khẩu"
         '
         'LabelControl39
         '
         Me.LabelControl39.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic)
-        Me.LabelControl39.Location = New System.Drawing.Point(29, 511)
-        Me.LabelControl39.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl39.Location = New System.Drawing.Point(25, 415)
         Me.LabelControl39.Name = "LabelControl39"
-        Me.LabelControl39.Size = New System.Drawing.Size(376, 17)
+        Me.LabelControl39.Size = New System.Drawing.Size(291, 13)
         Me.LabelControl39.TabIndex = 0
         Me.LabelControl39.Text = "- Tỷ giá HQVC: Dùng để phân bổ tiền VCQT vào đơn giá FOB"
         '
         'LabelControl40
         '
         Me.LabelControl40.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic)
-        Me.LabelControl40.Location = New System.Drawing.Point(28, 534)
-        Me.LabelControl40.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl40.Location = New System.Drawing.Point(24, 434)
         Me.LabelControl40.Name = "LabelControl40"
-        Me.LabelControl40.Size = New System.Drawing.Size(431, 17)
+        Me.LabelControl40.Size = New System.Drawing.Size(331, 13)
         Me.LabelControl40.TabIndex = 0
         Me.LabelControl40.Text = "- Tỷ giá N kho: Dùng để tính đơn giá sau cùng cho vật tư về kho BAC"
         '
         'LabelControl41
         '
         Me.LabelControl41.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic)
-        Me.LabelControl41.Location = New System.Drawing.Point(479, 534)
-        Me.LabelControl41.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelControl41.Location = New System.Drawing.Point(411, 434)
         Me.LabelControl41.Name = "LabelControl41"
-        Me.LabelControl41.Size = New System.Drawing.Size(482, 17)
+        Me.LabelControl41.Size = New System.Drawing.Size(373, 13)
         Me.LabelControl41.TabIndex = 0
         Me.LabelControl41.Text = "- Tỷ giá thanh toán, tỷ giá TTVC dùng để kế toán tính toán, đối chiếu công nợ"
         '
@@ -770,23 +731,20 @@ Partial Class frmThongTinHaiQuan2
         Me.GroupControl4.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GroupControl4.AppearanceCaption.Options.UseFont = True
         Me.GroupControl4.Controls.Add(Me.gdv)
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 201)
-        Me.GroupControl4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 171)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1113, 235)
+        Me.GroupControl4.Size = New System.Drawing.Size(954, 183)
         Me.GroupControl4.TabIndex = 1
         Me.GroupControl4.Text = "Chi phí"
         '
         'gdv
         '
         Me.gdv.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdv.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.gdv.Location = New System.Drawing.Point(2, 25)
+        Me.gdv.Location = New System.Drawing.Point(2, 22)
         Me.gdv.MainView = Me.gdvCT
-        Me.gdv.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rcbNhom, Me.rcbKH, Me.rcbTienTe, Me.rtbDatetime, Me.rcbMucDich, Me.rtbN2})
-        Me.gdv.Size = New System.Drawing.Size(1109, 208)
+        Me.gdv.Size = New System.Drawing.Size(950, 159)
         Me.gdv.TabIndex = 7
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
         '
@@ -1054,7 +1012,7 @@ Partial Class frmThongTinHaiQuan2
         'rtbN2
         '
         Me.rtbN2.AutoHeight = False
-        Me.rtbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject12, "", Nothing, Nothing, True)})
+        Me.rtbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject11, "", Nothing, Nothing, True)})
         Me.rtbN2.DisplayFormat.FormatString = "N2"
         Me.rtbN2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.rtbN2.Mask.EditMask = "N2"
@@ -1070,18 +1028,47 @@ Partial Class frmThongTinHaiQuan2
         Me.btnDuaSangHoaDon.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnDuaSangHoaDon.Enabled = False
         Me.btnDuaSangHoaDon.Image = Global.BACSOFT.My.Resources.Resources.next_18
-        Me.btnDuaSangHoaDon.Location = New System.Drawing.Point(12, 572)
-        Me.btnDuaSangHoaDon.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.btnDuaSangHoaDon.Location = New System.Drawing.Point(10, 465)
         Me.btnDuaSangHoaDon.Name = "btnDuaSangHoaDon"
-        Me.btnDuaSangHoaDon.Size = New System.Drawing.Size(284, 28)
+        Me.btnDuaSangHoaDon.Size = New System.Drawing.Size(243, 23)
         Me.btnDuaSangHoaDon.TabIndex = 17
         Me.btnDuaSangHoaDon.Text = " Đưa sang hóa đơn dịch vụ đầu vào"
         '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(417, 153)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl13.TabIndex = 17
+        Me.LabelControl13.Text = "VNĐ"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(237, 153)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl14.TabIndex = 18
+        Me.LabelControl14.Text = "Thuế NK mới"
+        '
+        'tbThueNKMoi
+        '
+        Me.tbThueNKMoi.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.tbThueNKMoi.Location = New System.Drawing.Point(302, 150)
+        Me.tbThueNKMoi.Name = "tbThueNKMoi"
+        Me.tbThueNKMoi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.tbThueNKMoi.Properties.DisplayFormat.FormatString = "N0"
+        Me.tbThueNKMoi.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.tbThueNKMoi.Properties.EditFormat.FormatString = "N0"
+        Me.tbThueNKMoi.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.tbThueNKMoi.Properties.ReadOnly = True
+        Me.tbThueNKMoi.Size = New System.Drawing.Size(109, 20)
+        Me.tbThueNKMoi.TabIndex = 19
+        '
         'frmThongTinHaiQuan2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1113, 613)
+        Me.ClientSize = New System.Drawing.Size(954, 498)
         Me.Controls.Add(Me.btnDuaSangHoaDon)
         Me.Controls.Add(Me.GroupControl4)
         Me.Controls.Add(Me.btDong)
@@ -1093,8 +1080,7 @@ Partial Class frmThongTinHaiQuan2
         Me.Controls.Add(Me.LabelControl40)
         Me.Controls.Add(Me.LabelControl39)
         Me.Controls.Add(Me.LabelControl38)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "frmThongTinHaiQuan2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Thông tin hải quan"
@@ -1132,6 +1118,7 @@ Partial Class frmThongTinHaiQuan2
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbNhom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rtbN2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbThueNKMoi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1217,4 +1204,7 @@ Partial Class frmThongTinHaiQuan2
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents btnDuaSangHoaDon As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents tbThueNKMoi As DevExpress.XtraEditors.SpinEdit
 End Class

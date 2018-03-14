@@ -53,7 +53,7 @@ Public Class frmThongTinChiPhiChung
         '    AddParameterWhere("@idloaitaisan", barLueLoaiTS.EditValue)
         '    query &= " and idloaitaisan=@idloaitaisan"
         'End If
-        query &= ")tb order by NgayThang asc "
+        query &= ")tb order by NgayThang desc, Id desc "
         Dim dt As DataTable = ExecuteSQLDataTable(query)
         If Not dt Is Nothing Then
             Dim row = gv.FocusedRowHandle
@@ -108,6 +108,9 @@ Public Class frmThongTinChiPhiChung
     End Sub
 
     Private Sub btnXoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXoa.ItemClick
+        If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            Exit Sub
+        End If
         Dim id = If(gv.GetFocusedRowCellValue("id") Is Nothing, "0", gv.GetFocusedRowCellValue("id"))
         If id <> 0 Then
             If ShowCauHoi("Bạn có muốn hủy chi phí chung: """ + gv.GetFocusedRowCellValue("TenVT").ToString + " không ?") Then
@@ -299,15 +302,24 @@ Public Class frmThongTinChiPhiChung
     End Sub
 
     Private Sub btnLuu_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnLuu.ItemClick
-        For i As Integer = 0 To gv.RowCount - 1
-            AddParameter("@CheckLuu", 1)
-            AddParameterWhere("@id", gv.GetRowCellValue(i, "id"))
-            If doUpdate("TaiSan_ChiPhiChung", "id=@id") Is Nothing Then
-                ShowBaoLoi(LoiNgoaiLe)
-            Else
-                gv.SetRowCellValue(i, "CheckLuu", 1)
-            End If
-        Next
+        If KiemTraQuyenSuDung("Menu", Me.Tag, DanhMucQuyen.KeToan) Then
+            gv.PostEditor()
+            gv.UpdateCurrentRow()
+            For i As Integer = 0 To gv.RowCount - 1
+                AddParameter("@idloaichiphi", gv.GetRowCellValue(i, "idloaichiphi"))
+                AddParameter("@ghichuchiphi", gv.GetRowCellValue(i, "ghichuchiphi"))
+                AddParameter("@thoigiankh", gv.GetRowCellValue(i, "thoigiankh"))
+                AddParameter("@IdBoPhan", gv.GetRowCellValue(i, "IdBoPhan"))
+                AddParameter("@CheckLuu", 1)
+                AddParameterWhere("@id", gv.GetRowCellValue(i, "id"))
+                If doUpdate("TaiSan_ChiPhiChung", "id=@id") Is Nothing Then
+                    ShowBaoLoi(LoiNgoaiLe)
+                Else
+                    gv.SetRowCellValue(i, "CheckLuu", 1)
+                End If
+            Next
+        End If
+       
         '  loadGV()
     End Sub
 

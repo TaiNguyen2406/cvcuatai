@@ -6,18 +6,23 @@ Public Class fMain
 
     Private Sub fMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+
+
+
+        'Exit Sub
+
+
         tbTuNgay.EditValue = New DateTime(Today.Year, Today.Month, 1)
         tbDenNgay.EditValue = Today.Date
-        If TaiKhoan <> 1898 Then
+        If TaiKhoan <> 1 Then
             btBaoCaoThuTien.Visibility = BarItemVisibility.Never
             tbThang.Visibility = BarItemVisibility.Never
             cbBCNhanVIen.Visibility = BarItemVisibility.Never
             CheckNewVersion()
-        End If
-
-        If TaiKhoan = 1898 Then
+        Else
             LayTyGia()
         End If
+
 
         Application.DoEvents()
         loadDSPhongBan()
@@ -41,7 +46,7 @@ Public Class fMain
         Dim tg As DateTime = GetServerTime()
         tbThang.EditValue = tg
         Dim GioLamViec As New TimeSpan(8, 0, 0)
-        If tg.TimeOfDay <= GioLamViec And TaiKhoan <> 1898 Then
+        If tg.TimeOfDay <= GioLamViec Then
             BaoCaoTuDong()
         End If
         Application.DoEvents()
@@ -206,7 +211,8 @@ Public Class fMain
         sql &= "     UNION ALL"
         sql &= "     SELECT     ngaythangCT, sophieu, IDKh, sotien, Mucdich, IDUser, PhieuTC0, PhieuTC1"
         sql &= "     FROM         dbo.THUNH) AS tbThu "
-        sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu OR tbThu.PhieuTC0 = PHIEUXUATKHO.SophieuCG"
+        '    sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu OR tbThu.PhieuTC0 = PHIEUXUATKHO.SophieuCG"
+        sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu "
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=PHIEUXUATKHO.IDKhachHang "
         sql &= " LEFT JOIN tblQuyDoi ON CONVERT(int, LEFT(tblQuyDoi.ThangNam, 2)) = MONTH(tbThu.NgaythangCT) AND CONVERT(int, RIGHT(tblQuyDoi.ThangNam, 4))= YEAR(tbThu.NgaythangCT) "
         sql &= " INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = PHIEUXUATKHO.SophieuCG "
@@ -283,7 +289,8 @@ Public Class fMain
         sql &= "     UNION ALL"
         sql &= "     SELECT     ngaythangCT, sophieu, IDKh, sotien, Mucdich, IDUser, PhieuTC0, PhieuTC1"
         sql &= "     FROM         dbo.THUNH) AS tbThu "
-        sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu OR tbThu.PhieuTC0 = PHIEUXUATKHO.SophieuCG"
+        '  sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu OR tbThu.PhieuTC0 = PHIEUXUATKHO.SophieuCG"
+        sql &= " INNER JOIN PHIEUXUATKHO ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu "
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=PHIEUXUATKHO.IDKhachHang "
         sql &= " LEFT JOIN tblQuyDoi ON CONVERT(int, LEFT(tblQuyDoi.ThangNam, 2)) = " & Convert.ToDateTime(tbThang.EditValue).Month & " AND CONVERT(int, RIGHT(tblQuyDoi.ThangNam, 4))=" & Convert.ToDateTime(tbThang.EditValue).Year
         sql &= " INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = PHIEUXUATKHO.SophieuCG "
@@ -1103,7 +1110,7 @@ Public Class fMain
     End Sub
 
     Private Sub mXuatKhoCongTrinh_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXuatKhoCongTrinh.ItemClick
-        'OpenTab("Xuất kho công trình", "frmXuatKhoCT", New frmXuatKhoCT, True, Nothing, e.Item.Name)
+        OpenTab("Xuất kho công trình", "frmXuatKhoCT", New frmXuatKhoCT, True, Nothing, e.Item.Name)
     End Sub
 
     Private Sub mXuatKho_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXuatKho.ItemClick
@@ -1211,7 +1218,7 @@ Public Class fMain
     End Sub
 
     Private Sub mXuLyYeuCauHoiGia_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXuLyYeuCauHoiGia.ItemClick
-        OpenTab("Xử lý yêu cầu", "frmXuLyYeuCau", New frmXuLyYeuCau, True, Nothing, e.Item.Name)
+        OpenTab("Xử lý yêu cầu hỏi giá", "frmXuLyYeuCau", New frmXuLyYeuCau, True, Nothing, e.Item.Name)
     End Sub
 
     Private Sub mYeuCauHoiGiaNCC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mYeuCauHoiGiaNCC.ItemClick
@@ -1226,11 +1233,13 @@ Public Class fMain
         OpenTab("Danh mục trạng thái", "frmCNTrangThai", New frmCNTrangThai, True, Nothing, e.Item.Name)
     End Sub
 
+    Private _isShowing As Boolean = False
     Private Sub TimerLoadThongBao_Tick(sender As System.Object, e As System.EventArgs) Handles TimerLoadThongBao.Tick
         Try
             Dim str As String = " SET DATEFORMAT DMY SELECT count(ID) FROM tblThongBao WHERE IDNhanVien=" & TaiKhoan & " AND DaXem = 0;"
             str &= " SELECT Count(ID) FROM NHANSU WHERE NoiCtac=74 AND TrangThai=1 AND month(NgaySinh)=Month(getdate()) AND day(NgaySinh)=Day(GetDate());"
             str &= " select chisohientai, dinhmuc from dinhmuc  where chisohientai>=dinhmuc"
+            str &= " SELECT TOP 1 * FROM tblVersion ORDER BY ID DESC "
 
             Dim ds As DataSet = ExecuteSQLDataSet(str)
             If Not ds Is Nothing Then
@@ -1261,6 +1270,31 @@ Public Class fMain
                     bsiTinhTrangXe.Enabled = False
                     bsiTinhTrangXe.Visibility = BarItemVisibility.Never
                     bsiTinhTrangXe.Caption = "."
+                End If
+
+                If ds.Tables(3).Rows(0)("Ver").ToString <> Application.ProductVersion.ToString Then
+                    If lbAutoRestart.Visibility = BarItemVisibility.Never Then
+                        If _isShowing = False Then
+                            _isShowing = True
+                            If ShowCauHoi("Có phiên bản mới cần cập nhật !" & vbCrLf & "Phiên bản hiện tại: " _
+                                & Application.ProductVersion.ToString & vbCrLf & "Phiên bản mới: " & ds.Tables(3).Rows(0)("Ver").ToString _
+                                & vbCrLf & "Nội dung cập nhật: " & ds.Tables(3).Rows(0)("NoiDung").ToString _
+                                & vbCrLf & "Bạn có muốn cập nhật ngay không ? ") Then
+                                Dim psi As New ProcessStartInfo()
+                                With psi
+                                    .FileName = Application.StartupPath & "\UPDATE.exe"
+                                    .UseShellExecute = True
+                                End With
+                                Process.Start(psi)
+                            Else
+                                ShowCanhBao("Hệ thống sẽ tự cập nhật sau 5p !")
+                                tAutoRestart.Start()
+                            End If
+                        End If
+
+                    End If
+
+
                 End If
             Else
                 btThongBaoMoi.Visibility = BarItemVisibility.Always
@@ -1353,9 +1387,7 @@ Public Class fMain
     Private Sub mCongNoPhaiTra_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mCongNoPhaiTra.ItemClick
         OpenTab("Công nợ phải trả", "frmCongNoPhaiTra", New frmCongNoPhaiTra, True, Nothing, e.Item.Name)
     End Sub
-    Private Sub mCongNoPhaiTraMoi_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mCongNoPhaiTraMoi.ItemClick
-        OpenTab("Công nợ phải trả mới", "frmCongNoTraMoi", New frmCongNoTraMoi, True, Nothing, e.Item.Name)
-    End Sub
+
     Private Sub mCongNoPhaiThuPhaiTraTest_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mCongNoPhaiThuPhaiTraTest.ItemClick
         ' OpenTab("Công nợ phải thu - phải trả (test)", "frmCongNo2", New frmCongNo2, True, Nothing, e.Item.Name)
     End Sub
@@ -1547,11 +1579,11 @@ Public Class fMain
 
 
     Private Sub mnuThueBangKeHoaDonBanRa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueBangKeHoaDonBanRa.ItemClick
-        OpenTab("Bảng kê hóa đơn bán ra", "BangKeHoaDonBanRa", New frmBangExeclInovice, True, Nothing, e.Item.Name)
+        OpenTab("Bảng kê hóa đơn bán ra", "BangKeHoaDonBanRa", New frmBangKeHoaDonGTGT, True, Nothing, e.Item.Name)
     End Sub
 
     Private Sub mnuThueBangKeHoaDonMuaVao_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueBangKeHoaDonMuaVao.ItemClick
-        OpenTab("Bảng kê hóa đơn mua vào", "BangKeHoaDonMuaVao", New frmBangExeclInovice, True, Nothing, e.Item.Name)
+        OpenTab("Bảng kê hóa đơn mua vào", "BangKeHoaDonMuaVao", New frmBangKeHoaDonGTGT, True, Nothing, e.Item.Name)
     End Sub
 
     Private Sub mKetQuaNhapKho_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mKetQuaNhapKho.ItemClick
@@ -1803,12 +1835,14 @@ Public Class fMain
 
 
     Private Sub mnuThueSoCaiTaiKhoan_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueSoCaiTaiKhoan.ItemClick
-
+        Dim f As New frmBaoCaoSoCaiTaiKhoan
+        f.ShowDialog()
     End Sub
 
 
     Private Sub mnuThueSoNhatKyChung_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueSoNhatKyChung.ItemClick
-
+        Dim f As New frmBaoCaoThueSoNhatKyChung
+        f.ShowDialog()
     End Sub
 
 
@@ -1879,74 +1913,74 @@ Public Class fMain
 
     Private Sub mnuThueTinhThueHangNhapKhau_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueTinhThueHangNhapKhau.ItemClick
 
-        Dim sql As String = ""
-        Dim frmDoi As New DevExpress.XtraEditors.XtraForm
-        frmDoi.StartPosition = FormStartPosition.CenterScreen
-        frmDoi.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedDialog
-        frmDoi.Width = 450
-        frmDoi.Height = 75
-        frmDoi.TopLevel = True
-        frmDoi.TopMost = True
-        frmDoi.MaximizeBox = False
-        frmDoi.MinimizeBox = False
-        Dim prc As New DevExpress.XtraEditors.ProgressBarControl
-        prc.Properties.ShowTitle = True
-        prc.Properties.Appearance.Font = New Font(Me.Font.Name, 10, FontStyle.Bold)
-        prc.Properties.Appearance.ForeColor = Color.Red
-        prc.Properties.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Broken
-        prc.Dock = DockStyle.Fill
-        frmDoi.Controls.Add(prc)
+        'Dim sql As String = ""
+        'Dim frmDoi As New DevExpress.XtraEditors.XtraForm
+        'frmDoi.StartPosition = FormStartPosition.CenterScreen
+        'frmDoi.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedDialog
+        'frmDoi.Width = 450
+        'frmDoi.Height = 75
+        'frmDoi.TopLevel = True
+        'frmDoi.TopMost = True
+        'frmDoi.MaximizeBox = False
+        'frmDoi.MinimizeBox = False
+        'Dim prc As New DevExpress.XtraEditors.ProgressBarControl
+        'prc.Properties.ShowTitle = True
+        'prc.Properties.Appearance.Font = New Font(Me.Font.Name, 10, FontStyle.Bold)
+        'prc.Properties.Appearance.ForeColor = Color.Red
+        'prc.Properties.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Broken
+        'prc.Dock = DockStyle.Fill
+        'frmDoi.Controls.Add(prc)
 
-        Try
-            frmDoi.Show()
-            Application.DoEvents()
-            ''xóa các chứng từ cũ hóa đơn mua hàng đi
-            frmDoi.Text = "Xóa các bút toán thuế của chứng từ mua hàng nước ngoài"
-            If ExecuteSQLDataTable("delete from chungtuchitiet where Id_CT in (select Id from chungtu where LoaiCT = 2 AND LoaiCT2 = 7) and buttoan <> 1") Is Nothing Then Throw New Exception(LoiNgoaiLe)
-            Application.DoEvents()
-            frmDoi.Text = "Đang lấy danh sách các bút toán hàng tiền liên quan"
-            Dim dt As DataTable
-            sql = "select b.Id_CT,b.ID,a.TyGia,a.Thue,b.ref,b.DienGiai,b.ThanhTien "
-            sql &= "from CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT "
-            sql &= "where a.LoaiCT = 2 and a.LoaiCT2 = 7 "
-            dt = ExecuteSQLDataTable(sql)
-            If dt Is Nothing Then Throw New Exception(LoiNgoaiLe)
-            prc.Properties.Maximum = dt.Rows.Count
-            prc.Properties.Minimum = 0
-            prc.EditValue = 0
-            For i As Integer = 0 To dt.Rows.Count - 1
-                Application.DoEvents()
-                prc.EditValue = i + 1
-                'Thuế nhập khẩu
-                frmDoi.Text = "Đang cập nhật bút toán thuế (" & (i + 1) & "/" & dt.Rows.Count & ") ..."
-                Dim r As DataRow = dt.Rows(i)
-                AddParameter("@Id_CT", r("Id_CT"))
-                AddParameter("@ref", r("ref"))
-                AddParameter("@DienGiai", r("DienGiai"))
-                AddParameter("@ThanhTien", 0)
-                AddParameter("@TaiKhoanNo", "1561")
-                AddParameter("@TaiKhoanCo", "3333")
-                AddParameter("@ButToan", ChungTu.LoaiButToan.ThueNK)
-                AddParameter("@GiaTriKhac", 0)
-                If doInsert("CHUNGTUCHITIET") Is Nothing Then Throw New Exception(LoiNgoaiLe)
-                'Thuế GTGT
-                AddParameter("@Id_CT", r("Id_CT"))
-                AddParameter("@ref", r("ref"))
-                AddParameter("@DienGiai", r("DienGiai"))
-                AddParameter("@ThanhTien", Math.Round((isNullThen0(r("ThanhTien")) * isNullThen1(r("Thue"))) / 100.0F, 2, MidpointRounding.AwayFromZero))
-                AddParameter("@TaiKhoanNo", "1331")
-                AddParameter("@TaiKhoanCo", "33312")
-                AddParameter("@ButToan", ChungTu.LoaiButToan.ThueGTGT)
-                AddParameter("@GiaTriKhac", 0)
-                If doInsert("CHUNGTUCHITIET") Is Nothing Then Throw New Exception(LoiNgoaiLe)
-            Next
+        'Try
+        '    frmDoi.Show()
+        '    Application.DoEvents()
+        '    ''xóa các chứng từ cũ hóa đơn mua hàng đi
+        '    frmDoi.Text = "Xóa các bút toán thuế của chứng từ mua hàng nước ngoài"
+        '    If ExecuteSQLDataTable("delete from chungtuchitiet where Id_CT in (select Id from chungtu where LoaiCT = 2 AND LoaiCT2 = 7) and buttoan <> 1") Is Nothing Then Throw New Exception(LoiNgoaiLe)
+        '    Application.DoEvents()
+        '    frmDoi.Text = "Đang lấy danh sách các bút toán hàng tiền liên quan"
+        '    Dim dt As DataTable
+        '    sql = "select b.Id_CT,b.ID,a.TyGia,a.Thue,b.ref,b.DienGiai,b.ThanhTien "
+        '    sql &= "from CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT "
+        '    sql &= "where a.LoaiCT = 2 and a.LoaiCT2 = 7 "
+        '    dt = ExecuteSQLDataTable(sql)
+        '    If dt Is Nothing Then Throw New Exception(LoiNgoaiLe)
+        '    prc.Properties.Maximum = dt.Rows.Count
+        '    prc.Properties.Minimum = 0
+        '    prc.EditValue = 0
+        '    For i As Integer = 0 To dt.Rows.Count - 1
+        '        Application.DoEvents()
+        '        prc.EditValue = i + 1
+        '        'Thuế nhập khẩu
+        '        frmDoi.Text = "Đang cập nhật bút toán thuế (" & (i + 1) & "/" & dt.Rows.Count & ") ..."
+        '        Dim r As DataRow = dt.Rows(i)
+        '        AddParameter("@Id_CT", r("Id_CT"))
+        '        AddParameter("@ref", r("ref"))
+        '        AddParameter("@DienGiai", r("DienGiai"))
+        '        AddParameter("@ThanhTien", 0)
+        '        AddParameter("@TaiKhoanNo", "1561")
+        '        AddParameter("@TaiKhoanCo", "3333")
+        '        AddParameter("@ButToan", ChungTu.LoaiButToan.ThueNK)
+        '        AddParameter("@GiaTriKhac", 0)
+        '        If doInsert("CHUNGTUCHITIET") Is Nothing Then Throw New Exception(LoiNgoaiLe)
+        '        'Thuế GTGT
+        '        AddParameter("@Id_CT", r("Id_CT"))
+        '        AddParameter("@ref", r("ref"))
+        '        AddParameter("@DienGiai", r("DienGiai"))
+        '        AddParameter("@ThanhTien", Math.Round((isNullThen0(r("ThanhTien")) * isNullThen1(r("Thue"))) / 100.0F, 2, MidpointRounding.AwayFromZero))
+        '        AddParameter("@TaiKhoanNo", "1331")
+        '        AddParameter("@TaiKhoanCo", "33312")
+        '        AddParameter("@ButToan", ChungTu.LoaiButToan.ThueGTGT)
+        '        AddParameter("@GiaTriKhac", 0)
+        '        If doInsert("CHUNGTUCHITIET") Is Nothing Then Throw New Exception(LoiNgoaiLe)
+        '    Next
 
-        Catch ex As Exception
-            'frmDoi.Close()
-            ShowBaoLoi(ex.Message)
-        End Try
+        'Catch ex As Exception
+        '    'frmDoi.Close()
+        '    ShowBaoLoi(ex.Message)
+        'End Try
 
-        ShowThongBao("Đã cập nhật các bút toán thuế cho chứng từ mua hàng nước ngoài thành công!")
+        'ShowThongBao("Đã cập nhật các bút toán thuế cho chứng từ mua hàng nước ngoài thành công!")
         'frmDoi.Close()
 
     End Sub
@@ -2020,9 +2054,7 @@ Public Class fMain
     Private Sub mKetQuaLamViecCuaKTTest_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs)
         OpenTab("Kiểm quả làm việc của kỹ thuật (Test)", "frmKiemTraBaoCaoKTTest", New frmKiemTraBaoCaoKTTest, True, Nothing, e.Item.Name)
     End Sub
-    Private Sub mTHThemGioThemCong_ItemClick_1(sender As Object, e As ItemClickEventArgs) Handles mTHThemGioThemCong.ItemClick
-        OpenTab("Tổng hợp thêm giờ, thêm công của kỹ thuật", "frmTongHopThemGioThemCongKT", New frmTongHopThemGioThemCongKT, True, Nothing, e.Item.Name)
-    End Sub
+
 
     'Hàng hóa xuất cho BAC
     Private Sub btnHangHoaXuatChoBA_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnHangHoaXuatChoBA.ItemClick
@@ -2038,10 +2070,7 @@ Public Class fMain
     Private Sub btnThongTinCCDC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnThongTinCCDC.ItemClick
         OpenTab("Thông tin công cụ, dụng cụ", "frmThongTinCCDC", New frmThongTinCCDC, True, Nothing, e.Item.Name)
     End Sub
-    'Chi phí chung:
-    Private Sub btnThongTinCPC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnThongTinCPC.ItemClick
-        OpenTab("Thông tin chi phí chung", "frmThongTinCCDC", New frmThongTinChiPhiChung, True, Nothing, e.Item.Name)
-    End Sub
+
     Private Sub mThuTienMat_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mThuTienMat.ItemClick
         OpenTab("Thu tiền mặt", "frmThuTienMat", New frmThuTienMat, True, Nothing, e.Item.Name)
     End Sub
@@ -2164,24 +2193,182 @@ Public Class fMain
         OpenTab("Sổ chi tiết tài khoản thuế", "frmBaoCaoChiTietTaiKhoanThue", New frmBaoCaoChiTietTaiKhoanThue, True, Nothing, e.Item.Name)
     End Sub
 
-    Private Sub mHinhThucTT2_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mHinhThucTT2.ItemClick
+    Private Sub mnuThueKhauHaoTSCD_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueKhauHaoTSCD.ItemClick
+        OpenTab("Khấu hao TSCĐ thuế", "frmKhauHaoTSCD", New frmKhauHaoTSCD, True, Nothing, e.Item.Name)
+    End Sub
+
+
+    Private Sub mnuThueGhiSoTheoLo_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueGhiSoTheoLo.ItemClick
+        Dim f As New frmGhiSoTheoLo
+        f.ShowDialog()
+    End Sub
+
+    Private Sub mnuThue_BangCanDoiTaiKhoanThue_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThue_BangCanDoiTaiKhoanThue.ItemClick
+        Dim f As New frmBangCanDoiTaiKhoanThue
+        f.ShowDialog()
+    End Sub
+
+    Private Sub mnuHinhThucTT2_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuHinhThucTT2.ItemClick
         OpenTab("Hình thức thanh toán 2", "frmHinhThucTT2", New frmHinhThucTT2, True, Nothing, e.Item.Name)
     End Sub
 
-    Private Sub mTongHopCongNoTra_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mTongHopCongNoTra.ItemClick
-        OpenTab("Tổng hợp công nợ phải trả", "TONGHOPCONGNOPHAITRA", New frmTongHopCongNoPhaiThuPhaiTraCu, False, Nothing, e.Item.Name)
-    End Sub
-    Private Sub mTongHopCongNoThu_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mTongHopCongNoThu.ItemClick
-        OpenTab("Tổng hợp công nợ phải thu", "TONGHOPCONGNOPHAITHU", New frmTongHopCongNoPhaiThuPhaiTraCu, False, Nothing, e.Item.Name)
+    Private Sub mnuPhanBoTamUngXuatKho_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuPhanBoTamUngXuatKho.ItemClick
+        OpenTab("Phân bổ tạm ứng xuất kho", "TinhGiaTriPhanBoTamUngXuatKho", New frmTinhGiaTriPhanBoTamUng, True, Nothing, e.Item.Name)
     End Sub
 
-    Private Sub mTongHopCongNoTra2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mTongHopCongNoTra2.ItemClick
+
+    Private Sub mnuPhanBoTamUngNhapKho_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuPhanBoTamUngNhapKho.ItemClick
+        OpenTab("Phân bổ tạm ứng nhập kho", "TinhGiaTriPhanBoTamUngNhapKho", New frmTinhGiaTriPhanBoTamUng, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuBaoCaoDoanhThuTheoKhachHang_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuBaoCaoDoanhThuTheoKhachHang.ItemClick
+        OpenTab("Báo cáo doanh thu theo khách hàng", "frmBaoCaoDoanhThuTheoKhachHang", New frmBaoCaoDoanhThuTheoKhachHang, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuTongHopCongNoPhaiThu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuTongHopCongNoPhaiThu.ItemClick
+        OpenTab("Tổng hợp công nợ phải thu", "TONGHOPCONGNOPHAITHU", New frmTongHopCongNoPhaiThuPhaiTra, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuTongHopCongNoPhaiTra_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuTongHopCongNoPhaiTra.ItemClick
+        'OpenTab("Tổng hợp công nợ phải trả", "TONGHOPCONGNOPHAITRA", New frmTongHopCongNoPhaiThuPhaiTra, True, Nothing, e.Item.Name)
         OpenTab("Tổng hợp công nợ phải trả", "TONGHOPCONGNOPHAITRA", New frmTongHopCongNoPhaiTraMoi, False, Nothing, e.Item.Name)
     End Sub
 
-    Private Sub mTongHopCongNoThu2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mTongHopCongNoThu2.ItemClick
-        OpenTab("Tổng hợp công nợ phải thu 2", "TONGHOPCONGNOPHAITHU", New frmTongHopCongNoPhaiThuPhaiTra, False, Nothing, e.Item.Name)
+    Private Sub mnuThue_InPhieuThuTheoLo_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThue_InPhieuThuTheoLo.ItemClick
+        Dim f As New frmInPhieuThuChiThueTheoLo
+        f.Tag = "PHIEUTHU"
+        f.ShowDialog()
     End Sub
 
-  
+    Private Sub mnuHangHoaCongTrinhCanXuatTam_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuHangHoaCongTrinhCanXuatTam.ItemClick
+        OpenTab("Hàng hóa công trình cần xuất", "KHOHANGCANXUAT", New frmHangHoaCongTrinhCanXuat, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuXuatKhoTam_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuXuatKhoTam.ItemClick
+        OpenTab("Xuất kho tạm", "frmXuatKhoTam", New frmXuatKhoTam, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuThueTheTaiSanCoDinh_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueTheTaiSanCoDinh.ItemClick
+        Dim f As New frmTheTaiSanCoDinh
+        f.ShowDialog()
+    End Sub
+
+
+    Private Sub mnuThueInBienBanNghiemThuBanGiao_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueInBienBanNghiemThuBanGiao.ItemClick
+        Dim f As New frmBienBanNghiemThuBanGiao
+        f.ShowDialog()
+    End Sub
+
+
+    Private Sub mnuThueInBangChaoGiaCongTrinh_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuThueInBangChaoGiaCongTrinh.ItemClick
+        Dim f As New frmBangChaoGiaCongTrinh
+        f.ShowDialog()
+    End Sub
+
+
+    Private Sub mnuCongNoKhachHangDauKy_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuCongNoKhachHangDauKy.ItemClick
+        OpenTab("Công nợ hệ thống Phải Thu đầu kỳ", "CONGNOHETHONGPHAITHUDAUKY", New frmCongNoHeThongDauKy, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuCongNoNhaCungCapDauKy_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuCongNoNhaCungCapDauKy.ItemClick
+        OpenTab("Công nợ hệ thống Phải Trả đầu kỳ", "CONGNOHETHONGPHAITRADAUKY", New frmCongNoHeThongDauKy, True, Nothing, e.Item.Name)
+    End Sub
+
+
+
+    Dim tRestart As Integer = 300
+    Private Sub tAutoRestart_Tick(sender As System.Object, e As System.EventArgs) Handles tAutoRestart.Tick ' 1s not enable
+        If lbAutoRestart.Visibility = BarItemVisibility.Never Then
+            lbAutoRestart.Visibility = BarItemVisibility.Always
+        End If
+        tRestart -= 1
+        lbAutoRestart.Caption = String.Format(lbAutoRestart.Tag, tRestart)
+        If tRestart = 0 Then
+            Dim psi As New ProcessStartInfo()
+            With psi
+                .FileName = Application.StartupPath & "\UPDATE.exe"
+                .UseShellExecute = True
+            End With
+            Process.Start(psi)
+        End If
+    End Sub
+
+    Private Sub tAutoRefreshQuyenSD_Tick(sender As System.Object, e As System.EventArgs) Handles tAutoRefreshQuyenSD.Tick '60s enable
+        AddParameterWhere("@TK", TaiKhoan)
+        Dim dt As DataTable = ExecuteSQLDataTable("SELECT QUYENTRUYCAP.Quyen FROM NHANSU LEFT JOIN QUYENTRUYCAP ON NHANSU.Matruycap=QUYENTRUYCAP.Matruycap WHERE NHANSU.ID = @TK")
+
+        If Not dt Is Nothing Then
+            Dim arr As New ArrayList
+            QuyenSD.Clear()
+            arr.AddRange(dt.Rows(0)("Quyen").ToString.Split(New Char() {","c}))
+            For i As Integer = 0 To arr.Count - 1
+                Dim tmp As New ArrayList
+                tmp.AddRange(arr(i).ToString.Split(New Char() {";"c}))
+                Dim r = QuyenSD.NewRow()
+                QuyenSD.Rows.Add(r)
+                QuyenSD.Rows(QuyenSD.Rows.Count - 1)(0) = tmp(0)
+                For j As Integer = 1 To tmp.Count - 1
+                    QuyenSD.Rows(QuyenSD.Rows.Count - 1)(j) = CType(tmp(j), Boolean)
+                Next
+            Next
+
+            PhanQuyen()
+        Else
+            ShowBaoLoi(LoiNgoaiLe)
+        End If
+
+    End Sub
+
+
+    Private Sub mnuDanhMucYcVatTu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuDanhMucYcVatTu.ItemClick
+        OpenTab("Danh mục yêu cầu vật tư", "KYTHUATYEUCAUVATTU", New frmHangHoaCongTrinhCanXuat, True, Nothing, e.Item.Name)
+    End Sub
+
+
+
+
+    Private Sub mnuDanhMucTraLaiVatTu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuDanhMucTraLaiVatTu.ItemClick
+        OpenTab("Danh mục yêu cầu trả vật tư", "KYTHUATYEUCAUTRAVATTU", New frmHangHoaCongTrinhCanTra, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuHangHoaCongTrinhCanTraLai_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuHangHoaCongTrinhCanTraLai.ItemClick
+        OpenTab("Hàng hóa công trình cần trả lại", "KHOTRAVATTU", New frmHangHoaCongTrinhCanTra, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuTraKhoXuatTam_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuTraKhoXuatTam.ItemClick
+        OpenTab("Trả xuất kho tạm", "frmTraLaiXuatKhoTam", New frmTraLaiXuatKhoTam, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub btnThongTinCPC_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnThongTinCPC.ItemClick
+        OpenTab("Thông tin chi phí chung", "frmThongTinCCDC", New frmThongTinChiPhiChung, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mTHThemGioThemCong_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mTHThemGioThemCong.ItemClick
+        OpenTab("Tổng hợp thêm giờ, thêm công của kỹ thuật", "frmTongHopThemGioThemCongKT", New frmTongHopThemGioThemCongKT, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mnuCongNoPhaiThuPhaiTra2_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuCongNoPhaiThuPhaiTra2.ItemClick
+        OpenTab("Công nợ xem theo xuất kho", "frmCongNoTest", New frmCongNoTest, True, Nothing, e.Item.Name)
+    End Sub
+
+
+    Private Sub mnuDuKienCongNo_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuDuKienCongNo.ItemClick
+        OpenTab("Dự kiến công nợ - test", "frmDuKienCongNoTest", New frmDuKienCongNoTest, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub BarButtonItem8_ItemClick_1(sender As Object, e As ItemClickEventArgs) Handles BarButtonItem8.ItemClick
+        OpenTab("Yêu cầu từ web", "frmYeuCauTuWeb", New frmYeuCauTuWeb, True, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mDSYCDatTon_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mDSYCDatTon.ItemClick
+        OpenTab("Danh sách yêu cầu đặt tồn", "frmDSYCDatTon", New frmDSYCDatTon, False, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mDSYCDatTon_MuaHang_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mDSYCDatTon_MuaHang.ItemClick
+        OpenTab("Danh sách yêu cầu đặt tồn mua hàng", "frmDSYCDatTon_MuaHang", New frmDSYCDatTon, False, Nothing, e.Item.Name)
+    End Sub
+
+    Private Sub mKiemTraChungTu_ItemClick(sender As Object, e As ItemClickEventArgs) Handles mKiemTraChungTu.ItemClick
+        OpenTab("Kiểm tra chứng từ", "frmKiemTraChungTu", New frmKiemTraChungTu, True, Nothing, e.Item.Name)
+    End Sub
 End Class

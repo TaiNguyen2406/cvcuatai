@@ -6,13 +6,14 @@ Imports DevExpress.Data.Filtering
 Imports System.Xml
 Imports System.Globalization
 Imports BACSOFT.Utils
-
+Imports BACSOFT.TAI
 Public Class frmCNChaoGia
     Public TrangThaiCG As New Utils.TrangThai
     Public tmpTrangThai As New Utils.TrangThai
     Public tmpMaTuDien As Object
     Public SPYeuCau As Object
     Public SPYeuCau2 As Object
+    Public _Congtrinh As Integer = 0
     Private EndSelect As Boolean
     Private Move_Next As Boolean
     Public SPChaoGia As Object
@@ -20,10 +21,12 @@ Public Class frmCNChaoGia
     Private _exit As Boolean
 
     Private Sub frmCNChaoGia_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        lueCongTrinh.Properties.DataSource = tableCongTrinh()
+        lueCongTrinh.EditValue = _Congtrinh
         loadTienTe()
         loadDSDVT()
         loadCbHinhThucTT()
+        loadCbHinhThucCT()
         loadKhachHang()
         loadNguoiGD()
         loadTakeCare()
@@ -31,11 +34,20 @@ Public Class frmCNChaoGia
         loadDSThoiGianGH()
         loadTKNganHang()
         loadGdvVatTuChaoGia()
+        'If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
+        '    For i = 0 To gdvVTCT.RowCount - 1
+        '        If IsDBNull(gdvVTCT.GetRowCellValue(i, "NgayCan")) Then
+        '            gdvVTCT.SetRowCellValue(i, "NgayCan", tbNgayGiao.EditValue)
+        '        End If
+        '    Next
+        'End If
+
         loadDSKH()
         loadDSTenVT(Nothing, Nothing)
         LoadcbHangSX(Nothing, Nothing)
         LoadDSNhomVT(Nothing, Nothing)
         chkLocKhoBan.Checked = True
+        lueMucDichXuat.Properties.DataSource = ExecuteSQLDataTable("Select * from tblTuDien where Loai=44")
 
 
         If TrangThai.isAddNew Then
@@ -73,13 +85,22 @@ Public Class frmCNChaoGia
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.KeToan) Then
             btCNDuLieuChung.Visible = False
         End If
+      
+        'If chkCongTrinh.Checked Then
+        '    splitChiTiet.Collapsed = False
+        '    tabHangMucKhac.PageVisible = True
+        'Else
+        '    splitChiTiet.Collapsed = True
+        '    tbTenCongTrinh.Enabled = False
+        '    tabHangMucKhac.PageVisible = False
+        'End If
 
-        If chkCongTrinh.Checked Then
+        If lueCongTrinh.EditValue = 1 Then
             splitChiTiet.Collapsed = False
             tabHangMucKhac.PageVisible = True
         Else
             splitChiTiet.Collapsed = True
-            tbTenCongTrinh.Enabled = False
+            '    tbTenCongTrinh.Enabled = False
             tabHangMucKhac.PageVisible = False
         End If
 
@@ -143,7 +164,7 @@ Public Class frmCNChaoGia
 
     Public Sub loadKhachHang()
         'Tai
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,ttcMa,Ten,IDHinhThucTT,IDTakecare,IDHinhThucTT2 FROM KHACHHANG")
+        Dim tb As DataTable = ExecuteSQLDataTable("SELECT ID,ttcMa,Ten,IDHinhThucTT,IDTakecare,IDHinhThucTT2,HinhThucChungTu FROM KHACHHANG")
         'Tai
         If Not tb Is Nothing Then
             gdvMaKH.Properties.DataSource = tb
@@ -198,8 +219,16 @@ Public Class frmCNChaoGia
         'Tai
         cbHinhThucTT2.EditValue = dr("IDHinhThucTT2")
         'Tai
+        If gdvMaKH.EditValue = 74 Then
+            lueMucDichXuat.Enabled = True
+        Else
+            lueMucDichXuat.Enabled = False
+        End If
+
         cbTakeCare.EditValue = dr("IDTakecare")
         cbNguoiGD.Focus()
+
+        cmbHTCT.EditValue = Convert.ToInt32(dr("HinhThucChungTu"))
     End Sub
 
     Private Sub LoadCbTrangThai()
@@ -483,7 +512,10 @@ Public Class frmCNChaoGia
             sql &= " (SELECT 0.0)ThanhTien,(SELECT 100.0)GiaBanPT,(SELECT 0.0)ChietKhauPT,(SELECT 0.0)ChietKhau,"
             sql &= " ISNULL(VATTU.Tiente1,0) AS TienTe,ISNULL(tblTienTe.TyGia,1)TyGia,VATTU.HangTon, (SELECT 0) LoiGia,(Case ISNULL(YEUCAUDEN.IDTienTeCungUng,0) WHEN 0 THEN YEUCAUDEN.GiaCungUng ELSE YEUCAUDEN.GiaCungUng * TIENTECUNGUNG.TyGia END)GiaCungUng,TIENTECUNGUNG.Ten AS TienTeCungUng,THOIGIANCUNGUNG.NoiDung AS TGCungUng,VATTU.GiaBan1 AS PTBL,VATTU.GiaNCC1 AS PTBB"
             sql &= " ,YEUCAUDEN.IDBo,YEUCAUDEN.SLBo,tblGhepVatTu.SoLuong AS SLTrongBo,"
-            sql &= " (SELECT VATTU.Model FROM VATTU WHERE VATTU.ID=YEUCAUDEN.IDBo) AS TenBoVT,N'' as GhiChu"
+            sql &= " (SELECT VATTU.Model FROM VATTU WHERE VATTU.ID=YEUCAUDEN.IDBo) AS TenBoVT,N'' as GhiChu,"
+            'Tai
+            sql &= " (select Ngaygiao from BANGCHAOGIA where Masodathang= YEUCAUDEN.ID) NgayCan "
+            'Tai
             sql &= " FROM YEUCAUDEN LEFT OUTER JOIN VATTU ON YEUCAUDEN.IDVattu=VATTU.ID"
             sql &= " LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID"
             sql &= " LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangSanxuat=TENHANGSANXUAT.ID"
@@ -541,12 +573,15 @@ Public Class frmCNChaoGia
             sql &= " SELECT Ngaythang, IDKhachhang,TenDuan,TienTruocthue,Tienthue,TienChietkhau,Tienthucthu,Ngaynhan,Ngaygiao,IDHinhThucTT,MaSoDatHang,NhanKS,IDPhuTrachKyHD,IDPhuTrachCT,"
             sql &= " ISNULL(NgayGiaoDuKien,0)NgayGiaoDuKien,Ngayhuy,TyGia,IDUser,IDNgd,IDtakecare,Tiente,Congtrinh,Trangthai,Khautru,IDTaiKhoan,FileDinhkem,Pub,SoPO"
             'Tai
-            sql &= " , IDHinhThucTT2"
+            sql &= " , IDHinhThucTT2, IDHinhThucCT, MucDichXuat "
             'Tai
             sql &= " FROM BANGCHAOGIA"
             sql &= " WHERE Sophieu=@SP"
 
             sql &= " SELECT CHAOGIA.ID AS IDCG, CHAOGIA.IDvattu AS IDVatTu,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,VATTU.Model,VATTU.Thongso AS ThongSo,"
+            'Tai
+            sql &= "  CHAOGIA.NgayCan NgayCan, "
+            'Tai
             sql &= " TENDONVITINH.Ten AS TenDVT,CHAOGIA.SoLuong,CHAOGIA.IDYeucau AS IDYeuCau,(SELECT 0.0) TTGiaNhap,"
             sql &= " (CHAOGIA.Dongia * CHAOGIA.Soluong) AS ThanhTien, "
             sql &= " ISNULL(ISNULL("
@@ -672,12 +707,22 @@ Public Class frmCNChaoGia
                 'Tai
                 cbHinhThucTT2.EditValue = ds.Tables(0).Rows(0)("IDHinhThucTT2")
                 'Tai
+                cmbHTCT.EditValue = Convert.ToInt32(ds.Tables(0).Rows(0)("IDHinhThucCT"))
                 SPYeuCau = ds.Tables(0).Rows(0)("MaSoDatHang")
 
                 cbNguoiGD.EditValue = ds.Tables(0).Rows(0)("IDNgd")
                 cbTakeCare.EditValue = ds.Tables(0).Rows(0)("IDtakecare")
                 tbTenCongTrinh.EditValue = ds.Tables(0).Rows(0)("TenDuan")
-                chkCongTrinh.Checked = ds.Tables(0).Rows(0)("Congtrinh")
+                ' chkCongTrinh.Checked = ds.Tables(0).Rows(0)("Congtrinh")
+                If IsDBNull(ds.Tables(0).Rows(0)("Congtrinh")) Then
+                    'chkCongTrinh.Checked = False
+                    lueCongTrinh.EditValue = Nothing
+                Else
+                    ' chkCongTrinh.Checked = ds.Tables(0).Rows(0)("Congtrinh")
+                    lueCongTrinh.EditValue = Convert.ToInt32(ds.Tables(0).Rows(0)("Congtrinh"))
+                  
+                End If
+
                 chkPub.Checked = ds.Tables(0).Rows(0)("Pub")
                 If TrangThai.isUpdate Then
                     _exit = True
@@ -713,7 +758,7 @@ Public Class frmCNChaoGia
                 tbTienThue.EditValue = ds.Tables(0).Rows(0)("Tienthue")
                 tbThucThu.EditValue = ds.Tables(0).Rows(0)("Tienthucthu")
                 tbSoPO.EditValue = ds.Tables(0).Rows(0)("SoPO")
-
+                lueMucDichXuat.EditValue = ds.Tables(0).Rows(0)("MucDichXuat")
                 gdvCongTrinh.DataSource = ds.Tables(2)
                 tbTienSauThue.EditValue = tbTienTruocThue.EditValue + tbTienThue.EditValue
                 tbChietKhau.EditValue = Math.Round(tbThucCK.EditValue / ((100 - tbKhauTruPT.EditValue) / 100), 2)
@@ -749,6 +794,9 @@ Public Class frmCNChaoGia
         Sql &= " CHAOGIA.Chietkhau AS ChietKhau,Convert(float,0) as ChietKhauPT,"
         Sql &= " ISNULL(VATTU.Tiente1,0) AS TienTe, (CASE ISNULL(VATTU.Tiente1,0) WHEN 0 THEN 1 ELSE ISNULL(CHAOGIA.TyGia,ISNULL(tblTienTe.TyGia,1)) END )TyGia, VATTU.HangTon , ISNULL(CHAOGIA.AZ,0)AZ, (SELECT 0) LoiGia,(Case ISNULL(YEUCAUDEN.IDTienTeCungUng,0) WHEN 0 THEN YEUCAUDEN.GiaCungUng ELSE YEUCAUDEN.GiaCungUng * TIENTECUNGUNG.TyGia END)GiaCungUng,TIENTECUNGUNG.Ten AS TienTeCungUng,THOIGIANCUNGUNG.NoiDung AS TGCungUng,VATTU.GiaBan1 AS PTBL,VATTU.GiaNCC1 AS PTBB"
         Sql &= " ,CHAOGIA.IDBo,CHAOGIA.SLBo,tblGhepVatTu.SoLuong as SLTrongBo,"
+        'Tai
+        Sql &= " CHAOGIA.NgayCan,"
+        'Tai
         Sql &= " (SELECT VATTU.Model FROM VATTU WHERE VATTU.ID=CHAOGIA.IDBo) AS TenBoVT,CHAOGIA.GhiChu"
         Sql &= " FROM CHAOGIA LEFT OUTER JOIN VATTU ON CHAOGIA.IDvattu=VATTU.ID"
         Sql &= " LEFT JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu=CHAOGIA.Sophieu"
@@ -761,7 +809,7 @@ Public Class frmCNChaoGia
         Sql &= " LEFT JOIN tblTienTe AS TIENTECUNGUNG ON YEUCAUDEN.IDTienTeCungUng=TIENTECUNGUNG.ID"
         Sql &= " LEFT JOIN tblTuDien AS THOIGIANCUNGUNG ON YEUCAUDEN.TGCungUng=THOIGIANCUNGUNG.Ma AND Loai=4"
 
-        If chkCongTrinh.Checked Then
+        If lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked Then
             Sql &= " WHERE CHAOGIA.Sophieu=N'" & SoPhieu & "CT'"
         Else
             Sql &= " WHERE CHAOGIA.Sophieu=N'" & SoPhieu & "'"
@@ -879,6 +927,7 @@ Public Class frmCNChaoGia
         'Tai
         riLueNhom.DataSource = TAI.tableNhomHinhThucTT()
         tb = ExecuteSQLDataTable("SELECT ID,SoTT,GiaiThich,Nhom FROM DM_HINH_THUC_TT where TrangThai=1 ORDER BY Nhom asc, SoTT, GiaiThich asc")
+
         If Not tb Is Nothing Then
             cbHinhThucTT2.Properties.DataSource = tb
             If tb.Rows.Count > 0 Then
@@ -894,6 +943,27 @@ Public Class frmCNChaoGia
         End If
         'Tai
     End Sub
+
+    Private Sub loadCbHinhThucCT()
+        Dim tb As DataTable = HinhThucChungTu.GetDataTable
+        If Not tb Is Nothing Then
+            cmbHTCT.Properties.DataSource = tb
+            If tb.Rows.Count > 0 Then
+                cmbHTCT.EditValue = tb.Rows(0)("Id")
+            End If
+        Else
+            ShowBaoLoi(LoiNgoaiLe)
+        End If
+
+        AddParameterWhere("@ID", gdvMaKH.EditValue)
+        Dim HTCT_TheoKH = ExecuteSQLScalar("select HinhThucChungTu  from KHACHHANG where ID=@ID ")
+        If Not IsDBNull(HTCT_TheoKH) And HTCT_TheoKH IsNot Nothing Then
+            cmbHTCT.EditValue = Convert.ToInt32(HTCT_TheoKH)
+        End If
+
+
+        'Tai
+    End Sub
 #End Region
 
 #Region "Lưu lại"
@@ -901,6 +971,10 @@ Public Class frmCNChaoGia
 
         If cbHinhThucTT2.EditValue Is Nothing OrElse cbHinhThucTT2.EditValue Is DBNull.Value Then
             ShowBaoLoi("Chưa chọn hình thức thanh toán!")
+        End If
+
+        If cmbHTCT.EditValue Is Nothing OrElse cmbHTCT.EditValue Is DBNull.Value Then
+            ShowBaoLoi("Chưa chọn hình thức chứng từ!")
         End If
 
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) Then
@@ -957,7 +1031,7 @@ Public Class frmCNChaoGia
             AddParameter("@IDNgd", cbNguoiGD.EditValue)
             AddParameter("@IDUser", Convert.ToInt32(TaiKhoan))
             AddParameter("@IDtakecare", cbTakeCare.EditValue)
-            AddParameter("@Congtrinh", chkCongTrinh.Checked)
+            AddParameter("@Congtrinh", lueCongTrinh.EditValue) 'chkCongTrinh.Checked)
             AddParameter("@TenDuan", tbTenCongTrinh.EditValue)
             AddParameter("@Trangthai", cbTrangThai.EditValue)
             AddParameter("@Ngaynhan", tbNgayNhan.EditValue)
@@ -974,8 +1048,12 @@ Public Class frmCNChaoGia
             AddParameter("@IDTaiKhoan", cbTKNganHang.EditValue)
             AddParameter("@IDHinhThucTT", cbHinhThucTT.EditValue)
             AddParameter("@IDHinhThucTT2", cbHinhThucTT2.EditValue)
+            AddParameter("@IDHinhThucCT", cmbHTCT.EditValue)
             AddParameter("@SoPO", tbSoPO.EditValue)
             AddParameter("@FileDinhKem", StrDSFile(gdvListFileCT))
+            If lueMucDichXuat.Enabled = True Then
+                AddParameter("@MucDichXuat", lueMucDichXuat.EditValue)
+            End If
 
             ' AddParameter("@IDPhuTrachKyHD", cbNVKyHD.EditValue)
             If KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) Then
@@ -1003,12 +1081,12 @@ Public Class frmCNChaoGia
                 'If doUpdate("tblBaoCaoLichThiCong", "SoYC=@SoYC") Is Nothing Then Throw New Exception(LoiNgoaiLe)
 
                 'cập nhật lại số chào giá vào bảng báo cáo lịch thi công theo số yêu cầu
-                If cbTrangThai.EditValue = 2 And chkCongTrinh.Checked = True Then
+                If cbTrangThai.EditValue = 2 And lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked = True Then
                     AddParameter("@SoCG", tbSoPhieu.EditValue)
                     AddParameterWhere("@SoYC", SPYeuCau)
                     If doUpdate("tblBaoCaoLichThiCong", "SoYC=@SoYC and SoCG is null") Is Nothing Then Throw New Exception(LoiNgoaiLe)
                 End If
-               
+
                 If TrangThaiCG.isCopy Then
                     Dim sql As String = ""
                     'sql &= " DECLARE @DoDai AS NVARCHAR(4) "
@@ -1062,18 +1140,18 @@ Public Class frmCNChaoGia
                 AddParameterWhere("@SP", tbSoPhieu.EditValue)
                 If doUpdate("BANGCHAOGIA", "Sophieu=@SP") Is Nothing Then Throw New Exception(LoiNgoaiLe)
                 'cập nhật lại số chào giá vào bảng báo cáo lịch thi công theo số yêu cầu
-                If cbTrangThai.EditValue = 2 And chkCongTrinh.Checked = True Then
+                If cbTrangThai.EditValue = 2 And lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked = True Then
                     AddParameter("@SoCG", tbSoPhieu.EditValue)
                     AddParameterWhere("@SoYC", SPYeuCau)
                     If doUpdate("tblBaoCaoLichThiCong", "SoYC=@SoYC") Is Nothing Then Throw New Exception(LoiNgoaiLe)
                 End If
-              
+
             End If
 
             With gdvVTCT
                 For i As Integer = 0 To .RowCount - 1
                     If IsDBNull(.GetRowCellValue(i, "IDVatTu")) Or .GetRowCellValue(i, "IDVatTu") Is Nothing Then Continue For
-                    If chkCongTrinh.Checked Then
+                    If lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked Then
                         AddParameter("@SoPhieu", tbSoPhieu.EditValue & "CT")
                     Else
                         AddParameter("@SoPhieu", tbSoPhieu.EditValue)
@@ -1086,8 +1164,10 @@ Public Class frmCNChaoGia
                     AddParameter("@Mucthue", .GetRowCellValue(i, "MucThue"))
                     AddParameter("@Xuatthue", .GetRowCellValue(i, "XuatThue"))
                     AddParameter("@Chietkhau", .GetRowCellValue(i, "ChietKhau"))
+                    'NgayCan
+                    AddParameter("@NgayCan", .GetRowCellValue(i, "NgayCan"))
                     If .GetRowCellValue(i, "TrangThai") = TrangThaiChaoGia.DaXacNhan Then
-                        If chkCongTrinh.Checked Then
+                        If lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked Then
                             AddParameter("@Canxuat", 0)
                         Else
                             AddParameter("@Canxuat", .GetRowCellValue(i, "SoLuong"))
@@ -1154,7 +1234,7 @@ Public Class frmCNChaoGia
 
             ComitTransaction()
 
-            If Not chkCongTrinh.Checked Then
+            If lueCongTrinh.EditValue <> 1 Then ' Not chkCongTrinh.Checked Then
                 For i As Integer = 0 To gdvVTCT.RowCount - 1
                     Dim sql As String = ""
                     If Not IsDBNull(gdvVTCT.GetRowCellValue(i, "IDCG")) And Not gdvVTCT.GetRowCellValue(i, "IDCG") Is Nothing Then
@@ -1183,7 +1263,7 @@ Public Class frmCNChaoGia
                 End If
             End If
 
-            If chkCongTrinh.Checked Then
+            If lueCongTrinh.EditValue = 1 Then 'chkCongTrinh.Checked Then
                 If ExecuteSQLNonQuery("DELETE FROM CHAOGIA WHERE SoPhieu='" & tbSoPhieu.EditValue & "CT' AND SoLuong=0 DELETE FROM CHAOGIAAUX WHERE SoPhieu='" & tbSoPhieu.EditValue & "CT' AND SoLuong=0 ") Is Nothing Then
                     ShowCanhBao("Lỗi xóa VT số lượng = 0 " & LoiNgoaiLe)
                 End If
@@ -1249,18 +1329,51 @@ Public Class frmCNChaoGia
 
     '============================================================================================
 
-    Private Sub chkCongTrinh_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkCongTrinh.CheckedChanged
+    Private Sub chkCongTrinh_CheckedChanged(sender As System.Object, e As System.EventArgs) 'Handles chkCongTrinh.CheckedChanged
+        Dim _NgayGiao As Object = DBNull.Value
         If chkCongTrinh.Checked Then
-            tbTenCongTrinh.Enabled = True
+            '  tbTenCongTrinh.Enabled = True
             splitChiTiet.Collapsed = False
             tabHangMucKhac.PageVisible = True
         Else
-            tbTenCongTrinh.Enabled = False
+            ' tbTenCongTrinh.Enabled = False
             splitChiTiet.Collapsed = True
             tabHangMucKhac.PageVisible = False
+            If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
+                _NgayGiao = tbNgayGiao.EditValue
+            End If
         End If
-    End Sub
+        For i As Integer = 0 To gdvVTCT.RowCount - 1
 
+            gdvVTCT.SetRowCellValue(i, "NgayCan", _NgayGiao)
+        Next
+    End Sub
+    Private Sub lueCongTrinh_EditValueChanged(sender As Object, e As EventArgs) Handles lueCongTrinh.EditValueChanged
+
+        Dim _NgayGiao As Object = DBNull.Value
+        If lueCongTrinh.EditValue = 1 Then
+            '   tbTenCongTrinh.Enabled = True
+            splitChiTiet.Collapsed = False
+            tabHangMucKhac.PageVisible = True
+            XtraTabControl1.SelectedTabPageIndex = 0
+        Else
+            '   tbTenCongTrinh.Enabled = False
+            splitChiTiet.Collapsed = True
+            tabHangMucKhac.PageVisible = False
+            If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
+                _NgayGiao = tbNgayGiao.EditValue
+            End If
+        End If
+        If TrangThaiCG.isAddNew = True Then
+
+        End If
+        For i As Integer = 0 To gdvVTCT.RowCount - 1
+            If (TrangThaiCG.isAddNew = True) Or (TrangThaiCG.isUpdate = True And IsDBNull(gdvVTCT.GetRowCellValue(i, "NgayCan"))) Then
+                gdvVTCT.SetRowCellValue(i, "NgayCan", _NgayGiao)
+            End If
+
+        Next
+    End Sub
 #End Region
 
 #Region "Các sự kiện của grid vật tư chào giá gdvVTCT"
@@ -1718,24 +1831,35 @@ Public Class frmCNChaoGia
 
 #Region "Thay đổi trạng thái"
     Private Sub cbTrangThai_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles cbTrangThai.EditValueChanged
+        Dim _NgayGiao As Object = DBNull.Value
         If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
             tbNgayNhan.Enabled = True
             tbNgayGiao.Enabled = True
             tbNgayHuy.Enabled = False
             tbNgayNhan.EditValue = Today.Date
+            'If chkCongTrinh.EditValue = False Then
+            '    _NgayGiao = tbNgayGiao.EditValue
+            'End If
         ElseIf cbTrangThai.EditValue = TrangThaiChaoGia.ChoXacNhan Then
             tbNgayNhan.Enabled = False
             tbNgayGiao.Enabled = False
             tbNgayHuy.Enabled = False
+            _NgayGiao = DBNull.Value
         ElseIf cbTrangThai.EditValue > TrangThaiChaoGia.DaXacNhan Then
             tbNgayHuy.Enabled = True
             tbNgayNhan.Enabled = False
             tbNgayGiao.Enabled = False
             tbNgayHuy.EditValue = Today.Date
+            _NgayGiao = DBNull.Value
         End If
         If _exit Then Exit Sub
         For i As Integer = 0 To gdvVTCT.RowCount - 1
             gdvVTCT.SetRowCellValue(i, "TrangThai", cbTrangThai.EditValue)
+            If cbTrangThai.EditValue <> TrangThaiChaoGia.DaXacNhan Then
+                gdvVTCT.SetRowCellValue(i, "NgayCan", _NgayGiao)
+            End If
+
+
         Next
     End Sub
 
@@ -2043,7 +2167,13 @@ Public Class frmCNChaoGia
             End If
 
         Else
-            XuatExcel.CreateExcelFileChaoGia(tbSoPhieu.EditValue, chkXuatHangSX.Checked, chkXuatMaVT.Checked, chkXuatThongSo.Checked, chkXuatTinhTrangHang.Checked, chkVIE.Checked, chkN0.Checked, chkCongTrinh.Checked, chkGhiChu.Checked, gdvMaKH.Text)
+            Dim isCT As Boolean
+            If lueCongTrinh.EditValue = 1 Then
+                isCT = True
+            Else
+                isCT = False
+            End If
+            XuatExcel.CreateExcelFileChaoGia(tbSoPhieu.EditValue, chkXuatHangSX.Checked, chkXuatMaVT.Checked, chkXuatThongSo.Checked, chkXuatTinhTrangHang.Checked, chkVIE.Checked, chkN0.Checked, isCT, chkGhiChu.Checked, gdvMaKH.Text)
         End If
 
     End Sub
@@ -2340,7 +2470,7 @@ Public Class frmCNChaoGia
 
 
     Private Sub btInBangKe_Click(sender As System.Object, e As System.EventArgs) Handles btInBangKe.Click
-        If Not chkCongTrinh.Checked Then
+        If lueCongTrinh.EditValue = 1 Then ' chkCongTrinh.Checked Then
             ShowCanhBao("Chỉ áp dụng đối với chào giá công trình !")
             Exit Sub
         End If
@@ -2383,6 +2513,13 @@ Public Class frmCNChaoGia
             tbSoNgayGiao.EditValue = DateDiff(DateInterval.Day, tbNgayNhan.EditValue, tbNgayGiao.EditValue)
             _exit = False
         End If
+        If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
+            For i As Integer = 0 To gdvVTCT.RowCount - 1
+
+                gdvVTCT.SetRowCellValue(i, "NgayCan", tbNgayGiao.EditValue)
+            Next
+        End If
+     
     End Sub
 
     Private Sub rcbFilterKH_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles rcbFilterKH.ButtonClick
@@ -2785,7 +2922,6 @@ Public Class frmCNChaoGia
         End If
     End Sub
 
-
     Private Function CheckHinhThucThanhToanMoiCoLoi()
         Try
             Dim sql As String = "select SoTT from DM_HINH_THUC_TT where id = (select IDHinhThucTT2 from KHACHHANG where ID = @IdKH); "
@@ -2808,6 +2944,10 @@ Public Class frmCNChaoGia
 
         If cbHinhThucTT2.EditValue Is Nothing OrElse cbHinhThucTT2.EditValue Is DBNull.Value Then
             ShowBaoLoi("Chưa chọn hình thức thanh toán!")
+        End If
+
+        If cmbHTCT.EditValue Is Nothing OrElse cmbHTCT.EditValue Is DBNull.Value Then
+            ShowBaoLoi("Chưa chọn hình thức chứng từ!")
         End If
 
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.Admin) Then
@@ -2836,6 +2976,8 @@ Public Class frmCNChaoGia
         End If
         AddParameter("@IDHinhThucTT", cbHinhThucTT.EditValue)
         AddParameter("@IDHinhThucTT2", cbHinhThucTT2.EditValue)
+        AddParameter("@IDHinhThucCT", cmbHTCT.EditValue)
+        AddParameter("@MucDichXuat", lueMucDichXuat.EditValue)
         AddParameterWhere("@SP", tbSoPhieu.EditValue)
         If doUpdate("BANGCHAOGIA", "Sophieu=@SP") Is Nothing Then
             ShowBaoLoi(LoiNgoaiLe)
@@ -2849,5 +2991,45 @@ Public Class frmCNChaoGia
             Next
         End If
     End Sub
+
+    Private Sub cmbHTCT_EditValueChanged(sender As Object, e As EventArgs) Handles cmbHTCT.EditValueChanged
+        If cbTrangThai.EditValue <> TrangThaiChaoGia.DaXacNhan Then
+            Dim _vat As Boolean
+            Dim _mucthue As Integer = 10
+            If cmbHTCT.EditValue = 1 Then
+                _vat = False
+                _mucthue = 0
+            Else
+                _vat = True
+                If cmbHTCT.EditValue = 3 Then
+                    _mucthue = 0
+                End If
+            End If
+            For i = 0 To gdvVTCT.RowCount - 1
+                gdvVTCT.SetRowCellValue(i, "XuatThue", _vat)
+                gdvVTCT.SetRowCellValue(i, "MucThue", _mucthue)
+            Next
+        End If
+      
+    End Sub
+
+    Private Sub tbNgayGiao_EnabledChanged(sender As Object, e As EventArgs) Handles tbNgayGiao.EnabledChanged
+        If tbNgayGiao.Enabled = True Then
+            If cbTrangThai.EditValue = TrangThaiChaoGia.DaXacNhan Then
+                If tbNgayGiao.EditValue IsNot Nothing Then
+                    For i As Integer = 0 To gdvVTCT.RowCount - 1
+                        '   gdvVTCT.SetRowCellValue(i, "TrangThai", cbTrangThai.EditValue)
+                        gdvVTCT.SetRowCellValue(i, "NgayCan", tbNgayGiao.EditValue)
+
+                    Next
+                End If
+               
+            End If
+        End If
+       
+
+    End Sub
+
+   
 End Class
 

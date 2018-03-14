@@ -1,5 +1,6 @@
 ﻿Imports BACSOFT.Db.SqlHelper
 Imports DevExpress
+Imports DevExpress.XtraGrid.Columns
 
 Public Class frmKetQuaXuatKho1
 
@@ -113,6 +114,7 @@ Public Class frmKetQuaXuatKho1
         Try
             ShowWaiting("Đang tải dữ liệu ...")
             Dim sql As String = ""
+            Dim tb As New DataTable
             If cbTieuChi.EditValue = "Xuất kho" Then
                 colThuNH.Visible = False
                 colPhieuThu.Visible = False
@@ -127,7 +129,12 @@ Public Class frmKetQuaXuatKho1
                 sql &= "   PHIEUXUATKHO.TientruocThue * PHIEUXUATKHO.Tygia AS TienTruocThue, PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia AS TienThue, "
                 sql &= "   ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) AS TienGoc, ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) + ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) AS ChiPhi, "
                 sql &= "   PHIEUXUATKHO.TienChietKhau, ISNULL(V_XuatkhoChietkhauTM.ChietkhauTM, 0) + ISNULL(V_XuatkhoChietkhauUNC.ChietkhauUNC, 0) AS ChiCK, "
-                sql &= "   ISNULL(V_XuatkhoThuNH.ThuNH, 0) + ISNULL(V_XuatkhoThuTM.ThuTM, 0) AS Thu,"
+                If chkMoi.Checked = True Then
+                    sql &= "   ISNULL(V_XuatkhoThuNH_TheoXK.ThuNH, 0) + ISNULL(V_XuatkhoThuTM_TheoXK.ThuTM, 0)+ PHIEUXUATKHO.PhanBoTamUng AS Thu,"
+                Else
+                    sql &= "   ISNULL(V_XuatkhoThuNH.ThuNH, 0) + ISNULL(V_XuatkhoThuTM.ThuTM, 0) AS Thu,"
+                End If
+
                 sql &= "     (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0)  - ISNULL(tbLNPTSP.LoiNhuanPTSP,0) "
                 sql &= "     - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) /  (1 - (CASE WHEN PHIEUXUATKHO.CongTrinh=0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15) ELSE (CASE WHEN KhauTru is null THEN 0.15 ELSE KhauTru/100 END) END))) * "
                 sql &= "    (ISNULL(PhanBoLoiNhuan.TongConLai,0) / 100) "
@@ -194,8 +201,14 @@ Public Class frmKetQuaXuatKho1
                 sql &= " LEFT JOIN View_XuatKhoTongGiaNhapTB ON PHIEUXUATKHO.Sophieu = View_XuatKhoTongGiaNhapTB.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChiphiTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoChiphiTM.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChiphiUnc ON PHIEUXUATKHO.Sophieu = V_XuatkhoChiphiUnc.Sophieu "
-                sql &= " LEFT JOIN V_XuatkhoThuNH ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH.Sophieu "
-                sql &= " LEFT JOIN V_XuatkhoThuTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM.Sophieu "
+                If chkMoi.Checked = True Then
+                    sql &= " LEFT JOIN V_XuatkhoThuNH_TheoXK ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH_TheoXK.Sophieu "
+                    sql &= " LEFT JOIN V_XuatkhoThuTM_TheoXK ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM_TheoXK.Sophieu "
+                Else
+                    sql &= " LEFT JOIN V_XuatkhoThuNH ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH.Sophieu "
+                    sql &= " LEFT JOIN V_XuatkhoThuTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM.Sophieu "
+                End If
+
                 sql &= " LEFT JOIN V_XuatkhoChietkhauTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoChietkhauTM.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChietkhauUNC ON PHIEUXUATKHO.Sophieu = V_XuatkhoChietkhauUNC.Sophieu"
                 sql &= " LEFT JOIN (SELECT * FROM "
@@ -219,7 +232,10 @@ Public Class frmKetQuaXuatKho1
                     sql &= " AND PHIEUXUATKHO.IDTakeCare =" & cbTakeCare.EditValue
                 End If
                 sql &= " ORDER BY PHIEUXUATKHO.SoPhieu"
-
+                AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
+                AddParameterWhere("@DenNgay", tbDenNgay.EditValue)
+                'AddParameterWhere("@IDTakeCare", cbTakeCare.EditValue)
+                tb = ExecuteSQLDataTable(sql)
             Else
                 colPhieuThu.Visible = True
                 colPhieuThu.VisibleIndex = 1
@@ -230,7 +246,7 @@ Public Class frmKetQuaXuatKho1
                 sql &= "    datediff(day,B.NgayThang,PHIEUXUATKHO.NgayThang)<365 AND  PHIEUXUATKHO.NgayThang > B.NgayThang "
                 sql &= "    AND RIGHT(CONVERT(nvarchar, B.NgayThang,103),7) <> RIGHT(CONVERT(nvarchar, PHIEUXUATKHO.NgayThang,103),7) )"
                 sql &= "    WHEN 0 THEN Convert(bit, 1) ELSE convert(bit, 0) END) KHMoi,"
-                sql &= "    tbThu.NgaythangCT AS Ngay, tbThu.SoPhieu,tbThu.Loai, PHIEUXUATKHO.error, PHIEUXUATKHO.SoPhieuCG, PHIEUXUATKHO.Sophieu AS SoPhieuXK, "
+                sql &= "    tbThu.NgaythangCT AS Ngay,case when tbThu.Loai=0 then 'TM'+  tbThu.SoPhieu else 'NH' +tbThu.SoPhieu end SoPhieu,tbThu.Loai, PHIEUXUATKHO.error, PHIEUXUATKHO.SoPhieuCG, PHIEUXUATKHO.Sophieu AS SoPhieuXK, "
                 sql &= " 	BANGCHAOGIA.MaSoDatHang,PHIEUXUATKHO.CongTrinh,PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia AS TienTruocThue, "
                 sql &= " 	PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia AS TienThue,tbThu.Sotien AS TienThu, ISNULL(View_XuatKhoTongGiaNhapTB.tongnhap, 0) AS TienGoc, "
                 sql &= " 	ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) + ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) AS ChiPhi, "
@@ -345,18 +361,419 @@ Public Class frmKetQuaXuatKho1
                     sql &= " AND PHIEUXUATKHO.IDTakeCare =" & cbTakeCare.EditValue
                 End If
                 sql &= " ORDER BY tbThu.SoPhieu"
+
+                If chkMoi.Checked = True Then
+                    sql = meSql.Text
+                    If Not cbPhong.EditValue Is Nothing And cbTakeCare.EditValue Is Nothing Then
+                        AddParameter("@IDDepatment", cbPhong.EditValue)
+                    Else
+                        sql = sql.Replace("AND NHANSU.IDDepatment= @IDDepatment", "")
+                    End If
+                    If Not cbTakeCare.EditValue Is Nothing Then
+                        AddParameter("@IDTakeCare", cbTakeCare.EditValue)
+                    Else
+                        sql = sql.Replace("AND PHIEUXUATKHO.IDTakeCare =@IDTakeCare", "")
+                    End If
+                    AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
+                    AddParameterWhere("@DenNgay", tbDenNgay.EditValue)
+                    'AddParameterWhere("@IDTakeCare", cbTakeCare.EditValue)
+                    tb = ExecuteSQLDataTable(sql)
+                    gcXe.DataSource = Nothing
+                    If SplitContainerControl1.Collapsed = False Then
+                        AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
+                        AddParameterWhere("@DenNgay", tbDenNgay.EditValue)
+                        sql = meTaoBangPhanBo.Text
+                        tblCommonTable = ExecuteSQLDataTable(sql)
+                        tblAddedTempTable = tblCommonTable.Clone()
+                        ' tblCommonTable = tbPhanBo
+                        tblAddedTempTable.Rows.Clear()
+                        ' Gọi xử lý dữ liệu
+                        PhantichBang()
+
+                        'Nhập những dòng đã thêm (khi tiền thu < giá xuất kho) vào chung bảng dữ liệu
+                        For Each item In tblAddedTempTable.Rows
+                            tblCommonTable.ImportRow(item)
+                        Next
+
+                        Dim view As DataView = tblCommonTable.DefaultView
+                        view.Sort = "PhieuTC0 desc, PhieuRef ASC" ' Sắp xếp cột tăng dần
+                        For i = 0 To tb.Rows.Count - 1
+                            Dim tam = tb.Rows(i)("Thu")
+                            tb.Rows(i)("Thu") = -1
+                            For j = 0 To tblCommonTable.Rows.Count - 1
+                                If tb.Rows(i)("SoPhieuCG") = NullToString(tblCommonTable.Rows(j)("PhieuTC0")) And "XK" + tb.Rows(i)("SoPhieuXK") = NullToString(tblCommonTable.Rows(j)("PhieuRef")) And tb.Rows(i)("SoPhieu") = NullToString(tblCommonTable.Rows(j)("SoPhieu")) Then
+                                    tb.Rows(i)("Thu") = NullToDouble(tblCommonTable.Rows(j)("PhanBo"))
+                                Else
+
+                                    If "CG" + tb.Rows(i)("SoPhieuCG") = NullToString(tblCommonTable.Rows(j)("PhieuRef")) And tb.Rows(i)("SoPhieu") = NullToString(tblCommonTable.Rows(j)("SoPhieu")) Then
+                                        tb.Rows(i)("Thu") = tam
+
+                                    End If
+                                End If
+                            Next
+                        Next
+                        Dim sodong = tb.Rows.Count
+                        For i = 0 To sodong - 1
+                            If i > sodong - 1 Then Exit For
+                            If tb.Rows(i)("Thu") = -1 Then
+                                tb.Rows.Remove(tb.Rows(i))
+                                i -= 1
+                                sodong -= 1
+                            End If
+                        Next
+                        gcXe.DataSource = view
+                    Else
+
+                        For i = 0 To tb.Rows.Count - 1
+                            Dim SoCG = tb.Rows(i)("SophieuCG")
+                            For j = i To tb.Rows.Count - 1
+                                Dim tienthu = tb.Rows(j)("Thu")
+                                If tb.Rows(j)("SophieuCG") = SoCG And tb.Rows(j)("PhieuTC0") <> "000000000" And tb.Rows(j)("GiaTriXK") <> 0 Then
+                                    Dim SoPhieuXK = tb.Rows(j)("SoPhieuXK")
+                                    Dim SoPhieuThu = tb.Rows(j)("SoPhieu")
+                                    If tienthu >= tb.Rows(j)("GiaTriXK") Then
+                                        tienthu = tienthu - tb.Rows(j)("GiaTriXK")
+                                        tb.Rows(j)("Thu") = tb.Rows(j)("GiaTriXK")
+                                        tb.Rows(j)("ConLai") = tienthu
+                                        tb.Rows(j)("isPhanBo") = 1
+                                        tb.Rows(j)("GiaTriXK") = 0
+                                        tb.Rows(j)("GiaTriXK2") = tb.Rows(j)("TienTruocThue") + tb.Rows(j)("TienThue")
+                                        '        tb.Rows(j)("TienTruocThue") = 0
+                                        For k = j + 1 To tb.Rows.Count - 1
+                                            If tb.Rows(k)("SoPhieuXK") = SoPhieuXK Then
+                                                tb.Rows(k)("TienTruocThue") = 0
+                                                tb.Rows(k)("GiaTriXK") = 0
+
+                                            End If
+                                            If tb.Rows(k)("SoPhieu") = SoPhieuThu Then
+                                                tb.Rows(k)("Thu") = tienthu
+                                            End If
+                                        Next
+                                    Else
+                                        Dim GiaTriXK = tb.Rows(j)("GiaTriXK") - tienthu
+                                        tb.Rows(j)("GiaTriXK2") = tienthu
+                                        tb.Rows(j)("Thu") = tienthu
+                                        tb.Rows(j)("ConLai") = 0
+                                        tb.Rows(j)("isPhanBo") = 1
+                                        tb.Rows(j)("GiaTriXK") = 0
+                                        '     tb.Rows(j)("TienTruocThue") = 0
+                                        tienthu = 0
+                                        For k = j + 1 To tb.Rows.Count - 1
+                                            If tb.Rows(k)("SoPhieuXK") = SoPhieuXK Then
+                                                '  tb.Rows(k)("TienTruocThue") = GiaTriXK
+                                                tb.Rows(k)("GiaTriXK") = GiaTriXK
+                                            End If
+                                            If tb.Rows(k)("SoPhieu") = SoPhieuThu Then
+                                                tb.Rows(k)("Thu") = tienthu
+                                            End If
+                                        Next
+                                    End If
+
+
+                                End If
+
+
+                            Next
+
+                        Next
+                        Dim d = tb.Rows.Count - 1
+                        For i = 0 To tb.Rows.Count - 1
+                            If tb.Rows(i)("Thu") = 0 Or tb.Rows(i)("TienTruocThue") = 0 Then
+                                tb.Rows(i).Delete()
+                            Else
+                                If chkLNMoi.Checked = True Then
+                                    tb.Rows(i)("HeSo") = NullToDouble(tb.Rows(i)("Thu") / (tb.Rows(i)("TienTruocThue") + tb.Rows(i)("Tienthue")))
+                                    tb.Rows(i)("LoiNhuanKT") = NullToDouble(tb.Rows(i)("LoiNhuanKT2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LoiNhuanKD") = NullToDouble(tb.Rows(i)("LoiNhuanKD2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LNThiCong") = NullToDouble(tb.Rows(i)("LNThiCong2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LNXucTienHD") = NullToDouble(tb.Rows(i)("LNXucTienHD2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LNPhuTrachCT") = NullToDouble(tb.Rows(i)("LNPhuTrachCT2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LNKSChaoGia") = NullToDouble(tb.Rows(i)("LNKSChaoGia2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("LNThiCong") = NullToDouble(tb.Rows(i)("LNThiCong2")) * tb.Rows(i)("HeSo")
+                                    tb.Rows(i)("TongLNKD") = NullToDouble(tb.Rows(i)("TongLNKD2")) * tb.Rows(i)("HeSo")
+                                End If
+
+                            End If
+
+                        Next
+                        tb.AcceptChanges()
+                    End If
+
+                Else
+                    AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
+                    AddParameterWhere("@DenNgay", tbDenNgay.EditValue)
+                    'AddParameterWhere("@IDTakeCare", cbTakeCare.EditValue)
+                    tb = ExecuteSQLDataTable(sql)
+                End If
+
             End If
 
-            AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
-            AddParameterWhere("@DenNgay", tbDenNgay.EditValue)
-            Dim tb As DataTable = ExecuteSQLDataTable(sql)
+
+
             If tb Is Nothing Then Throw New Exception(LoiNgoaiLe)
             gdv.DataSource = tb
+
             CloseWaiting()
         Catch ex As Exception
             ShowBaoLoi(ex.Message)
             CloseWaiting()
         End Try
+    End Sub
+    Private Function NullToString(d As Object) As String
+
+        If IsDBNull(d) Then
+            Return ""
+        End If
+
+        Return d
+
+    End Function
+    Private Function NullToDouble(d As Object) As Double
+
+        If IsDBNull(d) Then
+            Return 0
+        End If
+
+        Return d
+
+    End Function
+    Private tblAddedTempTable As DataTable
+    Private tblCommonTable As DataTable
+    ' Xử lý dữ liệu bảng CSDL
+    Private Sub PhantichBang2()
+        Dim tb As DataTable = CType(gdv.DataSource, DataTable)
+        For i = 0 To tb.Rows.Count - 1
+            Dim tienthu = tb.Rows(i)("Thu")
+            Dim SoCG = tb.Rows(i)("SophieuCG")
+            For j = i To tb.Rows.Count - 1
+                If tb.Rows(j)("SophieuCG") = SoCG And tb.Rows(j)("PhieuTC0") <> "000000000" Then
+                    If tienthu >= tb.Rows(j)("GiaTriXK") Then
+                        tienthu = tienthu - tb.Rows(j)("GiaTriXK")
+                        Dim SoPhieuXK = tb.Rows(j)("SoPhieuXK")
+                        For k = j + 1 To tb.Rows.Count - 1
+                            If tb.Rows(k)("SoPhieuXK") = SoPhieuXK Then
+                                tb.Rows(k)("GiaTriXK") = 0
+                            End If
+                        Next
+                    End If
+                End If
+
+            Next
+        Next
+
+    End Sub
+    Private Sub PhantichBang()
+        ' Biến lưu số chào giá, số phiếu ref
+        Dim strSoChaogia = "", strPhieuref = ""
+        ' Biến lưu tiền thu, giá trị xuất kho
+        Dim tienthu As Integer = 0, giatri As Integer = 0
+
+        ' Biến mảng kiểu Enumerable, dùng để duyệt số phiếu
+        Dim rowSoPhieuSet As DataRow()
+        ' Biến mảng kiểu Enumerable, dùng để duyệt các bản ghi xuất kho
+        Dim rowPhanBoSet As DataRow()
+        ' Biến mảng kiểu Enumerable, dùng để duyệt các dòng của bảng tblAddedTempTable
+        Dim rowPhanBoSetNewTable As DataRow()
+
+        Dim temp = 0 ' Lưu giá trị tạm khi trừ: Giá trị - Tiền thu
+        Dim runner = 0 ' Biến này để lưu công sai (+1) cho cột Id, để cột Id duy nhất. runner dùng để lưu vào giá trị Id khi thêm dòng mới.
+        Dim positionRunner = 0 ' Biến này lưu vị trí khi duyệt bảng
+
+        ' Duyệt số chào giá
+        For Each rowSoChaogia As DataRow In tblCommonTable.Rows
+            rowSoPhieuSet = tblCommonTable.Select("Sophieu is not null")
+            strSoChaogia = rowSoChaogia("PhieuTC0").ToString()
+
+            ' Duyệt số phiếu
+            For Each rowSoPhieu As DataRow In rowSoPhieuSet
+                tienthu = Integer.Parse(rowSoPhieu("TienThu").ToString())
+                positionRunner = 0
+
+                ' BẮT ĐẦU KHỐI XỬ LÝ VỚI BẢNG THÊM MỚI DÒNG, KHI BẢNG NÀY CÓ BẢN GHI
+                If tblAddedTempTable.Rows.Count > 0 Then
+                    rowPhanBoSetNewTable = tblAddedTempTable.Select("Sophieu is null And PhieuRef is not null And PhieuTC0 = '" & strSoChaogia & "' And PhanBo is null", "PhieuTC0 desc, PhieuRef  ASC")
+
+                    ' Duyệt những giá trị xuất kho
+                    For i = 0 To rowPhanBoSetNewTable.Length - 1
+
+                        '  Next
+                        'For Each rowPhanbo As DataRow In rowPhanBoSetNewTable
+                        Dim rowPhanbo As DataRow = rowPhanBoSetNewTable(i)
+                        giatri = Integer.Parse(rowPhanbo("GiaTri").ToString())
+                        strPhieuref = rowPhanbo("PhieuRef").ToString()
+                        If temp = 0 AndAlso positionRunner = 0 Then
+                            If tienthu >= giatri Then
+
+                                ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                                Dim rowsToUpdate = tblAddedTempTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                                For Each row In rowsToUpdate
+                                    row("PhanBo") = giatri
+                                    row("SoPhieu") = rowSoPhieu("SoPhieu")
+                                Next
+
+                                ' Lưu lại giá trị thừa vào biến temp
+                                temp = tienthu - giatri
+                            Else
+                                ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                                ' Dim rowsToUpdate = tblAddedTempTable.Select(String.Format("Sophieu='{0}' and PhieuRef='{1}' and PhieuTC0='{2}'", "", strPhieuref, strSoChaogia))
+                                Dim rowsToUpdate = tblAddedTempTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                                'tblAddedTempTable.AsEnumerable.Where(Function(customer) customer("Sophieu").ToString() = "" And customer("PhieuRef").ToString() = strPhieuref And customer("PhieuTC0").ToString() = strSoChaogia)
+                                For Each row In rowsToUpdate
+                                    row("PhanBo") = tienthu
+                                    row("SoPhieu") = rowSoPhieu("SoPhieu")
+                                Next
+
+                                ' Nếu tiền thu < xuất kho thì thêm mới dòng và thoát vòng lặp
+                                runner = runner + 1
+                                Dim newRow As DataRow = tblAddedTempTable.NewRow()
+                                ' newRow("SoPhieu") = rowSoPhieu("SoPhieu")
+                                newRow("PhieuTC0") = strSoChaogia
+                                newRow("PhieuRef") = strPhieuref
+                                newRow("GiaTri") = giatri - tienthu
+                                newRow("TienThu") = 0
+                                newRow("Id") = 500000 + runner
+                                tblAddedTempTable.Rows.Add(newRow)
+                                Exit For
+                            End If
+
+                        ElseIf temp > 0 AndAlso positionRunner > 0 Then ' Nếu đã duyệt từ dòng thứ 2 trở đi
+
+                            ' Khi Runtime, temp vẫn có thể có giá trị <= 0, cứ đặt kiểm tra vào.
+                            If temp <= 0 Then
+                                Exit For
+                            End If
+
+                            If temp >= giatri Then
+                                Dim rowsToUpdate = tblAddedTempTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                                For Each row In rowsToUpdate
+                                    row("PhanBo") = giatri
+                                    row("SoPhieu") = rowSoPhieu("SoPhieu")
+                                Next
+
+                                temp = temp - giatri
+                            Else
+                                ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                                Dim rowsToUpdate = tblAddedTempTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                                For Each row In rowsToUpdate
+                                    row("PhanBo") = temp
+                                    row("SoPhieu") = rowSoPhieu("SoPhieu")
+                                Next
+
+                                ' Nếu tiền thu < xuất kho thì thêm mới dòng và thoát vòng lặp
+                                runner = runner + 1
+                                Dim newRow As DataRow = tblAddedTempTable.NewRow()
+                                'newRow("SoPhieu") = rowSoPhieu("SoPhieu")
+                                newRow("PhieuTC0") = strSoChaogia
+                                newRow("PhieuRef") = strPhieuref
+                                newRow("GiaTri") = giatri - tienthu
+                                newRow("TienThu") = 0
+                                newRow("Id") = 500000 + runner
+                                tblAddedTempTable.Rows.Add(newRow)
+                                Exit For
+                            End If
+                        End If
+
+                        positionRunner = positionRunner + 1
+                    Next
+
+                    ' Nếu positionRunner chưa chạy đến dòng cuối cùng của Datatable thì để temp = 0 để khởi đầu chu trình lặp khác.
+                    If positionRunner < (rowPhanBoSetNewTable.Length - 1) Then temp = 0
+                End If
+
+
+                ' BẮT ĐẦU KHỐI XỬ LÝ KHI KHÔNG CÓ BẢN GHI NÀO TRONG BẢNG THÊM MỚI tblAddedTempTable
+                ' KHỐI CODE NÀY LẶP LẠI, CỨ ĐỂ CHUNG VÀO THÂN HÀM NÀY CŨNG ĐƯỢC.
+
+                rowPhanBoSet = tblCommonTable.Select("Sophieu is null And PhieuRef is not null And PhieuTC0 = '" & strSoChaogia & "' And PhanBo is null")
+                For Each rowPhanbo As DataRow In rowPhanBoSet
+                    giatri = Integer.Parse(rowPhanbo("GiaTri").ToString())
+                    strPhieuref = rowPhanbo("PhieuRef").ToString()
+                    If temp = 0 AndAlso positionRunner = 0 Then
+                        If tienthu >= giatri Then
+
+                            ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                            Dim rowsToUpdate = tblCommonTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                            For Each row In rowsToUpdate
+                                row("PhanBo") = giatri
+                                row("SoPhieu") = rowSoPhieu("SoPhieu")
+                            Next
+
+                            temp = tienthu - giatri
+                            positionRunner = positionRunner + 1
+                            ' Khi đã cập nhật được phân bổ, nhảy tiếp sang xuất kho tiếp
+                            Continue For
+                        Else
+                            ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                            Dim rowsToUpdate = tblCommonTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                            For Each row In rowsToUpdate
+                                row("PhanBo") = tienthu
+                                row("SoPhieu") = rowSoPhieu("SoPhieu")
+                            Next
+
+                            ' Nếu tiền thu < xuất kho thì thêm mới dòng và thoát vòng lặp
+                            runner = runner + 1
+                            Dim newRow As DataRow = tblAddedTempTable.NewRow()
+                            'newRow("SoPhieu") = rowSoPhieu("SoPhieu")
+                            newRow("PhieuTC0") = strSoChaogia
+                            newRow("PhieuRef") = strPhieuref
+                            newRow("GiaTri") = giatri - tienthu
+                            newRow("TienThu") = 0
+                            newRow("Id") = 500000 + runner
+                            tblAddedTempTable.Rows.Add(newRow)
+                            Exit For
+                        End If
+                    End If
+
+                    ' Nếu temp thoát vòng lặp này
+                    If temp < 0 Then
+                        Exit For
+                    End If
+
+                    If temp > 0 AndAlso positionRunner > 0 Then
+                        ' Nếu temp thoát vòng lặp này. Khi Runtime, temp vẫn có thể có giá trị <= 0, cứ đặt kiểm tra vào.
+                        If temp <= 0 Then
+                            Exit For
+                        End If
+
+                        If temp >= giatri Then
+                            ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                            Dim rowsToUpdate = tblCommonTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                            For Each row In rowsToUpdate
+                                row("PhanBo") = giatri
+                                row("SoPhieu") = rowSoPhieu("SoPhieu")
+                            Next
+
+                            temp = temp - giatri
+                        Else
+                            ' Kiểm tra thoả mãn điều kiện để cập nhật Phân bổ
+                            Dim rowsToUpdate = tblCommonTable.Select("Sophieu is null And PhieuRef = '" & strPhieuref & "' And PhieuTC0 = '" & strSoChaogia & "'")
+                            For Each row In rowsToUpdate
+                                row("PhanBo") = temp
+                                row("SoPhieu") = rowSoPhieu("SoPhieu")
+                            Next
+
+                            ' Nếu tiền thu < xuất kho thì thêm mới dòng và thoát vòng lặp
+                            runner = runner + 1
+                            Dim newRow As DataRow = tblAddedTempTable.NewRow()
+                            'newRow("SoPhieu") = rowSoPhieu("SoPhieu")
+                            newRow("PhieuTC0") = strSoChaogia
+                            newRow("PhieuRef") = strPhieuref
+                            newRow("GiaTri") = giatri - temp
+                            newRow("TienThu") = 0
+                            newRow("Id") = 500000 + runner
+                            tblAddedTempTable.Rows.Add(newRow)
+                            Exit For
+                        End If
+                    End If
+
+                    positionRunner = positionRunner + 1
+                Next
+
+                ' Temp = 0, để khởi đầu cho chu trình vòng lặp khác.
+                temp = 0
+            Next
+        Next
+
     End Sub
 
     Private Sub btXem_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btXem.ItemClick
@@ -568,12 +985,7 @@ Public Class frmKetQuaXuatKho1
             fCNXuatKho.btCal.Enabled = False
             fCNXuatKho.btTichThue.Enabled = False
             fCNXuatKho.mChonBoChon.Enabled = False
-           
         End If
-        'Tai
-        'fCNXuatKho.colSoHD.VisibleIndex = 14
-        ' fCNXuatKho.colNgayHD.VisibleIndex = 15
-        'Tai
         fCNXuatKho.ShowDialog()
 
     End Sub
@@ -590,7 +1002,12 @@ Public Class frmKetQuaXuatKho1
                 sql &= "   PHIEUXUATKHO.TientruocThue * PHIEUXUATKHO.Tygia AS TienTruocThue, PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia AS TienThue, "
                 sql &= "   ISNULL(V_XuatkhoGianhap.tongnhap, 0) AS TienGoc, ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) + ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) AS ChiPhi, "
                 sql &= "   PHIEUXUATKHO.TienChietKhau, ISNULL(V_XuatkhoChietkhauTM.ChietkhauTM, 0) + ISNULL(V_XuatkhoChietkhauUNC.ChietkhauUNC, 0) AS ChiCK, "
-                sql &= "   ISNULL(V_XuatkhoThuNH.ThuNH, 0) + ISNULL(V_XuatkhoThuTM.ThuTM, 0) AS Thu,"
+                If chkMoi.Checked = True Then
+                    sql &= "   ISNULL(V_XuatkhoThuNH_TheoXK.ThuNH, 0) + ISNULL(V_XuatkhoThuTM_TheoXK.ThuTM, 0)+ PHIEUXUATKHO.PhanBoTamUng AS Thu,"
+                Else
+                    sql &= "   ISNULL(V_XuatkhoThuNH.ThuNH, 0) + ISNULL(V_XuatkhoThuTM.ThuTM, 0) AS Thu,"
+                End If
+
                 sql &= "     (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(V_XuatkhoGianhap.tongnhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) "
                 sql &= "     - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) /  (1 - ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15))) * (ISNULL(tblTuDien.Diem, 0) / 100) "
                 sql &= "     AS LoiNhuanKT, "
@@ -616,8 +1033,13 @@ Public Class frmKetQuaXuatKho1
                 sql &= " LEFT JOIN V_XuatkhoGianhap ON PHIEUXUATKHO.Sophieu = V_XuatkhoGianhap.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChiphiTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoChiphiTM.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChiphiUnc ON PHIEUXUATKHO.Sophieu = V_XuatkhoChiphiUnc.Sophieu "
-                sql &= " LEFT JOIN V_XuatkhoThuNH ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH.Sophieu "
-                sql &= " LEFT JOIN V_XuatkhoThuTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM.Sophieu "
+                If chkMoi.Checked = True Then
+                    sql &= " LEFT JOIN V_XuatkhoThuNH_TheoXK ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH_TheoXK.Sophieu "
+                    sql &= " LEFT JOIN V_XuatkhoThuTM_TheoXK ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM_TheoXK.Sophieu "
+                Else
+                    sql &= " LEFT JOIN V_XuatkhoThuNH ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuNH.Sophieu "
+                    sql &= " LEFT JOIN V_XuatkhoThuTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoThuTM.Sophieu "
+                End If
                 sql &= " LEFT JOIN V_XuatkhoChietkhauTM ON PHIEUXUATKHO.Sophieu = V_XuatkhoChietkhauTM.Sophieu "
                 sql &= " LEFT JOIN V_XuatkhoChietkhauUNC ON PHIEUXUATKHO.Sophieu = V_XuatkhoChietkhauUNC.Sophieu "
                 sql &= " WHERE CONVERT(datetime,PHIEUXUATKHO.NgayThang,103) between convert(datetime,'" & Convert.ToDateTime(tbTuNgay.EditValue).ToString("dd/MM/yyyy") & "',103) AND Convert(datetime,'" & Convert.ToDateTime(tbDenNgay.EditValue).ToString("dd/MM/yyyy") & "',103)"
@@ -638,7 +1060,7 @@ Public Class frmKetQuaXuatKho1
                 sql &= " 	PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia AS TienThue,tbThu.Sotien AS TienThu, ISNULL(tb.GiaNhap,0) AS TienGoc, "
                 sql &= " 	ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) + ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) AS ChiPhi, "
                 sql &= " 	ISNULL(PHIEUXUATKHO.TienChietKhau,0)*PHIEUXUATKHO.TyGia AS TienChietKhau,"
-                sql &= "     ISNULL(V_XuatkhoChietkhauTM.ChietkhauTM, 0) / (1 - ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15))  + ISNULL(V_XuatkhoChietkhauUNC.ChietkhauUNC, 0) / (1 - ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15))  AS ChiCK, tbThu.SoTien AS Thu,"
+                sql &= "    ISNULL(V_XuatkhoChietkhauTM.ChietkhauTM, 0) / (1 - ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15))  + ISNULL(V_XuatkhoChietkhauUNC.ChietkhauUNC, 0) / (1 - ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15))  AS ChiCK, tbThu.SoTien AS Thu,"
                 sql &= "     PHIEUXUATKHO.tienchietkhau * PHIEUXUATKHO.Tygia AS TienChietKhau, (CASE ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.Tienthue) "
                 sql &= "     * PHIEUXUATKHO.Tygia) "
                 sql &= "     WHEN 0 THEN 0 ELSE (((PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap,0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) "
@@ -684,6 +1106,7 @@ Public Class frmKetQuaXuatKho1
                 sql &= " AND PHIEUXUATKHO.IDKhachHang Not IN (SELECT DISTINCT IDKhachHang FROM PHIEUXUATKHO WHERE datediff(month, PHIEUXUATKHO.NgayThang,convert(datetime, '" & Convert.ToDateTime(tbDenNgay.EditValue).ToString("dd/MM/yyyy") & "',103))>3)"
 
                 sql &= " ORDER BY tbThu.SoPhieu"
+
             End If
             Dim tb As DataTable = ExecuteSQLDataTable(sql)
             If tb Is Nothing Then Throw New Exception(LoiNgoaiLe)
@@ -1116,5 +1539,31 @@ Public Class frmKetQuaXuatKho1
             End If
         Next
         ShowAlert("Đã cập nhật lợi nhuận " & c.ToString & " phiếu xuất !")
+    End Sub
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = (Keys.Alt Or Keys.O) Then
+            If meSql.Visible = True Then
+                meSql.Visible = False
+                meTaoBangPhanBo.Visible = False
+                '  panelPhanBo.Visible = False
+            Else
+                meSql.Visible = True
+                meTaoBangPhanBo.Visible = True
+                '  panelPhanBo.Visible = True
+
+            End If
+            Return True
+        End If
+        Return False
+    End Function
+
+    Private Sub BarButtonItem1_ItemClick_1(sender As Object, e As XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
+
+        Dim makh As String = gdvCT.GetFocusedRowCellValue("ttcMa")
+        Dim filterString As String = "[ttcMa] = '" & makh & "'"
+        gdvCT.ActiveFilter.Clear()
+        '  gdvCT.ActiveFilter.NonColumnFilter = filterString
+        gdvCT.Columns("ttcMa").FilterInfo = New ColumnFilterInfo(filterString)
+        On Error Resume Next
     End Sub
 End Class

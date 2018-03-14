@@ -53,10 +53,10 @@ Public Class frmThuNganHang
 
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = " SET DATEFORMAT DMY "
-        sql &= " SELECT convert(bit,0)chon, THUNH.SoPhieuT, 0 AS STT, THUNH.ID,NgayThangVS,(N'CK ' + THUNH.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,THUNH.DienGiai,"
+        sql &= " SELECT convert(bit,0)chon, THUNH.SoPhieuT, 0 AS STT, THUNH.ID,NgayThangVS,(N'CK ' + THUNH.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,THUNH.DienGiai,THUNH.TyGia,"
         sql &= " 	THUNH.SoTien,tblTienTe.Ten AS TienTe,MUCDICHTHUCHI.Ten AS MucDich,TaiKhoanDen AS TaiKhoan,"
-        sql &= " (CASE PhieuTC0 WHEN N'000000000' THEN N'' ELSE N'CG ' + PhieuTC0 END) PhieuTC0,"
-        sql &= " (CASE PhieuTC1 WHEN N'000000000' THEN N'' ELSE N'XK ' + PhieuTC1 END) PhieuTC1,"
+        sql &= " (CASE PhieuTC0 WHEN N'000000000' THEN N'' ELSE case when THUNH.MucDich = 109 then N'ĐH ' else N'CG ' end + PhieuTC0 END) PhieuTC0, "
+        sql &= " (CASE PhieuTC1 WHEN N'000000000' THEN N'' ELSE case when THUNH.MucDich = 109 then N'NK ' else N'XK ' end + PhieuTC1 END) PhieuTC1, "
         sql &= " (SELECT SoCT FROM CHUNGTU WHERE ID = THUNH.IdChungTu)PhieuNopTien,NHANSU.Ten as NguoiLap"
         sql &= " FROM THUNH"
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=THUNH.IDKh"
@@ -362,13 +362,16 @@ Public Class frmThuNganHang
                 Dim idHdCT As Object = doInsert("CHUNGTUCHITIET")
                 If idHdCT Is Nothing Then Throw New Exception(LoiNgoaiLe)
 
-
                 gdvThuNHCT.SetRowCellValue(arrPhieu(i), "IdCT", idHoaDon)
 
             Next
+            gdvThuNHCT.BeginUpdate()
             For i As Integer = 0 To gdvThuNHCT.RowCount - 1
-                gdvThuNHCT.SetRowCellValue(i, "chon", False)
+                If gdvThuNHCT.GetRowCellValue(i, "chon") = True Then
+                    gdvThuNHCT.SetRowCellValue(i, "chon", False)
+                End If
             Next
+            gdvThuNHCT.EndUpdate()
             mnuChonBoChonTatCa.Tag = False
             ShowAlert("Đã chuyển thành công " & arrPhieu.Count & " phiếu sang bên thuế!")
         Catch ex As Exception
@@ -397,50 +400,4 @@ Public Class frmThuNganHang
     End Sub
 
 
-    Private Sub mXemPhieuTC0_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXemPhieuTC0.ItemClick
-        If gdvThuNHCT.FocusedRowHandle < 0 Then Exit Sub
-        If gdvThuNHCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Length > 0 Then
-            If gdvThuNHCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Substring(0, 2) = "CG" Then
-                'If gdvThuNHCT.GetFocusedRowCellValue("TrangThai") = TrangThaiChaoGia.DaXacNhan Or gdvThuNHCT.GetFocusedRowCellValue("IDTakeCare") <> TaiKhoan Then
-                '    If Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mChaoGia.Name, DanhMucQuyen.TPKinhDoanh) Then
-                '        ShowCanhBao("Bạn cần có quyền TP Kinh doanh hoặc Admin để sửa chào giá đã xác nhận hoặc chào giá của nv khác!")
-                '        Exit Sub
-                '    End If
-                'End If
-
-                TrangThai.isUpdate = True
-                fCNChaoGia = New frmCNChaoGia
-                fCNChaoGia.TrangThaiCG.isUpdate = True
-                'fCNChaoGia.chkCongTrinh.Checked = gdvCT.GetFocusedRowCellValue("CongTrinh")
-                fCNChaoGia.SPChaoGia = gdvThuNHCT.GetFocusedRowCellValue("PhieuTC0").ToString.Trim.Substring(3, 9)
-                fCNChaoGia.Tag = deskTop.mChaoGia.Name
-                fCNChaoGia.btGhi.Enabled = False
-                fCNChaoGia.Show()
-            End If
-        End If
-    End Sub
-
-    Private Sub mXemPhieuTC1_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mXemPhieuTC1.ItemClick
-
-        If gdvThuNHCT.FocusedRowHandle < 0 Then Exit Sub
-
-        If gdvThuNHCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Length > 0 Then
-            If gdvThuNHCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Substring(0, 2) = "XK" Then
-                TrangThai.isUpdate = True
-                fCNXuatKho = New frmCNXuatKho
-                fCNXuatKho.PhieuXK = gdvThuNHCT.GetFocusedRowCellValue("PhieuTC1").ToString.Trim.Substring(3, 9)
-                fCNXuatKho.Tag = deskTop.mXuatKho.Name
-                If Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mXuatKho.Name, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", deskTop.mXuatKho.Name, DanhMucQuyen.QuyenSua) Then
-                    fCNXuatKho.btGhi.Enabled = False
-                    fCNXuatKho.btChuyenXK.Enabled = False
-                    fCNXuatKho.btCal.Enabled = False
-                    fCNXuatKho.btTichThue.Enabled = False
-                    fCNXuatKho.mChonBoChon.Enabled = False
-                End If
-                fCNXuatKho.ShowDialog()
-            End If
-
-        End If
-
-    End Sub
 End Class

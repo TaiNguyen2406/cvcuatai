@@ -264,4 +264,54 @@ Public Class TAI
         End If
     End Sub
 #End Region
+#Region "Công trình"
+    Public Shared Function tableCongTrinh() As DataTable
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn("Id", Type.GetType("System.Int32")))
+        dt.Columns.Add(New DataColumn("Ten", Type.GetType("System.String")))
+        Dim r As DataRow
+
+        r = dt.NewRow
+        r("Id") = 0
+        r("Ten") = "Thương mại"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        r = dt.NewRow
+        r("Id") = 1
+        r("Ten") = "Công trình"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        r = dt.NewRow
+        r("Id") = 2
+        r("Ten") = "Phần mềm"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        Return dt
+    End Function
+#End Region
+#Region "Đặt tồn"
+    Public Shared Function tableDatTon() As DataTable
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn("ID", Type.GetType("System.Int32")))
+        dt.Columns.Add(New DataColumn("Ten", Type.GetType("System.String")))
+        Dim r As DataRow
+
+        r = dt.NewRow
+        r("Id") = 0
+        r("Ten") = "Chờ duyệt"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        r = dt.NewRow
+        r("Id") = 1
+        r("Ten") = "Đã duyệt"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        r = dt.NewRow
+        r("Id") = 2
+        r("Ten") = "Hủy"
+        dt.Rows.InsertAt(r, dt.Rows.Count)
+
+        Return dt
+    End Function
+#End Region
 End Class

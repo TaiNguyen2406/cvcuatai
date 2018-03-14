@@ -150,7 +150,7 @@ Namespace Utils
 
             _cells(6, 4).Value &= Convert.ToDateTime(tb0.Rows(0)("Ngaythang")).ToString("dd/MM/yyyy")
             _cells(7, 4).Value &= tb0.Rows(0)("NhanVien").ToString
-            _cells(8, 4).Value &= tb0.Rows(0)("DienThoaiNV") & "/0313.686182"
+            _cells(8, 4).Value &= tb0.Rows(0)("DienThoaiNV") & "/02253.686182"
             _cells(9, 4).Value &= tb0.Rows(0)("EmailNV").ToString
 
             Dim stt As Integer = 1
@@ -399,11 +399,11 @@ Namespace Utils
             sql &= " 	    NHANSU_Ngd.ten AS NguoiGD,NHANSU_Ngd.Mobile AS DienThoaiNgd,NHANSU_Ngd.Email AS EmailNgd,"
             sql &= " 	    NHANSU.Ten AS NhanVien,NHANSU.Mobile AS DienThoaiNV,NHANSU.Email AS EmailNV,"
             sql &= " 	    (N'DH ' + KHACHHANG.ttcMa + ' ' + Sophieu) AS DatHang,"
-            sql &= " 	    TienTruocthue AS TienTruocThue,Tienthue AS TienThue,PHIEUDATHANG.TienTe,tblHinhThucTTKH.HinhThucTT_VIE,tblHinhThucTTKH.HinhThucTT_ENG,tblTienTe.Ten AS TenTienTe"
+            sql &= " 	    TienTruocthue AS TienTruocThue,Tienthue AS TienThue,PHIEUDATHANG.TienTe,DM_HINH_THUC_TT.GiaiThich HinhThucTT_VIE, '' HinhThucTT_ENG,tblTienTe.Ten AS TenTienTe"
             sql &= " FROM PHIEUDATHANG LEFT OUTER JOIN KHACHHANG ON PHIEUDATHANG.IDKhachhang=KHACHHANG.ID"
             sql &= "     LEFT OUTER JOIN NHANSU ON PHIEUDATHANG.IDTakecare=NHANSU.ID"
             sql &= "     LEFT OUTER JOIN NHANSU AS NHANSU_Ngd ON PHIEUDATHANG.IDNgd= NHANSU_Ngd.ID"
-            sql &= "     LEFT OUTER JOIN tblHinhThucTTKH ON PHIEUDATHANG.IDHinhThucTT=tblHinhThucTTKH.ID"
+            sql &= "     LEFT OUTER JOIN DM_HINH_THUC_TT ON PHIEUDATHANG.IDHinhThucTT2=DM_HINH_THUC_TT.ID"
             sql &= "     LEFT OUTER JOIN tblTienTe ON PHIEUDATHANG.Tiente=tblTienTe.ID"
             sql &= " WHERE PHIEUDATHANG.Sophieu=@SP"
 
@@ -535,7 +535,7 @@ Namespace Utils
                 If tb0.Rows(0)("HinhThucTT_VIE").ToString = "" Then
                     _ThanhToan = "'- Thanh toán: theo thoả thuận giữa hai bên."
                 Else
-                    _ThanhToan = "'- Thanh toán: " & tb0.Rows(0)("HinhThucTT_VIE")
+                    _ThanhToan = "'- " & tb0.Rows(0)("HinhThucTT_VIE")
                 End If
 
                 _cells(_RowIndex + 8, 0, _RowIndex + 8, 10).Insert(InsertShiftDirection.Down)

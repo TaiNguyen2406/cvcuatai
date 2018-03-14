@@ -28,6 +28,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.txtDenNgay = New DevExpress.XtraBars.BarEditItem()
         Me.rTxtDenNgay = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.btnTaiDuLieu = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnKetXuat = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -49,12 +50,14 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand18 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.tabCongNo = New DevExpress.XtraTab.XtraTabControl()
         Me.tab1 = New DevExpress.XtraTab.XtraTabPage()
@@ -130,17 +133,19 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTuNgay, Me.txtDenNgay, Me.btnTaiDuLieu})
-        Me.BarManager1.MaxItemId = 3
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.txtTuNgay, Me.txtDenNgay, Me.btnTaiDuLieu, Me.btnKetXuat})
+        Me.BarManager1.MaxItemId = 4
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtxtTuNgay, Me.rTxtDenNgay})
         '
         'Bar1
         '
+        Me.Bar1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Bar1.Appearance.Options.UseFont = True
         Me.Bar1.BarName = "Tools"
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.txtDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btnTaiDuLieu, True)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.txtTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.txtDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.btnTaiDuLieu, True), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnKetXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -203,6 +208,13 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.btnTaiDuLieu.Name = "btnTaiDuLieu"
         Me.btnTaiDuLieu.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
+        'btnKetXuat
+        '
+        Me.btnKetXuat.Caption = "Export"
+        Me.btnKetXuat.Glyph = Global.BACSOFT.My.Resources.Resources.Excel_18
+        Me.btnKetXuat.Id = 3
+        Me.btnKetXuat.Name = "btnKetXuat"
+        '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
@@ -238,7 +250,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.gdv.MainView = Me.gdvData
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
-        Me.gdv.Size = New System.Drawing.Size(1402, 629)
+        Me.gdv.Size = New System.Drawing.Size(1401, 628)
         Me.gdv.TabIndex = 4
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvData})
         '
@@ -254,13 +266,23 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.gdvData.Appearance.HorzLine.Options.UseBackColor = True
         Me.gdvData.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.gdvData.Appearance.VertLine.Options.UseBackColor = True
-        Me.gdvData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand10})
-        Me.gdvData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.gdvData.AppearancePrint.BandPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gdvData.AppearancePrint.BandPanel.Options.UseFont = True
+        Me.gdvData.AppearancePrint.BandPanel.Options.UseTextOptions = True
+        Me.gdvData.AppearancePrint.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gdvData.AppearancePrint.BandPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gdvData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand11})
+        Me.gdvData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.BandedGridColumn20, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.gdvData.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvData.GridControl = Me.gdv
         Me.gdvData.Name = "gdvData"
         Me.gdvData.OptionsBehavior.Editable = False
         Me.gdvData.OptionsBehavior.ReadOnly = True
+        Me.gdvData.OptionsPrint.AutoWidth = False
+        Me.gdvData.OptionsPrint.ExpandAllDetails = True
+        Me.gdvData.OptionsPrint.PrintDetails = True
+        Me.gdvData.OptionsPrint.PrintHeader = False
+        Me.gdvData.OptionsPrint.UsePrintStyles = True
         Me.gdvData.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.gdvData.OptionsSelection.EnableAppearanceHideSelection = False
         Me.gdvData.OptionsView.ColumnAutoWidth = False
@@ -305,7 +327,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         '
         'gridBand4
         '
-        Me.gridBand4.Caption = "Tạm Ứng Trước"
+        Me.gridBand4.Caption = "Tạm Ứng"
         Me.gridBand4.Columns.Add(Me.GridColumn2)
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.Tag = "Tạm Ứng Trước"
@@ -352,17 +374,17 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         'GridBand3
         '
         Me.GridBand3.Caption = "Trong Kỳ"
-        Me.GridBand3.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9})
+        Me.GridBand3.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.GridBand9, Me.GridBand10})
         Me.GridBand3.Name = "GridBand3"
-        Me.GridBand3.Width = 474
+        Me.GridBand3.Width = 584
         '
         'gridBand6
         '
-        Me.gridBand6.Caption = "Tạm Ứng Còn Lại"
+        Me.gridBand6.Caption = "Tạm Ứng"
         Me.gridBand6.Columns.Add(Me.GridColumn4)
         Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.Tag = "Tạm Ứng Còn Lại"
-        Me.gridBand6.ToolTip = "Tạm Ứng Còn Lại"
+        Me.gridBand6.Tag = "Tạm Ứng "
+        Me.gridBand6.ToolTip = "Tạm Ứng"
         Me.gridBand6.Width = 137
         '
         'GridColumn4
@@ -372,9 +394,10 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridColumn4.Caption = "TamUngTrongKyConLai"
         Me.GridColumn4.DisplayFormat.FormatString = "N0"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "TamUngTrongKyConLai"
+        Me.GridColumn4.FieldName = "TamUngTrongKy"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.GridColumn4.SummaryItem.FieldName = "TamUngTrongKyConLai"
         Me.GridColumn4.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn4.Visible = True
         Me.GridColumn4.Width = 137
@@ -425,14 +448,37 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridColumn6.Visible = True
         Me.GridColumn6.Width = 110
         '
-        'gridBand9
+        'GridBand9
         '
-        Me.gridBand9.Caption = "Hoàn Tạm Ứng"
-        Me.gridBand9.Columns.Add(Me.GridColumn7)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.Tag = "Hoàn Tạm Ứng"
-        Me.gridBand9.ToolTip = "Hoàn Tạm Ứng"
-        Me.gridBand9.Width = 117
+        Me.GridBand9.Caption = "PB Tạm ứng"
+        Me.GridBand9.Columns.Add(Me.BandedGridColumn20)
+        Me.GridBand9.Name = "GridBand9"
+        Me.GridBand9.Tag = "Phân Bổ Tạm Ứng"
+        Me.GridBand9.ToolTip = "Phân Bổ Tạm Ứng"
+        Me.GridBand9.Width = 110
+        '
+        'BandedGridColumn20
+        '
+        Me.BandedGridColumn20.AppearanceCell.BackColor = System.Drawing.Color.Cornsilk
+        Me.BandedGridColumn20.AppearanceCell.Options.UseBackColor = True
+        Me.BandedGridColumn20.Caption = "PBTamung"
+        Me.BandedGridColumn20.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn20.FieldName = "PhanboTamungTrongky"
+        Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn20.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+        Me.BandedGridColumn20.Visible = True
+        Me.BandedGridColumn20.Width = 110
+        '
+        'GridBand10
+        '
+        Me.GridBand10.Caption = "Hoàn Tạm Ứng"
+        Me.GridBand10.Columns.Add(Me.GridColumn7)
+        Me.GridBand10.Name = "GridBand10"
+        Me.GridBand10.Tag = "Hoàn Tạm Ứng"
+        Me.GridBand10.ToolTip = "Hoàn Tạm Ứng"
+        Me.GridBand10.Width = 117
         '
         'GridColumn7
         '
@@ -448,21 +494,21 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridColumn7.Visible = True
         Me.GridColumn7.Width = 117
         '
-        'GridBand10
-        '
-        Me.GridBand10.Caption = "Cuối Kỳ"
-        Me.GridBand10.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand11, Me.GridBand12})
-        Me.GridBand10.Name = "GridBand10"
-        Me.GridBand10.Width = 224
-        '
         'GridBand11
         '
-        Me.GridBand11.Caption = "Tạm Ứng Trước"
-        Me.GridBand11.Columns.Add(Me.GridColumn8)
+        Me.GridBand11.Caption = "Cuối Kỳ"
+        Me.GridBand11.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand12, Me.GridBand18})
         Me.GridBand11.Name = "GridBand11"
-        Me.GridBand11.Tag = "Tạm Ứng Trước"
-        Me.GridBand11.ToolTip = "Tạm Ứng Trước"
-        Me.GridBand11.Width = 111
+        Me.GridBand11.Width = 224
+        '
+        'GridBand12
+        '
+        Me.GridBand12.Caption = "Tạm Ứng"
+        Me.GridBand12.Columns.Add(Me.GridColumn8)
+        Me.GridBand12.Name = "GridBand12"
+        Me.GridBand12.Tag = "Tạm Ứng Trước"
+        Me.GridBand12.ToolTip = "Tạm Ứng Trước"
+        Me.GridBand12.Width = 111
         '
         'GridColumn8
         '
@@ -478,14 +524,14 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridColumn8.Visible = True
         Me.GridColumn8.Width = 111
         '
-        'GridBand12
+        'GridBand18
         '
-        Me.GridBand12.Caption = "Còn Phải Thu"
-        Me.GridBand12.Columns.Add(Me.GridColumn9)
-        Me.GridBand12.Name = "GridBand12"
-        Me.GridBand12.Tag = "Còn Phải Thu"
-        Me.GridBand12.ToolTip = "Còn Phải Trả"
-        Me.GridBand12.Width = 113
+        Me.GridBand18.Caption = "Còn Phải Thu"
+        Me.GridBand18.Columns.Add(Me.GridColumn9)
+        Me.GridBand18.Name = "GridBand18"
+        Me.GridBand18.Tag = "Còn Phải Thu"
+        Me.GridBand18.ToolTip = "Còn Phải Trả"
+        Me.GridBand18.Width = 113
         '
         'GridColumn9
         '
@@ -524,13 +570,13 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.tab1.Controls.Add(Me.txtTongHopCongNoPhaiThu)
         Me.tab1.Controls.Add(Me.gdv)
         Me.tab1.Name = "tab1"
-        Me.tab1.Size = New System.Drawing.Size(1402, 629)
+        Me.tab1.Size = New System.Drawing.Size(1401, 628)
         Me.tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI THU PHẢI TRẢ"
         '
         'txtTongHopCongNoPhaiTra
         '
         Me.txtTongHopCongNoPhaiTra.EditValue = resources.GetString("txtTongHopCongNoPhaiTra.EditValue")
-        Me.txtTongHopCongNoPhaiTra.Location = New System.Drawing.Point(708, 152)
+        Me.txtTongHopCongNoPhaiTra.Location = New System.Drawing.Point(696, 138)
         Me.txtTongHopCongNoPhaiTra.MenuManager = Me.BarManager1
         Me.txtTongHopCongNoPhaiTra.Name = "txtTongHopCongNoPhaiTra"
         Me.txtTongHopCongNoPhaiTra.Size = New System.Drawing.Size(358, 297)
@@ -540,7 +586,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         'txtTongHopCongNoPhaiThu
         '
         Me.txtTongHopCongNoPhaiThu.EditValue = resources.GetString("txtTongHopCongNoPhaiThu.EditValue")
-        Me.txtTongHopCongNoPhaiThu.Location = New System.Drawing.Point(14, 69)
+        Me.txtTongHopCongNoPhaiThu.Location = New System.Drawing.Point(19, 87)
         Me.txtTongHopCongNoPhaiThu.MenuManager = Me.BarManager1
         Me.txtTongHopCongNoPhaiThu.Name = "txtTongHopCongNoPhaiThu"
         Me.txtTongHopCongNoPhaiThu.Size = New System.Drawing.Size(647, 380)
@@ -552,7 +598,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.tab2.Controls.Add(Me.txtChiTietCongNoPhaiThu)
         Me.tab2.Controls.Add(Me.gdvChiTiet)
         Me.tab2.Name = "tab2"
-        Me.tab2.Size = New System.Drawing.Size(1402, 629)
+        Me.tab2.Size = New System.Drawing.Size(1401, 628)
         Me.tab2.Text = "CHI TIẾT CÔNG NỢ PHẢI THU PHẢI TRẢ"
         '
         'txtChiTietCongNoPhaiThu
@@ -573,7 +619,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.gdvChiTiet.MenuManager = Me.BarManager1
         Me.gdvChiTiet.Name = "gdvChiTiet"
         Me.gdvChiTiet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.gdvChiTiet.Size = New System.Drawing.Size(1402, 629)
+        Me.gdvChiTiet.Size = New System.Drawing.Size(1401, 628)
         Me.gdvChiTiet.TabIndex = 5
         Me.gdvChiTiet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvDataChiTiet})
         '
@@ -585,6 +631,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.gdvDataChiTiet.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvDataChiTiet.Appearance.Empty.BackColor = System.Drawing.Color.Transparent
         Me.gdvDataChiTiet.Appearance.Empty.Options.UseBackColor = True
+        Me.gdvDataChiTiet.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gdvDataChiTiet.Appearance.FooterPanel.Options.UseFont = True
         Me.gdvDataChiTiet.Appearance.HorzLine.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gdvDataChiTiet.Appearance.HorzLine.Options.UseBackColor = True
         Me.gdvDataChiTiet.Appearance.VertLine.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
@@ -675,6 +723,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn3.FieldName = "TenVatTu"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
         Me.BandedGridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn3.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn3.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn3.Visible = True
         Me.BandedGridColumn3.Width = 150
         '
@@ -838,6 +888,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn12.FieldName = "TongTienTamUng"
         Me.BandedGridColumn12.Name = "BandedGridColumn12"
         Me.BandedGridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn12.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn12.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn12.Visible = True
         Me.BandedGridColumn12.Width = 99
         '
@@ -858,6 +910,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn13.FieldName = "ConLaiTamUng"
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
         Me.BandedGridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn13.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn13.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn13.Visible = True
         Me.BandedGridColumn13.Width = 93
         '
@@ -879,6 +933,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn14.FieldName = "PhatSinhNo"
         Me.BandedGridColumn14.Name = "BandedGridColumn14"
         Me.BandedGridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn14.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn14.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn14.Visible = True
         Me.BandedGridColumn14.Width = 102
         '
@@ -900,6 +956,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn15.FieldName = "PhatSinhCo"
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
         Me.BandedGridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn15.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn15.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn15.Visible = True
         Me.BandedGridColumn15.Width = 87
         '
@@ -921,6 +979,8 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn16.FieldName = "LuyKe"
         Me.BandedGridColumn16.Name = "BandedGridColumn16"
         Me.BandedGridColumn16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn16.SummaryItem.DisplayFormat = "{0:N0}"
+        Me.BandedGridColumn16.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
         Me.BandedGridColumn16.Visible = True
         Me.BandedGridColumn16.Width = 87
         '
@@ -930,6 +990,7 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.GridBand37.Columns.Add(Me.BandedGridColumn17)
         Me.GridBand37.MinWidth = 20
         Me.GridBand37.Name = "GridBand37"
+        Me.GridBand37.Visible = False
         Me.GridBand37.Width = 75
         '
         'BandedGridColumn17
@@ -938,7 +999,6 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
         Me.BandedGridColumn17.FieldName = "HanThu"
         Me.BandedGridColumn17.Name = "BandedGridColumn17"
         Me.BandedGridColumn17.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.BandedGridColumn17.Visible = True
         '
         'GridBand16
         '
@@ -1038,18 +1098,6 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents txtChiTietCongNoPhaiThu As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents txtTongHopCongNoPhaiTra As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1069,6 +1117,21 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
     Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents BandedGridColumn19 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn20 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand18 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents btnKetXuat As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridBand24 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1088,5 +1151,4 @@ Partial Class frmTongHopCongNoPhaiThuPhaiTra
     Friend WithEvents GridBand37 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand16 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand17 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-
 End Class

@@ -22,6 +22,7 @@ Public Class frmXuatKhoTam
             sql = " SELECT BANGCHAOGIA.ID,BANGCHAOGIA.Sophieu as SoCG,KHACHHANG.ttcMa AS MaKH, BANGCHAOGIA.IDKhachhang, "
         End If
         sql &= "	BANGCHAOGIA.TenDuan CongTrinh,BANGCHAOGIA.masodathang SoYC,"
+        sql &= "    (Case BANGCHAOGIA.XuLy WHEN 0 THEN N'Cần xử lý' WHEN 1 THEN N'Đã xử lý' END) AS XuLy, "
         sql &= "	(SELECT Ten from nhansu where id = bangchaogia.idtakecare)TakeCare,"
         sql &= "	(SELECT Ten from nhansu where id = bangchaogia.IdNgXuLy)NguoiXuLy, "
         sql &= "    (SELECT count(ID) FROM PHIEUXUATKHO WHERE SophieuCG=BANGCHAOGIA.SoPhieu)SoLuongXuatKho "
@@ -63,9 +64,19 @@ Public Class frmXuatKhoTam
         sql &= " TENDONVITINH.Ten AS TenDVT, "
         sql &= " XUATKHOTAM.SlYeuCau,ChaoGia.SoLuong as SlCG, "
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=CHAOGIA.IDVattu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=CHAOGIA.IDVattu)) AS slTon, "
+
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam,"
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= CHAOGIA.IDVattu) AS DangVe, "
 
         sql &= " XUATKHOTAM.SlXuatKho as SlDaXuatTam, "
+
 
         sql &= " ISNULL(CHAOGIA.AZ,0)AZ "
         sql &= " FROM XUATKHOTAM  "
@@ -218,8 +229,14 @@ Public Class frmXuatKhoTam
 
 
     Private Sub btnXuatKhoHeThong_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnXuatKhoHeThong.ItemClick
+
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenThem) Then
             ShowCanhBao("Bạn không có quyền thực hiện thao tác này!")
+            Exit Sub
+        End If
+
+        If gdvDataCongTrinh.GetFocusedRowCellValue("XuLy").ToString <> "Đã xử lý" Then
+            ShowCanhBao("Không thể lập xuất kho hệ thống khi công trình chưa chuyển trạng thái Đã xử lý!")
             Exit Sub
         End If
 

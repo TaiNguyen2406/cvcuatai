@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="meSql.EditValue" xml:space="preserve">
+    <value>declare @tbThu table     
+( 
+NgaythangCT datetime, SoPhieuThu  nvarchar(50), Sophieu nvarchar(50), IDkh int, Sotien float, Mucdich nvarchar(500), IDUser int, PhieuTC0 int, PhieuTC1 int, isPhanBo bit, NhanVien int
+)    
+insert into @tbThu
+SELECT
+  NgaythangCT,  'TM '+SoPhieu , PhieuTC1 Sophieu,IDkh,Sotien*TyGia,Mucdich,IDUser,PhieuTC0, PhieuTC1, case when PhieuTC0&lt;&gt;'000000000' then 1 else 0 end isPhanBo
+  ,case when PhieuTC0&lt;&gt;'000000000' then (select IDTakecare from BANGCHAOGIA where Sophieu = PhieuTC0) else (select IDTakecare from PHIEUXUATKHO  where Sophieu = PhieuTC1) end NhanVien
+FROM THU where Mucdich not in (109 ,230)--where PhieuTC0=0 --and month(NgaythangCT)=@Thang and YEAR (NgaythangCT)=@nam
+UNION ALL
+SELECT
+  ngaythangCT,'NH '+ SoPhieu ,PhieuTC1 Sophieu, IDKh,sotien*TyGia,Mucdich, IDUser,PhieuTC0, PhieuTC1, case when PhieuTC0&lt;&gt;'000000000' then 1 else 0 end isPhanBo
+   ,case when PhieuTC0&lt;&gt;'000000000' then (select IDTakecare from BANGCHAOGIA where Sophieu = PhieuTC0) else (select IDTakecare from PHIEUXUATKHO  where Sophieu = PhieuTC1) end NhanVien
+FROM THUNH where Mucdich not in (109 ,230)-- where  PhieuTC0=0 --and month(NgaythangCT)=@Thang and YEAR (NgaythangCT)=@nam
+
+
+SELECT
+  *,
+  (LN * HSLNKT) AS LoiNhuanKT,
+  (LN * HSLNKD) AS LoiNhuanKD
+FROM (SELECT
+  KHACHHANG.ttcMa,
+  tbThu.NgaythangCT AS Ngay,
+  PHIEUXUATKHO .Ngaythang NgayXK,
+  DATEDIFF(DAY, PHIEUXUATKHO.NgayThang, tbThu.NgayThangCT) SoNgay,
+  tbthu.PhieuTC0 ,
+  tbthu.SoPhieuThu as SoPhieu,
+  --tbthu.Sophieu as SoPhieuXK,
+  dbo.PHIEUXUATKHO.Sophieu AS SoPhieuXK,
+  dbo.PHIEUXUATKHO.SoPhieuCG,
+  dbo.BANGCHAOGIA.MaSoDatHang,
+  PHIEUXUATKHO.CongTrinh,
+  tbThu.Sotien AS Thu,
+  tbThu.isPhanBo,
+  (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia+PHIEUXUATKHO.Tienthue * PHIEUXUATKHO.Tygia) GiaTriXK,
+   dbo.PHIEUXUATKHO.Tientruocthue * dbo.PHIEUXUATKHO.Tygia AS Tientruocthue,  
+dbo.PHIEUXUATKHO.Tienthue * dbo.PHIEUXUATKHO.Tygia AS TienThue,
+  tbThu.Sotien,
+  ISNULL(tb.GiaNhap, 0) AS GiaNhap,
+  dbo.PHIEUXUATKHO.tienchietkhau * dbo.PHIEUXUATKHO.Tygia AS TienChietKhau,
+  (CASE PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia
+    WHEN 0 THEN 0
+    ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE
+        WHEN PHIEUXUATKHO.CongTrinh = 0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15)
+        ELSE (CASE
+            WHEN BANGCHAOGIA.KhauTru IS NULL THEN 0.15
+            ELSE BANGCHAOGIA.KhauTru / 100
+          END)
+      END))) / ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)
+  END) AS TySuatLN,
+  (CASE PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia
+    WHEN 0 THEN 0
+    ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE
+        WHEN PHIEUXUATKHO.CongTrinh = 0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15)
+        ELSE (CASE
+            WHEN KhauTru IS NULL THEN 0.15
+            ELSE KhauTru / 100
+          END)
+      END))) / ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)
+  END) TyLe,
+  tbThu.Sotien *
+  (CASE PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia
+    WHEN 0 THEN 0
+    ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE
+        WHEN PHIEUXUATKHO.CongTrinh = 0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15)
+        ELSE (CASE
+            WHEN KhauTru IS NULL THEN 0.15
+            ELSE KhauTru / 100
+          END)
+      END))) / ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)
+  END) AS LN,
+  isnull((CASE WHEN ISNULL(BANGCHAOGIA.NhanKS, 0) = 1 
+                THEN (PhanBoLoiNhuan.PhuTrachHopDong + (
+                CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachKyHD, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.XucTienKyHD ELSE 0 END) + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachCT, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.PhuTrachQuanLyCT ELSE 0 END)
+                +(CASE WHEN PHIEUXUATKHO.CongTrinh =0 THEN  PhanBoLoiNhuan.TongConLai ELSE 0 END)
+                )/ 100 
+                ELSE 
+                (PhanBoLoiNhuan.PhuTrachHopDong + 
+                PhanBoLoiNhuan.PhuTrachChaoGia + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachKyHD, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.XucTienKyHD ELSE 0 END) + 
+                (CASE WHEN ISNULL(BANGCHAOGIA.IDPhuTrachCT, BANGCHAOGIA.IDTakeCare) = BANGCHAOGIA.IDTakeCare 
+                THEN PhanBoLoiNhuan.PhuTrachQuanLyCT ELSE 0 END)+
+                (CASE WHEN PHIEUXUATKHO.CongTrinh =0 THEN  PhanBoLoiNhuan.TongConLai ELSE 0 END)) / 100 END),0) AS HSLNKD,
+  isnull((CASE
+    WHEN BANGCHAOGIA.CongTrinh = 1 THEN (CASE
+        WHEN ISNULL(BANGCHAOGIA.NhanKS, 1) = 1 THEN (100 - ISNULL(PhanBoLoiNhuan.PhuTrachHopDong, 0)) / 100
+        ELSE (100 - ISNULL(PhanBoLoiNhuan.PhuTrachHopDong, 0) - ISNULL(PhanBoLoiNhuan.PhuTrachChaoGia, 0)) / 100
+      END)
+    ELSE 0
+  END),0) AS HSLNKT,
+  PHIEUXUATKHO.IDTakeCare,
+  NHANSU.Ten AS TakeCare
+FROM (  select * from(
+--select 
+ -- NgaythangCT, tb.Sophieuthu SoPhieuThu ,
+ -- 'PB '+ PHIEUXUATKHO.Sophieu Sophieu , IDkhachhang IDkh ,  SoTien, '' Mucdich, PHIEUXUATKHO.IDUser , 
+ -- SophieuCG PhieuTC0 ,PHIEUXUATKHO.Sophieu  PhieuTC1 from PHIEUXUATKHO  inner join @tbThu tb  on (PhieuTC0=SophieuCG or PhieuTC1 =PHIEUXUATKHO.Sophieu ) and NgayThangCT=(select top 1 NgayThangCT from @tbThu where PhieuTC0=SophieuCG order by NgaythangCT  desc )
+ -- where  (( month(NgayThangCT)=@Thang AND Year(NgayThangCT)= @Nam and month(PHIEUXUATKHO.Ngaythang )&lt;=@Thang and year(Phieuxuatkho.NgayThang)&lt;=@Nam) or (month(PHIEUXUATKHO.Ngaythang )=@Thang and year(Phieuxuatkho.NgayThang)=@Nam and month(NgayThangCT)&lt;=@Thang AND Year(NgayThangCT)&lt;= @Nam)) and isnull(Sotien,0)&lt;&gt;0 --isnull(PhanBoTamUng,0) &lt;&gt;0 and 
+	 --union all
+	  select NgaythangCT ,SoPhieuThu , Sophieu , IDkh , Sotien , Mucdich , IDUser , PhieuTC0 , PhieuTC1, isPhanBo  from @tbThu  where NhanVien=@IDTakeCare  -- where PhieuTC0 =0
+ 
+ 
+) tbl ) AS tbThu
+inner JOIN PHIEUXUATKHO
+  ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu
+  --OR tbThu.PhieuTC0 &lt;&gt; 0
+ OR tbThu.PhieuTC0 = dbo.PHIEUXUATKHO.SophieuCG
+LEFT JOIN KHACHHANG
+  ON KHACHHANG.ID = PHIEUXUATKHO.IDKhachhang
+LEFT JOIN NHANSU
+  ON NHANSU.ID = PHIEUXUATKHO.IDTakeCare and( PHIEUXUATKHO.IDTakeCare=@IDTakeCare or @IDTakeCare='')
+LEFT OUTER JOIN tblQuyDoi
+  ON CONVERT(int, LEFT(dbo.tblQuyDoi.ThangNam, 2)) = MONTH(tbThu.NgaythangCT)
+  AND CONVERT(int, RIGHT(dbo.tblQuyDoi.ThangNam, 4)) = YEAR(tbThu.NgaythangCT)
+INNER JOIN BANGCHAOGIA ON dbo.BANGCHAOGIA.Sophieu = dbo.PHIEUXUATKHO.SophieuCG
+INNER JOIN BANGYEUCAU ON dbo.BANGYEUCAU.Sophieu = dbo.BANGCHAOGIA.Masodathang
+LEFT JOIN PhanBoLoiNhuan ON PhanBoLoiNhuan.Thang=Right(Convert(nvarchar,PHIEUXUATKHO.NgayTHang,103),7) AND PhanBoLoiNhuan.CT=PHIEUXUATKHO.CongTrinh
+--LEFT OUTER JOIN dbo.KTPhanBoLoiNhuanCT  ON dbo.BANGYEUCAU.IDLoaiYeuCau = dbo.KTPhanBoLoiNhuanCT.ID
+LEFT OUTER JOIN (SELECT
+  Sophieu,
+  SUM(ISNULL(gianhap, giaban) * Soluong) AS GiaNhap
+FROM dbo.View_XuatKhoGiaNhapTB
+GROUP BY Sophieu) AS tb
+  ON tb.Sophieu = dbo.PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChiphiTM
+  ON dbo.V_XuatkhoChiphiTM.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChiphiUnc
+  ON dbo.V_XuatkhoChiphiUnc.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChietkhauTM
+  ON dbo.V_XuatkhoChietkhauTM.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChietkhauUNC
+  ON dbo.V_XuatkhoChietkhauUNC.Sophieu = PHIEUXUATKHO.Sophieu
+WHERE (BANGCHAOGIA.IDTakeCare=@IDTakeCare or @IDTakeCare='') 
+--and (month(tbThu.NgayThangCT)=@Thang AND Year(tbThu.NgayThangCT)= @Nam and month(PHIEUXUATKHO.Ngaythang )&lt;=@Thang and year(Phieuxuatkho.NgayThang)&lt;=@Nam) or (month(PHIEUXUATKHO.Ngaythang )=@Thang and year(Phieuxuatkho.NgayThang)=@Nam and month(tbThu.NgayThangCT)&lt;=@Thang AND Year(tbThu.NgayThangCT)&lt;= @Nam)
+) tb
+ORDER BY SophieuCG , Ngay asc, NgayXK  asc
+	--Bảng dưới
+
+ SELECT * FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY HDNhanVIen.ID ORDER BY right(HDNhanVien.ChiTiet,9)) AS STT,
+  HDNhanVIen.ID,NgayBaoCao,NHANSU.Ten AS NhanVien,
+--  Datediff(day,PHIEUXUATKHO.NgayThang,tbThu.NgayThangCT)SoNgay,
+   PHIEUXUATKHO.SoPhieu, NgayNhapLieu,IdDanhSach,HDTen.Ten AS NoiDungBC,
+   ChiTiet,SoLuong,KhoiLuong,
+   HDNhanVien.Diem,
+   BaoCao,
+   HDNhanVien.PhanHoi,
+   Duyet,
+   IDNhanVien,
+   HDNhanVien.IDUser,
+   YearMonth,
+   Convert(bit,0)Modify
+    FROM HDNhanVien INNER JOIN NHANSU ON HDNhanVien.IDNhanVien=NHANSU.ID INNER JOIN HDDanhSach ON HDDanhSach.ID=HDNhanVien.IDDanhSach INNER JOIN HDTen ON HDDanhSach.IDTen=HDTen.ID LEFT JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=right(HDNhanVien.ChiTiet,9) 
+	--LEFT JOIN  (  select * from @tbThu where PhieuTC0 =0   ) AS tbThu ON (tbThu.PhieuTC1 = PHIEUXUATKHO.SoPhieu) AND HDNhanVien.KhoiLuong=tbThu.SoTien 
+		 WHERE IDDanhSach IN (35,36,37,38,39,40)
+	  AND month(HDNhanVien.NgayBaoCao)=@Thang  AND Year(HDNhanVien.NgayBaoCao)= @Nam 
+	  )tbl WHERE STT =1 and( IDNhanVien=@IDTakeCare  or @IDTakeCare='') ORDER BY SoPhieu</value>
+  </data>
+  <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>42</value>
+  </metadata>
+  <data name="meSqlCu.EditValue" xml:space="preserve">
+    <value>declare @tbThu table     
+( 
+NgaythangCT datetime, Sophieu nvarchar(50), IDkh int, Sotien float, Mucdich nvarchar(500), IDUser int, PhieuTC0 int, PhieuTC1 int
+)    
+insert into @tbThu
+SELECT
+  NgaythangCT, 'TM '+PhieuTC1 Sophieu,IDkh,Sotien,Mucdich,IDUser,PhieuTC0, PhieuTC1
+FROM THU --where PhieuTC0=0 --and month(NgaythangCT)=@Thang and YEAR (NgaythangCT)=@nam
+UNION ALL
+SELECT
+  ngaythangCT, 'NH '+PhieuTC1 Sophieu, IDKh,sotien,Mucdich, IDUser,PhieuTC0, PhieuTC1
+FROM THUNH-- where  PhieuTC0=0 --and month(NgaythangCT)=@Thang and YEAR (NgaythangCT)=@nam
+ 
+
+SELECT
+  *,
+  (LN * HSLNKT) AS LoiNhuanKT,
+  (LN * HSLNKD) AS LoiNhuanKD
+FROM (SELECT
+  KHACHHANG.ttcMa,
+  tbThu.NgaythangCT AS Ngay,
+  DATEDIFF(DAY, PHIEUXUATKHO.NgayThang, tbThu.NgayThangCT) SoNgay,
+  tbthu.Sophieu as SoPhieuXK,
+  --dbo.PHIEUXUATKHO.Sophieu AS SoPhieuXK,
+  dbo.PHIEUXUATKHO.SoPhieuCG,
+  dbo.BANGCHAOGIA.MaSoDatHang,
+  PHIEUXUATKHO.CongTrinh,
+  tbThu.Sotien AS Thu,
+  dbo.PHIEUXUATKHO.Tienthue * dbo.PHIEUXUATKHO.Tygia AS TienThue,
+  tbThu.Sotien,
+  ISNULL(tb.GiaNhap, 0) AS GiaNhap,
+  dbo.PHIEUXUATKHO.tienchietkhau * dbo.PHIEUXUATKHO.Tygia AS TienChietKhau,
+  (CASE PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia
+    WHEN 0 THEN 0
+    ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE
+        WHEN PHIEUXUATKHO.CongTrinh = 0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15)
+        ELSE (CASE
+            WHEN BANGCHAOGIA.KhauTru IS NULL THEN 0.15
+            ELSE BANGCHAOGIA.KhauTru / 100
+          END)
+      END))) / ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)
+  END) AS TySuatLN,
+  tbThu.Sotien * (CASE PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia
+    WHEN 0 THEN 0
+    ELSE (PHIEUXUATKHO.Tientruocthue * PHIEUXUATKHO.Tygia - ISNULL(tb.GiaNhap, 0) - ISNULL(V_XuatkhoChiphiTM.Chitienmat, 0) - ISNULL(V_XuatkhoChiphiUnc.ChiUNC, 0) - ISNULL(PHIEUXUATKHO.tienchietkhau, 0) / (1 - (CASE
+        WHEN PHIEUXUATKHO.CongTrinh = 0 THEN ISNULL(dbo.tblQuyDoi.HSThuCK, 0.15)
+        ELSE (CASE
+            WHEN KhauTru IS NULL THEN 0.15
+            ELSE KhauTru / 100
+          END)
+      END))) / ((PHIEUXUATKHO.Tientruocthue + PHIEUXUATKHO.TienThue) * PHIEUXUATKHO.Tygia)
+  END) AS LN,
+  (CASE
+    WHEN BANGCHAOGIA.CongTrinh = 1 THEN (CASE
+        WHEN ISNULL(BANGCHAOGIA.NhanKS, 1) = 1 THEN KTPhanBoLoiNhuanCT.PhuTrachHopDong / 100
+        ELSE (KTPhanBoLoiNhuanCT.PhuTrachHopDong + KTPhanBoLoiNhuanCT.PhuTrachChaoGia) / 100
+      END)
+    ELSE 1
+  END) AS HSLNKD,
+  (CASE
+    WHEN BANGCHAOGIA.CongTrinh = 1 THEN (CASE
+        WHEN ISNULL(BANGCHAOGIA.NhanKS, 1) = 1 THEN (100 - ISNULL(KTPhanBoLoiNhuanCT.PhuTrachHopDong, 0)) / 100
+        ELSE (100 - ISNULL(KTPhanBoLoiNhuanCT.PhuTrachHopDong, 0) - ISNULL(KTPhanBoLoiNhuanCT.PhuTrachChaoGia, 0)) / 100
+      END)
+    ELSE 0
+  END) AS HSLNKT,
+  PHIEUXUATKHO.IDTakeCare,
+  NHANSU.Ten AS TakeCare
+FROM (  select * from(
+ select distinct
+ --(select top 1 NgaythangCT from @tbThu where( PhieuTC0 =SophieuCG or PhieuTC1 =PHIEUXUATKHO.Sophieu)  and ( ( month(NgayThangCT)=@Thang AND Year(NgayThangCT)= @Nam and month(PHIEUXUATKHO.Ngaythang )&lt;=@Thang and year(Phieuxuatkho.NgayThang)&lt;=@Nam) or (month(PHIEUXUATKHO.Ngaythang )=@Thang and year(Phieuxuatkho.NgayThang)=@Nam and month(NgayThangCT)&lt;=@Thang AND Year(NgayThangCT)&lt;= @Nam)) order by NgayThangCT desc ) NgaythangCT,
+ -- case when (month(NgayThang)&lt;@Thang AND Year(NgayThang)&lt;= @Nam) then dateadd(month,@Thang-month(NgayThang), Ngaythang) else Ngaythang end  
+  NgaythangCT,
+  'PB '+ PHIEUXUATKHO.Sophieu Sophieu , IDkhachhang IDkh , PhanBoTamUng as SoTien, '' Mucdich, PHIEUXUATKHO.IDUser , 
+  SophieuCG PhieuTC0 ,PHIEUXUATKHO.Sophieu  PhieuTC1 from PHIEUXUATKHO  inner join @tbThu  on PhieuTC0=SophieuCG and NgayThangCT=(select top 1 NgayThangCT from @tbThu where PhieuTC0=SophieuCG order by NgaythangCT  desc )
+  where  isnull(PhanBoTamUng,0) &lt;&gt;0 and (( month(NgayThangCT)=@Thang AND Year(NgayThangCT)= @Nam and month(PHIEUXUATKHO.Ngaythang )&lt;=@Thang and year(Phieuxuatkho.NgayThang)&lt;=@Nam) or (month(PHIEUXUATKHO.Ngaythang )=@Thang and year(Phieuxuatkho.NgayThang)=@Nam and month(NgayThangCT)&lt;=@Thang AND Year(NgayThangCT)&lt;= @Nam)) and isnull(Sotien,0)&lt;&gt;0
+	 union all
+	  select * from @tbThu   where PhieuTC0 =0
+ 
+) tbl ) AS tbThu
+inner JOIN PHIEUXUATKHO
+  ON tbThu.PhieuTC1 = PHIEUXUATKHO.Sophieu
+  --OR tbThu.PhieuTC0 &lt;&gt; 0
+ -- OR tbThu.PhieuTC0 = dbo.PHIEUXUATKHO.SophieuCG
+LEFT JOIN KHACHHANG
+  ON KHACHHANG.ID = PHIEUXUATKHO.IDKhachhang
+LEFT JOIN NHANSU
+  ON NHANSU.ID = PHIEUXUATKHO.IDTakeCare
+LEFT OUTER JOIN tblQuyDoi
+  ON CONVERT(int, LEFT(dbo.tblQuyDoi.ThangNam, 2)) = MONTH(tbThu.NgaythangCT)
+  AND CONVERT(int, RIGHT(dbo.tblQuyDoi.ThangNam, 4)) = YEAR(tbThu.NgaythangCT)
+INNER JOIN BANGCHAOGIA ON dbo.BANGCHAOGIA.Sophieu = dbo.PHIEUXUATKHO.SophieuCG
+INNER JOIN BANGYEUCAU ON dbo.BANGYEUCAU.Sophieu = dbo.BANGCHAOGIA.Masodathang
+LEFT OUTER JOIN dbo.KTPhanBoLoiNhuanCT  ON dbo.BANGYEUCAU.IDLoaiYeuCau = dbo.KTPhanBoLoiNhuanCT.ID
+LEFT OUTER JOIN (SELECT
+  Sophieu,
+  SUM(ISNULL(gianhap, giaban) * Soluong) AS GiaNhap
+FROM dbo.View_XuatKhoGiaNhapTB
+GROUP BY Sophieu) AS tb
+  ON tb.Sophieu = dbo.PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChiphiTM
+  ON dbo.V_XuatkhoChiphiTM.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChiphiUnc
+  ON dbo.V_XuatkhoChiphiUnc.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChietkhauTM
+  ON dbo.V_XuatkhoChietkhauTM.Sophieu = PHIEUXUATKHO.Sophieu
+LEFT OUTER JOIN V_XuatkhoChietkhauUNC
+  ON dbo.V_XuatkhoChietkhauUNC.Sophieu = PHIEUXUATKHO.Sophieu
+WHERE (month(tbThu.NgayThangCT)=@Thang AND Year(tbThu.NgayThangCT)= @Nam and month(PHIEUXUATKHO.Ngaythang )&lt;=@Thang and year(Phieuxuatkho.NgayThang)&lt;=@Nam) or (month(PHIEUXUATKHO.Ngaythang )=@Thang and year(Phieuxuatkho.NgayThang)=@Nam and month(tbThu.NgayThangCT)&lt;=@Thang AND Year(tbThu.NgayThangCT)&lt;= @Nam)
+) tb
+ORDER BY SoPhieuXK
+	--Bảng dưới
+
+ SELECT * FROM ( SELECT ROW_NUMBER() OVER (PARTITION BY HDNhanVIen.ID ORDER BY right(HDNhanVien.ChiTiet,9)) AS STT,
+  HDNhanVIen.ID,NgayBaoCao,NHANSU.Ten AS NhanVien,
+--  Datediff(day,PHIEUXUATKHO.NgayThang,tbThu.NgayThangCT)SoNgay,
+   PHIEUXUATKHO.SoPhieu, NgayNhapLieu,IdDanhSach,HDTen.Ten AS NoiDungBC,
+   ChiTiet,SoLuong,KhoiLuong,
+   HDNhanVien.Diem,
+   BaoCao,
+   HDNhanVien.PhanHoi,
+   Duyet,
+   IDNhanVien,
+   HDNhanVien.IDUser,
+   YearMonth,
+   Convert(bit,0)Modify
+    FROM HDNhanVien INNER JOIN NHANSU ON HDNhanVien.IDNhanVien=NHANSU.ID INNER JOIN HDDanhSach ON HDDanhSach.ID=HDNhanVien.IDDanhSach INNER JOIN HDTen ON HDDanhSach.IDTen=HDTen.ID LEFT JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=right(HDNhanVien.ChiTiet,9) 
+	--LEFT JOIN  (  select * from @tbThu where PhieuTC0 =0   ) AS tbThu ON (tbThu.PhieuTC1 = PHIEUXUATKHO.SoPhieu) AND HDNhanVien.KhoiLuong=tbThu.SoTien 
+		 WHERE IDDanhSach IN (35,36,37,38,39,40)
+	  AND month(HDNhanVien.NgayBaoCao)=@Thang  AND Year(HDNhanVien.NgayBaoCao)= @Nam 
+	  )tbl WHERE STT =1 ORDER BY SoPhieu</value>
+  </data>
+  <metadata name="PopupMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>142, 17</value>
+  </metadata>
+</root>

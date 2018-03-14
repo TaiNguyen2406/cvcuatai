@@ -28,7 +28,6 @@ Public Class frmXuLyYCCongTrinh
         LoadDSNhomVT(Nothing, Nothing)
         LoadCbTGCapHang()
         LoadDSYeuCau()
-
     End Sub
 
 #Region "Load DS dữ liệu vào các combobox và grid"
@@ -66,9 +65,6 @@ Public Class frmXuLyYCCongTrinh
             sql &= "	KHACHHANG.Ten AS TenKH,BANGYEUCAU.IDUser,BANGYEUCAU.IDNgd,NHANSU1.Ten as TakeCare,NGUOILAP.Ten AS NguoiLap,BANGYEUCAU.IDTakecare, "
             sql &= "    NHANSU2.Ten AS NguoiGD,NHANSU2.Mobile AS DienThoaiNgd,NHANSU2.Email as EmailNgd,ISNULL(CongTrinh,CONVERT(Bit,0))CongTrinh, "
             sql &= " BANGYEUCAU.NoiDung, BANGYEUCAU.FileDinhKem,BANGYEUCAU.TrangThai,BANGYEUCAU.IDLoaiYeuCau, BANGYEUCAU.IDNhanXL,NGUOIXL.Ten AS NguoiNhanXL,BANGYEUCAU.ThoiGianNhanXL, "
-            'Tai
-            sql &= " GhiChuGV,"
-            'Tai
             sql &= " round( Convert(float,datediff(hour,NgayThang,isnull(ThoiGianDaXL,getdate())))/24,2)GioXL"
             sql &= " INTO #tb"
             sql &= " FROM BANGYEUCAU "
@@ -211,6 +207,7 @@ Public Class frmXuLyYCCongTrinh
         sql &= " 	TenNhom nvarchar(500),"
         sql &= " 	ID int, "
         sql &= " 	slTon float, "
+        sql &= " 	XuatTam float, "
         sql &= " 	Sophieu nvarchar(15),"
         sql &= " 	Noidung nvarchar(MAX),"
         sql &= " 	Soluong float,"
@@ -247,6 +244,16 @@ Public Class frmXuLyYCCongTrinh
         sql &= " SELECT Convert(bit,0)Chon,ROW_NUMBER() OVER(ORDER BY BANGYEUCAU.ID ) AS STT, TENVATTU.ten AS TenVT, TENHANGSANXUAT.TEN AS TenHang, VATTU.Model, TENDONVITINH.TEN AS DVT, VATTU.Thongso, "
         sql &= "      TENNUOC.TEN AS TenNuoc, TENTAILIEU.TEN AS TenTaiLieu, VATTU.ConSX, TENNHOM.Ten AS TenNhom, YEUCAUDEN.ID, "
         sql &= "      ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=YEUCAUDEN.IDVatTu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=YEUCAUDEN.IDVatTu)) AS slTon, "
+
+        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        sql &= " as XuatTam, "
+
+        'sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = YEUCAUDEN.IDVatTu),0)  "
+        'sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = YEUCAUDEN.IDVatTu),0) "
+        'sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = YEUCAUDEN.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = YEUCAUDEN.IDVatTu and SlXuatKho > 0)),0) "
+        'sql &= " as XuatTam,"
+
         sql &= "      YEUCAUDEN.Sophieu, YEUCAUDEN.Noidung, YEUCAUDEN.Soluong, YEUCAUDEN.Mucdocan, YEUCAUDEN.IDVattu, "
         sql &= "      YEUCAUDEN.IDHoithongtin, YEUCAUDEN.IDChuyenma, YEUCAUDEN.IDHoigia, YEUCAUDEN.NgayNhanYeucau, YEUCAUDEN.NgayHoithongtin, "
         sql &= "      YEUCAUDEN.NgayNhanChuyenma, YEUCAUDEN.NgayChuyenma, YEUCAUDEN.NgayNhanHoigia, YEUCAUDEN.NgayHoigia, "
@@ -342,6 +349,11 @@ Public Class frmXuLyYCCongTrinh
 
         Dim sql As String = " Select NULL AS CanhBao,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.Model,VATTU.Thongso,VATTU.ID,VATTU.IDDonvitinh AS IDDVT,TENDONVITINH.Ten AS DVT,TENNHOM.Ten AS NhomVT,TENNHOM.Ten_ENG AS TenNhom_ENG, "
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID)) AS slTon, "
+
+        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        sql &= " as XuatTam, "
+
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= Vattu.ID) AS Dangve, "
         sql &= " Ngayve = (select top 1 isnull(ngaythang,0) from V_Dangve where IDVattu= Vattu.ID), "
         sql &= " Canxuat=(select isnull(SUM(canxuat),0) from Chaogia where IDVattu= Vattu.ID), "
@@ -575,6 +587,7 @@ Public Class frmXuLyYCCongTrinh
         MaTuDien = -1
         fCNYeuCau = New frmThemYeuCau
         fCNYeuCau.Tag = Me.Tag
+        fCNYeuCau._tag = Me.Parent.Tag
         fCNYeuCau.ShowDialog()
     End Sub
 
@@ -594,6 +607,7 @@ Public Class frmXuLyYCCongTrinh
         MaTuDien = gdvCT.GetFocusedRowCellValue("ID")
         fCNYeuCau = New frmThemYeuCau
         fCNYeuCau.Tag = Me.Tag
+        fCNYeuCau._tag = Me.Parent.Tag
         fCNYeuCau.ShowDialog()
         gdvCT.FocusedRowHandle = index
     End Sub
@@ -1704,6 +1718,16 @@ Public Class frmXuLyYCCongTrinh
 
         Dim sql As String = " Select TOP 10 NULL AS CanhBao,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.Model,VATTU.Thongso,VATTU.ID,VATTU.IDDonvitinh AS IDDVT,TENDONVITINH.Ten AS DVT,TENNHOM.Ten AS NhomVT,TENNHOM.Ten_ENG AS TenNhom_ENG, "
         sql &= " (Round((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID),4)-Round((select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID),4)) AS slTon, "
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
+
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID ),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID ),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.ID AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.ID  and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam,"
+
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= Vattu.ID) AS Dangve, "
         sql &= " Ngayve = (select top 1 isnull(ngaythang,0) from V_Dangve where IDVattu= Vattu.ID), "
         sql &= " Canxuat=(select isnull(SUM(canxuat),0) from Chaogia where IDVattu= Vattu.ID), "
@@ -1758,84 +1782,38 @@ Public Class frmXuLyYCCongTrinh
 
         If e.Button = System.Windows.Forms.MouseButtons.Right Then
             pMenuChinh.ShowPopup(gdv.PointToScreen(e.Location))
-            locationM = (gdv.PointToScreen(e.Location))
         End If
     End Sub
-    'Tai
-    Private locationM As New Object
-    Private Sub mGiaoXuLy_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mGiaoXuLy.ItemClick
-        pcGiaoXuLy.Location = locationM
-        If pcGiaoXuLy.Visible = False Then
-            If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKyThuat) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
-                gLueNhanSu.Enabled = False
-                meGhiChu.Enabled = False
-                btnXacNhan.Enabled = False
-            Else
-                gLueNhanSu.Enabled = True
-                meGhiChu.Enabled = True
-                btnXacNhan.Enabled = True
-            End If
-            pcGiaoXuLy.Enabled = True
-            pcGiaoXuLy.Visible = True
 
-            gLueNhanSu.Properties.DataSource = ExecuteSQLDataTable("select ID, Ten from NHANSU Where (IDDepatment=2 or IDDepatment=6) AND Trangthai=1 order by ID ")
-            gLueNhanSu.EditValue = gdvCT.GetFocusedRowCellValue("IDNhanXL")
-            '  AddParameterWhere("@ID", gdvCT.GetFocusedRowCellValue("ID"))
-            meGhiChu.EditValue = gdvCT.GetFocusedRowCellValue("GhiChuGV")
-            gLueNhanSu.Focus()
+    Private Sub btnThongTinDuAn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnThongTinDuAn.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
         End If
-
+        Dim frmTTDA As New frmPhieuThongTinDuAn
+        frmTTDA._tag = Me.Parent.Tag
+        frmTTDA._soycden = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmTTDA._email = gdvCT.GetFocusedRowCellValue("EmailNgd")
+        frmTTDA._sdt = gdvCT.GetFocusedRowCellValue("DienThoaiNgd")
+        frmTTDA.Show()
     End Sub
 
-    Private Sub btnXacNhan_Click(sender As System.Object, e As System.EventArgs) Handles btnXacNhan.Click
-        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        AddParameterWhere("@ID", gdvYCCT.GetFocusedRowCellValue("ID"))
-        Dim tb As DataTable = ExecuteSQLDataTable("SELECT IDNhanXL FROM BANGYEUCAU WHERE ID=@ID")
-        If Not tb Is Nothing Then
-            If tb.Rows.Count > 0 Then
-                If Not ShowCauHoi("Đã có người nhận xử lý yêu cầu này, bạn có muốn nhận xử lý thay hay không ?") Then
-                    Exit Sub
-                End If
-
-            End If
+    Private Sub btnKhaoSatChaoGia_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKhaoSatChaoGia.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
         End If
-
-        Dim tg As DateTime = GetServerTime()
-        Dim tgns As Object = gLueNhanSu.EditValue
-        AddParameterWhere("@ID", tgns)
-        Dim tentg As Object = ExecuteSQLScalar("select  Ten from NHANSU where ID=@ID")
-        AddParameter("@IDNhanXL", tgns)
-        AddParameter("@GhiChuGV", meGhiChu.EditValue)
-        AddParameter("@ThoiGianNhanXL", tg)
-        AddParameterWhere("@ID", gdvCT.GetFocusedRowCellValue("ID"))
-        If doUpdate("BANGYEUCAU", "ID=@ID") Is Nothing Then
-            ShowBaoLoi(LoiNgoaiLe)
-        Else
-            gdvCT.SetFocusedRowCellValue("NguoiNhanXL", tentg)
-            gdvCT.SetFocusedRowCellValue("ThoiGianNhanXL", tg)
-            gdvCT.SetFocusedRowCellValue("GhiChuGV", meGhiChu.EditValue)
-            'loadDSYCChiTiet(gdvCT.GetFocusedRowCellValue("Sophieu"))
-            If tgns IsNot Nothing Then
-                Dim str As String = NguoiDung & " đã nhận xử lý YC: " & gdvCT.GetFocusedRowCellValue("Sophieu") & " KH: " & gdvCT.GetFocusedRowCellValue("ttcMa") & " của bạn"
-                ThemThongBaoChoNV(str, gdvCT.GetFocusedRowCellValue("IDTakecare"))
-                str = NguoiDung & " đã giao việc cho " & tentg & " xử lý YC: " & gdvCT.GetFocusedRowCellValue("Sophieu") & " KH: " & gdvCT.GetFocusedRowCellValue("ttcMa")
-                ThemThongBaoChoNV(str, tgns)
-                ShowAlert("Đã giao việc thành công !")
-            End If
-        End If
-
+        Dim frmKS As New frmPhieuKhaoSatChaoGia
+        frmKS._tag = Me.Parent.Tag
+        frmKS._soyc = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmKS.Show()
     End Sub
 
-    Private Sub gLueNhanSu_Properties_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles gLueNhanSu.Properties.ButtonClick
-        If e.Button.Index = 1 Then
-            gLueNhanSu.EditValue = DBNull.Value
+    Private Sub btnKhaoSatThiCong_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKhaoSatThiCong.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then
+            Exit Sub
         End If
-
+        Dim frmKS As New frmPhieuKhaoSatThiCong
+        frmKS._tag = Me.Parent.Tag
+        frmKS._soyc = gdvCT.GetFocusedRowCellValue("Sophieu")
+        frmKS.Show()
     End Sub
-
-    Private Sub btnDong_Click(sender As System.Object, e As System.EventArgs) Handles btnDong.Click
-        pcGiaoXuLy.Visible = False
-        pcGiaoXuLy.Enabled = False
-    End Sub
-    'Tai
 End Class

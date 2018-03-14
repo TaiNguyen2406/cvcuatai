@@ -41,6 +41,7 @@ Public Class frmNhapKho
 
         sql &= " PHIEUNHAPKHO.ID,NgayThang,PHIEUNHAPKHO.SoPhieu,KHACHHANG.ttcMa,KHACHHANG.Ten AS TenKH, SoPhieuDH,"
         '  sql &= " PHIEUNHAPKHO.TienTruocThue,PHIEUNHAPKHO.TienThue,(PHIEUNHAPKHO.TienTruocThue+PHIEUNHAPKHO.TienThue) AS TongTien,"
+        sql &= " case when PHIEUNHAPKHO.TienTe<>0 then PHIEUNHAPKHO.TienTruocThue  else null end DonTe,"
         sql &= " (Case PHIEUNHAPKHO.TienTe WHEN 0 then PHIEUNHAPKHO.TienTruocThue ELSE PHIEUNHAPKHO.TienTruocThue * PHIEUNHAPKHO.TyGia END) TienTruocThue,"
         sql &= " (Case PHIEUNHAPKHO.TienTe WHEN 0 then PHIEUNHAPKHO.TienThue ELSE PHIEUNHAPKHO.TienThue * PHIEUNHAPKHO.TyGia END) TienThue,"
         sql &= " (Case PHIEUNHAPKHO.TienTe WHEN 0 then (PHIEUNHAPKHO.TienTruocThue+PHIEUNHAPKHO.TienThue) ELSE (PHIEUNHAPKHO.TienTruocThue+PHIEUNHAPKHO.TienThue) * PHIEUNHAPKHO.TyGia END) TongTien,"

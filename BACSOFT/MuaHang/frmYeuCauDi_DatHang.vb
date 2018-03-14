@@ -9,7 +9,7 @@ Imports System.Linq
 
 Public Class frmYeuCauDi_DatHang
     Dim _exit As Boolean = False
-
+    Public DatTon As Boolean = False
     Private Sub frmYeuCauDi_DatHang_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         TrangThaiDH.isAddNew = True
         rcbTrangThaiDH.DataSource = TrangThaiDatHang()
@@ -46,11 +46,11 @@ Public Class frmYeuCauDi_DatHang
         End If
 
 
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.KeToan) Then
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Tag, DanhMucQuyen.QuyenSua) Then
             btCNDuLieuChung.Visible = False
         End If
-      
 
+        colNguoiDuyet.VisibleIndex = 22
 
     End Sub
 
@@ -335,6 +335,9 @@ Public Class frmYeuCauDi_DatHang
         sql &= " ,XuatMax=(select isnull(Max(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID AND V_XUATKHO.Ngaythang BETWEEN '" & tbTuNgayTH.EditValue & "' AND '" & tbDenNgayTH.EditValue & "') "
         sql &= " ,VATTU.DatToithieu AS DatToiThieu, VATTU.DMTon"
         sql &= " ,SLTon=((select isnull(SUM(Soluong),0) from V_NHAPKHO where IDVattu=Vattu.ID) -(select isnull(SUM(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID))"
+        'Tai
+        sql &= " ,SLYCTon=(select isnull(sum(SoLuong),0) from DAT_TON_CHI_TIET where IdVatTu=Vattu.ID and isDuyet=0)"
+        'Tai
         sql &= " ,CanNhap=(select isnull(SUM(Cannhap),0) from DATHANG where IDVattu=Vattu.ID) "
         sql &= " ,Convert(float,0)LuongDat "
         sql &= " ,KHSD=ISNULL(tbKHSD.KHSD,0)"
@@ -346,6 +349,10 @@ Public Class frmYeuCauDi_DatHang
         sql &= " (CASE VATTU.XuatThue1 WHEN 0 THEN VATTU.DonGia1 ELSE (CASE VATTU.TienTe1 WHEN 0 THEN ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,-2) ELSE ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,2) END) END) AS GiaList,"
         sql &= " VATTU.Khoiluong1 AS KhoiLuong,tblTienTe.TyGia,VATTU.GiaNK,VATTU.TNK1,VATTU.TienTeNK,VATTU.ConSX,ISNULL(VATTU.SLMOQ1,0)SLMOQ1,ISNULL(VATTU.SLMOQ2,0)SLMOQ2,ISNULL(VATTU.SLMOQ3,0)SLMOQ3,"
         sql &= " ISNULL((SELECT TOP 1 DonGia * (SELECT TyGia FROM PHIEUNHAPKHO WHERE NHAPKHO.SoPhieu=PHIEUNHAPKHO.SoPhieu) FROm NHAPKHO  WHERE NHAPKHO.IDVatTu = VATTU.ID ORDER BY SoPhieu DESC),0) GiaNhap"
+        sql &= "  , isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam "
         sql &= " FROM VATTU"
         sql &= " LEFT JOIN TENVATTU on VATTU.IDTenvattu=TENVATTU.ID  "
         sql &= " LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID"
@@ -601,43 +608,49 @@ Public Class frmYeuCauDi_DatHang
         tbChiPhi.EditValue = 0
         gdvTongHopCT.BeginUpdate()
         With gdvTongHopCT
-            For i As Integer = 0 To .RowCount - 1
-                If Not .GetRowCellValue(i, "Ton") Then
-                    If .GetRowCellValue(i, "CanXuat") > 0 Then
-                        If .GetRowCellValue(i, "CanXuat") > .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") Then
-                            .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "CanXuat") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
-                        End If
 
-                    End If
-                    '_tmp = .GetRowCellValue(i, "DMTon") + .GetRowCellValue(i, "CanXuat")
-                Else
-                    If .GetRowCellValue(i, "CanXuat") <= 0 Then
-                        If .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") < .GetRowCellValue(i, "DMTon") Then
-                            .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "DatToiThieu"))
-                        End If
-                    Else
-                        If .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") - .GetRowCellValue(i, "CanXuat") < .GetRowCellValue(i, "DMTon") Then
-                            If .GetRowCellValue(i, "CanXuat") + .GetRowCellValue(i, "DatToiThieu") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap") <= .GetRowCellValue(i, "DatToiThieu") Then
-                                .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "DatToiThieu"))
-                            Else
-                                .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "CanXuat") + .GetRowCellValue(i, "DatToiThieu") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
+            For i As Integer = 0 To .RowCount - 1
+                If DatTon = False Then
+                    If Not .GetRowCellValue(i, "Ton") Then
+                        If .GetRowCellValue(i, "CanXuat") > 0 Then
+                            If .GetRowCellValue(i, "CanXuat") > .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") Then
+                                .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "CanXuat") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
                             End If
+
                         End If
-                        '    _tmp = .GetRowCellValue(i, "CanXuat") Then
-                        'If _tmp > 0 Then
-                        '    If .GetRowCellValue(i, "DatToiThieu") = 1 Then
-                        '        .SetRowCellValue(i, "LuongDat", _tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
-                        '    Else
-                        '        If (_tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap")) / .GetRowCellValue(i, "DatToiThieu") >= 0.4 Then
-                        '            .SetRowCellValue(i, "LuongDat", Math.Round((_tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap")) / .GetRowCellValue(i, "DatToiThieu"), 0) * .GetRowCellValue(i, "DatToiThieu"))
-                        '        Else
-                        '            .SetRowCellValue(i, "LuongDat", 0)
-                        '        End If
-                        '    End If
-                        'If .GetRowCellValue(i, "LuongDat") < 0 Then .SetRowCellValue(i, "LuongDat", 0)
-                        'End If
+                        '_tmp = .GetRowCellValue(i, "DMTon") + .GetRowCellValue(i, "CanXuat")
+                    Else
+                        If .GetRowCellValue(i, "CanXuat") <= 0 Then
+                            If .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") < .GetRowCellValue(i, "DMTon") Then
+                                .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "DatToiThieu"))
+                            End If
+                        Else
+                            If .GetRowCellValue(i, "SLTon") + .GetRowCellValue(i, "CanNhap") - .GetRowCellValue(i, "CanXuat") < .GetRowCellValue(i, "DMTon") Then
+                                If .GetRowCellValue(i, "CanXuat") + .GetRowCellValue(i, "DatToiThieu") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap") <= .GetRowCellValue(i, "DatToiThieu") Then
+                                    .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "DatToiThieu"))
+                                Else
+                                    .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "CanXuat") + .GetRowCellValue(i, "DatToiThieu") - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
+                                End If
+                            End If
+                            '    _tmp = .GetRowCellValue(i, "CanXuat") Then
+                            'If _tmp > 0 Then
+                            '    If .GetRowCellValue(i, "DatToiThieu") = 1 Then
+                            '        .SetRowCellValue(i, "LuongDat", _tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap"))
+                            '    Else
+                            '        If (_tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap")) / .GetRowCellValue(i, "DatToiThieu") >= 0.4 Then
+                            '            .SetRowCellValue(i, "LuongDat", Math.Round((_tmp - .GetRowCellValue(i, "SLTon") - .GetRowCellValue(i, "CanNhap")) / .GetRowCellValue(i, "DatToiThieu"), 0) * .GetRowCellValue(i, "DatToiThieu"))
+                            '        Else
+                            '            .SetRowCellValue(i, "LuongDat", 0)
+                            '        End If
+                            '    End If
+                            'If .GetRowCellValue(i, "LuongDat") < 0 Then .SetRowCellValue(i, "LuongDat", 0)
+                            'End If
+                        End If
                     End If
+                Else
+                    .SetRowCellValue(i, "LuongDat", .GetRowCellValue(i, "SLYCTon"))
                 End If
+
                 If .GetRowCellValue(i, "LuongDat") > 0 Then tbChiPhi.EditValue += .GetRowCellValue(i, "LuongDat") * .GetRowCellValue(i, "GiaNhap")
             Next
         End With
@@ -878,8 +891,9 @@ Public Class frmYeuCauDi_DatHang
             If tb.Rows(0)(0) = 1 Then
                 If Not gdvCT.GetFocusedRowCellValue("LoaiDH") = 2 Then
                     If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
-                        ShowCanhBao("Bạn không có quyền sửa đặt hàng đã duyệt !")
-                        Exit Sub
+                        '   ShowCanhBao("Bạn không có quyền sửa đặt hàng đã duyệt !")
+                        '  btLuuDatHang.Enabled = False
+                        '    Exit Sub
                     End If
                 End If
             Else
@@ -889,6 +903,7 @@ Public Class frmYeuCauDi_DatHang
                         Exit Sub
                     End If
                 End If
+                '  btLuuDatHang.Enabled = True
             End If
             TrangThaiDH.isUpdate = True
             loadDSVatTuDatHang(gdvCT.GetFocusedRowCellValue("SoPhieu"), gdvCT.GetFocusedRowCellValue("LoaiDH"))
@@ -1186,6 +1201,17 @@ Public Class frmYeuCauDi_DatHang
             ShowCanhBao("Bạn không có quyền thực hiện thao tác này!")
             Exit Sub
         End If
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
+            If Not CheckHinhThucThanhToanMoiCoLoi() Then
+                ShowCanhBao("Chỉ được chọn hình thức thanh toán có lợi hơn !")
+                Exit Sub
+            End If
+
+        End If
+        If lueHTTCT.EditValue Is Nothing Then
+            ShowCanhBao("Chưa chọn hình thức chứng từ !")
+            Exit Sub
+        End If
         If cbLoaiDH.EditValue = 2 Then
             luuDHNhapKhau()
             Exit Sub
@@ -1381,6 +1407,10 @@ Public Class frmYeuCauDi_DatHang
             RollBackTransaction()
             ShowBaoLoi(LoiNgoaiLe)
         End Try
+
+        If cbTrangThaiDH.EditValue = 1 Then
+            ExecuteSQLNonQuery("Update PHIEUDATHANG set Hoanthanh = 1 where Sophieu = '" & tbSoPhieuDH.EditValue & "'")
+        End If
 
     End Sub
 
@@ -1643,6 +1673,8 @@ Public Class frmYeuCauDi_DatHang
         sql &= "	NHANSU.Ten AS TenNgLap,NHANSU_1.Ten AS TenNgd,NHANSU_2.Ten AS TenTakeCare,PHIEUDATHANG.Tiente, NHANSU_3.Ten AS TenNgDuyet,tblTienTe.Ten AS TenTienTe,"
         sql &= "	PHIEUDATHANG.FileDinhKem,PHIEUDATHANG.PheDuyet,PHIEUDATHANG.LoaiDH,tblTuDien.NoiDung AS TenLoaiDH, tblHinhThucTTKH.HinhThucTT_VIE AS HinhThucTT, DM_HINH_THUC_TT.GiaiThich as HinhThucTT2 ,'' AS CBTT, (CASE WHEN tb.SoTien is null then 0 ELSE (CASE WHEN tb.SoTien <> (PHIEUDATHANG.TienTruocThue + PHIEUDATHANG.TienThue) THEN 2 ELSE 1 END) END) AS TTTT, "
         sql &= "    (CASE PHIEUDATHANG.PheDuyet WHEN 0 THEN N'Soạn thảo' WHEN 1 THEN N'Đã duyệt' ELSE N'Chờ duyệt' END) as TrangThai,PHIEUDATHANG.NoiDungDeNghi,PHIEUDATHANG.NoiDungPhanHoi,PHIEUDATHANG.TGDeNghi,PHIEUDATHANG.TGDuyet"
+        sql &= " , REPLACE(STR((DATEDIFF(minute,PHIEUDATHANG.TGDeNghi,PHIEUDATHANG.TGDuyet) / 60), case when len(cast((DATEDIFF(minute,PHIEUDATHANG.TGDeNghi,PHIEUDATHANG.TGDuyet) / 60) as varchar)) <= 1 then 2 else len(cast((DATEDIFF(minute,PHIEUDATHANG.TGDeNghi,PHIEUDATHANG.TGDuyet) / 60) as varchar)) end), SPACE(1), '0') + ':' + convert(varchar(2),PARSENAME(cast(DATEDIFF(minute,PHIEUDATHANG.TGDeNghi,PHIEUDATHANG.TGDuyet) as float) / cast(60 as float),1)) TGXL "
+        sql &= ", PHIEUDATHANG.Hoanthanh "
         sql &= " FROM PHIEUDATHANG LEFT OUTER JOIN KHACHHANG ON PHIEUDATHANG.IDKhachhang=KHACHHANG.ID"
         sql &= "        LEFT JOIN NHANSU ON PHIEUDATHANG.IDUSer=NHANSU.ID"
         sql &= "        LEFT JOIN NHANSU AS NHANSU_1 ON PHIEUDATHANG.IDNgd=NHANSU_1.ID"
@@ -1991,6 +2023,8 @@ Public Class frmYeuCauDi_DatHang
             colNoiDungPH.VisibleIndex = 11
             colTGDeNghi.VisibleIndex = 12
             colTGDuyet.VisibleIndex = 13
+            colNguoiDuyet.VisibleIndex = 14
+
             colPhieuNhap.VisibleIndex = 14
             colThoiGian.VisibleIndex = 15
             colNgayNhan.VisibleIndex = 16
@@ -2024,6 +2058,8 @@ Public Class frmYeuCauDi_DatHang
             colNoiDungPH.VisibleIndex = 18
             colTGDeNghi.VisibleIndex = 19
             colTGDuyet.VisibleIndex = 20
+            colNguoiDuyet.VisibleIndex = 21
+
             colTrangThai.VisibleIndex = 21
             colFile.VisibleIndex = 22
             colMaKH.Width = 100
@@ -2189,7 +2225,7 @@ Public Class frmYeuCauDi_DatHang
 
     Private Sub mDuyetDH_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mDuyetDH.ItemClick, btDuyetDH.ItemClick
         If gdvCT.FocusedRowHandle < 0 Then Exit Sub
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
             ShowBaoLoi("Bạn không có quyền thực hiện thao tác này !")
             Exit Sub
         End If
@@ -2327,6 +2363,10 @@ Public Class frmYeuCauDi_DatHang
                 Exit Sub
             End If
         End If
+        If listVTCX.Rows.Count = 0 Then
+            ShowCanhBao("Hàng cần xuất số lượng chưa khớp !")
+            Exit Sub
+        End If
         Dim _strIDVT As String = "("
 
         For i As Integer = 0 To listVTCX.Rows.Count - 1
@@ -2356,6 +2396,9 @@ Public Class frmYeuCauDi_DatHang
         sql &= " ,XuatMax=(select isnull(Max(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID AND V_XUATKHO.Ngaythang BETWEEN '" & tbTuNgayTH.EditValue & "' AND '" & tbDenNgayTH.EditValue & "') "
         sql &= " ,VATTU.DatToithieu AS DatToiThieu, VATTU.DMTon"
         sql &= " ,SLTon=((select isnull(SUM(Soluong),0) from V_NHAPKHO where IDVattu=Vattu.ID) -(select isnull(SUM(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID))"
+        'Tai
+        sql &= " ,SLYCTon=(select isnull(sum(SoLuong),0) from DAT_TON_CHI_TIET where IdVatTu=Vattu.ID and isDuyet=1)"
+        'Tai
         sql &= " ,CanNhap=(select isnull(SUM(Cannhap),0) from DATHANG where IDVattu=Vattu.ID) "
         sql &= " ,Convert(float,0)LuongDat "
         sql &= " ,KHSD=ISNULL(tbKHSD.KHSD,0)"
@@ -2367,6 +2410,10 @@ Public Class frmYeuCauDi_DatHang
         sql &= " (CASE VATTU.XuatThue1 WHEN 0 THEN VATTU.DonGia1 ELSE (CASE VATTU.TienTe1 WHEN 0 THEN ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,-2) ELSE ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,2) END) END) AS GiaList,"
         sql &= " VATTU.Khoiluong1 AS KhoiLuong,tblTienTe.TyGia,VATTU.GiaNK,VATTU.TNK1,VATTU.TienTeNK,VATTU.ConSX,ISNULL(VATTU.SLMOQ1,0)SLMOQ1,ISNULL(VATTU.SLMOQ2,0)SLMOQ2,ISNULL(VATTU.SLMOQ3,0)SLMOQ3,"
         sql &= " ISNULL((SELECT TOP 1 DonGia * (SELECT TyGia FROM PHIEUNHAPKHO WHERE NHAPKHO.SoPhieu=PHIEUNHAPKHO.SoPhieu) FROm NHAPKHO  WHERE NHAPKHO.IDVatTu = VATTU.ID ORDER BY SoPhieu DESC),0) GiaNhap"
+        sql &= "  , isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam "
         sql &= " FROM VATTU"
         sql &= " LEFT OUTER JOIN TENVATTU on VATTU.IDTenvattu=TENVATTU.ID  "
         sql &= " LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID"
@@ -2450,6 +2497,9 @@ Public Class frmYeuCauDi_DatHang
         sql &= " ,XuatMax=(select isnull(Max(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID AND V_XUATKHO.Ngaythang BETWEEN '" & tbTuNgayTH.EditValue & "' AND '" & tbDenNgayTH.EditValue & "') "
         sql &= " ,VATTU.DatToithieu AS DatToiThieu, VATTU.DMTon"
         sql &= " ,SLTon=((select isnull(SUM(Soluong),0) from V_NHAPKHO where IDVattu=Vattu.ID) -(select isnull(SUM(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID))"
+        'Tai
+        sql &= " ,SLYCTon=(select isnull(sum(SoLuong),0) from DAT_TON_CHI_TIET where IdVatTu=Vattu.ID and isDuyet=1)"
+        'Tai
         sql &= " ,CanNhap=(select isnull(SUM(Cannhap),0) from DATHANG where IDVattu=Vattu.ID) "
         sql &= " ,Convert(float,0)LuongDat "
         sql &= " ,KHSD=ISNULL(tbKHSD.KHSD,0)"
@@ -2461,6 +2511,10 @@ Public Class frmYeuCauDi_DatHang
         sql &= " (CASE VATTU.XuatThue1 WHEN 0 THEN VATTU.DonGia1 ELSE (CASE VATTU.TienTe1 WHEN 0 THEN ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,-2) ELSE ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,2) END) END) AS GiaList,"
         sql &= " VATTU.Khoiluong1 AS KhoiLuong,tblTienTe.TyGia,VATTU.GiaNK,VATTU.TNK1,VATTU.TienTeNK,VATTU.ConSX,ISNULL(VATTU.SLMOQ1,0)SLMOQ1,ISNULL(VATTU.SLMOQ2,0)SLMOQ2,ISNULL(VATTU.SLMOQ3,0)SLMOQ3,"
         sql &= " ISNULL((SELECT TOP 1 DonGia * (SELECT TyGia FROM PHIEUNHAPKHO WHERE NHAPKHO.SoPhieu=PHIEUNHAPKHO.SoPhieu) FROm NHAPKHO  WHERE NHAPKHO.IDVatTu = VATTU.ID ORDER BY SoPhieu DESC),0) GiaNhap"
+        sql &= "  , isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam "
         sql &= " FROM VATTU"
         sql &= " LEFT OUTER JOIN TENVATTU on VATTU.IDTenvattu=TENVATTU.ID  "
         sql &= " LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID"
@@ -2551,6 +2605,9 @@ Public Class frmYeuCauDi_DatHang
         sql &= " ,XuatMax=(select isnull(Max(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID AND V_XUATKHO.Ngaythang BETWEEN '" & tbTuNgayTH.EditValue & "' AND '" & tbDenNgayTH.EditValue & "') "
         sql &= " ,VATTU.DatToithieu AS DatToiThieu, VATTU.DMTon"
         sql &= " ,SLTon=((select isnull(SUM(Soluong),0) from V_NHAPKHO where IDVattu=Vattu.ID) -(select isnull(SUM(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID))"
+        'Tai
+        sql &= " ,SLYCTon=(select isnull(sum(SoLuong),0) from DAT_TON_CHI_TIET where IdVatTu=Vattu.ID and isDuyet=1)"
+        'Tai
         sql &= " ,CanNhap=(select isnull(SUM(Cannhap),0) from DATHANG where IDVattu=Vattu.ID) "
         sql &= " ,Convert(float,0)LuongDat "
         sql &= " ,KHSD=ISNULL(tbKHSD.KHSD,0)"
@@ -2562,6 +2619,10 @@ Public Class frmYeuCauDi_DatHang
         sql &= " (CASE VATTU.XuatThue1 WHEN 0 THEN VATTU.DonGia1 ELSE (CASE VATTU.TienTe1 WHEN 0 THEN ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,-2) ELSE ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,2) END) END) AS GiaList,"
         sql &= " VATTU.Khoiluong1 AS KhoiLuong,tblTienTe.TyGia,VATTU.GiaNK,VATTU.TNK1,VATTU.TienTeNK,VATTU.ConSX,ISNULL(VATTU.SLMOQ1,0)SLMOQ1,ISNULL(VATTU.SLMOQ2,0)SLMOQ2,ISNULL(VATTU.SLMOQ3,0)SLMOQ3,"
         sql &= " ISNULL((SELECT TOP 1 DonGia * (SELECT TyGia FROM PHIEUNHAPKHO WHERE NHAPKHO.SoPhieu=PHIEUNHAPKHO.SoPhieu) FROm NHAPKHO  WHERE NHAPKHO.IDVatTu = VATTU.ID ORDER BY SoPhieu DESC),0) GiaNhap"
+        sql &= "  , isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam "
         sql &= " FROM VATTU"
         sql &= " LEFT JOIN TENVATTU on VATTU.IDTenvattu=TENVATTU.ID  "
         sql &= " LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID"
@@ -2655,6 +2716,9 @@ Public Class frmYeuCauDi_DatHang
         sql &= " ,XuatMax=(select isnull(Max(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID AND V_XUATKHO.Ngaythang BETWEEN '" & tbTuNgayTH.EditValue & "' AND '" & tbDenNgayTH.EditValue & "') "
         sql &= " ,VATTU.DatToithieu AS DatToiThieu, VATTU.DMTon"
         sql &= " ,SLTon=((select isnull(SUM(Soluong),0) from V_NHAPKHO where IDVattu=Vattu.ID) -(select isnull(SUM(Soluong),0) from V_XUATKHO where IDVattu=Vattu.ID))"
+        'Tai
+        sql &= " ,SLYCTon=(select isnull(sum(SoLuong),0) from DAT_TON_CHI_TIET where IdVatTu=Vattu.ID and isDuyet=0)"
+        'Tai
         sql &= " ,CanNhap=(select isnull(SUM(Cannhap),0) from DATHANG where IDVattu=Vattu.ID) "
         sql &= " ,Convert(float,0)LuongDat "
         sql &= " ,KHSD=ISNULL(tbKHSD.KHSD,0)"
@@ -2666,6 +2730,10 @@ Public Class frmYeuCauDi_DatHang
         sql &= " (CASE VATTU.XuatThue1 WHEN 0 THEN VATTU.DonGia1 ELSE (CASE VATTU.TienTe1 WHEN 0 THEN ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,-2) ELSE ROUND((VATTU.DonGia1/(100 + VATTU.MucThue1))*100,2) END) END) AS GiaList,"
         sql &= " VATTU.Khoiluong1 AS KhoiLuong,tblTienTe.TyGia,VATTU.GiaNK,VATTU.TNK1,VATTU.TienTeNK,VATTU.ConSX,ISNULL(VATTU.SLMOQ1,0)SLMOQ1,ISNULL(VATTU.SLMOQ2,0)SLMOQ2,ISNULL(VATTU.SLMOQ3,0)SLMOQ3,"
         sql &= " ISNULL((SELECT TOP 1 DonGia * (SELECT TyGia FROM PHIEUNHAPKHO WHERE NHAPKHO.SoPhieu=PHIEUNHAPKHO.SoPhieu) FROm NHAPKHO  WHERE NHAPKHO.IDVatTu = VATTU.ID ORDER BY SoPhieu DESC),0) GiaNhap"
+        sql &= "  , isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.Id),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.Id),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.Id AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.Id and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam "
         sql &= " FROM VATTU"
         sql &= " LEFT JOIN TENVATTU on VATTU.IDTenvattu=TENVATTU.ID  "
         sql &= " LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID"
@@ -4188,7 +4256,9 @@ Public Class frmYeuCauDi_DatHang
 
     Private Sub btDeNghiDuyet_Click(sender As System.Object, e As System.EventArgs) Handles btDeNghiDuyet.Click
         If cbTrangThaiDH.EditValue = 0 Then
-
+            If tbSoPhieuDH.EditValue Is Nothing Then
+                Exit Sub
+            End If
             Dim f As New frmDatHang_PhanHoi
             f.Text = "Đề nghị duyệt đặt hàng"
             f._EmailPhuTrach = cbTakeCareDatHang.ToolTip
@@ -4213,7 +4283,10 @@ Public Class frmYeuCauDi_DatHang
         If gdvCT.GetFocusedRowCellValue("PheDuyet") = 0 Then
             Dim f As New frmDatHang_PhanHoi
             f.Text = "Đề nghị duyệt đặt hàng"
-            f._EmailPhuTrach = gdvCT.GetFocusedRowCellValue("Email")
+            If gdvCT.GetFocusedRowCellValue("Email") IsNot Nothing Then
+                f._EmailPhuTrach = gdvCT.GetFocusedRowCellValue("Email")
+            End If
+
             f._NCC = gdvCT.GetFocusedRowCellValue("MaKH")
             f._PhuTrach = gdvCT.GetFocusedRowCellValue("IDTakecare")
             f.lbThongTin.Text = "Thông tin đề nghị duyệt đặt hàng"
@@ -4227,6 +4300,12 @@ Public Class frmYeuCauDi_DatHang
         If IsDBNull(lueHTTCT.EditValue) Then
             ShowCanhBao("Điền đầy đủ thông tin vào các mục dấu có dấu  (*)")
             Exit Sub
+        End If
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) Then
+            If Not CheckHinhThucThanhToanMoiCoLoi() Then
+                ShowCanhBao("Chỉ được chọn hình thức thanh toán có lợi hơn !")
+                Exit Sub
+            End If
         End If
         If TrangThaiDH.isAddNew Then Exit Sub
 
@@ -4261,6 +4340,24 @@ Public Class frmYeuCauDi_DatHang
 
 
     End Sub
-
+    'Tai
+    Private Function CheckHinhThucThanhToanMoiCoLoi()
+        Try
+            Dim sql As String = "select SoTT from DM_HINH_THUC_TT where id = (select IDHinhThucTT2 from KHACHHANG where ID = @IdKH); "
+            sql &= "select SoTT from DM_HINH_THUC_TT where id = @IDHinhThuc"
+            AddParameter("@IdKH", gdvNhaCCDatHang.EditValue)
+            AddParameter("@IDHinhThuc", cbHinhThucTT2.EditValue)
+            Dim ds As DataSet = ExecuteSQLDataSet(sql)
+            If ds Is Nothing Then Throw New Exception(LoiNgoaiLe)
+            If ds.Tables(0).Rows.Count = 0 Then Return False
+            If ds.Tables(1).Rows(0)(0) >= ds.Tables(0).Rows(0)(0) Then Return True
+            Return False
+        Catch ex As Exception
+            ShowBaoLoi(ex.Message)
+            Return False
+        End Try
+        Return True
+    End Function
+    'Tai
 
 End Class

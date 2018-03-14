@@ -152,8 +152,8 @@ Public Class frmGiaoViec
 
     Private Sub gdvThiCongCT_InitNewRow(sender As System.Object, e As DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs) Handles gdvThiCongCT.InitNewRow
         gdvThiCongCT.SetFocusedRowCellValue("AZ", Convert.ToInt32(gdvThiCongCT.GetRowCellValue(gdvThiCongCT.RowCount - 2, "AZ")) + 1)
-        gdvThiCongCT.SetFocusedRowCellValue("NgayBatDau", New DateTime(Today.Year, Today.Month, Today.Day, 7, 30, 0))
-        gdvThiCongCT.SetFocusedRowCellValue("NgayKetThuc", New DateTime(Today.Year, Today.Month, Today.Day, 17, 30, 0))
+        gdvThiCongCT.SetFocusedRowCellValue("NgayBatDau", New DateTime(Today.Year, Today.Month, Today.Day, 8, 0, 0))
+        gdvThiCongCT.SetFocusedRowCellValue("NgayKetThuc", New DateTime(Today.Year, Today.Month, Today.Day, 17, 0, 0))
     End Sub
 
     Private Sub gdvThiCongCT_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles gdvThiCongCT.KeyDown

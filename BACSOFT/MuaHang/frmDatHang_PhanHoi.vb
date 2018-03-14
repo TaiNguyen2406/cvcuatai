@@ -26,7 +26,12 @@ Public Class frmDatHang_PhanHoi
             Else
 
                 ThemThongBaoChoNV("Đặt hàng: " & _SoPhieu & " - NCC: " & _NCC & " đang đề nghị duyệt" & vbCrLf & str, 1)
-                Utils.Email.Send("baoanjsc@gmail.com", "Đặt hàng: " & _SoPhieu & " - NCC: " & _NCC & " đang đề nghị duyệt", str)
+                Dim dt As DataTable = ExecuteSQLDataTable(meSql.EditValue)
+                ' Utils.Email.Send("baoanjsc@gmail.com", "Đặt hàng: " & _SoPhieu & " - NCC: " & _NCC & " đang đề nghị duyệt", str)
+                For i = 0 To dt.Rows.Count - 1
+                    Utils.Email.Send(dt.Rows(i)(0).ToString, "Đặt hàng: " & _SoPhieu & " - NCC: " & _NCC & " đang đề nghị duyệt", str)
+                Next
+
                 CType(deskTop.tabMain.SelectedTabPage.Controls(0), frmYeuCauDi_DatHang).cbTrangThaiDH.EditValue = 2
                 CType(deskTop.tabMain.SelectedTabPage.Controls(0), frmYeuCauDi_DatHang).loadDSTongHopVatTuDatHang()
                 ShowAlert("Đã cập nhật !")

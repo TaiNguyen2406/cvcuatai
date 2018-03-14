@@ -29,7 +29,7 @@ Public Class frmCNXuatKho
         If TrangThai.isAddNew Then
             Dim sql As String = ""
             sql &= " SELECT row_number() over (order by XUATKHO.ID) AS AZ,TENNUOC.Ten AS XuatXu, XUATKHO.ID,XUATKHO.SoPhieu,IDVatTu,VATTU.Model,VATTU.HangTon,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.ThongSo,TENDONVITINH.Ten AS DVT,SoLuong,DonGia,(SoLuong*DonGia)ThanhTien,XUATKHO.TienTe,XUATKHO.MucThue,XUATKHO.XuatThue,IDChaoGia,XUATKHO.ModifyID,XUATKHO.ModifyDate, "
-            sql &= " Convert(float,0) AS slTon,Convert(float,0)SLTonThuc,0.0 AS GiaNhap, 0.0 AS ChietKhau,0 AS LoiGia,isGiaDacBiet"
+            sql &= " Convert(float,0) AS slTon,Convert(float,0) AS XuatKho,Convert(float,0)SLTonThuc,0.0 AS GiaNhap, 0.0 AS ChietKhau,0 AS LoiGia,isGiaDacBiet"
             sql &= " FROM XUATKHO "
             sql &= " INNER JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu"
             sql &= " INNER JOIN VATTU ON VATTU.ID=XUATKHO.IDVatTu "
@@ -61,6 +61,14 @@ Public Class frmCNXuatKho
             sql &= " SELECT *,(CASE WHEN GiaNhap-DonGia >0  THEN 1 ELSE 0 END)LoiGia FROM "
             sql &= " (SELECT row_number() over (order by XUATKHO.ID) AS AZ,TENNUOC.Ten AS XuatXu, XUATKHO.ID,XUATKHO.SoPhieu,XUATKHO.IDVatTu,VATTU.Model,VATTU.HangTon,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.ThongSo,TENDONVITINH.Ten AS DVT,XUATKHO.SoLuong,XUATKHO.DonGia,(XUATKHO.SoLuong*XUATKHO.DonGia)ThanhTien,XUATKHO.TienTe,XUATKHO.MucThue,XUATKHO.XuatThue,IDChaoGia,XUATKHO.ModifyID,XUATKHO.ModifyDate, "
             sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO INNER JOIN PHIEUNHAPKHO ON PHIEUNHAPKHO.SoPhieu=NHAPKHO.SoPhieu where IDVattu=XUATKHO.IDVattu AND Convert(datetime,Convert(nvarchar, PHIEUNHAPKHO.NgayThang,103),103) <=Convert(datetime,Convert(nvarchar, PHIEUNHAPKHO.NgayThang,103),103) )-(select isnull(SUM(Soluong),0) from XUATKHO AS tb INNER JOIN PHIEUXUATKHO as PXK ON PXK.SoPhieu=tb.SoPhieu  where tb.IDVattu=XUATKHO.IDVattu AND PXK.NgayThang <PHIEUXUATKHO.NgayThang)) AS slTon,"
+
+            'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = XUATKHO.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+            'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = XUATKHO.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+            'sql &= " as XuatTam, "
+            sql &= "   isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = XUATKHO.IDVatTu),0)  "
+            sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = XUATKHO.IDVatTu),0) "
+            sql &= " - isnull((select SUM(SoLuong) from XUATKHO t where t.IdVatTu = XUATKHO.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = XUATKHO.IDVatTu and SlXuatKho > 0)),0) "
+            sql &= " as XuatTam, "
             sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=XUATKHO.IDVattu )-(select isnull(SUM(Soluong),0) from XUATKHO AS tb  where tb.IDVattu=XUATKHO.IDVattu)) AS SLTonThuc,isnull(XUATKHO.isGiaDacBiet,Convert(bit,0))isGiaDacBiet,"
             sql &= " ISNULL(XUATKHO.GiaNhap,ISNULL(GIANHAPTB.DonGia,ISNULL(ISNULL("
             sql &= "        (SELECT     TOP (1) Gianhap"
@@ -191,6 +199,17 @@ Public Class frmCNXuatKho
         sql &= "  SELECT CHAOGIA.ID AS IDCG,Convert(bit,0)Chon, CHAOGIA.IDVatTu,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,VATTU.Model,VATTU.ThongSo,"
         sql &= " TENDONVITINH.Ten AS TenDVT,CanXuat AS SoLuong,CHAOGIA.SoLuong AS SLChao,CHAOGIA.DonGia,CHAOGIA.ChietKhau,CHAOGIA.MucThue,CHAOGIA.XuatThue,"
         sql &= " (Round((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=CHAOGIA.IDVattu ),4)-Round((select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=CHAOGIA.IDVattu ),4)) AS slTon,"
+
+        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        sql &= " as XuatTam, "
+
+        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where  IdVatTu = CHAOGIA.IDVattu AND SoCG = '" & SoPhieuCG & "'),0) - "
+        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where  IdVatTu = CHAOGIA.IDVattu AND SoCG = '" & SoPhieuCG & "'),0) "
+        sql &= " as XuatTamCG, "
+
+
+
         sql &= " VATTU.HangTon, ISNULL(CHAOGIA.AZ,0)AZ,"
         sql &= " ISNULL(GIANHAPTB.DonGia,ISNULL(ISNULL("
         sql &= "        (SELECT     TOP (1) Gianhap"
@@ -221,7 +240,7 @@ Public Class frmCNXuatKho
 
         sql &= " SELECT  CHAOGIAAUX.ID AS IDCG, Convert(bit,0)Chon, NULL AS IDVatTu,NoiDung AS TenVT,HangSX AS TenHang,"
         sql &= " NULL AS Model,NULL AS ThongSo,TENDONVITINH.Ten AS TenDVT,SoLuong,SoLuong AS SLChao,DonGia,CHAOGIAAUX.ChietKhau,MucThue,XuatThue,"
-        sql &= " NULL AS slTon, NULL AS HangTon,9999 AS AZ,NULL as GiaNhap,DonVi AS IDDonViTinh,NULL AS XuatXu"
+        sql &= " NULL AS slTon, NULL as XuatTam, NULL as XuatTamCG , NULL AS HangTon,9999 AS AZ,NULL as GiaNhap,DonVi AS IDDonViTinh,NULL AS XuatXu"
         sql &= " FROM CHAOGIAAUX"
         sql &= " LEFT OUTER JOIN TENDONVITINH ON CHAOGIAAUX.DonVi=TENDONVITINH.ID"
         sql &= " WHERE CHAOGIAAUX.Sophieu=@SP"
@@ -245,6 +264,11 @@ Public Class frmCNXuatKho
         sql &= " SELECT *,(CASE WHEN GiaNhap-DonGia >0  THEN 1 ELSE 0 END)LoiGia FROM (SELECT row_number() over (order by XUATKHO.ID) AS AZ,TENNUOC.Ten AS XuatXu, XUATKHO.ID,XUATKHO.SoPhieu,XUATKHO.IDVatTu,VATTU.Model,VATTU.HangTon,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.ThongSo,TENDONVITINH.Ten AS DVT,XUATKHO.SoLuong,XUATKHO.DonGia,(XUATKHO.SoLuong*XUATKHO.DonGia)ThanhTien,XUATKHO.TienTe,XUATKHO.MucThue,XUATKHO.XuatThue,IDChaoGia,XUATKHO.ModifyID,XUATKHO.ModifyDate, "
         ' sql &= " (Round((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=XUATKHO.IDVattu),4)-Round((select isnull(SUM(Soluong),0) from XUATKHO AS tb where tb.IDVattu=XUATKHO.IDVattu),4)) AS slTon,"
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO INNER JOIN PHIEUNHAPKHO ON PHIEUNHAPKHO.SoPhieu=NHAPKHO.SoPhieu where IDVattu=XUATKHO.IDVattu AND Convert(datetime,Convert(nvarchar, PHIEUNHAPKHO.NgayThang,103),103) <=Convert(datetime,Convert(nvarchar, PHIEUNHAPKHO.NgayThang,103),103) )-(select isnull(SUM(Soluong),0) from XUATKHO AS tb INNER JOIN PHIEUXUATKHO as PXK ON PXK.SoPhieu=tb.SoPhieu  where tb.IDVattu=XUATKHO.IDVattu AND PXK.NgayThang <PHIEUXUATKHO.NgayThang)) AS slTon,"
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = XUATKHO.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = XUATKHO.IDVattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
+
         sql &= " ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=XUATKHO.IDVattu )-(select isnull(SUM(Soluong),0) from XUATKHO AS tb  where tb.IDVattu=XUATKHO.IDVattu)) AS SLTonThuc,isnull(XUATKHO.isGiaDacBiet,Convert(bit,0))isGiaDacBiet,"
         sql &= " ISNULL(XUATKHO.GiaNhap,ISNULL(GIANHAPTB.DonGia,ISNULL(ISNULL("
         sql &= "        (SELECT     TOP (1) Gianhap"
@@ -620,12 +644,24 @@ Public Class frmCNXuatKho
         End If
     End Sub
 
+    Private Function tryObject2Double(obj As Object) As Double
+        Try
+            If obj Is DBNull.Value Then Return 0
+            Return Convert.ToDouble(obj)
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
     Public Sub btChuyenXK_Click(sender As System.Object, e As System.EventArgs) Handles btChuyenXK.Click, mXuatKho.ItemClick
 
         gdvVTCT.BeginUpdate()
         For i As Integer = 0 To gdvThamChieuCT.RowCount - 1
             If gdvThamChieuCT.GetRowCellValue(i, "Chon") Then
-                If gdvThamChieuCT.GetRowCellValue(i, "SoLuong") > 0 Then
+
+
+
+                If tryObject2Double(gdvThamChieuCT.GetRowCellValue(i, "SoLuong")) + tryObject2Double(gdvThamChieuCT.GetRowCellValue(i, "XuatTamCG")) > 0 Then
                     If Not IsDBNull(gdvThamChieuCT.GetRowCellValue(i, "IDVatTu")) Then
                         gdvVTCT.AddNewRow()
                         gdvVTCT.SetFocusedRowCellValue("IDVatTu", gdvThamChieuCT.GetRowCellValue(i, "IDVatTu"))
@@ -634,25 +670,34 @@ Public Class frmCNXuatKho
                         gdvVTCT.SetFocusedRowCellValue("Model", gdvThamChieuCT.GetRowCellValue(i, "Model"))
                         gdvVTCT.SetFocusedRowCellValue("ThongSo", gdvThamChieuCT.GetRowCellValue(i, "ThongSo"))
                         gdvVTCT.SetFocusedRowCellValue("DVT", gdvThamChieuCT.GetRowCellValue(i, "TenDVT"))
-                        gdvVTCT.SetFocusedRowCellValue("SoLuong", gdvThamChieuCT.GetRowCellValue(i, "SoLuong"))
+
+                        If chkCongTrinh.Checked Then
+                            gdvVTCT.SetFocusedRowCellValue("SoLuong", gdvThamChieuCT.GetRowCellValue(i, "XuatTamCG"))
+                        Else
+                            gdvVTCT.SetFocusedRowCellValue("SoLuong", gdvThamChieuCT.GetRowCellValue(i, "SoLuong"))
+                        End If
+
                         gdvVTCT.SetFocusedRowCellValue("DonGia", gdvThamChieuCT.GetRowCellValue(i, "DonGia"))
-                        gdvVTCT.SetFocusedRowCellValue("ThanhTien", gdvThamChieuCT.GetRowCellValue(i, "SoLuong") * gdvThamChieuCT.GetRowCellValue(i, "DonGia"))
+
+
+                        If chkCongTrinh.Checked Then
+                            gdvVTCT.SetFocusedRowCellValue("ThanhTien", gdvThamChieuCT.GetRowCellValue(i, "XuatTamCG") * gdvThamChieuCT.GetRowCellValue(i, "DonGia"))
+                        Else
+                            gdvVTCT.SetFocusedRowCellValue("ThanhTien", gdvThamChieuCT.GetRowCellValue(i, "SoLuong") * gdvThamChieuCT.GetRowCellValue(i, "DonGia"))
+                        End If
+
+
                         gdvVTCT.SetFocusedRowCellValue("MucThue", gdvThamChieuCT.GetRowCellValue(i, "MucThue"))
                         gdvVTCT.SetFocusedRowCellValue("XuatThue", False)
                         gdvVTCT.SetFocusedRowCellValue("GiaNhap", gdvThamChieuCT.GetRowCellValue(i, "GiaNhap"))
                         gdvVTCT.SetFocusedRowCellValue("slTon", gdvThamChieuCT.GetRowCellValue(i, "slTon"))
+                        gdvVTCT.SetFocusedRowCellValue("XuatTam", gdvThamChieuCT.GetRowCellValue(i, "XuatTam"))
                         gdvVTCT.SetFocusedRowCellValue("ChietKhau", gdvThamChieuCT.GetRowCellValue(i, "ChietKhau"))
                         gdvVTCT.SetFocusedRowCellValue("XuatXu", gdvThamChieuCT.GetRowCellValue(i, "XuatXu"))
                         gdvVTCT.SetFocusedRowCellValue("IDChaoGia", gdvThamChieuCT.GetRowCellValue(i, "IDCG"))
                         gdvVTCT.SetFocusedRowCellValue("LoiGia", 0)
                         gdvVTCT.SetFocusedRowCellValue("isGiaDacBiet", False)
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
-                        'gdvVTCT.SetFocusedRowCellValue("", gdvThamChieuCT.GetRowCellValue(i, ""))
+
                         gdvVTCT.CloseEditor()
                         gdvVTCT.UpdateCurrentRow()
                     Else
@@ -816,10 +861,12 @@ Public Class frmCNXuatKho
                 Return True
             End If
         Next
+
         Return False
     End Function
 
     Private Sub btGhi_Click(sender As System.Object, e As System.EventArgs) Handles btGhi.Click
+
         btCal.PerformClick()
         If CheckTonAm() Then Exit Sub
 
@@ -1023,24 +1070,44 @@ Public Class frmCNXuatKho
                 End If
             End If
 
+
+
             'Lấy tổng tiền tạm ứng cho chào giá
             'Mục đích 100 là bán hàng
             sql = "select "
-            sql &= "(select isnull(sum(Sotien),0) FROM THU where MucDich = 100 AND PhieuTC0 = @SoCG) "
+            sql &= "(select isnull(sum(Sotien*TyGia),0) FROM THU where MucDich = 100 AND PhieuTC0 = @SoCG) "
             sql &= " + "
-            sql &= "(select isnull(sum(sotien),0) from THUNH WHERE MucDich = 100 AND PhieuTC0 = @SoCG) "
+            sql &= "(select isnull(sum(sotien*TyGia),0) from THUNH WHERE MucDich = 100 AND PhieuTC0 = @SoCG) "
+            sql &= " - "
+            sql &= "(select isnull(sum(sotien*TyGia),0) from CHI WHERE MucDich = 230 AND PhieuTC0 = @SoCG) "
+            sql &= " - "
+            sql &= "(select isnull(sum(sotien*TyGia),0) from UNC WHERE MucDich = 230 AND PhieuTC0 = @SoCG) "
             AddParameter("@SoCG", SoChaoGia)
             Dim TienTamUng As Double = ExecuteSQLDataTable(sql).Rows(0)(0)
 
+
+            '********************************************
+            'Lấy mức phân bổ tối đa theo tiền tạm ứng
+            Dim _tienPhanBoMax As Double = TienTamUng
+            '********************************************
+
             'Lấy danh sách xuất kho tương ứng với chào giá này
             AddParameter("@SoCG", SoChaoGia)
-            Dim dtXuatKho As DataTable = ExecuteSQLDataTable("SELECT SoPhieu, (Tientruocthue+Tienthue)ThanhTien FROM PHIEUXUATKHO WHERE SophieuCG = @SoCG ORDER BY NgayThang ASC")
+            Dim dtXuatKho As DataTable = ExecuteSQLDataTable("SELECT SoPhieu, ((Tientruocthue+Tienthue) * TyGia) ThanhTien FROM PHIEUXUATKHO WHERE SophieuCG = @SoCG ORDER BY NgayThang ASC")
 
             Dim SoDuTamUng As Double = TienTamUng
 
             For Each r As DataRow In dtXuatKho.Rows
 
                 Dim tienPhanBo As Double = r("ThanhTien") * TyLePhanBo
+
+                '**********************************************
+                'Lấy mức phân bổ tối đa theo tiền tạm ứng
+                If tienPhanBo > _tienPhanBoMax Then
+                    tienPhanBo = _tienPhanBoMax
+                End If
+                _tienPhanBoMax = _tienPhanBoMax - tienPhanBo
+                '********************************************
 
                 If TienTamUng <> 0 Then
                     SoDuTamUng = SoDuTamUng - tienPhanBo
@@ -1117,13 +1184,16 @@ Public Class frmCNXuatKho
         End If
     End Sub
 
+
     Private Sub tbTienTruocThue_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles tbTienTruocThue.EditValueChanged, tbTienThue.EditValueChanged
         tbTongXK.EditValue = tbTienTruocThue.EditValue + tbTienThue.EditValue
     End Sub
 
+
     Private Sub tbTruocThueCG_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles tbTruocThueCG.EditValueChanged, tbTienThueCG.EditValueChanged
         tbTongCG.EditValue = tbTruocThueCG.EditValue + tbTienThueCG.EditValue
     End Sub
+
 
     Private Sub btCapNhatGia_Click(sender As System.Object, e As System.EventArgs) Handles btCapNhatGia.Click
         If ShowCauHoi("Cập nhật giá xuất kho ? ") Then
@@ -1146,6 +1216,7 @@ Public Class frmCNXuatKho
 
 
     Private Sub mnuSaoChepDongHangHoa_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuSaoChepDongHangHoa.ItemClick
+
         If gdvVTCT.FocusedRowHandle < 0 Then Exit Sub
         'If Not ShowCauHoi("Tách số lượng hàng hóa này?") Then Exit Sub
         If gdvVTCT.GetFocusedRowCellValue("SoLuong") <= 1 Then
@@ -1180,6 +1251,5 @@ Public Class frmCNXuatKho
         gdvVTCT.SetFocusedRowCellValue("SoLuong", sl)
         gdvVTCT.SetRowCellValue(index, "SoLuong", gdvVTCT.GetRowCellValue(index, "SoLuong") - sl)
     End Sub
-
 
 End Class

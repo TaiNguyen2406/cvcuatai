@@ -5,8 +5,8 @@ Namespace Utils
     Public Class Email
 
         Public Shared TenEmail As String = "Auto.BaoAn"
-        Public Shared DiaChiEmail As String = "auto.baoan@gmail.com"
-        Public Shared MatKhauEmail As String = "adminbaoan"
+        Public Shared DiaChiEmail As String = "duytai.baoan@gmail.com" '"auto.baoan@gmail.com"
+        Public Shared MatKhauEmail As String = "tai240693" '"adminbaoan"
         Public Shared ChuKyEmail As String = ""
 
 

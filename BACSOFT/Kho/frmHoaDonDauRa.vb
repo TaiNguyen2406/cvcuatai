@@ -13,6 +13,7 @@ Public Class frmHoaDonDauRa
 
 
         Dim tg As DateTime = GetServerTime()
+        '  tg = tg.AddYears(1)
         'txtTuNgay.EditValue = New DateTime(tg.Year, tg.Month, 1)
         txtDenNgay.EditValue = New DateTime(tg.Year, tg.Month, Date.DaysInMonth(tg.Year, tg.Month))
         txtTuNgay.EditValue = tg.AddDays(-30)
@@ -49,16 +50,23 @@ Public Class frmHoaDonDauRa
             gdvHangTienCT.Columns("GhiChuKhac").Visible = False
         End If
 
+        If LoaiCT2 <> ChungTu.LoaiCT2.BanHangHoa Then
+            chkLocHoaDonKhongVatTu.Checked = False
+        End If
+
         chkThuGon.Checked = True
+
 
     End Sub
 
+
     Private Sub LoadDsHoaDon()
 
+
         Dim sql As String = "SELECT Id,IdKH,TenKH,DiaChi,MaSoThue,NguoiLienHe,HtThanhToan,TyGia,Thue,KemBangKe, "
-        sql &= "DienGiai,NgayHD,SoHD,KyHieuHD,TrangThai,ThanhTien,TienThue,TongTien, GhiSo, "
+        sql &= "DienGiai,NgayHD,SoHD,KyHieuHD,TrangThai,ThanhTien,TienThue,TongTien, GhiSo,"
         sql &= "(SELECT Ten FROM tblTienTe WHERE ID = CHUNGTU.TienTe)TienTe, "
-        sql &= "(SELECT Ten FROM NHANSU WHERE ID = CHUNGTU.NguoiLap)NguoiLap "
+        sql &= "(SELECT Ten FROM NHANSU WHERE ID = CHUNGTU.NguoiLap)NguoiLap,SoTkNganHang,TenTkNganHang "
         sql &= "FROM CHUNGTU WHERE Convert(datetime,CONVERT(nvarchar,NgayHD,103),103) BETWEEN @TuNgay AND @DenNgay "
         sql &= "AND LoaiCT = @LoaiCT AND LoaiCT2 = " & LoaiCT2 & " "
 
@@ -70,16 +78,33 @@ Public Class frmHoaDonDauRa
             sql &= "AND TrangThai = @TrangThai "
         End If
 
+        If chkLocHoaDonKhongVatTu.Checked Then
+            sql &= " AND Id IN (SELECT a.Id FROM CHUNGTU a LEFT OUTER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT WHERE b.IdVatTu is null "
+            sql &= " AND Convert(datetime,CONVERT(nvarchar,a.NgayHD,103),103) BETWEEN @TuNgay AND @DenNgay "
+            sql &= "AND a.LoaiCT = @LoaiCT AND a.LoaiCT2 = " & LoaiCT2 & " AND b.ButToan = 1 "
+            sql &= ") "
+        End If
+
+
         sql &= "ORDER BY CONVERT(INT,SOHD) DESC, NgayHD DESC "
 
-        AddParameter("@TuNgay", txtTuNgay.EditValue)
-        AddParameter("@DenNgay", txtDenNgay.EditValue)
+        Dim tungay As DateTime = txtTuNgay.EditValue
+        Dim denngay As DateTime = txtDenNgay.EditValue
+
+        AddParameter("@TuNgay", New Date(tungay.Year, tungay.Month, tungay.Day))
+        AddParameter("@DenNgay", New Date(denngay.Year, denngay.Month, denngay.Day))
+
+
+
 
         gdv.DataSource = ExecuteSQLDataTable(sql)
 
-
-        
-
+        Try
+            gdvData.FocusedRowHandle = -1
+            gdvData.FocusedRowHandle = 0
+        Catch ex As Exception
+            gdvHangTien.DataSource = Nothing
+        End Try
 
 
     End Sub
@@ -238,6 +263,7 @@ Public Class frmHoaDonDauRa
         Dim f As New frmUpdateHoaDon
         f.isDangXuatKho = False
         f.LoaiCT2 = LoaiCT2
+        f.TagX = Me.Parent.Tag
         f.Text = "Cập nhật hóa đơn (" & NguoiDung & ")"
         f.idHoaDon = gdvData.GetFocusedRowCellValue("Id")
         TrangThai.isUpdate = True
@@ -254,6 +280,7 @@ Public Class frmHoaDonDauRa
         Dim f As New frmUpdateHoaDon
         f.LoaiCT2 = LoaiCT2
         f.isDangXuatKho = False
+        f.TagX = Me.Parent.Tag
         f.Text = "Lập hóa đơn (" & NguoiDung & ")"
         f.ShowDialog()
     End Sub
@@ -401,6 +428,11 @@ Public Class frmHoaDonDauRa
             Exit Sub
         End If
 
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KeToan) Then
+            ShowCanhBao("Bạn không có quyền kế toán để bỏ/ghi sổ!")
+            Exit Sub
+        End If
+
         Me.Enabled = False
 
         If gdvData.GetFocusedRowCellValue("GhiSo") = False Then
@@ -483,7 +515,49 @@ Public Class frmHoaDonDauRa
         mnuInBangKe_ItemClick(sender, e)
     End Sub
 
+
+    'hoa don dau ra
     Private Sub BarButtonItem7_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem7.ItemClick
+
+        'If gdvData.FocusedRowHandle < 0 Then Exit Sub
+
+        'Dim Sql As String = ""
+        'Dim f As New frmIn("In phiếu xuất kho")
+        'Dim mainRpt As New DevExpress.XtraReports.UI.XtraReport
+        'mainRpt.CreateDocument()
+
+        'Me.Text = "In phiếu xuất kho theo lô  ..."
+        'Sql = ""
+        'Sql &= "SELECT LoaiCT,LoaiCT2,NgayCT,SoCT,NgayHD,SoHD,TenKH,DiaChi,b.DienGiai,a.TyGia, "
+        'Sql &= "(select Model from vattu where id = b.IdVatTu)Model,b.DVT,b.SoLuong,"
+        'Sql &= "b.DonGia*isnull(a.TyGia,1) DonGia,b.ThanhTien*isnull(a.TyGia,1) ThanhTien "
+        'Sql &= "FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT  "
+        'Sql &= "WHERE a.LoaiCT = @LoaiCT and b.ButToan = @ButToan AND a.ID = @Id "
+        'AddParameter("@Id", gdvData.GetFocusedRowCellValue("Id"))
+        'AddParameter("@ButToan", ChungTu.LoaiButToan.HangTien)
+        'AddParameter("@LoaiCT", ChungTu.LoaiChungTu.HoaDonDauRa)
+        'Dim dt As DataTable = ExecuteSQLDataTable(Sql)
+
+        'Dim rpt As New rptPhieuXuatKhoThue
+        'rpt.DataSource = dt
+        'Dim tt As Double = 0
+        'For j As Integer = 0 To dt.Rows.Count - 1
+        '    tt += dt.Rows(j)("ThanhTien")
+        'Next
+
+        'rpt.lblSoTienBangChu.Text = Utils.StringHelper.VIE2String(tt, False, "đồng", "lẻ", "phẩy", 2)
+        'Dim ngayct As DateTime = Convert.ToDateTime(dt.Rows(0)("NgayCT"))
+        'rpt.lblNgayCT.Text = String.Format("Ngày {0} tháng {1} năm {2}", ngayct.Day, ngayct.Month, ngayct.Year)
+        'rpt.lblSoCT.Text = "Số: " & ChungTu.TienToCT(dt.Rows(0)("LoaiCT"), dt.Rows(0)("LoaiCT2")) & dt.Rows(0)("SoCT")
+        'rpt.lblNguoiNhan.Text = "- Họ tên người nhận hàng: " & dt.Rows(0)("TenKH").ToString
+        'rpt.lblDiaChi.Text = "- Địa chỉ (bộ phận): " & dt.Rows(0)("DiaChi").ToString
+        'rpt.RequestParameters = False
+        'rpt.CreateDocument()
+        'mainRpt.Pages.AddRange(rpt.Pages)
+
+
+        'f.printControl.PrintingSystem = mainRpt.PrintingSystem
+        'f.ShowDialog()
 
     End Sub
 
@@ -673,7 +747,12 @@ Public Class frmHoaDonDauRa
 
         Dim f As New frmHienThiFileExcel
 
+        Dim Impersonator As New Impersonator()
+        Impersonator.BeginImpersonation()
+
         f.workbook = SpreadsheetGear.Factory.GetWorkbook("\\bacboss\Data$\thue\BangKeChiTietHangHoa.xls", System.Globalization.CultureInfo.CurrentCulture)
+
+        Impersonator.EndImpersonation()
         f.excelViewer.ActiveWorkbook = f.workbook
 
 
@@ -802,13 +881,45 @@ Public Class frmHoaDonDauRa
             gdvData.Columns("TrangThai").Visible = Not chkThuGon.Checked
             gdvData.Columns("DienGiai").Visible = Not chkThuGon.Checked
             gdvData.Columns("NguoiLap").Visible = Not chkThuGon.Checked
+            gdvData.Columns("SoTkNganHang").Visible = Not chkThuGon.Checked
+            gdvData.Columns("TenTkNganHang").Visible = Not chkThuGon.Checked
         Catch ex As Exception
 
         End Try
-        
+
+
+    End Sub
+
+    Private Sub gdvData_RowCellStyle(sender As System.Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles gdvData.RowCellStyle
+        Try
+            If gdvData.GetRowCellValue(e.RowHandle, "TrangThai") = HoaDonGTGT.TrangThaiHoaDon.TrangThai.HoaDonHuy Then
+                e.Appearance.Font = New Font(Me.Font, FontStyle.Strikeout)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub gdvData_DoubleClick(sender As System.Object, e As System.EventArgs) Handles gdvData.DoubleClick
+        If gdvData.FocusedRowHandle < 0 Then Exit Sub
+        Dim f As New frmUpdateHoaDon
+        f.isDangXuatKho = False
+        f.LoaiCT2 = LoaiCT2
+        f.Text = "Xem chi tiết hóa đơn (" & NguoiDung & ")"
+        f.idHoaDon = gdvData.GetFocusedRowCellValue("Id")
+        TrangThai.isUpdate = True
+        f.btnThemMoi.Enabled = False
+        f.btGhiLai.Enabled = False
+        f.ShowDialog()
+    End Sub
+
+
+    Private Sub mnuHoaDonTuyChinh_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuHoaDonTuyChinh.ItemClick
 
     End Sub
 
 
-
+    Private Sub mnuInXuatKho_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuInXuatKho.ItemClick
+        BarButtonItem7_ItemClick(sender, e)
+    End Sub
 End Class

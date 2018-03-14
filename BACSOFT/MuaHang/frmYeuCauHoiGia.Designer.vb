@@ -531,7 +531,7 @@ Partial Class frmYeuCauHoiGia
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1146, 27)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1146, 29)
         '
         'barDockControlBottom
         '
@@ -544,15 +544,15 @@ Partial Class frmYeuCauHoiGia
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 27)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 533)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 531)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1146, 27)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 533)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1146, 29)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 531)
         '
         'btXoa
         '
@@ -1145,7 +1145,7 @@ Partial Class frmYeuCauHoiGia
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1146, 270)
+        Me.GroupControl1.Size = New System.Drawing.Size(1146, 269)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Chi tiết hỏi giá"
         '
@@ -1156,7 +1156,7 @@ Partial Class frmYeuCauHoiGia
         Me.gdvYC.MainView = Me.gdvYCCT
         Me.gdvYC.Name = "gdvYC"
         Me.gdvYC.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.tbN2, Me.rcbTrangThaiChiTiet, Me.cbThoiGianGH, Me.rcbTienTe, Me.RepositoryItemMemoEdit1})
-        Me.gdvYC.Size = New System.Drawing.Size(1142, 246)
+        Me.gdvYC.Size = New System.Drawing.Size(1142, 245)
         Me.gdvYC.TabIndex = 1
         Me.gdvYC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvYCCT})
         '
@@ -1346,13 +1346,13 @@ Partial Class frmYeuCauHoiGia
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 27)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 29)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl3)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1146, 533)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1146, 531)
         Me.SplitContainerControl1.SplitterPosition = 257
         Me.SplitContainerControl1.TabIndex = 9
         Me.SplitContainerControl1.Text = "SplitContainerControl1"

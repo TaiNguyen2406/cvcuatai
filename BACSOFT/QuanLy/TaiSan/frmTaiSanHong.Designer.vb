@@ -30,7 +30,6 @@ Partial Class frmTaiSanHong
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.loi = New DevExpress.XtraBars.BarEditItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar2 = New DevExpress.XtraBars.Bar()
@@ -44,6 +43,8 @@ Partial Class frmTaiSanHong
         Me.barGlueNSD = New DevExpress.XtraBars.BarEditItem()
         Me.riGlueNSD = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
         Me.RepositoryItemGridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarButtonItem8 = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -54,9 +55,10 @@ Partial Class frmTaiSanHong
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.RepositoryItemGridLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.riLueNSD = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         CType(Me.gcTaiSanHong, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvTaiSanHong, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueTaiSan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueChiTietTS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +66,8 @@ Partial Class frmTaiSanHong
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riLueNSD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gcTaiSanHong
@@ -168,10 +172,6 @@ Partial Class frmTaiSanHong
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 4
         '
-        'PopupMenu1
-        '
-        Me.PopupMenu1.Name = "PopupMenu1"
-        '
         'loi
         '
         Me.loi.Caption = "Chi tiết T2"
@@ -191,7 +191,7 @@ Partial Class frmTaiSanHong
         Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btnThem, Me.btnSua, Me.btnXoa, Me.BarButtonItem8, Me.barLueTaiSan, Me.barGlueNSD, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.barLueChiTietTS})
         Me.BarManager1.MainMenu = Me.Bar2
         Me.BarManager1.MaxItemId = 13
-        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riGlueNSD, Me.riLueTaiSan, Me.RepositoryItemGridLookUpEdit1, Me.riLueChiTietTS})
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riGlueNSD, Me.riLueTaiSan, Me.RepositoryItemGridLookUpEdit1, Me.riLueChiTietTS, Me.riLueNSD})
         '
         'Bar2
         '
@@ -242,9 +242,10 @@ Partial Class frmTaiSanHong
         Me.riLueTaiSan.AutoHeight = False
         Me.riLueTaiSan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.riLueTaiSan.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ten", "Tên tài sản"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Model", "Mã TS")})
-        Me.riLueTaiSan.DisplayMember = "Model"
+        Me.riLueTaiSan.DisplayMember = "ten"
         Me.riLueTaiSan.Name = "riLueTaiSan"
         Me.riLueTaiSan.NullText = "Tất cả"
+        Me.riLueTaiSan.ShowFooter = False
         Me.riLueTaiSan.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.riLueTaiSan.ValueMember = "id"
         '
@@ -290,12 +291,29 @@ Partial Class frmTaiSanHong
         '
         'RepositoryItemGridLookUpEdit1View
         '
+        Me.RepositoryItemGridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
         Me.RepositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.RepositoryItemGridLookUpEdit1View.Name = "RepositoryItemGridLookUpEdit1View"
         Me.RepositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowColumnHeaders = False
         Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = False
         Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowIndicator = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id"
+        Me.GridColumn9.FieldName = "ID"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Tên"
+        Me.GridColumn10.FieldName = "Ten"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
         '
         'BarButtonItem8
         '
@@ -367,6 +385,25 @@ Partial Class frmTaiSanHong
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
+        'riLueNSD
+        '
+        Me.riLueNSD.AutoHeight = False
+        Me.riLueNSD.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.riLueNSD.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name1", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name2")})
+        Me.riLueNSD.DisplayMember = "Ten"
+        Me.riLueNSD.Name = "riLueNSD"
+        Me.riLueNSD.NullText = "Tất cả"
+        Me.riLueNSD.ShowFooter = False
+        Me.riLueNSD.ShowHeader = False
+        Me.riLueNSD.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.riLueNSD.ValueMember = "ID"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btnThem), New DevExpress.XtraBars.LinkPersistInfo(Me.btnSua), New DevExpress.XtraBars.LinkPersistInfo(Me.btnXoa), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem1, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem2, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.BarButtonItem3, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
+        Me.PopupMenu1.Manager = Me.BarManager1
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
         'frmTaiSanHong
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,10 +415,10 @@ Partial Class frmTaiSanHong
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmTaiSanHong"
+        Me.BarManager1.SetPopupContextMenu(Me, Me.PopupMenu1)
         Me.Text = "Tài sản hỏng"
         CType(Me.gcTaiSanHong, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvTaiSanHong, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueTaiSan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueChiTietTS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -389,6 +426,8 @@ Partial Class frmTaiSanHong
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riLueNSD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -402,7 +441,6 @@ Partial Class frmTaiSanHong
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents loi As DevExpress.XtraBars.BarEditItem
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents Bar2 As DevExpress.XtraBars.Bar
@@ -426,4 +464,8 @@ Partial Class frmTaiSanHong
     Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents riLueNSD As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
 End Class

@@ -20,10 +20,10 @@ Partial Class frmTongHopThemGioThemCongKT
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTongHopThemGioThemCongKT))
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
@@ -47,6 +47,7 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.btTaiBaoCao = New DevExpress.XtraBars.BarButtonItem()
         Me.btnKetXuat = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.chkLocChuNhat = New DevExpress.XtraBars.BarCheckItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -59,6 +60,7 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.riLueSoCG = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.riChkLocChuNhat = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.menuDiLai = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.gc = New DevExpress.XtraGrid.GridControl()
         Me.gv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -138,6 +140,7 @@ Partial Class frmTongHopThemGioThemCongKT
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riLueSoCG, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riChkLocChuNhat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.menuDiLai, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,9 +217,9 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.tbTuNgay, Me.tbDenNgay, Me.cbSoYC, Me.btTaiBaoCao, Me.cbNhanVien, Me.cbPhong, Me.mThem, Me.mSuaSoKm, Me.mTichBoTich, Me.mDuyet, Me.chkRutGon, Me.lueBoPhan, Me.glueSoCG, Me.btnKetXuat, Me.mThemMoiSoKm, Me.BarButtonItem1})
-        Me.BarManager1.MaxItemId = 25
-        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtbTuNgay, Me.RepositoryItemTextEdit1, Me.rtbDenNgay, Me.rcbSoYC, Me.RepositoryItemTextEdit2, Me.rcbNhanVien, Me.rcbPhong, Me.riLueBoPhan, Me.riLueSoCG, Me.riGlueSoCG})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.tbTuNgay, Me.tbDenNgay, Me.cbSoYC, Me.btTaiBaoCao, Me.cbNhanVien, Me.cbPhong, Me.mThem, Me.mSuaSoKm, Me.mTichBoTich, Me.mDuyet, Me.chkRutGon, Me.lueBoPhan, Me.glueSoCG, Me.btnKetXuat, Me.mThemMoiSoKm, Me.BarButtonItem1, Me.chkLocChuNhat})
+        Me.BarManager1.MaxItemId = 28
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtbTuNgay, Me.RepositoryItemTextEdit1, Me.rtbDenNgay, Me.rcbSoYC, Me.RepositoryItemTextEdit2, Me.rcbNhanVien, Me.rcbPhong, Me.riLueBoPhan, Me.riLueSoCG, Me.riGlueSoCG, Me.riChkLocChuNhat})
         '
         'Bar1
         '
@@ -226,7 +229,7 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.lueBoPhan, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.cbNhanVien), New DevExpress.XtraBars.LinkPersistInfo(Me.cbSoYC), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.glueSoCG, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.chkRutGon, False), New DevExpress.XtraBars.LinkPersistInfo(Me.btTaiBaoCao), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnKetXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem1, False)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.lueBoPhan, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.cbNhanVien), New DevExpress.XtraBars.LinkPersistInfo(Me.cbSoYC), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.glueSoCG, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.chkRutGon, False), New DevExpress.XtraBars.LinkPersistInfo(Me.btTaiBaoCao), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.btnKetXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.None, False, Me.BarButtonItem1, False), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.chkLocChuNhat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.MultiLine = True
@@ -246,7 +249,7 @@ Partial Class frmTongHopThemGioThemCongKT
         'rtbTuNgay
         '
         Me.rtbTuNgay.AutoHeight = False
-        Me.rtbTuNgay.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        Me.rtbTuNgay.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.rtbTuNgay.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.rtbTuNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.rtbTuNgay.EditFormat.FormatString = "dd/MM/yyyy"
@@ -268,7 +271,7 @@ Partial Class frmTongHopThemGioThemCongKT
         'rtbDenNgay
         '
         Me.rtbDenNgay.AutoHeight = False
-        Me.rtbDenNgay.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.rtbDenNgay.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.rtbDenNgay.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.rtbDenNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.rtbDenNgay.EditFormat.FormatString = "dd/MM/yyyy"
@@ -414,9 +417,9 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.btTaiBaoCao.Id = 6
         Me.btTaiBaoCao.Name = "btTaiBaoCao"
         Me.btTaiBaoCao.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
-        ToolTipTitleItem2.Text = "Tải lịch thi công"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        Me.btTaiBaoCao.SuperTip = SuperToolTip2
+        ToolTipTitleItem1.Text = "Tải lịch thi công"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btTaiBaoCao.SuperTip = SuperToolTip1
         '
         'btnKetXuat
         '
@@ -430,6 +433,13 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.BarButtonItem1.Caption = "Excel 2"
         Me.BarButtonItem1.Id = 24
         Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'chkLocChuNhat
+        '
+        Me.chkLocChuNhat.Caption = "Lọc chủ nhật"
+        Me.chkLocChuNhat.Glyph = Global.BACSOFT.My.Resources.Resources.Stop_16
+        Me.chkLocChuNhat.Id = 27
+        Me.chkLocChuNhat.Name = "chkLocChuNhat"
         '
         'barDockControlTop
         '
@@ -513,6 +523,14 @@ Partial Class frmTongHopThemGioThemCongKT
         Me.riLueSoCG.ShowFooter = False
         Me.riLueSoCG.ShowHeader = False
         Me.riLueSoCG.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        '
+        'riChkLocChuNhat
+        '
+        Me.riChkLocChuNhat.AutoHeight = False
+        Me.riChkLocChuNhat.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.riChkLocChuNhat.Name = "riChkLocChuNhat"
+        Me.riChkLocChuNhat.PictureChecked = Global.BACSOFT.My.Resources.Resources.Checked
+        Me.riChkLocChuNhat.PictureUnchecked = Global.BACSOFT.My.Resources.Resources.UnCheck
         '
         'menuDiLai
         '
@@ -1315,6 +1333,7 @@ Partial Class frmTongHopThemGioThemCongKT
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riLueSoCG, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riChkLocChuNhat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.menuDiLai, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1483,5 +1502,6 @@ Partial Class frmTongHopThemGioThemCongKT
     Friend WithEvents RepositoryItemLookUpEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
-
+    Friend WithEvents riChkLocChuNhat As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents chkLocChuNhat As DevExpress.XtraBars.BarCheckItem
 End Class

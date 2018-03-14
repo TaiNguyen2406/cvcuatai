@@ -19,15 +19,15 @@ Partial Class frmDuKienCongNo
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.tbThongSo = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gdv = New DevExpress.XtraGrid.GridControl()
         Me.gdvCT = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.btTaiLai = New DevExpress.XtraBars.BarButtonItem()
         Me.btKetXuat = New DevExpress.XtraBars.BarButtonItem()
         Me.mCapNhatThanhToan = New DevExpress.XtraBars.BarButtonItem()
+        Me.mCapNhatDaChi = New DevExpress.XtraBars.BarButtonItem()
         Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
         Me.BarDockControl2 = New DevExpress.XtraBars.BarDockControl()
         Me.BarDockControl3 = New DevExpress.XtraBars.BarDockControl()
@@ -105,9 +105,8 @@ Partial Class frmDuKienCongNo
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
-        Me.menuT = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.menuC = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.mCapNhatDaChi = New DevExpress.XtraBars.BarButtonItem()
+        Me.menuT = New DevExpress.XtraBars.PopupMenu()
+        Me.menuC = New DevExpress.XtraBars.PopupMenu()
         CType(Me.tbThongSo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvCT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -245,12 +244,19 @@ Partial Class frmDuKienCongNo
         Me.mCapNhatThanhToan.Name = "mCapNhatThanhToan"
         Me.mCapNhatThanhToan.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
+        'mCapNhatDaChi
+        '
+        Me.mCapNhatDaChi.Caption = "Cập nhật đã chi"
+        Me.mCapNhatDaChi.Id = 67
+        Me.mCapNhatDaChi.Name = "mCapNhatDaChi"
+        Me.mCapNhatDaChi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        '
         'BarDockControl1
         '
         Me.BarDockControl1.CausesValidation = False
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
-        Me.BarDockControl1.Size = New System.Drawing.Size(977, 27)
+        Me.BarDockControl1.Size = New System.Drawing.Size(977, 29)
         '
         'BarDockControl2
         '
@@ -263,15 +269,15 @@ Partial Class frmDuKienCongNo
         '
         Me.BarDockControl3.CausesValidation = False
         Me.BarDockControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl3.Location = New System.Drawing.Point(0, 27)
-        Me.BarDockControl3.Size = New System.Drawing.Size(0, 524)
+        Me.BarDockControl3.Location = New System.Drawing.Point(0, 29)
+        Me.BarDockControl3.Size = New System.Drawing.Size(0, 522)
         '
         'BarDockControl4
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(977, 27)
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 524)
+        Me.BarDockControl4.Location = New System.Drawing.Point(977, 29)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 522)
         '
         'btfilterTenVT
         '
@@ -638,13 +644,13 @@ Partial Class frmDuKienCongNo
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 27)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 29)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.gdv)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XtraTabControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(977, 524)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(977, 522)
         Me.SplitContainerControl1.SplitterPosition = 157
         Me.SplitContainerControl1.TabIndex = 15
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -657,7 +663,7 @@ Partial Class frmDuKienCongNo
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.tabPhaiThu
-        Me.XtraTabControl1.Size = New System.Drawing.Size(977, 361)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(977, 360)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tabPhaiThu, Me.tabPhaiTra, Me.XtraTabPage3})
         '
@@ -665,7 +671,7 @@ Partial Class frmDuKienCongNo
         '
         Me.tabPhaiThu.Controls.Add(Me.gdvPhaiThu)
         Me.tabPhaiThu.Name = "tabPhaiThu"
-        Me.tabPhaiThu.Size = New System.Drawing.Size(971, 335)
+        Me.tabPhaiThu.Size = New System.Drawing.Size(971, 334)
         Me.tabPhaiThu.Text = "Phải thu"
         '
         'gdvPhaiThu
@@ -675,7 +681,7 @@ Partial Class frmDuKienCongNo
         Me.gdvPhaiThu.MainView = Me.gdvPhaiThuCT
         Me.gdvPhaiThu.MenuManager = Me.BarManager1
         Me.gdvPhaiThu.Name = "gdvPhaiThu"
-        Me.gdvPhaiThu.Size = New System.Drawing.Size(971, 335)
+        Me.gdvPhaiThu.Size = New System.Drawing.Size(971, 334)
         Me.gdvPhaiThu.TabIndex = 11
         Me.gdvPhaiThu.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvPhaiThuCT})
         '
@@ -812,7 +818,7 @@ Partial Class frmDuKienCongNo
         '
         Me.tabPhaiTra.Controls.Add(Me.gdvPhaiTra)
         Me.tabPhaiTra.Name = "tabPhaiTra"
-        Me.tabPhaiTra.Size = New System.Drawing.Size(971, 333)
+        Me.tabPhaiTra.Size = New System.Drawing.Size(971, 334)
         Me.tabPhaiTra.Text = "Phải chi"
         '
         'gdvPhaiTra
@@ -822,7 +828,7 @@ Partial Class frmDuKienCongNo
         Me.gdvPhaiTra.MainView = Me.gdvPhaiTraCT
         Me.gdvPhaiTra.MenuManager = Me.BarManager1
         Me.gdvPhaiTra.Name = "gdvPhaiTra"
-        Me.gdvPhaiTra.Size = New System.Drawing.Size(971, 333)
+        Me.gdvPhaiTra.Size = New System.Drawing.Size(971, 334)
         Me.gdvPhaiTra.TabIndex = 12
         Me.gdvPhaiTra.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvPhaiTraCT})
         '
@@ -957,7 +963,7 @@ Partial Class frmDuKienCongNo
         'XtraTabPage3
         '
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(971, 333)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(971, 334)
         Me.XtraTabPage3.Text = "Chưa đủ thông tin"
         '
         'menuT
@@ -971,13 +977,6 @@ Partial Class frmDuKienCongNo
         Me.menuC.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mXacNhanDaChi)})
         Me.menuC.Manager = Me.BarManager1
         Me.menuC.Name = "menuC"
-        '
-        'mCapNhatDaChi
-        '
-        Me.mCapNhatDaChi.Caption = "Cập nhật đã chi"
-        Me.mCapNhatDaChi.Id = 67
-        Me.mCapNhatDaChi.Name = "mCapNhatDaChi"
-        Me.mCapNhatDaChi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'frmDuKienCongNo
         '

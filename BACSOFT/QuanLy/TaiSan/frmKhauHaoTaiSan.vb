@@ -12,81 +12,32 @@ Public Class frmKhauHaoTaiSan
     Private Shared dt As DataTable
 
     Private Sub loadGV()
-        '   query = "select TaiSan_TaiSan.*, PHIEUXUATKHO.NgayThang, SoLuong, DonGia, SoLuong*DonGia as tongtien,TENVATTU.Ten AS TenVT, thoigiankh "
-        If barSeNam.EditValue IsNot Nothing And barCbbThang.EditValue IsNot Nothing Then
-            Dim thoigian As String = barSeNam.EditValue.ToString() & "/" & barCbbThang.EditValue.ToString()
-            Dim time As String = ""
-            Dim time2 As String = ""
-            Dim thang = barCbbThang.EditValue.ToString()
-            Dim nam = barSeNam.EditValue.ToString()
-            Dim ngay = System.DateTime.DaysInMonth(nam, thang)
-            Dim thang2 = thang - 1
-            Dim nam2 = nam
-            If thang = 1 Then
-                thang2 = 12
-                nam2 = nam - 1
-            End If
-            Dim ngay2 = System.DateTime.DaysInMonth(nam2, thang2)
-            time = nam.ToString() + "/" + thang.ToString + "/" + ngay.ToString()
-            time2 = nam.ToString() + "/" + thang.ToString + "/" + "1" ' ngay2.ToString()
-            query = meKhauHaoTS.EditValue
-            query = query.Replace("2013/8/31", time)
-            query = query.Replace("2013/7/31", time2)
-            If chkXemHet.Checked Then
-                query &= " where SoNgayKH<datediff(day, NgayThang,@time)"
-            Else
-                query &= " where SoNgayKH>=datediff(day, NgayThang,@time)"
-            End If
-            'query &= ", SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id) as SoLuongThuc , (SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365) as muckh , datediff(day, NgayThang,@time) as thoigiansudung, (SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where  ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365)*  datediff(day, NgayThang,@time)+ ((select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia as khluyke"
-            'query &= ", case when datediff(day, NgayThang,@time2)>0 then (SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365)*  datediff(day, @time2,@time) else (SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where  ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365)*  datediff(day, NgayThang,@time) end +((select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly >=@time2 and ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365)* (thoigiankh*365- datediff(day, @time2,@time))  as khthang"
-            'query &= ", SoLuong*DonGia- ((SoLuong-(select COUNT(id) from Taisan_ChiTietTaiSan where ngaythanhly <=@time and idtaisan =TaiSan_TaiSan .id))*DonGia/(thoigiankh*365)*  datediff(day, NgayThang,@time))as saukh"
-            'query &= ", CONVERT(varchar(50), thoigiankh*365- datediff(day, NgayThang,@time))+N' ngày =' +CONVERT(varchar(50),(thoigiankh*365- datediff(day, NgayThang,@time) )/30 )+N' tháng '+ case when (thoigiankh*365- datediff(day, NgayThang,@time) )%30>0 then CONVERT(varchar(50),(thoigiankh*365- datediff(day, NgayThang,@time) )%30 )+N' ngày' else '' end as thoigianconkh  "
-
-            'query &= "from TaiSan_TaiSan inner join XUATKHO on TaiSan_TaiSan.idxuatkho=XUATKHO.ID INNER JOIN VATTU ON XUATKHO.IDVatTu=VATTU.ID INNER JOIN PHIEUXUATKHO ON PHIEUXUATKHO.SoPhieu=XUATKHO.SoPhieu LEFT OUTER JOIN TENVATTU ON VATTU.IDTenvattu=TENVATTU.ID ,Taisan_DinhMuc where 1=1  and  DonGia>=mucdau and DonGia<=muccuoi and ngayapdung=(select top 1 ngayapdung from Taisan_DinhMuc  where Dongia>=mucdau and Dongia<=muccuoi and ngayapdung<=@time  and TSorCCDC=1  order by ngayapdung desc) and datediff(day, NgayThang,@time)<=thoigiankh *365 and datediff(day, NgayThang,@time)>=0 and TSorCCDC=1"
-            'If barLueNhomVT.EditValue IsNot Nothing Then
-            '    AddParameterWhere("@IDTennhom", barLueNhomVT.EditValue)
-            '    query &= " and IDTennhom=@IDTennhom"
-            'End If
-            'If barLueHang.EditValue IsNot Nothing Then
-            '    AddParameterWhere("@IDHangSanxuat", barLueHang.EditValue)
-            '    query &= " and IDHangSanxuat=@IDHangSanxuat"
-            'End If
-            'If barLueTenVT.EditValue IsNot Nothing Then
-            '    AddParameterWhere("@IDTenvattu", barLueTenVT.EditValue)
-            '    query &= " and IDTenvattu=@IDTenvattu"
-            'End If
-            'If barTxtMaVT.EditValue IsNot Nothing Then
-            '    query &= " and Model Like N'%" & barTxtMaVT.EditValue.ToString & "%' "
-            'End If
-            'query &= " order by NgayThang desc"
-            'AddParameter("@time", time)
-            'AddParameter("@time2", time2)
-
-            Dim dt As DataTable = ExecuteSQLDataTable(query)
-            If Not dt Is Nothing Then
-                gcKhauHaoTs.DataSource = dt
-            Else
-                ShowBaoLoi(LoiNgoaiLe)
-            End If
+        Dim time As DateTime = barDeDenNgay.EditValue
+        Dim time2 As DateTime = barDeTuNgay.EditValue
+        query = meSql.Text
+        query = query.Replace("2013/8/31", time.ToString("yyyy/MM/dd"))
+        query = query.Replace("2013/7/31", time2.ToString("yyyy/MM/dd"))
+        If chkXemHet.Checked Then
+            query &= " where SoNgayKH<datediff(day, NgayThang,@time) or (SoLuong-SoLuongHongDauKy-SoLuongHongTrongKy)=0"
+        Else
+            query &= " where SoNgayKH>=datediff(day, NgayThang,@time)"
         End If
-       
+        query &= " order by NgayThang desc, Id desc "
+        Dim dt As DataTable = ExecuteSQLDataTable(query)
+        If Not dt Is Nothing Then
+            gc.DataSource = dt
+        Else
+            ShowBaoLoi(LoiNgoaiLe)
+        End If
+        '  End If
+
     End Sub
 
     Private Sub loadData()
-        'riLueNhomVT.DataSource = ExecuteSQLDataTable("select * from TENNHOM ORDER BY Ten ASC")
-        'riLueHang.DataSource = ExecuteSQLDataTable("select * from TENHANGSANXUAT ORDER BY Ten ASC")
-        'riLueTenVT.DataSource = ExecuteSQLDataTable("select * from TENVATTU ORDER BY Ten ASC")
-        barSeNam.EditValue = BAC.GetServerTime().Year
-        riCbbThang.Items.Clear()
-        For i = 1 To 12
-            If i < 10 Then
-                riCbbThang.Items.Add("0" + i.ToString())
-            Else
-                riCbbThang.Items.Add(i.ToString())
-            End If
-
-        Next i
-        barCbbThang.EditValue = Today.Month
+     
+        Dim hientai As DateTime = GetServerTime.Date()
+        barDeDenNgay.EditValue = hientai
+        barDeTuNgay.EditValue = New DateTime(hientai.Year, hientai.Month, 1)
         loadGV()
     End Sub
 
@@ -124,7 +75,7 @@ Public Class frmKhauHaoTaiSan
     End Sub
 
     Private Sub BarButtonItem4_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs)
-        Dim gvexprort As DevExpress.XtraGrid.Views.Grid.GridView = gvKhauHaoTs
+        Dim gvexprort As DevExpress.XtraGrid.Views.Grid.GridView = gv
 
         Dim saveDialog As SaveFileDialog = New SaveFileDialog()
         saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html"
@@ -142,13 +93,13 @@ Public Class frmKhauHaoTaiSan
 
             Select Case fileExtenstion
                 Case ".xls"
-                    gvKhauHaoTs.ExportToXls(exportFilePath)
+                    gv.ExportToXls(exportFilePath)
                 Case (".xlsx")
-                    gvKhauHaoTs.ExportToXlsx(exportFilePath)
+                    gv.ExportToXlsx(exportFilePath)
                 Case ".rtf"
-                    gvKhauHaoTs.ExportToRtf(exportFilePath)
+                    gv.ExportToRtf(exportFilePath)
                 Case ".pdf"
-                    gvKhauHaoTs.ExportToPdf(exportFilePath)
+                    gv.ExportToPdf(exportFilePath)
             End Select
 
             System.Diagnostics.Process.Start(exportFilePath)
@@ -174,13 +125,13 @@ Public Class frmKhauHaoTaiSan
 
     Private Sub barCiLoc_CheckedChanged(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barCiLoc.CheckedChanged
         If barCiLoc.Checked = True Then
-            gvKhauHaoTs.OptionsView.ShowAutoFilterRow = True
+            gv.OptionsView.ShowAutoFilterRow = True
         Else
-            gvKhauHaoTs.OptionsView.ShowAutoFilterRow = False
+            gv.OptionsView.ShowAutoFilterRow = False
         End If
     End Sub
 
-    Private Sub BarButtonItem4_ItemClick_1(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
+    Private Sub BarButtonItem4_ItemClick_1(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnTaiLai.ItemClick
         loadGV()
     End Sub
 
@@ -211,7 +162,7 @@ Public Class frmKhauHaoTaiSan
         End If
     End Sub
 
-    Private Sub gvKhauHaoTs_HiddenEditor(sender As System.Object, e As System.EventArgs) Handles gvKhauHaoTs.HiddenEditor
+    Private Sub gvKhauHaoTs_HiddenEditor(sender As System.Object, e As System.EventArgs) Handles gv.HiddenEditor
         SendKeys.Send("{Enter}")
     End Sub
 
@@ -222,7 +173,7 @@ Public Class frmKhauHaoTaiSan
             chkXemHet.Glyph = My.Resources.UnCheck
         End If
     End Sub
-    Private Sub gvPBCongCuDungCu_CustomDrawCell(sender As Object, e As Base.RowCellCustomDrawEventArgs) Handles gvKhauHaoTs.CustomDrawCell
+    Private Sub gvPBCongCuDungCu_CustomDrawCell(sender As Object, e As Base.RowCellCustomDrawEventArgs) Handles gv.CustomDrawCell
         If e.Column.FieldName = "thoigiankh" Then
             e.Appearance.ForeColor = Color.Blue
         End If
@@ -236,4 +187,23 @@ Public Class frmKhauHaoTaiSan
         '    e.Appearance.BackColor = Color.Tomato
         'End If
     End Sub
+
+    Private Sub barDeDenNgay_EditValueChanged(sender As Object, e As EventArgs) Handles barDeDenNgay.EditValueChanged
+        Dim time As DateTime = barDeDenNgay.EditValue
+        barDeTuNgay.EditValue = New DateTime(time.Year, time.Month, 1)
+    End Sub
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = (Keys.Alt Or Keys.O) Then
+            ' colHongDauKy.Visible = Not colHongDauKy.Visible
+            'colHongTrongKy.Visible = Not colHongTrongKy.Visible
+            colSoNgayPB.Visible = Not colSoNgayPB.Visible
+            If meSql.Visible = True Then
+                meSql.Visible = False
+            Else
+                meSql.Visible = True
+            End If
+            Return True
+        End If
+        Return False
+    End Function
 End Class

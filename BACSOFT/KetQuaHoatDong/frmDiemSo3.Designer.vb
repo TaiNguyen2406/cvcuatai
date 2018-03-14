@@ -20,10 +20,10 @@ Partial Class frmDiemSo3
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.cbThang = New DevExpress.XtraBars.BarEditItem()
@@ -42,8 +42,10 @@ Partial Class frmDiemSo3
         Me.btXemCachMoi = New DevExpress.XtraBars.BarButtonItem()
         Me.btNangCao = New DevExpress.XtraBars.BarSubItem()
         Me.mChotSoLieu = New DevExpress.XtraBars.BarButtonItem()
+        Me.btChotSL2 = New DevExpress.XtraBars.BarButtonItem()
         Me.mTinhDiemTamUngKT = New DevExpress.XtraBars.BarButtonItem()
         Me.mCapNhatDiemTamUng = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnChiTietLoiNhuan = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -130,8 +132,8 @@ Partial Class frmDiemSo3
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbThang, Me.tbNam, Me.cbTieuChi, Me.btTyLeQuyDoi, Me.cbTrangThai, Me.cbTinhTheo, Me.btXemCachMoi, Me.btXemChiTiet, Me.btXemChiTietTheoPhieuThu, Me.btXemChiTietBCThuTien, Me.cbCachXem, Me.btNangCao, Me.btUpdateDiemCu, Me.cbPhong, Me.mChiTietDiemCungUng, Me.mUngDiemPhongKT, Me.mTinhDiemTamUngKT, Me.mCapNhatDiemTamUng, Me.chkXemTheoSLChot, Me.mChotSoLieu})
-        Me.BarManager1.MaxItemId = 40
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbThang, Me.tbNam, Me.cbTieuChi, Me.btTyLeQuyDoi, Me.cbTrangThai, Me.cbTinhTheo, Me.btXemCachMoi, Me.btXemChiTiet, Me.btXemChiTietTheoPhieuThu, Me.btXemChiTietBCThuTien, Me.cbCachXem, Me.btNangCao, Me.btUpdateDiemCu, Me.cbPhong, Me.mChiTietDiemCungUng, Me.mUngDiemPhongKT, Me.mTinhDiemTamUngKT, Me.mCapNhatDiemTamUng, Me.chkXemTheoSLChot, Me.mChotSoLieu, Me.btChotSL2, Me.btnChiTietLoiNhuan})
+        Me.BarManager1.MaxItemId = 42
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtbTuNgay, Me.rtbDenNgay, Me.RepositoryItemMonth1, Me.rcbThang, Me.rtbNam, Me.rcbTieuChi, Me.RepositoryItemComboBox1, Me.rcbTinhTheo, Me.rcbCachXem, Me.RepositoryItemPopupContainerEdit1, Me.RepositoryItemComboBox2, Me.rcbPhongBan, Me.RepositoryItemComboBox3})
         '
         'Bar1
@@ -142,7 +144,7 @@ Partial Class frmDiemSo3
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.cbThang), New DevExpress.XtraBars.LinkPersistInfo(Me.tbNam), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTinhTheo), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(Me.chkXemTheoSLChot), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemCachMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btNangCao, True)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.cbThang), New DevExpress.XtraBars.LinkPersistInfo(Me.tbNam), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTinhTheo), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTrangThai), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(Me.chkXemTheoSLChot), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemCachMoi, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btNangCao, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btnChiTietLoiNhuan)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -252,7 +254,7 @@ Partial Class frmDiemSo3
         '
         Me.rcbPhongBan.AutoHeight = False
         Me.rcbPhongBan.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        Me.rcbPhongBan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        Me.rcbPhongBan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.rcbPhongBan.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Name1", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name2")})
         Me.rcbPhongBan.DisplayMember = "Ten"
         Me.rcbPhongBan.DropDownItemHeight = 22
@@ -282,7 +284,7 @@ Partial Class frmDiemSo3
         '
         Me.btNangCao.Caption = "Nâng cao"
         Me.btNangCao.Id = 23
-        Me.btNangCao.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mChotSoLieu), New DevExpress.XtraBars.LinkPersistInfo(Me.mTinhDiemTamUngKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mCapNhatDiemTamUng)})
+        Me.btNangCao.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mChotSoLieu), New DevExpress.XtraBars.LinkPersistInfo(Me.btChotSL2), New DevExpress.XtraBars.LinkPersistInfo(Me.mTinhDiemTamUngKT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mCapNhatDiemTamUng)})
         Me.btNangCao.Name = "btNangCao"
         '
         'mChotSoLieu
@@ -290,6 +292,12 @@ Partial Class frmDiemSo3
         Me.mChotSoLieu.Caption = "Chốt số liệu"
         Me.mChotSoLieu.Id = 38
         Me.mChotSoLieu.Name = "mChotSoLieu"
+        '
+        'btChotSL2
+        '
+        Me.btChotSL2.Caption = "Chốt số liệu trừ phần điểm số và lợi nhuận"
+        Me.btChotSL2.Id = 40
+        Me.btChotSL2.Name = "btChotSL2"
         '
         'mTinhDiemTamUngKT
         '
@@ -302,6 +310,12 @@ Partial Class frmDiemSo3
         Me.mCapNhatDiemTamUng.Caption = "Cập nhật điểm tạm ứng kỹ thuật"
         Me.mCapNhatDiemTamUng.Id = 32
         Me.mCapNhatDiemTamUng.Name = "mCapNhatDiemTamUng"
+        '
+        'btnChiTietLoiNhuan
+        '
+        Me.btnChiTietLoiNhuan.Caption = "Chi tiết lợi nhuận"
+        Me.btnChiTietLoiNhuan.Id = 41
+        Me.btnChiTietLoiNhuan.Name = "btnChiTietLoiNhuan"
         '
         'barDockControlTop
         '
@@ -378,9 +392,9 @@ Partial Class frmDiemSo3
         Me.btUpdateDiemCu.Caption = "Update điểm cũ"
         Me.btUpdateDiemCu.Id = 25
         Me.btUpdateDiemCu.Name = "btUpdateDiemCu"
-        ToolTipTitleItem2.Text = "Update điểm theo cách tính cũ để tính lương thưởng"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        Me.btUpdateDiemCu.SuperTip = SuperToolTip2
+        ToolTipTitleItem1.Text = "Update điểm theo cách tính cũ để tính lương thưởng"
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.btUpdateDiemCu.SuperTip = SuperToolTip1
         '
         'mChiTietDiemCungUng
         '
@@ -749,7 +763,7 @@ Partial Class frmDiemSo3
         'rtbN2
         '
         Me.rtbN2.AutoHeight = False
-        Me.rtbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        Me.rtbN2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.rtbN2.DisplayFormat.FormatString = "N2"
         Me.rtbN2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.rtbN2.EditFormat.FormatString = "N2"
@@ -927,5 +941,6 @@ Partial Class frmDiemSo3
     Friend WithEvents chkXemTheoSLChot As DevExpress.XtraBars.BarCheckItem
     Friend WithEvents RepositoryItemComboBox3 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents mChotSoLieu As DevExpress.XtraBars.BarButtonItem
-
+    Friend WithEvents btChotSL2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btnChiTietLoiNhuan As DevExpress.XtraBars.BarButtonItem
 End Class

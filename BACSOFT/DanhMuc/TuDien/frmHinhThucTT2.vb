@@ -12,11 +12,11 @@ Public Class frmHinhThucTT2
             gv.OptionsBehavior.ReadOnly = True
         End If
 
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenThem) Then
-            gv.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False
-            gv.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None
+        'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenThem) Then
+        '    gv.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False
+        '    gv.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None
 
-        End If
+        'End If
 
     End Sub
 
@@ -30,15 +30,15 @@ Public Class frmHinhThucTT2
         If barChkHuy.Checked = False Then
             query &= " where TrangThai = 1"
         End If
-        query &= " ORDER BY Nhom asc, GiaiThich asc "
+        query &= " ORDER BY Nhom asc, SoTT, GiaiThich asc "
         Dim dt = ExecuteSQLDataTable(query)
         If dt Is Nothing Then Throw New Exception(LoiNgoaiLe)
         gc.DataSource = dt
     End Sub
 
     Private Sub gv_RowUpdated(sender As System.Object, e As DevExpress.XtraGrid.Views.Base.RowObjectEventArgs) Handles gv.RowUpdated
-        'gv.PostEditor()
-        '  gv.UpdateCurrentRow()
+        gv.CloseEditor()
+        gv.UpdateCurrentRow()
         'If Not IsDBNull(gv.GetFocusedRowCellValue("ID")) Then
         '    If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then Exit Sub
         'Else
@@ -53,12 +53,14 @@ Public Class frmHinhThucTT2
         AddParameter("@SoNgayHT", gv.GetFocusedRowCellValue("SoNgayHT"))
         AddParameter("@GiaiThich", gv.GetFocusedRowCellValue("GiaiThich"))
         AddParameter("@TrangThai", gv.GetFocusedRowCellValue("TrangThai"))
+        AddParameter("@SoTT", gv.GetFocusedRowCellValue("SoTT"))
 
         Dim row As New Object
         If Not IsDBNull(gv.GetFocusedRowCellValue("ID")) Then
 
             AddParameterWhere("@ID", gv.GetFocusedRowCellValue("ID"))
             row = doUpdate("DM_HINH_THUC_TT", "ID=@ID")
+            ShowAlert("Đã cập nhật hình thức thanh toán!")
             If row Is Nothing Then
                 ShowBaoLoi(LoiNgoaiLe)
             Else
@@ -68,19 +70,19 @@ Public Class frmHinhThucTT2
             End If
         Else
 
-            row = doInsert("DM_HINH_THUC_TT")
-            If row Is Nothing Then
-                ShowBaoLoi(LoiNgoaiLe)
-            Else
-                loadGV()
-                ShowAlert("Đã thêm hình thức thanh toán mới!")
-                For i As Integer = 0 To gv.RowCount - 1
-                    If gv.GetRowCellValue(i, "ID") = row Then
-                        gv.FocusedRowHandle = i
-                        Exit Sub
-                    End If
-                Next
-            End If
+            'row = doInsert("DM_HINH_THUC_TT")
+            'If row Is Nothing Then
+            '    ShowBaoLoi(LoiNgoaiLe)
+            'Else
+            '    loadGV()
+            '    ShowAlert("Đã thêm hình thức thanh toán mới!")
+            '    For i As Integer = 0 To gv.RowCount - 1
+            '        If gv.GetRowCellValue(i, "ID") = row Then
+            '            gv.FocusedRowHandle = i
+            '            Exit Sub
+            '        End If
+            '    Next
+            'End If
         End If
 
     End Sub
@@ -118,7 +120,7 @@ Public Class frmHinhThucTT2
         End If
     End Sub
 
-    Private Sub BarCheckItem1_CheckedChanged(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barChkHuy.CheckedChanged
+    Private Sub barChkHuy_CheckedChanged(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles barChkHuy.CheckedChanged
         If barChkHuy.Checked = True Then
             barChkHuy.Glyph = My.Resources.Checked
         Else
@@ -128,4 +130,31 @@ Public Class frmHinhThucTT2
     End Sub
 
     
+    Private Sub btnTai_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnTai.ItemClick
+        loadGV()
+    End Sub
+
+    Private Sub btnThem_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnThem.ItemClick
+        Dim f As frmCNHinhThucTT2 = New frmCNHinhThucTT2
+        TrangThai.isAddNew = True
+        f.ShowDialog()
+        loadGV()
+    End Sub
+
+    Private Sub btnSua_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnSua.ItemClick
+        Dim row = gv.FocusedRowHandle
+        Dim f As frmCNHinhThucTT2 = New frmCNHinhThucTT2
+        TrangThai.isUpdate = True
+        f.idhinhthucTT = gv.GetFocusedRowCellValue("ID")
+        f.ShowDialog()
+        loadGV()
+        gv.FocusedRowHandle = row
+    End Sub
+
+    Private Sub mnu_Them_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnu_Them.ItemClick
+        btnThem.PerformClick()
+    End Sub
+    Private Sub mnu_Sua_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnu_Sua.ItemClick
+        btnSua.PerformClick()
+    End Sub
 End Class

@@ -49,7 +49,6 @@ Public Class frmTHDiemDanhGia
         sql &= " 	ID int,"
         sql &= " 	NoiDung nvarchar(250)"
         sql &= " )"
-
         sql &= " INSERT INTO @tbND(ID,NoiDung)"
         sql &= " VALUES(1,N'Tính chủ động hoàn thành công việc')"
         sql &= " INSERT INTO @tbND(ID,NoiDung)"
@@ -58,22 +57,24 @@ Public Class frmTHDiemDanhGia
         sql &= " VALUES(3,N'Tính linh hoạt biết việc để làm')"
         '============tb0
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKyThuat) Then
-            sql &= " SELECT DISTINCT  Convert(int,null) AS STT,KTDiemDanhGiaNV.IDNguoiDanhGia,N'' as TenNguoiDanhGia,"
+            sql &= " SELECT DISTINCT  Convert(int,null) AS STT, isnull(KTDiemDanhGiaNV.IDNguoiDanhGia,NGUOIDANHGIA.ID) IDNguoiDanhGia,N'' as TenNguoiDanhGia,"
         Else
-            sql &= " SELECT DISTINCT  Convert(int,null) AS STT,KTDiemDanhGiaNV.IDNguoiDanhGia,NGUOIDANHGIA.Ten as TenNguoiDanhGia,"
+            sql &= " SELECT DISTINCT  Convert(int,null) AS STT,isnull(KTDiemDanhGiaNV.IDNguoiDanhGia,NGUOIDANHGIA.ID) IDNguoiDanhGia,NGUOIDANHGIA.Ten as TenNguoiDanhGia,"
         End If
 
-        sql &= " [@tbND].NoiDung ,[@tbND].ID as IDNoiDung,convert(bit,0) as ChungMau"
-        sql &= " FROM KTDiemDanhGiaNV"
+        sql &= " [@tbND].NoiDung ,isnull([@tbND].ID,0) as IDNoiDung,convert(bit,0) as ChungMau"
+        sql &= " FROM (select * from KTDiemDanhGiaNV where Thang=@Thang  AND KTDiemDanhGiaNV.IDBoPhan=@BP AND CapQuanLy=0 AND NhomHoTro=0) KTDiemDanhGiaNV"
+        sql &= " RIGHT JOIN NHANSU as NGUOIDANHGIA ON NGUOIDANHGIA.ID=KTDiemDanhGiaNV.IDNguoiDanhGia"
         sql &= " LEFT JOIN @tbND ON 1=1"
-        sql &= " INNER JOIN NHANSU as NGUOIDANHGIA ON NGUOIDANHGIA.ID=KTDiemDanhGiaNV.IDNguoiDanhGia"
-        sql &= " WHERE KTDiemDanhGiaNV.Thang=@Thang"
-        sql &= " AND KTDiemDanhGiaNV.IDBoPhan=@BP AND CapQuanLy=0 AND NhomHoTro=0"
+        sql &= " WHERE NGUOIDANHGIA.IDBoPhan=@BP AND NGUOIDANHGIA.Trangthai=1 " 'KTDiemDanhGiaNV.Thang=@Thang"
+        '  sql &= " AND KTDiemDanhGiaNV.IDBoPhan=@BP AND CapQuanLy=0 AND NhomHoTro=0"
         '========== tb1
+        'sql &= "SELECT KTDiemDanhGiaNV.ID,  IDNguoiDanhGia ,KTDiemDanhGiaNV .IDBoPhan ,THang, IDNhanVien,ChuDongHTCongViec ,ChuDongTimViecDeLam ,LinhHoatBietViecDeLam, CapQuanLy ,NhomHoTro,NHANVIEN.Ten as TenNhanVien " ' "  
         sql &= " SELECT KTDiemDanhGiaNV.*,NHANVIEN.Ten as TenNhanVien"
-        sql &= " FROM KTDiemDanhGiaNV"
-        sql &= " INNER JOIN NHANSU as NHANVIEN ON NHANVIEN.ID=KTDiemDanhGiaNV.IDNhanVien"
-        sql &= " WHERE KTDiemDanhGiaNV.Thang=@Thang AND KTDiemDanhGiaNV.IDBoPhan=@BP AND NhomHoTro=0"
+        sql &= " FROM KTDiemDanhGiaNV " ' (select * from KTDiemDanhGiaNV where Thang=@Thang)  KTDiemDanhGiaNV"
+        sql &= " inner JOIN NHANSU as NHANVIEN ON NHANVIEN.ID=KTDiemDanhGiaNV.IDNhanVien"
+        sql &= " WHERE KTDiemDanhGiaNV.Thang=@Thang AND KTDiemDanhGiaNV.IDBoPhan=@BP AND NhomHoTro=0 AND NHANVIEN.Trangthai=1"
+        ' sql &= " WHERE NHANVIEN.IDBoPhan=@BP AND NHANVIEN.Trangthai=1"
         '=========== tb2
         sql &= " SELECT IDNhanVien,avg(ChuDongHTCongViec)ChuDongHTCongViec,avg(ChuDongTimViecDeLam)ChuDongTimViecDeLam,"
         sql &= " avg(LinhHoatBietViecDeLam)LinhHoatBietViecDeLam"
@@ -208,6 +209,8 @@ Public Class frmTHDiemDanhGia
                     c.OwnerBand = bNhanVien
                     c.VisibleIndex = i + 2
                     c.Width = 140
+                    c.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    c.DisplayFormat.FormatString = "N2"
                     gdvCT.Columns.Add(c)
                     ' b.Columns.Add(c)
 

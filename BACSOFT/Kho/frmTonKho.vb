@@ -19,6 +19,11 @@ Public Class frmTonKho
             colThanhTien.Visible = False
             btXuatExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
+
+        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.KiemDuyet) Then
+            gcolViTri.OptionsColumn.ReadOnly = True
+        End If
+
         Try
             tbNgayBan.EditValue = New DateTime(Today.Date.Year - 1, Today.Date.Month, Today.Date.Day)
         Catch ex As Exception
@@ -173,8 +178,19 @@ Public Class frmTonKho
         ShowWaiting("Đang tải dữ liệu tồn kho ...")
         sql &= " SELECT  TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS TenHang,V_TonKhoTongHop.IDVatTu, VATTU.Model,"
         sql &= " round(V_TonkhoTonghop.Ton,2)Ton, TENDONVITINH.Ten AS DVT, VATTU.ThongSo,VATTU.HangTon, TENNUOC.Ten AS TenNuoc, V_TonkhoTonghop.GiaNhap,"
-        sql &= " (V_TonkhoTonghop.Ton*V_TonkhoTonghop.GiaNhap)ThanhTien,VATTU.KhoiLuong1"
-        Sql &= " FROM  V_TonkhoTonghop "
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0) -" 'AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0) -" 'AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = V_TonKhoTongHop.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT  SoCG FROM xuatkhotam )),0)"
+        'sql &= " as XuatTam, "
+
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = V_TonKhoTongHop.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam, "
+
+        sql &= " (V_TonkhoTonghop.Ton*V_TonkhoTonghop.GiaNhap)ThanhTien,VATTU.KhoiLuong1,VATTU.ViTri "
+        sql &= " FROM  V_TonkhoTonghop "
         Sql &= " INNER JOIN VATTU ON V_TonkhoTonghop.IDVattu = VATTU.ID"
         sql &= " LEFT JOIN TENVATTU ON VATTU.IDTenVatTu=TENVATTU.ID"
         sql &= " LEFT JOIN TENHANGSANXUAT ON VATTU.IDHangSanXuat=TENHANGSANXUAT.ID"
@@ -294,6 +310,7 @@ Public Class frmTonKho
     End Sub
 
     Private Sub btLichSuXuatNhap_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btLichSuXuatNhap.ItemClick
+
         If gdvCT.FocusedRowHandle < 0 Then Exit Sub
         AddParameterWhere("@IDVatTu", gdvCT.GetFocusedRowCellValue("IDVatTu"))
         Dim sql As String = " SET DATEFORMAT DMY "
@@ -376,6 +393,23 @@ Public Class frmTonKho
             chkChiHienConTon.Glyph = My.Resources.Checked
         Else
             chkChiHienConTon.Glyph = My.Resources.UnCheck
+        End If
+    End Sub
+
+    Private Sub mnuLichSuXuatTam_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mnuLichSuXuatTam.ItemClick
+        If gdvCT.FocusedRowHandle < 0 Then Exit Sub
+        Dim f As New frmLichSuNhapXuatKhoTam
+        f.idVatTu = gdvCT.GetFocusedRowCellValue("IDVatTu")
+        f.ShowDialog()
+    End Sub
+
+    Private Sub gdvCT_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles gdvCT.CellValueChanged
+        If e.RowHandle < 0 Then Exit Sub
+        If e.Column.FieldName = "ViTri" Then
+            AddParameter("@ViTri", e.Value)
+            AddParameterWhere("@ID", gdvCT.GetRowCellValue(e.RowHandle, "IDVatTu"))
+            doUpdate("VATTU", "ID=@ID")
+            ShowAlert("Đã cập nhật vị trí vật tư " & gdvCT.GetRowCellValue(e.RowHandle, "IDVatTu") & ".")
         End If
     End Sub
 End Class

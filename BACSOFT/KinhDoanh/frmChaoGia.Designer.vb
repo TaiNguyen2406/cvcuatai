@@ -132,6 +132,7 @@ Partial Class frmChaoGia
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.riLueCongTrinh = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.colTenDuAn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -160,6 +161,7 @@ Partial Class frmChaoGia
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.pMenuChinh = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.pMenuMoThuMucFile = New DevExpress.XtraBars.PopupMenu(Me.components)
@@ -193,6 +195,7 @@ Partial Class frmChaoGia
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.N0 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.cbMucDoCan = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.cbTrangThai = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
@@ -264,6 +267,7 @@ Partial Class frmChaoGia
         CType(Me.gdv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gdvCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riLueCongTrinh, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rcbFileDinhKem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.popupFile, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.popupFile.SuspendLayout()
@@ -716,7 +720,6 @@ Partial Class frmChaoGia
         '
         'chkXuatThongSo
         '
-        Me.chkXuatThongSo.EditValue = True
         Me.chkXuatThongSo.Location = New System.Drawing.Point(6, 76)
         Me.chkXuatThongSo.Name = "chkXuatThongSo"
         Me.chkXuatThongSo.Properties.Caption = "Thống số"
@@ -1058,7 +1061,7 @@ Partial Class frmChaoGia
         Me.gdv.MainView = Me.gdvCT
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
-        Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1, Me.rcbFileDinhKem, Me.RepositoryItemMemoEdit2})
+        Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1, Me.rcbFileDinhKem, Me.RepositoryItemMemoEdit2, Me.riLueCongTrinh})
         Me.gdv.Size = New System.Drawing.Size(1349, 253)
         Me.gdv.TabIndex = 4
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
@@ -1075,7 +1078,7 @@ Partial Class frmChaoGia
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn32, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn40, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn18, Me.GridColumn6, Me.GridColumn5, Me.GridColumn36, Me.colTenDuAn, Me.GridColumn39, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn21, Me.GridColumn38, Me.GridColumn22, Me.GridColumn23, Me.GridColumn33, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn48, Me.GridColumn53, Me.GridColumn54})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn32, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn40, Me.GridColumn7, Me.GridColumn8, Me.GridColumn19, Me.GridColumn18, Me.GridColumn6, Me.GridColumn5, Me.GridColumn36, Me.colTenDuAn, Me.GridColumn39, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn21, Me.GridColumn38, Me.GridColumn22, Me.GridColumn23, Me.GridColumn33, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn48, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.Name = "gdvCT"
@@ -1245,13 +1248,26 @@ Partial Class frmChaoGia
         'GridColumn36
         '
         Me.GridColumn36.Caption = "CT"
+        Me.GridColumn36.ColumnEdit = Me.riLueCongTrinh
         Me.GridColumn36.FieldName = "Congtrinh"
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.OptionsColumn.FixedWidth = True
         Me.GridColumn36.OptionsColumn.ReadOnly = True
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 8
-        Me.GridColumn36.Width = 40
+        Me.GridColumn36.Width = 92
+        '
+        'riLueCongTrinh
+        '
+        Me.riLueCongTrinh.AutoHeight = False
+        Me.riLueCongTrinh.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.riLueCongTrinh.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Name5"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ten", "Name6")})
+        Me.riLueCongTrinh.DisplayMember = "Ten"
+        Me.riLueCongTrinh.Name = "riLueCongTrinh"
+        Me.riLueCongTrinh.NullText = ""
+        Me.riLueCongTrinh.ShowFooter = False
+        Me.riLueCongTrinh.ShowHeader = False
+        Me.riLueCongTrinh.ValueMember = "Id"
         '
         'colTenDuAn
         '
@@ -1343,7 +1359,7 @@ Partial Class frmChaoGia
         Me.GridColumn12.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn12.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 21
+        Me.GridColumn12.VisibleIndex = 22
         Me.GridColumn12.Width = 110
         '
         'GridColumn21
@@ -1355,7 +1371,7 @@ Partial Class frmChaoGia
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.FixedWidth = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 22
+        Me.GridColumn21.VisibleIndex = 23
         Me.GridColumn21.Width = 80
         '
         'GridColumn38
@@ -1374,7 +1390,7 @@ Partial Class frmChaoGia
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.FixedWidth = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 23
+        Me.GridColumn22.VisibleIndex = 24
         Me.GridColumn22.Width = 32
         '
         'rcbFileDinhKem
@@ -1574,6 +1590,14 @@ Partial Class frmChaoGia
         Me.GridColumn54.VisibleIndex = 20
         Me.GridColumn54.Width = 110
         '
+        'GridColumn55
+        '
+        Me.GridColumn55.Caption = "HTCT"
+        Me.GridColumn55.FieldName = "HTCT"
+        Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.Visible = True
+        Me.GridColumn55.VisibleIndex = 21
+        '
         'RepositoryItemHyperLinkEdit1
         '
         Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
@@ -1699,7 +1723,7 @@ Partial Class frmChaoGia
         Me.gdvCGCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCGCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCGCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCGCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn13, Me.GridColumn14, Me.GridColumn37, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn28, Me.GridColumn29, Me.GridColumn20, Me.GridColumn30, Me.GridColumn26, Me.GridColumn41, Me.GridColumn24, Me.GridColumn25, Me.GridColumn35, Me.GridColumn31, Me.GridColumn34, Me.GridColumn46, Me.GridColumn47})
+        Me.gdvCGCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn13, Me.GridColumn14, Me.GridColumn37, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn28, Me.GridColumn29, Me.GridColumn20, Me.GridColumn30, Me.GridColumn26, Me.GridColumn41, Me.GridColumn24, Me.GridColumn25, Me.GridColumn35, Me.GridColumn31, Me.GridColumn34, Me.GridColumn46, Me.GridColumn47, Me.GridColumn56})
         Me.gdvCGCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCGCT.GridControl = Me.gdvCG
         Me.gdvCGCT.Name = "gdvCGCT"
@@ -1824,7 +1848,7 @@ Partial Class frmChaoGia
         Me.GridColumn29.FieldName = "Canxuat"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 8
+        Me.GridColumn29.VisibleIndex = 9
         Me.GridColumn29.Width = 53
         '
         'GridColumn20
@@ -1836,7 +1860,7 @@ Partial Class frmChaoGia
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.FixedWidth = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 9
+        Me.GridColumn20.VisibleIndex = 10
         Me.GridColumn20.Width = 100
         '
         'GridColumn30
@@ -1848,7 +1872,7 @@ Partial Class frmChaoGia
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.FixedWidth = True
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 10
+        Me.GridColumn30.VisibleIndex = 11
         Me.GridColumn30.Width = 60
         '
         'GridColumn26
@@ -1860,7 +1884,7 @@ Partial Class frmChaoGia
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.FixedWidth = True
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 11
+        Me.GridColumn26.VisibleIndex = 12
         Me.GridColumn26.Width = 85
         '
         'GridColumn41
@@ -1873,7 +1897,7 @@ Partial Class frmChaoGia
         Me.GridColumn41.SummaryItem.DisplayFormat = "{0:N2}"
         Me.GridColumn41.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 12
+        Me.GridColumn41.VisibleIndex = 13
         Me.GridColumn41.Width = 100
         '
         'GridColumn24
@@ -1886,7 +1910,7 @@ Partial Class frmChaoGia
         Me.GridColumn24.FieldName = "MucThue"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 13
+        Me.GridColumn24.VisibleIndex = 14
         Me.GridColumn24.Width = 55
         '
         'GridColumn25
@@ -1896,7 +1920,7 @@ Partial Class frmChaoGia
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.FixedWidth = True
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 14
+        Me.GridColumn25.VisibleIndex = 15
         Me.GridColumn25.Width = 40
         '
         'GridColumn35
@@ -1908,7 +1932,7 @@ Partial Class frmChaoGia
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.OptionsColumn.FixedWidth = True
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 15
+        Me.GridColumn35.VisibleIndex = 16
         Me.GridColumn35.Width = 60
         '
         'GridColumn31
@@ -1923,7 +1947,7 @@ Partial Class frmChaoGia
         Me.GridColumn34.FieldName = "GhiChu"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 16
+        Me.GridColumn34.VisibleIndex = 17
         Me.GridColumn34.Width = 150
         '
         'GridColumn46
@@ -1932,7 +1956,7 @@ Partial Class frmChaoGia
         Me.GridColumn46.FieldName = "ID"
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 17
+        Me.GridColumn46.VisibleIndex = 18
         '
         'GridColumn47
         '
@@ -1940,7 +1964,15 @@ Partial Class frmChaoGia
         Me.GridColumn47.FieldName = "IDXK"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 18
+        Me.GridColumn47.VisibleIndex = 19
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.Caption = "Xuất tạm"
+        Me.GridColumn56.FieldName = "XuatTam"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 8
         '
         'N0
         '
@@ -2294,6 +2326,7 @@ Partial Class frmChaoGia
         CType(Me.gdv, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gdvCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riLueCongTrinh, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rcbFileDinhKem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.popupFile, System.ComponentModel.ISupportInitialize).EndInit()
         Me.popupFile.ResumeLayout(False)
@@ -2532,5 +2565,8 @@ Partial Class frmChaoGia
     Friend WithEvents mSuaQTGD As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents riLueCongTrinh As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

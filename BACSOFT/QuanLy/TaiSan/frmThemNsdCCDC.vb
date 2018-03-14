@@ -17,7 +17,8 @@ Public Class frmThemNsdCCDC
         glueNSD.Properties.View.PopulateColumns(glueNSD.Properties.DataSource)
         glueNSD.Properties.View.Columns(glueNSD.Properties.ValueMember).Visible = False
         glueNSD.EditValue = 1
-        query = " select TaiSan_CongCuDungCu.id,  ten, Model from TaiSan_CongCuDungCu inner join XUATKHO on XUATKHO.ID=TaiSan_CongCuDungCu.idxuatkho inner join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu inner join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID"
+        query = " select TaiSan_CongCuDungCu.id,   isnull( ten,TenCCDC) ten, Model from TaiSan_CongCuDungCu left join XUATKHO on XUATKHO.ID=TaiSan_CongCuDungCu.idxuatkho left join VATTU on VATTU.ID=TaiSan_CongCuDungCu.idvattu left join TENVATTU ON VATTU.IDTenvattu =TENVATTU.ID where IdGop is null"
+
         lueCCDC.Properties.DataSource = ExecuteSQLDataTable(query)
         query = "select TaiSan_ChiTietCCDC.id, tenchitietccdc from TaiSan_ChiTietCCDC inner join TaiSan_CongCuDungCu on idccdc=TaiSan_CongCuDungCu.id where 1=1 "
         If _message = 0 Then
@@ -29,9 +30,11 @@ Public Class frmThemNsdCCDC
         deNgayNhan.EditValue = Today
         deNgayTra.EditValue = Today
         If _message <> 0 Then
-            query = "select * from Taisan_NguoiSuDungCCDC where id=@id"
+
+            query = "select *,(Select idccdc from TaiSan_ChiTietCCDC where id=idchitietccdc) idccdc from Taisan_NguoiSuDungCCDC where id=@id"
             AddParameterWhere("@id", _message)
             Dim dt As DataTable = ExecuteSQLDataTable(query)
+            lueCCDC.EditValue = dt.Rows(0).Item(0)
             lueChiTietCCDC.EditValue = dt.Rows(0).Item(1)
             glueNSD.EditValue = dt.Rows(0).Item(2)
             deNgayNhan.EditValue = dt.Rows(0).Item(3)

@@ -1,10 +1,10 @@
 ﻿Imports BACSOFT.Db.SqlHelper
-
+Imports System.Text.RegularExpressions
 Public Class frmCNKhachHang
 
     Public _IdTakeCare As Object
     Public _TAG_QUYEN As String
-
+    Private _MST As String
     Private Sub frmCNNguoiGiaoDich_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         loadTuDien()
@@ -31,6 +31,7 @@ Public Class frmCNKhachHang
                 tbFaxKH.EditValue = dt.Rows(0)("ttcFax")
                 tbWeb.EditValue = dt.Rows(0)("ttcWeb")
                 tbEmail.EditValue = dt.Rows(0)("ttcEmail")
+                _MST = dt.Rows(0)("ttcMasothue")
                 tbMST.EditValue = dt.Rows(0)("ttcMasothue")
                 tbTaiKhoanNH.EditValue = dt.Rows(0)("ttcTaikhoan")
                 tbNoiMo.EditValue = dt.Rows(0)("ttcNoimo")
@@ -207,15 +208,58 @@ Public Class frmCNKhachHang
                 Return False
             End If
 
-            If tbMST.EditValue = "" Then
+            If tbMST.EditValue.ToString() = "" Then
                 ShowCanhBao("Chưa có thông tin MST !")
                 Return False
             Else
+                Dim regexItem = New Regex("^[0-9\-]*$")
+                Dim mst As String = tbMST.EditValue
+                If Not regexItem.IsMatch(mst) Then
+                    ShowCanhBao("Mã số thuế chỉ được nhập số !")
+                    Return False
+                End If
+                Dim str As String = checkMST(tbMST.EditValue)
+                If str <> "" Then
+                    ShowCanhBao("Khách hàng với MST này đã tồn tại: " & str)
+                    Return False
+
+                End If
+                Dim mang As Char() = tbMST.EditValue.ToString().ToCharArray()
+                For i = 0 To mang.Length - 1
+                    If mang(i) = "-" And i <> 10 Then
+                        ShowCanhBao("Chỉ được nhập 1 dấu - sau 10 ký tự mã số thuế")
+                        Return False
+
+                    End If
+                Next
+
+            End If
+            If checkMaKH() Then
+                ShowCanhBao("Mã khách hàng này đã tồn tại ")
+                Return False
+            End If
+        Else
+            Dim regexItem = New Regex("^[0-9\-]*$")
+            Dim mst As String = tbMST.EditValue
+            If Not regexItem.IsMatch(mst) Then
+                ShowCanhBao("Mã số thuế chỉ được nhập số !")
+                Return False
+            End If
+            If CType(tbMST.EditValue, String).Replace(" ", "").Replace("_", "") <> _MST.Replace(" ", "").Replace("_", "") Then
+
                 Dim str As String = checkMST(tbMST.EditValue)
                 If str <> "" Then
                     ShowCanhBao("Khách hàng với MST này đã tồn tại: " & str)
                     Return False
                 End If
+                Dim mang As Char() = tbMST.EditValue.ToString().ToCharArray()
+                For i = 0 To mang.Length - 1
+                    If mang(i) = "-" And i <> 10 Then
+                        ShowCanhBao("Chỉ được nhập 1 dấu - sau 10 ký tự mã số thuế")
+                        Return False
+
+                    End If
+                Next
             End If
         End If
         If Not chkKhachHang.Checked And Not chkNhaCungCap.Checked And Not chkDVVC.Checked Then
@@ -517,6 +561,7 @@ Public Class frmCNKhachHang
                 Return ""
             End If
         End If
+
     End Function
 
     Private Sub btLuu_Click(sender As System.Object, e As System.EventArgs) Handles btLuu.Click
@@ -529,13 +574,21 @@ Public Class frmCNKhachHang
             If str <> "" Then
                 ShowCanhBao("MST đã tồn tại : " & str)
             End If
+        Else
+            If tbMST.EditValue <> _MST Then
+                Dim str As String = checkMST(tbMST.EditValue)
+                If str <> "" Then
+                    ShowCanhBao("MST đã tồn tại : " & str)
+                End If
+            End If
         End If
-        
+     
+    
     End Sub
 
     Function checkMaKH() As Boolean
         If TrangThai.isAddNew Then
-            Dim tb As DataTable = ExecuteSQLDataTable("SELECT ISNULL(ttcMa,'') FROM KHACHHANG WHERE RTrim(LTRIM(UPPER(ttcMa)))= N'" & tbMaKH.EditValue.ToString.Trim.ToUpper & "'")
+            Dim tb As DataTable = ExecuteSQLDataTable("SELECT ISNULL(ttcMa,'') FROM KHACHHANG WHERE RTrim(LTRIM(UPPER(ttcMa)))= N'" & tbMaKH.EditValue.ToString.Replace(" ", "").ToUpper() & "'")
             If tb Is Nothing Then
                 ShowBaoLoi("Lỗi KT Mã KH: " & LoiNgoaiLe)
                 Return True

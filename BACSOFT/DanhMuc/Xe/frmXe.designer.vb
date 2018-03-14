@@ -22,15 +22,14 @@ Partial Class frmXe
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmXe))
-        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.btnXoa = New System.Windows.Forms.ToolStripMenuItem()
         Me.BảoDưỡngToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.Bar2 = New DevExpress.XtraBars.Bar()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.Bar5 = New DevExpress.XtraBars.Bar()
         Me.barRdgTinhTrangXe = New DevExpress.XtraBars.BarEditItem()
         Me.rdgTinhTrangxe = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()

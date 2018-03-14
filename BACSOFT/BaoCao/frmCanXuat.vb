@@ -28,7 +28,7 @@ Public Class frmCanXuat
         Dim ds As DataSet = ExecuteSQLDataSet("SELECT ID,Ten FROM NHANSU WHERE NoiCtac=74 AND TrangThai=1 SELECT ID,ttcMa FROM KHACHHANG ORDER BY ttcMa")
         If Not ds Is Nothing Then
             rcbTakecare.DataSource = ds.Tables(0)
-            btfilterTakecare.EditValue = TaiKhoan
+            btfilterTakecare.EditValue = Integer.Parse(TaiKhoan)
 
             rcbMaKH.DataSource = ds.Tables(1)
         Else
@@ -188,7 +188,7 @@ Public Class frmCanXuat
 
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = ""
-        sql &= " SELECT BANGCHAOGIA.IDKhachHang,KHACHHANG.ttcMa, 0 as STT, BANGCHAOGIA.SoPhieu,BANGCHAOGIA.SoPhieu AS SoPhieu2, BANGCHAOGIA.Ngaygiao AS NgayXuat,BANGCHAOGIA.Ngaygiao AS NgayXuat2,  TENVATTU.Ten AS TenVT, "
+        sql &= " SELECT BANGCHAOGIA.IDKhachHang,KHACHHANG.ttcMa, KHACHHANG.ttcMa ttcMa2, 0 as STT, BANGCHAOGIA.SoPhieu, BANGCHAOGIA.SoPhieu AS SoPhieu2, BANGCHAOGIA.Ngaygiao AS NgayXuat,BANGCHAOGIA.Ngaygiao AS NgayXuat2,  TENVATTU.Ten AS TenVT, "
         sql &= "      TENHANGSANXUAT.Ten AS HangSX, VATTU.Model,CHAOGIA.IDVatTu, CHAOGIA.CanXuat AS SLXuat, (CHAOGIA.DonGia * BANGCHAOGIA.TyGia)DonGia,((CHAOGIA.DonGia * BANGCHAOGIA.TyGia)*CHAOGIA.CanXuat)ThanhTien,"
         sql &= "      (SELECT ISNULL(SUM(Soluong), 0) AS Expr1"
         sql &= "       FROM NHAPKHO"
@@ -197,10 +197,16 @@ Public Class frmCanXuat
         sql &= "        FROM  XUATKHO"
         sql &= "        WHERE (IDvattu = VATTU.ID)) AS SLTon, "
         sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat,"
-        sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe,V_DANGVE.NgayVe2, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, VATTU.ID"
+        sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe,V_DANGVE.NgayVe2, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, NHANSU.Ten AS TakeCare2, VATTU.ID"
         sql &= " ,ThoiGianCanXuat,NoiDungYeuCauKho,Convert(bit,0)Modify,CHAOGIA.ID as IDCG,ThoiGianCanXuat as TG2,TGPhanHoiCuaKho,NoiDungPhanHoiCuaKho,BANGYEUCAU.IDNgd,BANGCHAOGIA.IDTakeCare"
         'Tai
-        sql &= " ,GhiChuDH, CHAOGIA.NgayCan"
+        sql &= ",  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam"
+
+        sql &= " ,GhiChuDH, CHAOGIA.NgayCan, BANGCHAOGIA.CongTrinh, Cast(0 as bit) as Tichchon, (select top 1 Idvattu from tblLapYCX where IDVattu = CHAOGIA.IDVatTu  and SoCG = CHAOGIA.Sophieu ) as chkMau"
+
         'Tai
         sql &= " FROM  CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.SoPhieu "
@@ -209,7 +215,7 @@ Public Class frmCanXuat
             sql &= " AND BANGCHAOGIA.IDKhachhang=" & btfilterMaKH.EditValue
         End If
 
-        If Not btfilterTakecare.EditValue Is Nothing Then
+        If Not btfilterTakecare.EditValue Is Nothing   Then
             sql &= " AND BANGCHAOGIA.IDTakeCare=" & btfilterTakecare.EditValue
         End If
         sql &= "    LEFT JOIN BANGYEUCAU ON BANGCHAOGIA.MaSoDatHang=BANGYEUCAU.SoPhieu"
@@ -277,6 +283,7 @@ Public Class frmCanXuat
                 colCXPhuTrach.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False
                 colCXPhuTrach.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
                 colCXSoPhieu.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False
+                chkTichchon.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False
                 colCXSoPhieu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False
             Else
                 colCXMaKH.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True
@@ -288,6 +295,7 @@ Public Class frmCanXuat
                 colCXPhuTrach.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True
                 colCXPhuTrach.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True
                 colCXSoPhieu.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True
+                chkTichchon.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True
                 colCXSoPhieu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True
             End If
 
@@ -309,17 +317,24 @@ Public Class frmCanXuat
         'End If
 
         LoadCanXuat()
-
     End Sub
 
 
     Private Sub gdvCanXuatCT_RowCellStyle(sender As System.Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles gdvCanXuatCT.RowCellStyle
         On Error Resume Next
         'If Not _LoadStyle Then Exit Sub
+
+        If e.Column.FieldName = "Tichchon" Then
+            If gdvCanXuatCT.GetRowCellValue(e.RowHandle, "chkMau").ToString() <> "" Then
+                e.Appearance.BackColor =Color.FromArgb(100,180, 224 )
+            End If
+        End If
+
         Select Case e.Column.FieldName
             Case "SoPhieu"
                 If e.CellValue <> "" Then
-                    Dim _wDay As Integer = DateDiff(DateInterval.Day, _ToDay, gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayXuat2"))
+                    '   Dim _wDay As Integer = DateDiff(DateInterval.Day, _ToDay, gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayXuat2"))
+                    Dim _wDay As Integer = DateDiff(DateInterval.Day, _ToDay, gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayCan"))
                     If _wDay >= 0 And _wDay <= 3 Then
                         e.Appearance.BackColor = Color.Yellow
                     ElseIf _wDay < 0 Then
@@ -337,15 +352,19 @@ Public Class frmCanXuat
                             e.Appearance.BackColor = Color.Red
                         End If
                     Else
-                        If Convert.ToDateTime(e.CellValue).Date > Convert.ToDateTime(gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayXuat2")).Date Then
+                        If Convert.ToDateTime(e.CellValue).Date > Convert.ToDateTime(gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayCan")).Date Then
                             e.Appearance.BackColor = Color.Red
-                        ElseIf Convert.ToDateTime(e.CellValue).Date = Convert.ToDateTime(gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayXuat2")).Date Then
+                        ElseIf Convert.ToDateTime(e.CellValue).Date = Convert.ToDateTime(gdvCanXuatCT.GetRowCellValue(e.RowHandle, "NgayCan")).Date Then
                             e.Appearance.BackColor = Color.Yellow
                         End If
                     End If
 
                 End If
+            Case "ttcMa"
+                If gdvCanXuatCT.GetRowCellValue(e.RowHandle, "CongTrinh") = 1 Then
+                    e.Appearance.BackColor = Color.Orange
 
+                End If
         End Select
 
     End Sub
@@ -435,7 +454,7 @@ Public Class frmCanXuat
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = ""
         sql &= " SELECT * FROM("
-        sql &= " SELECT CHAOGIA.AZ,BANGCHAOGIA.IDKhachHang,KHACHHANG.ttcMa, 0 as STT, BANGCHAOGIA.SoPhieu,BANGCHAOGIA.SoPhieu AS SoPhieu2, BANGCHAOGIA.Ngaygiao AS NgayXuat,BANGCHAOGIA.Ngaygiao AS NgayXuat2,  TENVATTU.Ten AS TenVT, "
+        sql &= " SELECT CHAOGIA.AZ,BANGCHAOGIA.IDKhachHang,KHACHHANG.ttcMa, KHACHHANG.ttcMa ttcMa2, 0 as STT, BANGCHAOGIA.SoPhieu,BANGCHAOGIA.SoPhieu AS SoPhieu2, BANGCHAOGIA.Ngaygiao AS NgayXuat,BANGCHAOGIA.Ngaygiao AS NgayXuat2,  TENVATTU.Ten AS TenVT, "
         sql &= "      TENHANGSANXUAT.Ten AS HangSX, VATTU.Model,CHAOGIA.IDVatTu, CHAOGIA.CanXuat AS SLXuat, (CHAOGIA.DonGia * BANGCHAOGIA.TyGia)DonGia,((CHAOGIA.DonGia * BANGCHAOGIA.TyGia)*CHAOGIA.CanXuat)ThanhTien,"
         sql &= "      (SELECT ISNULL(SUM(Soluong), 0) AS Expr1"
         sql &= "       FROM NHAPKHO"
@@ -444,10 +463,17 @@ Public Class frmCanXuat
         sql &= "        FROM  XUATKHO"
         sql &= "        WHERE (IDvattu = VATTU.ID)) AS SLTon, "
         sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat, "
-        sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, VATTU.ID"
+        sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare,NHANSU.Ten AS TakeCare2, VATTU.ID"
+        
+        'Tai
+        sql &= ",  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = CHAOGIA.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDVatTu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam"
+
         'Tai
         sql &= " ,ThoiGianCanXuat,NoiDungYeuCauKho,Convert(bit,0)Modify,CHAOGIA.ID as IDCG,ThoiGianCanXuat as TG2,TGPhanHoiCuaKho,NoiDungPhanHoiCuaKho,BANGYEUCAU.IDNgd"
-        sql &= " ,GhiChuDH, CHAOGIA.NgayCan"
+        sql &= " ,GhiChuDH, CHAOGIA.NgayCan, BANGCHAOGIA.CongTrinh, Cast(0 as bit) as Tichchon, (select top 1 Idvattu from tblLapYCX where IDVattu = CHAOGIA.IDVatTu and SoCG = CHAOGIA.Sophieu) as chkMau"
         'Tai
         sql &= " FROM  CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.SoPhieu "
@@ -484,7 +510,7 @@ Public Class frmCanXuat
 
         sql &= " WHERE (CHAOGIA.Canxuat <> 0)"
         sql &= " )tbl "
-        sql &= " WHERE (SLXuat > (ISNULL(SLTon,0)+ ISNULL(SLVe,0))) Or (Convert(datetime,convert(nvarchar,NgayVe,103),103) > Convert(datetime,convert(nvarchar,NgayXuat2,103),103)) "
+        sql &= " WHERE (SLXuat > (ISNULL(SLTon,0)+ ISNULL(SLVe,0))) Or (Convert(datetime,convert(nvarchar,NgayVe,103),103) > Convert(datetime,convert(nvarchar,NgayCan,103),103)) "
         sql &= " ORDER BY SoPhieu DESC,AZ"
 
         Dim tb As DataTable = ExecuteSQLDataTable(sql)
@@ -545,6 +571,24 @@ Public Class frmCanXuat
         End If
     End Sub
 
+    Private Function CheckValid() As Boolean
+        Dim flag = False
+        Dim temp As New ArrayList
+
+        For i As Integer = 0 To gdvCanXuatCT.RowCount - 1
+             If gdvCanXuatCT.GetRowCellValue(i, "Tichchon") Then
+                If temp.Count > 0 Then
+                    If temp.Contains(gdvCanXuatCT.GetRowCellValue(i, "ttcMa2")) = false Then
+                        flag = true ' Đã tồn tại
+                    End If
+                End If
+                temp.Add(gdvCanXuatCT.GetRowCellValue(i, "ttcMa2"))
+             End If
+        Next
+
+        Return flag
+    End Function
+
     Private Sub btLuuLai_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btLuuLai.ItemClick
         gdvCanXuatCT.CloseEditor()
         gdvCanXuatCT.UpdateCurrentRow()
@@ -577,14 +621,53 @@ Public Class frmCanXuat
     End Sub
 
     Private Sub mLapYeuCauXuat_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mLapYeuCauXuat.ItemClick
-        pThoiGianXuat.Location = New Point(Cursor.Position.X, Cursor.Position.Y - 110)
-        pThoiGianXuat.Visible = True
-        'AddParameterWhere("@SP", gdvCT.GetFocusedRowCellValue("Sophieu"))
-        'Dim tb As DataTable = ExecuteSQLDataTable("SELECT TGKDCanXuat,GhiChuKD FROM BANGCHAOGIA WHERE SoPhieu=@SP")
+        'pThoiGianXuat.Location = New Point(Cursor.Position.X, Cursor.Position.Y - 110)
+        'pThoiGianXuat.Visible = True
+            'AddParameterWhere("@SP", gdvCT.GetFocusedRowCellValue("Sophieu"))
+            'Dim tb As DataTable = ExecuteSQLDataTable("SELECT TGKDCanXuat,GhiChuKD FROM BANGCHAOGIA WHERE SoPhieu=@SP")
 
-        tbThoiGianXuat.EditValue = Now
-        tbGhiChu.EditValue = DBNull.Value
+        'tbThoiGianXuat.EditValue = Now
+        'tbGhiChu.EditValue = DBNull.Value
+         
+        If CheckValid() Then
+            ShowCanhBao("Bạn phải chọn chào giá/vật tư của cùng một khách hàng.")
+            Exit sub
+        End If
 
+         Dim strSoCG = ""
+         Dim arraySophieu As New ArrayList
+         Dim arrayIDVattu As String = ""
+         Dim maKH As String = "", takecare="", idtakecare = "", idkhachhang = ""
+
+         For i As Integer = 0 To gdvCanXuatCT.RowCount - 1
+             If gdvCanXuatCT.GetRowCellValue(i, "Tichchon") Then
+                If gdvCanXuatCT.GetRowCellValue(i, "SoPhieu2") IsNot Nothing Then
+                    If arraySophieu.Contains(gdvCanXuatCT.GetRowCellValue(i, "SoPhieu2")) = False Then
+                        arraySophieu.Add(gdvCanXuatCT.GetRowCellValue(i, "SoPhieu2"))
+                    End If
+                End If
+                If gdvCanXuatCT.GetRowCellValue(i, "IDVatTu") IsNot Nothing Then
+                    arrayIDVattu = arrayIDVattu & gdvCanXuatCT.GetRowCellValue(i, "IDVatTu") & ","
+                End If
+
+                idkhachhang = gdvCanXuatCT.GetRowCellValue(i, "IDKhachHang")
+                maKH = gdvCanXuatCT.GetRowCellValue(i, "ttcMa2")
+                takecare = gdvCanXuatCT.GetRowCellValue(i, "TakeCare2")
+                idtakecare = gdvCanXuatCT.GetRowCellValue(i, "IDTakeCare")
+             End If
+         Next
+        If arraySophieu.Count = 0 Then
+            ShowCanhBao("Bạn chưa chọn chào giá/vật tư")
+            Exit sub
+        End If
+        Dim frmLapYCXuat As New frmLapYCXuat
+        frmLapYCXuat.arraySophieu = arraySophieu
+        frmLapYCXuat.arrayIDVattu = arrayIDVattu
+        frmLapYCXuat.maKh = maKh
+        frmLapYCXuat.idkhachhang = idkhachhang
+        frmLapYCXuat.takecare = takecare
+        frmLapYCXuat.idtakecare = idtakecare
+        frmLapYCXuat.ShowDialog()
     End Sub
 
     Private Sub btXacNhan_Click(sender As System.Object, e As System.EventArgs) Handles btXacNhan.Click

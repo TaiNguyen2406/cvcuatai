@@ -71,7 +71,8 @@ Public Class frmYeuCauDen
             End If
 
             sql &= "	KHACHHANG.Ten AS TenKH,BANGYEUCAU.IDUser,BANGYEUCAU.IDNgd,NHANSU1.Ten as TakeCare,NGUOILAP.Ten AS NguoiLap,BANGYEUCAU.IDTakecare, "
-            sql &= "    NHANSU2.Ten AS NguoiGD,NHANSU2.Mobile AS DienThoaiNgd,NHANSU2.Email as EmailNgd,ISNULL(CongTrinh,CONVERT(Bit,0))CongTrinh, "
+            'sql &= "    NHANSU2.Ten AS NguoiGD,NHANSU2.Mobile AS DienThoaiNgd,NHANSU2.Email as EmailNgd,ISNULL(CongTrinh,CONVERT(Bit,0))CongTrinh, "
+            sql &= "    NHANSU2.Ten AS NguoiGD,NHANSU2.Mobile AS DienThoaiNgd,NHANSU2.Email as EmailNgd, case when Congtrinh = 0 then N'Thương mại' when Congtrinh = 1 then N'Công trình' else N'Phần mềm' end CongTrinh, "
             sql &= " BANGYEUCAU.NoiDung, BANGYEUCAU.FileDinhKem,BANGYEUCAU.TrangThai,BANGYEUCAU.IDLoaiYeuCau,BANGYEUCAU.IDNhanXL,NGUOIXL.Ten AS NguoiNhanXL,BANGYEUCAU.ThoiGianNhanXL "
             sql &= " INTO #tb"
             sql &= " FROM BANGYEUCAU "
@@ -81,6 +82,7 @@ Public Class frmYeuCauDen
             sql &= " LEFT OUTER JOIN NHANSU AS NGUOILAP ON BANGYEUCAU.IDUser=NGUOILAP.ID "
             sql &= " LEFT OUTER JOIN NHANSU AS NGUOIXL ON BANGYEUCAU.IDNhanXL=NGUOIXL.ID "
             sql &= " WHERE 1=1 "
+
 
             If cbTieuChi.EditValue = "Tuỳ chỉnh" Then
                 AddParameterWhere("@TuNgay", tbTuNgay.EditValue)
@@ -93,11 +95,23 @@ Public Class frmYeuCauDen
             End If
 
             If Not cbNVKD.EditValue Is Nothing Then
-                sql &= " AND BANGYEUCAU.IDTakecare= " & cbNVKD.EditValue
+
+                If chkTatCa.EditValue = True Then
+                    sql &= " AND (BANGYEUCAU.IDKhachhang in (SELECT distinct KHACHHANG.ID from KHACHHANG left join NHANSU on KHACHHANG .ID=NHANSU .Noictac  where NHANSU .ChamSoc=@Chamsoc   OR KHACHHANG.IDTakecare is null ) or  KHACHHANG.IDTakecare=@Chamsoc )  "
+                    AddParameterWhere("@Chamsoc", cbNVKD.EditValue)
+                Else
+                    sql &= " AND BANGYEUCAU.IDTakecare= " & cbNVKD.EditValue
+                End If
+                '  sql &= " "
+                ' sql &= " AND BANGYEUCAU.IDTakecare= " & cbNVKD.EditValue
+
+
             End If
 
             If Not cbKH.EditValue Is Nothing Then
                 sql &= " AND BANGYEUCAU.IDKhachhang= " & cbKH.EditValue
+            Else
+
             End If
 
             If cbTieuChi.EditValue = "Top 500" Then
@@ -256,10 +270,14 @@ Public Class frmYeuCauDen
         sql &= "      ((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=YEUCAUDEN.IDVatTu)-(select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=YEUCAUDEN.IDVatTu)) AS slTon, "
 
 
-        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
-        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
-        sql &= " as XuatTam, "
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = YEUCAUDEN.IDVatTu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
 
+        sql &= "   isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = YEUCAUDEN.IDvattu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = YEUCAUDEN.IDvattu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO where IdVatTu = YEUCAUDEN.IDvattu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = YEUCAUDEN.IDvattu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam, "
 
         sql &= "      YEUCAUDEN.Sophieu, YEUCAUDEN.Noidung, YEUCAUDEN.Soluong, YEUCAUDEN.Mucdocan, YEUCAUDEN.IDVattu, "
         sql &= "      YEUCAUDEN.IDHoithongtin, YEUCAUDEN.IDChuyenma, YEUCAUDEN.IDHoigia, YEUCAUDEN.NgayNhanYeucau, YEUCAUDEN.NgayHoithongtin, "
@@ -325,7 +343,7 @@ Public Class frmYeuCauDen
         Dim sql As String = ""
         sql &= " SELECT Ma,NoiDung FROM tblTuDien WHERE Loai=0 ORDER BY Ma"
         sql &= " SELECT Ma,NoiDung FROM tblTuDien WHERE Loai=1 ORDER BY Ma"
-        sql &= " SELECT ID,Ten FROM NHANSU WHERE Noictac=74 "
+        sql &= " SELECT ID,Ten FROM NHANSU WHERE Noictac=74  "
         sql &= " SELECT ID,TEN FROM TENDONVITINH "
         ' sql &= " SELECT ID,ttcMa,Ten FROM KHACHHANG ORDER BY ttcMa "
         sql &= " SELECT ID,Ten,TyGia FROM tblTienTe  "
@@ -358,12 +376,13 @@ Public Class frmYeuCauDen
     End Sub
     Private Sub loadDSKH()
         Dim sql As String = ""
-        sql &= " SELECT distinct KHACHHANG. * FROM KHACHHANG left join NHANSU on KHACHHANG .ID=NHANSU .Noictac where 1=1"
+        sql &= " SELECT distinct KHACHHANG. * from KHACHHANG left join NHANSU on KHACHHANG .ID=NHANSU .Noictac left join NHANSU TAKECARE on TAKECARE .ID =NHANSU .Chamsoc where 1=1"
         If cbNVKD.EditValue IsNot Nothing Then
-            sql &= " and NHANSU.Chamsoc=@Chamsoc"
+            sql &= " and (TAKECARE .ID=@Chamsoc  OR KHACHHANG.IDTakecare is null  )"
+
             AddParameterWhere("@Chamsoc", cbNVKD.EditValue)
         End If
-        sql &= "  order by ttcMa "
+        sql &= " order by ttcMa"
         Dim dt As DataTable = ExecuteSQLDataTable(sql)
         If dt IsNot Nothing Then
             rcbKH.DataSource = dt
@@ -379,8 +398,9 @@ Public Class frmYeuCauDen
         sql &= " (Round((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID),4)-Round((select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID),4)) AS slTon, "
 
 
-        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
-        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = VATTU.ID AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = VATTU.ID and SlXuatKho > 0)),0) "
         sql &= " as XuatTam, "
 
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= Vattu.ID) AS Dangve, "
@@ -393,6 +413,7 @@ Public Class frmYeuCauDen
         sql &= " VATTU.Gianhap1 AS Gianhap, tblTienTe.Ten AS Tiente,TonNCC,TENNUOC.Ten AS Xuatxu,convert(float,0) AS SLYC, VATTU.ThongDung,"
         sql &= " VATTU.HangTon,VATTU.HinhAnh,(convert(image,NULL))HienThi,VATTU.TaiLieu,VATTU.ConSX,VATTU.Bo "
         sql &= " from VATTU LEFT OUTER JOIN TENVATTU ON VATTU.IDTENVATTU=TENVATTU.ID "
+        '  sql &= " inner join V_TonKhoTongHop ON V_TonkhoTonghop.IDVattu = VATTU.ID"
         sql &= " LEFT OUTER JOIN TENNHOM ON VATTU.IDTennhom=TENNHOM.ID LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID "
         sql &= " LEFT OUTER JOIN TENDONVITINH ON VATTU.IDDonvitinh=TENDONVITINH.ID LEFT OUTER JOIN TENNUOC ON VATTU.IDTennuoc=TENNUOC.ID "
         sql &= " LEFT OUTER JOIN tblTienTe ON VATTU.Tiente1=tblTienTe.ID "
@@ -607,6 +628,7 @@ Public Class frmYeuCauDen
         MaTuDien = -1
         fCNYeuCau = New frmThemYeuCau
         fCNYeuCau.Tag = Me.Tag
+        fCNYeuCau._tag = Me.Parent.Tag
         fCNYeuCau.ShowDialog()
     End Sub
 
@@ -626,6 +648,7 @@ Public Class frmYeuCauDen
         MaTuDien = gdvCT.GetFocusedRowCellValue("ID")
         fCNYeuCau = New frmThemYeuCau
         fCNYeuCau.Tag = Me.Tag
+        fCNYeuCau._tag = Me.Parent.Tag
         fCNYeuCau.ShowDialog()
         gdvCT.FocusedRowHandle = index
     End Sub
@@ -660,7 +683,7 @@ Public Class frmYeuCauDen
             End If
 
         Else
-            If Not gdvCT.GetFocusedRowCellValue("CongTrinh") Then
+            If gdvCT.GetFocusedRowCellValue("CongTrinh") <> "Công trình" Then
                 If count = 0 Then
                     ShowCanhBao("Chưa chọn mặt hàng cần chào giá !")
                     Exit Sub
@@ -674,11 +697,18 @@ Public Class frmYeuCauDen
             fCNChaoGia.gdvMaKH.EditValue = gdvCT.GetFocusedRowCellValue("IDKhachhang")
             fCNChaoGia.cbNguoiGD.EditValue = gdvCT.GetFocusedRowCellValue("IDNgd")
             fCNChaoGia.cbTakeCare.EditValue = gdvCT.GetFocusedRowCellValue("IDTakecare")
-            fCNChaoGia.chkCongTrinh.Checked = gdvCT.GetFocusedRowCellValue("CongTrinh")
-            fCNChaoGia.IDYC = str
-            If gdvCT.GetFocusedRowCellValue("CongTrinh") Then
+            If gdvCT.GetFocusedRowCellValue("CongTrinh") = "Công trình" Then
+                fCNChaoGia.chkCongTrinh.Checked = True
+                fCNChaoGia._Congtrinh = 1
                 fCNChaoGia.tbTenCongTrinh.EditValue = gdvCT.GetFocusedRowCellValue("NoiDung")
             End If
+            If gdvCT.GetFocusedRowCellValue("CongTrinh") = "Phần mềm" Then
+                fCNChaoGia._Congtrinh = 2
+            End If
+            fCNChaoGia.IDYC = str
+            'If gdvCT.GetFocusedRowCellValue("CongTrinh") Then
+
+            'End If
             isShowing = True
             fCNChaoGia.Show()
         End If
@@ -1800,8 +1830,9 @@ Public Class frmYeuCauDen
         Dim sql As String = " Select TOP 10 NULL AS CanhBao,TENVATTU.Ten AS TenVT,TENHANGSANXUAT.Ten AS HangSX,VATTU.Model,VATTU.Thongso,VATTU.ID,VATTU.IDDonvitinh AS IDDVT,TENDONVITINH.Ten AS DVT,TENNHOM.Ten AS NhomVT,TENNHOM.Ten_ENG AS TenNhom_ENG, "
         sql &= " (Round((select isnull(SUM(Soluong),0) from NHAPKHO where IDVattu=VATTU.ID),4)-Round((select isnull(SUM(Soluong),0) from XUATKHO where IDVattu=VATTU.ID),4)) AS slTon, "
 
-        sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
-        sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = VATTU.ID AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        sql &= "  isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO  where IdVatTu = V_TonKhoTongHop.IDVatTu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = V_TonKhoTongHop.IDVatTu and SlXuatKho > 0)),0) "
         sql &= " as XuatTam, "
 
         sql &= " (select isnull(SUM(sLuong),0) from V_Dangve where IDVattu= Vattu.ID) AS Dangve, "
@@ -1814,6 +1845,7 @@ Public Class frmYeuCauDen
         sql &= " VATTU.Gianhap1 AS Gianhap, tblTienTe.Ten AS Tiente,TonNCC,TENNUOC.Ten AS Xuatxu,convert(float,0) AS SLYC, VATTU.ThongDung,"
         sql &= " VATTU.HangTon,VATTU.HinhAnh,(convert(image,NULL))HienThi,VATTU.TaiLieu,VATTU.ConSX,VATTU.Bo "
         sql &= " from VATTU LEFT OUTER JOIN TENVATTU ON VATTU.IDTENVATTU=TENVATTU.ID "
+        sql &= " inner join V_TonKhoTongHop ON V_TonkhoTonghop.IDVattu = VATTU.ID"
         sql &= " LEFT OUTER JOIN TENNHOM ON VATTU.IDTennhom=TENNHOM.ID LEFT OUTER JOIN TENHANGSANXUAT ON VATTU.IDHangsanxuat=TENHANGSANXUAT.ID "
         sql &= " LEFT OUTER JOIN TENDONVITINH ON VATTU.IDDonvitinh=TENDONVITINH.ID LEFT OUTER JOIN TENNUOC ON VATTU.IDTennuoc=TENNUOC.ID "
         sql &= " LEFT OUTER JOIN tblTienTe ON VATTU.Tiente1=tblTienTe.ID "

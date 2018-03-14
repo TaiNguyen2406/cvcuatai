@@ -18,8 +18,9 @@ Public Class frmMHCanXuat
 
         If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.Admin) And Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.TPKinhDoanh) Then
             btfilterTakecare.Enabled = False
-        End If
 
+        End If
+        gdvCanXuatCT.OptionsBehavior.ReadOnly = False
     End Sub
 
 #Region "Lọc vật tư"
@@ -196,8 +197,19 @@ Public Class frmMHCanXuat
         sql &= "       (SELECT ISNULL(SUM(Soluong), 0) AS Expr1"
         sql &= "        FROM  XUATKHO"
         sql &= "        WHERE (IDvattu = VATTU.ID)) AS SLTon, "
+
+        'sql &= " isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDvattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = xuatkhotam.SoCG),'')),0) - "
+        'sql &= " isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDvattu AND SoCG <> isnull((SELECT TOP 1 SophieuCG FROM phieuxuatkho WHERE SophieuCG = nhapkhotam.SoCG),'')),0) "
+        'sql &= " as XuatTam, "
+
+        sql &= "   isnull((select SUM(SlXuatKho) from xuatkhotam where IdVatTu = CHAOGIA.IDvattu),0)  "
+        sql &= " - isnull((select SUM(SlNhapKho) from nhapkhotam where IdVatTu = CHAOGIA.IDvattu),0) "
+        sql &= " - isnull((select SUM(SoLuong) from XUATKHO where IdVatTu = CHAOGIA.IDvattu AND (select SophieuCG from PHIEUXUATKHO where PHIEUXUATKHO.Sophieu=XUATKHO.Sophieu) in (SELECT distinct SoCG FROM xuatkhotam where IdVatTu = CHAOGIA.IDvattu and SlXuatKho > 0)),0) "
+        sql &= " as XuatTam, "
+
         sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat,CHAOGIA.NgayCan,"
         sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe,V_DANGVE.NgayVe2, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, VATTU.ID"
+        sql &= " ,BANGCHAOGIA.CongTrinh"
         sql &= " FROM  CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.SoPhieu "
 
@@ -338,7 +350,11 @@ Public Class frmMHCanXuat
                     End If
 
                 End If
+            Case "ttcMa"
+                If gdvCanXuatCT.GetRowCellValue(e.RowHandle, "CongTrinh") = 1 Then
+                    e.Appearance.BackColor = Color.Orange
 
+                End If
         End Select
 
     End Sub
@@ -440,7 +456,7 @@ Public Class frmMHCanXuat
         sql &= "       (SELECT ISNULL(SUM(Soluong), 0) AS Expr1"
         sql &= "        FROM  XUATKHO"
         sql &= "        WHERE (IDvattu = VATTU.ID)) AS SLTon, "
-        sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat,CHAOGIA.NgayCan,"
+        sql &= " (select isnull(SUM(CanXuat),0) from CHAOGIA CG2 where CG2.IDVattu=CHAOGIA.IDVatTu) CanXuat,"
         sql &= " 	ISNULL(V_DANGVE.Sluong,0) AS SLVe,V_DANGVE.ngaythang AS NgayVe, BANGCHAOGIA.NgayNhan AS NgayXN,BANGCHAOGIA.NgayNhan AS NgayXN2, BANGCHAOGIA.IDTakeCare,NHANSU.Ten AS TakeCare, VATTU.ID"
         sql &= " FROM  CHAOGIA "
         sql &= " 	INNER JOIN BANGCHAOGIA ON BANGCHAOGIA.Sophieu = CHAOGIA.SoPhieu "

@@ -117,7 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gPhanHoi.CaptionImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAACjSURBVDhPYwCD9I0KQNwAxPtJxAVALAAzxACI3wPx
+        fzIxSK8CyKD7SILk4vUgg7BJkI7RBM4DsQORGKSW9gaRj7EKkoPRBEAxCEpPxGDU2EbhgBIZsQCSIHEa
+        BEpc6KkXF0ZNxBgC5OHzIIMS0ATJwQEw/wYAMWq6IA5D0h1OAAkDmGKQ1w2gMiQChEEgG4E5m1wAMWg9
+        EEPLGnIBPPCIBQwMAOi75Imkhy/7AAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="btnPhanHoi.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAACjSURBVDhPYwCD9I0KQNwAxPtJxAVALAAzxACI3wPx
+        fzIxSK8CyKD7SILk4vUgg7BJkI7RBM4DsQORGKSW9gaRj7EKkoPRBEAxCEpPxGDU2EbhgBIZsQCSIHEa
+        BEpc6KkXF0ZNxBgC5OHzIIMS0ATJwQEw/wYAMWq6IA5D0h1OAAkDmGKQ1w2gMiQChEEgG4E5m1wAMWg9
+        EEPLGnIBPPCIBQwMAOi75Imkhy/7AAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

@@ -1,14 +1,15 @@
 ﻿Imports BACSOFT.Db.SqlHelper
-
+Imports DevExpress.XtraPrinting
+Imports System.IO
 Public Class frmTongHopCongNoPhaiThuPhaiTra
 
     Private Sub frmTongHopCongNoPhaiThuPhaiTra_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
 
         Dim tg As DateTime = GetServerTime()
+        txtTuNgay.EditValue = New Date(2017, 1, 1)
+        'tg = tg.AddMonths(-1)
         txtDenNgay.EditValue = New Date(tg.Year, tg.Month, tg.Day)
-        tg = tg.AddMonths(-1)
-        txtTuNgay.EditValue = New Date(tg.Year, tg.Month, tg.Day)
 
         Select Case Me.Tag
             Case "TONGHOPCONGNOPHAITHU"
@@ -25,15 +26,21 @@ Public Class frmTongHopCongNoPhaiThuPhaiTra
     End Sub
 
     Private Sub btnTaiDuLieu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnTaiDuLieu.ItemClick
+
+        ' 1: phải thu đầu kỳ. 0: phải trả đầu kỳ.
+
         Select Case Me.Tag
             Case "TONGHOPCONGNOPHAITHU"
                 LoadTongHopCongNoPhaiThu()
+                If gdvData.FocusedRowHandle >= 0 Then
+                    ChiTietCongNoPhaiThu()
+                End If
                 tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI THU"
                 PhaiThu()
             Case "TONGHOPCONGNOPHAITRA"
-                LoadTongHopCongNoPhaiTra()
-                tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI TRẢ"
-                PhaiTra()
+                'LoadTongHopCongNoPhaiTra()
+                'tab1.Text = "TỔNG HỢP CÔNG NỢ PHẢI TRẢ"
+                'PhaiTra()
         End Select
 
     End Sub
@@ -178,7 +185,7 @@ Public Class frmTongHopCongNoPhaiThuPhaiTra
             End Select
         Else
             Try
-                tab2.Text = gdvData.GetFocusedRowCellValue("ttcMa") & ": " & ExecuteSQLDataTable("SELECT Ten FROM KHACHHANG WHERE ttcMa = N'" & gdvData.GetFocusedRowCellValue("ttcMa") & "'").Rows(0)(0)
+                tab2.Text = gdvData.GetFocusedRowCellValue("ttcMa") & ": " & ExecuteSQLDataTable("SELECT Ten FROM KHACHHANG WHERE Id = " & gdvData.GetFocusedRowCellValue("ID")).Rows(0)(0)
                 Select Case Me.Tag
                     Case "TONGHOPCONGNOPHAITHU"
                         ChiTietCongNoPhaiThu()
@@ -245,17 +252,18 @@ Public Class frmTongHopCongNoPhaiThuPhaiTra
                 End Select
 
                 dt.Rows(i)("LuyKe") = LuyKe
+                _LuyKe = LuyKe
             Next
         End If
 
-        Dim rCuoiKy As DataRow = dt.NewRow
-        rCuoiKy("TenVatTu") = " -- Cuối kỳ:"
-        rCuoiKy("PhatSinhNo") = obj2N(dt.Compute("SUM(PhatSinhNo)", ""))
-        rCuoiKy("TongTienTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", ""))
-        rCuoiKy("ConLaiTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", "")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Phân bổ'")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH'"))
-        rCuoiKy("PhatSinhCo") = obj2N(dt.Compute("SUM(PhatSinhCo)", ""))
-        rCuoiKy("LuyKe") = LuyKe
-        dt.Rows.InsertAt(rCuoiKy, dt.Rows.Count)
+        'Dim rCuoiKy As DataRow = dt.NewRow
+        'rCuoiKy("TenVatTu") = "-- Cuối kỳ:"
+        'rCuoiKy("PhatSinhNo") = obj2N(dt.Compute("SUM(PhatSinhNo)", ""))
+        'rCuoiKy("TongTienTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", ""))
+        'rCuoiKy("ConLaiTamUng") = obj2N(dt.Compute("SUM(TongTienTamUng)", "")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Phân bổ'")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "(LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH') and LoaiHoanTamUng=0"))
+        'rCuoiKy("PhatSinhCo") = obj2N(dt.Compute("SUM(PhatSinhCo)", ""))
+        'rCuoiKy("LuyKe") = LuyKe
+        'dt.Rows.InsertAt(rCuoiKy, dt.Rows.Count)
 
         gdvChiTiet.DataSource = dt
 
@@ -286,8 +294,8 @@ Public Class frmTongHopCongNoPhaiThuPhaiTra
                 e.Appearance.ForeColor = Color.Red
             Case "Phân bổ"
                 e.Appearance.ForeColor = Color.Navy
-            Case "Xuất kho", "Xuất kho CT"
-                e.Appearance.ForeColor = Color.Gray
+                'Case "Xuất kho", "Xuất kho CT"
+                '    e.Appearance.ForeColor = Color.Gray
             Case "Tạm ứng TM", "Tạm ứng NH"
                 e.Appearance.ForeColor = Color.Blue
             Case "Tạm ứng còn lại"
@@ -303,9 +311,108 @@ Public Class frmTongHopCongNoPhaiThuPhaiTra
     Private Sub txtTuNgay_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles txtTuNgay.EditValueChanged
         Dim ngay As Date = Convert.ToDateTime(txtTuNgay.EditValue)
         ngay = New Date(ngay.Year, ngay.Month, ngay.Day)
-        Dim ngayChot As New Date(2017, 8, 1)
+        Dim ngayChot As New Date(2017, 1, 1)
         If ngay < ngayChot Then txtTuNgay.EditValue = ngayChot
     End Sub
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = (Keys.Alt Or Keys.O) Then
+            If txtTongHopCongNoPhaiThu.Visible = True Then
+                txtTongHopCongNoPhaiThu.Visible = False
+                txtChiTietCongNoPhaiThu.Visible = False
+            Else
+                txtTongHopCongNoPhaiThu.Visible = True
+                txtChiTietCongNoPhaiThu.Visible = True
+            End If
+            Return True
+        End If
+        Return False
+    End Function
 
+    Private Sub btnKetXuat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnKetXuat.ItemClick
+        Dim gvexprort As Object = gdvData
+        Dim tu As DateTime = txtTuNgay.EditValue
+        Dim den As DateTime = txtDenNgay.EditValue
+        Dim filename As String = "Công nợ phải thu từ " & tu.ToString("dd-MM-yyyy") & " đến " & den.ToString("dd-MM-yyyy")
+        Dim saveDialog As SaveFileDialog = New SaveFileDialog()
+        Try
+            saveDialog.Filter = "Excel (2010) (.xlsx)|*.xlsx"
+            saveDialog.FileName = filename
+            If saveDialog.ShowDialog() = DialogResult.OK Then
+                ShowWaiting("Đang kết xuất ...")
+                Dim exportFilePath As String = saveDialog.FileName
+                Dim fileExtenstion As String = New FileInfo(exportFilePath).Extension
+                Dim str As String
+                Dim tuychon As XlsExportOptions = New XlsExportOptions
+                Dim tuychonx As XlsxExportOptions = New XlsxExportOptions
 
+                tuychon.ShowGridLines() = True
+                tuychonx.ShowGridLines() = True
+                Select Case fileExtenstion
+
+                    Case (".xlsx")
+                        Try
+                            gvexprort.ExportToXlsx(exportFilePath, tuychonx)
+                        Catch ex As Exception
+                            ShowBaoLoi(LoiNgoaiLe)
+                        End Try
+
+                End Select
+
+                If ShowCauHoi("Mở file vừa kết xuất ?") Then
+                    CloseWaiting()
+                    If File.Exists(exportFilePath) Then
+                        Try
+                            System.Diagnostics.Process.Start(exportFilePath)
+                        Catch ex As Exception
+                            str = "Không thể mở file này." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath
+                            ShowBaoLoi(str)
+                        End Try
+                    Else
+                        str = "Không thể lưu file này." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath
+                        ShowBaoLoi(str)
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            ShowBaoLoi(LoiNgoaiLe)
+            CloseWaiting()
+        End Try
+    End Sub
+    Dim _LuyKe As Double
+    Private Sub gdvDataChiTiet_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles gdvDataChiTiet.CustomSummaryCalculate
+        Dim dt As DataTable = CType(gdvChiTiet.DataSource, DataTable)
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case TryCast(e.Item, DevExpress.XtraGrid.GridSummaryItem).FieldName
+                Case "TenVatTu"
+                    e.TotalValue = " -- Cuối kỳ:"
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "PhatSinhNo"
+                    e.TotalValue = obj2N(dt.Compute("SUM(PhatSinhNo)", "TenVatTu<>'-- Cuối kỳ:'"))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "TongTienTamUng"
+                    e.TotalValue = obj2N(dt.Compute("SUM(TongTienTamUng)", "TenVatTu<>'-- Cuối kỳ:'"))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "ConLaiTamUng"
+                    e.TotalValue = obj2N(dt.Compute("SUM(TongTienTamUng)", "TenVatTu<>'-- Cuối kỳ:'")) - obj2N(dt.Compute("SUM(PhatSinhCo)", "LoaiCT='Phân bổ' and TenVatTu<>'-- Cuối kỳ:'")) - obj2N(dt.Compute("SUM(PhatSinhNo)", "(LoaiCT = 'Hoàn tạm ứng TM' OR LoaiCT ='Hoàn tạm ứng NH') and LoaiHoanTamUng=0 and TenVatTu<>'-- Cuối kỳ:'"))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "PhatSinhCo"
+                    e.TotalValue = obj2N(dt.Compute("SUM(PhatSinhCo)", "TenVatTu<>'-- Cuối kỳ:'"))
+                    e.TotalValueReady = True
+                    Exit Select
+                Case "LuyKe"
+                    e.TotalValue = _LuyKe
+                    e.TotalValueReady = True
+                    Exit Select
+            End Select
+        End If
+
+    End Sub
+    Private Sub txtDenNgay_EditValueChanged(sender As System.Object, e As System.EventArgs) Handles txtDenNgay.EditValueChanged
+        txtTuNgay.EditValue = New DateTime(Convert.ToDateTime(txtDenNgay.EditValue).Year, Convert.ToDateTime(txtTuNgay.EditValue).Month, 1)
+    End Sub
 End Class

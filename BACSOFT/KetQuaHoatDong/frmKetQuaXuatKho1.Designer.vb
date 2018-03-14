@@ -20,6 +20,7 @@ Partial Class frmKetQuaXuatKho1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmKetQuaXuatKho1))
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.tbTuNgay = New DevExpress.XtraBars.BarEditItem()
@@ -32,6 +33,8 @@ Partial Class frmKetQuaXuatKho1
         Me.rcbTakeCare = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.cbTieuChi = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryItemComboBox2 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.chkMoi = New DevExpress.XtraBars.BarCheckItem()
+        Me.chkLNMoi = New DevExpress.XtraBars.BarCheckItem()
         Me.btXem = New DevExpress.XtraBars.BarButtonItem()
         Me.btXuatExcel = New DevExpress.XtraBars.BarButtonItem()
         Me.btLuuLai = New DevExpress.XtraBars.BarButtonItem()
@@ -50,6 +53,7 @@ Partial Class frmKetQuaXuatKho1
         Me.mThemChiPhiMoi = New DevExpress.XtraBars.BarButtonItem()
         Me.mDuaVaoDSChungCP = New DevExpress.XtraBars.BarButtonItem()
         Me.mSuaChiPhiVCChung = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnExcel = New DevExpress.XtraBars.BarButtonItem()
         Me.rtbTuNgay = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.rtbDenNgay = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemMonth1 = New DevExpress.XtraScheduler.UI.RepositoryItemMonth()
@@ -117,6 +121,9 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.rpopupFile = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -153,6 +160,13 @@ Partial Class frmKetQuaXuatKho1
         Me.RepositoryItemLookUpEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.btClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.meTaoBangPhanBo = New DevExpress.XtraEditors.MemoEdit()
+        Me.meSql = New DevExpress.XtraEditors.MemoEdit()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.gcXe = New DevExpress.XtraGrid.GridControl()
+        Me.gvXe = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.riLueTinhTrang = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +214,13 @@ Partial Class frmKetQuaXuatKho1
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.meTaoBangPhanBo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.meSql.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.gcXe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvXe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riLueTinhTrang, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BarManager1
@@ -210,8 +231,8 @@ Partial Class frmKetQuaXuatKho1
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.cbTakeCare, Me.cbTieuChi, Me.btXuatExcel, Me.btXemPhieuThu, Me.btXemCG, Me.btXemChiPhi, Me.btXemXK, Me.cbPhong, Me.mDuKienTT, Me.mNhapThongTinVC, Me.mLuuLai, Me.btLuuLai, Me.mThemChiPhiMoi, Me.mDuaVaoDSChungCP, Me.mSuaChiPhiVCChung, Me.mChotSoLieu})
-        Me.BarManager1.MaxItemId = 32
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btXem, Me.tbTuNgay, Me.tbDenNgay, Me.cbTakeCare, Me.cbTieuChi, Me.btXuatExcel, Me.btXemPhieuThu, Me.btXemCG, Me.btXemChiPhi, Me.btXemXK, Me.cbPhong, Me.mDuKienTT, Me.mNhapThongTinVC, Me.mLuuLai, Me.btLuuLai, Me.mThemChiPhiMoi, Me.mDuaVaoDSChungCP, Me.mSuaChiPhiVCChung, Me.mChotSoLieu, Me.chkMoi, Me.chkLNMoi, Me.btnExcel, Me.BarButtonItem1})
+        Me.BarManager1.MaxItemId = 37
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rtbTuNgay, Me.rtbDenNgay, Me.RepositoryItemMonth1, Me.rcbThang, Me.rtbNam, Me.rcbTieuChi, Me.RepositoryItemComboBox1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.rcbTakeCare, Me.RepositoryItemComboBox2, Me.rcbPhong})
         '
         'Bar1
@@ -222,7 +243,7 @@ Partial Class frmKetQuaXuatKho1
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTakeCare), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(Me.btXem), New DevExpress.XtraBars.LinkPersistInfo(Me.btXuatExcel), New DevExpress.XtraBars.LinkPersistInfo(Me.btLuuLai, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChotSoLieu, True)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.tbTuNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.tbDenNgay), New DevExpress.XtraBars.LinkPersistInfo(Me.cbPhong), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTakeCare), New DevExpress.XtraBars.LinkPersistInfo(Me.cbTieuChi), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, Me.chkMoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.chkLNMoi), New DevExpress.XtraBars.LinkPersistInfo(Me.btXem), New DevExpress.XtraBars.LinkPersistInfo(Me.btXuatExcel), New DevExpress.XtraBars.LinkPersistInfo(Me.btLuuLai, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mChotSoLieu, True)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -321,7 +342,7 @@ Partial Class frmKetQuaXuatKho1
         '
         Me.cbTieuChi.Caption = "Theo"
         Me.cbTieuChi.Edit = Me.RepositoryItemComboBox2
-        Me.cbTieuChi.EditValue = "Xuất kho"
+        Me.cbTieuChi.EditValue = "Phiếu thu"
         Me.cbTieuChi.Id = 15
         Me.cbTieuChi.Name = "cbTieuChi"
         Me.cbTieuChi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
@@ -335,6 +356,22 @@ Partial Class frmKetQuaXuatKho1
         Me.RepositoryItemComboBox2.Items.AddRange(New Object() {"Xuất kho", "Phiếu thu"})
         Me.RepositoryItemComboBox2.Name = "RepositoryItemComboBox2"
         Me.RepositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'chkMoi
+        '
+        Me.chkMoi.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.chkMoi.Appearance.Options.UseBackColor = True
+        Me.chkMoi.Caption = "Mới"
+        Me.chkMoi.Checked = True
+        Me.chkMoi.Id = 32
+        Me.chkMoi.Name = "chkMoi"
+        '
+        'chkLNMoi
+        '
+        Me.chkLNMoi.Caption = "LN mới"
+        Me.chkLNMoi.Checked = True
+        Me.chkLNMoi.Id = 33
+        Me.chkLNMoi.Name = "chkLNMoi"
         '
         'btXem
         '
@@ -374,14 +411,14 @@ Partial Class frmKetQuaXuatKho1
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1405, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1427, 33)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 529)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1405, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1427, 0)
         '
         'barDockControlLeft
         '
@@ -394,7 +431,7 @@ Partial Class frmKetQuaXuatKho1
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1405, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1427, 33)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 496)
         '
         'btXemPhieuThu
@@ -462,6 +499,12 @@ Partial Class frmKetQuaXuatKho1
         Me.mSuaChiPhiVCChung.Id = 30
         Me.mSuaChiPhiVCChung.Name = "mSuaChiPhiVCChung"
         '
+        'btnExcel
+        '
+        Me.btnExcel.Caption = "Excel"
+        Me.btnExcel.Id = 34
+        Me.btnExcel.Name = "btnExcel"
+        '
         'rtbTuNgay
         '
         Me.rtbTuNgay.AutoHeight = False
@@ -527,19 +570,19 @@ Partial Class frmKetQuaXuatKho1
         '
         'pMenu
         '
-        Me.pMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btXemCG), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemChiPhi), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemXK), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuKienTT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapThongTinVC, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mLuuLai), New DevExpress.XtraBars.LinkPersistInfo(Me.mThemChiPhiMoi), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuaVaoDSChungCP), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaChiPhiVCChung)})
+        Me.pMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btXemCG), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemChiPhi), New DevExpress.XtraBars.LinkPersistInfo(Me.btXemXK), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuKienTT, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mNhapThongTinVC, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mLuuLai), New DevExpress.XtraBars.LinkPersistInfo(Me.mThemChiPhiMoi), New DevExpress.XtraBars.LinkPersistInfo(Me.mDuaVaoDSChungCP), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaChiPhiVCChung), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1)})
         Me.pMenu.Manager = Me.BarManager1
         Me.pMenu.Name = "pMenu"
         '
         'gdv
         '
         Me.gdv.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gdv.Location = New System.Drawing.Point(0, 33)
+        Me.gdv.Location = New System.Drawing.Point(0, 0)
         Me.gdv.MainView = Me.gdvCT
         Me.gdv.MenuManager = Me.BarManager1
         Me.gdv.Name = "gdv"
         Me.gdv.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.rpopupFile, Me.RepositoryItemHyperLinkEdit1, Me.rcbDVVC, Me.tbDate, Me.rtbSoTien, Me.rcbTienTe})
-        Me.gdv.Size = New System.Drawing.Size(1405, 496)
+        Me.gdv.Size = New System.Drawing.Size(1427, 491)
         Me.gdv.TabIndex = 6
         Me.gdv.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gdvCT})
         '
@@ -561,7 +604,7 @@ Partial Class frmKetQuaXuatKho1
         Me.gdvCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn17, Me.colPhieuThu, Me.colThuNH, Me.colPhieuXK, Me.colPhieuCG, Me.colLoaiCT, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.colTienGoc, Me.GridColumn8, Me.colChietKhau, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn26, Me.GridColumn15, Me.colPTCK, Me.GridColumn2, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20, Me.GridColumn9, Me.colVCDVVC, Me.colVCThoiGian, Me.colVCSoBill, Me.colVCSoTien, Me.colVCTienTe, Me.colVCTyGia, Me.colVCCanNang, Me.colVCGhiChu, Me.GridColumn28, Me.colVCSoTienTC, Me.GridColumn16, Me.GridColumn21, Me.colVCNguoiNhap, Me.colChotTienGoc, Me.colChotChiPhi, Me.colChotLoiNhuan, Me.GridColumn27, Me.GridColumn29, Me.GridColumn30, Me.GridColumn35, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn36, Me.GridColumn37})
+        Me.gdvCT.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn17, Me.colPhieuThu, Me.colThuNH, Me.colPhieuXK, Me.colPhieuCG, Me.colLoaiCT, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.colTienGoc, Me.GridColumn8, Me.colChietKhau, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn26, Me.GridColumn15, Me.colPTCK, Me.GridColumn2, Me.GridColumn14, Me.GridColumn19, Me.GridColumn20, Me.GridColumn9, Me.colVCDVVC, Me.colVCThoiGian, Me.colVCSoBill, Me.colVCSoTien, Me.colVCTienTe, Me.colVCTyGia, Me.colVCCanNang, Me.colVCGhiChu, Me.GridColumn28, Me.colVCSoTienTC, Me.GridColumn16, Me.GridColumn21, Me.colVCNguoiNhap, Me.colChotTienGoc, Me.colChotChiPhi, Me.colChotLoiNhuan, Me.GridColumn27, Me.GridColumn29, Me.GridColumn30, Me.GridColumn35, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn42})
         Me.gdvCT.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None
         Me.gdvCT.GridControl = Me.gdv
         Me.gdvCT.GroupPanelText = "Kéo thả cột cần nhóm dữ liệu vào đây"
@@ -627,8 +670,8 @@ Partial Class frmKetQuaXuatKho1
         Me.colPhieuThu.SummaryItem.FieldName = "Sophieu"
         Me.colPhieuThu.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Count
         Me.colPhieuThu.Visible = True
-        Me.colPhieuThu.VisibleIndex = 3
-        Me.colPhieuThu.Width = 80
+        Me.colPhieuThu.VisibleIndex = 6
+        Me.colPhieuThu.Width = 97
         '
         'colThuNH
         '
@@ -637,8 +680,8 @@ Partial Class frmKetQuaXuatKho1
         Me.colThuNH.Name = "colThuNH"
         Me.colThuNH.OptionsColumn.ReadOnly = True
         Me.colThuNH.Visible = True
-        Me.colThuNH.VisibleIndex = 4
-        Me.colThuNH.Width = 60
+        Me.colThuNH.VisibleIndex = 3
+        Me.colThuNH.Width = 49
         '
         'colPhieuXK
         '
@@ -651,7 +694,7 @@ Partial Class frmKetQuaXuatKho1
         Me.colPhieuXK.Name = "colPhieuXK"
         Me.colPhieuXK.OptionsColumn.ReadOnly = True
         Me.colPhieuXK.Visible = True
-        Me.colPhieuXK.VisibleIndex = 5
+        Me.colPhieuXK.VisibleIndex = 7
         Me.colPhieuXK.Width = 80
         '
         'colPhieuCG
@@ -665,7 +708,7 @@ Partial Class frmKetQuaXuatKho1
         Me.colPhieuCG.Name = "colPhieuCG"
         Me.colPhieuCG.OptionsColumn.ReadOnly = True
         Me.colPhieuCG.Visible = True
-        Me.colPhieuCG.VisibleIndex = 6
+        Me.colPhieuCG.VisibleIndex = 8
         Me.colPhieuCG.Width = 80
         '
         'colLoaiCT
@@ -675,7 +718,7 @@ Partial Class frmKetQuaXuatKho1
         Me.colLoaiCT.Name = "colLoaiCT"
         Me.colLoaiCT.OptionsColumn.ReadOnly = True
         Me.colLoaiCT.Visible = True
-        Me.colLoaiCT.VisibleIndex = 7
+        Me.colLoaiCT.VisibleIndex = 4
         Me.colLoaiCT.Width = 25
         '
         'GridColumn4
@@ -685,7 +728,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 8
+        Me.GridColumn4.VisibleIndex = 5
         Me.GridColumn4.Width = 25
         '
         'GridColumn5
@@ -699,7 +742,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn5.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn5.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 9
+        Me.GridColumn5.VisibleIndex = 10
         Me.GridColumn5.Width = 110
         '
         'GridColumn6
@@ -713,7 +756,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn6.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn6.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 10
+        Me.GridColumn6.VisibleIndex = 11
         Me.GridColumn6.Width = 90
         '
         'colTienGoc
@@ -727,7 +770,7 @@ Partial Class frmKetQuaXuatKho1
         Me.colTienGoc.SummaryItem.DisplayFormat = "{0:N0}"
         Me.colTienGoc.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.colTienGoc.Visible = True
-        Me.colTienGoc.VisibleIndex = 11
+        Me.colTienGoc.VisibleIndex = 12
         Me.colTienGoc.Width = 100
         '
         'GridColumn8
@@ -741,7 +784,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn8.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn8.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 12
+        Me.GridColumn8.VisibleIndex = 13
         Me.GridColumn8.Width = 90
         '
         'colChietKhau
@@ -755,7 +798,7 @@ Partial Class frmKetQuaXuatKho1
         Me.colChietKhau.SummaryItem.DisplayFormat = "{0:N0}"
         Me.colChietKhau.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.colChietKhau.Visible = True
-        Me.colChietKhau.VisibleIndex = 13
+        Me.colChietKhau.VisibleIndex = 14
         Me.colChietKhau.Width = 90
         '
         'GridColumn18
@@ -765,7 +808,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 14
+        Me.GridColumn18.VisibleIndex = 15
         Me.GridColumn18.Width = 55
         '
         'GridColumn10
@@ -779,7 +822,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn10.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn10.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 15
+        Me.GridColumn10.VisibleIndex = 16
         Me.GridColumn10.Width = 90
         '
         'GridColumn11
@@ -793,7 +836,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn11.SummaryItem.DisplayFormat = "{0:N0}"
         Me.GridColumn11.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 16
+        Me.GridColumn11.VisibleIndex = 9
         Me.GridColumn11.Width = 100
         '
         'GridColumn12
@@ -883,7 +926,7 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 33
+        Me.GridColumn14.VisibleIndex = 36
         Me.GridColumn14.Width = 139
         '
         'GridColumn19
@@ -1190,6 +1233,32 @@ Partial Class frmKetQuaXuatKho1
         Me.GridColumn37.VisibleIndex = 32
         Me.GridColumn37.Width = 100
         '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Còn lại"
+        Me.GridColumn38.DisplayFormat.FormatString = "N0"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn38.FieldName = "ConLai"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 34
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Tiền phiếu thu"
+        Me.GridColumn39.FieldName = "Thu2"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 33
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.Caption = "Giá trị XK"
+        Me.GridColumn42.FieldName = "GiaTriXK2"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 35
+        '
         'RepositoryItemMemoEdit1
         '
         Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
@@ -1225,7 +1294,7 @@ Partial Class frmKetQuaXuatKho1
         Me.pVCGop.Controls.Add(Me.LabelControl1)
         Me.pVCGop.Controls.Add(Me.gdvDSCP)
         Me.pVCGop.Controls.Add(Me.btClose)
-        Me.pVCGop.Location = New System.Drawing.Point(375, 145)
+        Me.pVCGop.Location = New System.Drawing.Point(34, 143)
         Me.pVCGop.Name = "pVCGop"
         Me.pVCGop.Size = New System.Drawing.Size(535, 248)
         Me.pVCGop.TabIndex = 12
@@ -1603,18 +1672,112 @@ Partial Class frmKetQuaXuatKho1
         Me.btClose.TabIndex = 7
         Me.btClose.Text = "Đóng"
         '
+        'meTaoBangPhanBo
+        '
+        Me.meTaoBangPhanBo.EditValue = resources.GetString("meTaoBangPhanBo.EditValue")
+        Me.meTaoBangPhanBo.Location = New System.Drawing.Point(109, 257)
+        Me.meTaoBangPhanBo.MenuManager = Me.BarManager1
+        Me.meTaoBangPhanBo.Name = "meTaoBangPhanBo"
+        Me.meTaoBangPhanBo.Size = New System.Drawing.Size(364, 145)
+        Me.meTaoBangPhanBo.TabIndex = 22
+        Me.meTaoBangPhanBo.Visible = False
+        '
+        'meSql
+        '
+        Me.meSql.EditValue = resources.GetString("meSql.EditValue")
+        Me.meSql.Location = New System.Drawing.Point(575, 26)
+        Me.meSql.MenuManager = Me.BarManager1
+        Me.meSql.Name = "meSql"
+        Me.meSql.Size = New System.Drawing.Size(517, 275)
+        Me.meSql.TabIndex = 17
+        Me.meSql.Visible = False
+        '
+        'SplitContainerControl1
+        '
+        Me.SplitContainerControl1.Collapsed = True
+        Me.SplitContainerControl1.CollapsePanel = DevExpress.XtraEditors.SplitCollapsePanel.Panel2
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 33)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.meTaoBangPhanBo)
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.meSql)
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.pVCGop)
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.gdv)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.gcXe)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1427, 496)
+        Me.SplitContainerControl1.SplitterPosition = 422
+        Me.SplitContainerControl1.TabIndex = 23
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
+        '
+        'gcXe
+        '
+        Me.gcXe.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gcXe.Location = New System.Drawing.Point(0, 0)
+        Me.gcXe.MainView = Me.gvXe
+        Me.gcXe.MenuManager = Me.BarManager1
+        Me.gcXe.Name = "gcXe"
+        Me.gcXe.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.riLueTinhTrang})
+        Me.gcXe.Size = New System.Drawing.Size(0, 0)
+        Me.gcXe.TabIndex = 23
+        Me.gcXe.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvXe})
+        '
+        'gvXe
+        '
+        Me.gvXe.Appearance.ColumnFilterButtonActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.gvXe.Appearance.ColumnFilterButtonActive.Options.UseBackColor = True
+        Me.gvXe.Appearance.FocusedRow.BackColor = System.Drawing.Color.PowderBlue
+        Me.gvXe.Appearance.FocusedRow.Options.UseBackColor = True
+        Me.gvXe.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gvXe.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvXe.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.gvXe.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gvXe.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
+        Me.gvXe.Appearance.HideSelectionRow.Options.UseBackColor = True
+        Me.gvXe.FixedLineWidth = 1
+        Me.gvXe.GridControl = Me.gcXe
+        Me.gvXe.Name = "gvXe"
+        Me.gvXe.OptionsBehavior.Editable = False
+        Me.gvXe.OptionsCustomization.AllowColumnMoving = False
+        Me.gvXe.OptionsCustomization.AllowGroup = False
+        Me.gvXe.OptionsLayout.Columns.AddNewColumns = False
+        Me.gvXe.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.gvXe.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
+        Me.gvXe.OptionsView.ShowFooter = True
+        Me.gvXe.OptionsView.ShowGroupPanel = False
+        Me.gvXe.OptionsView.ShowIndicator = False
+        Me.gvXe.RowHeight = 23
+        '
+        'riLueTinhTrang
+        '
+        Me.riLueTinhTrang.AutoHeight = False
+        Me.riLueTinhTrang.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.riLueTinhTrang.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tentinhtrang", "Tên")})
+        Me.riLueTinhTrang.DisplayMember = "tentinhtrang"
+        Me.riLueTinhTrang.Name = "riLueTinhTrang"
+        Me.riLueTinhTrang.NullText = ""
+        Me.riLueTinhTrang.ShowHeader = False
+        Me.riLueTinhTrang.ValueMember = "id"
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "lọc"
+        Me.BarButtonItem1.Id = 36
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
         'frmKetQuaXuatKho1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.pVCGop)
-        Me.Controls.Add(Me.gdv)
+        Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmKetQuaXuatKho1"
-        Me.Size = New System.Drawing.Size(1405, 529)
+        Me.Size = New System.Drawing.Size(1427, 529)
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1663,6 +1826,13 @@ Partial Class frmKetQuaXuatKho1
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.meTaoBangPhanBo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.meSql.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.gcXe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvXe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riLueTinhTrang, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1799,5 +1969,17 @@ Partial Class frmKetQuaXuatKho1
     Friend WithEvents mChotSoLieu As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
-
+    Friend WithEvents chkMoi As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents meSql As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents meTaoBangPhanBo As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents gcXe As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gvXe As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents riLueTinhTrang As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents chkLNMoi As DevExpress.XtraBars.BarCheckItem
+    Friend WithEvents btnExcel As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
 End Class

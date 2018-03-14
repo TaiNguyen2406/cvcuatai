@@ -78,7 +78,7 @@ Public Class frmTHDiemThiKyNang
         sql &= "                INNER JOIN tblDiemThiKyNang tb2 ON tmpTb.IDNhanVien=tb2.IDNhanVien AND tmpTb.IDKyNang=tb2.IDKyNang AND tmpTb.Ngay=tb2.NgayThi AND tb2.ThoiGian>0) AS d"
         sql &= " 			INNER JOIN #tbDiemTong ON #tbDiemTong.IDNhanVien=d.IDNhanVien"
         sql &= "             INNER JOIN NHANSU AS p"
-        sql &= "             ON p.ID = d.IDNhanVien"
+        sql &= "             ON p.ID = d.IDNhanVien and p.TrangThai=1 "
 
         If Not cbPhong.EditValue Is Nothing Then
             sql &= " AND p.IDDepatment = " & cbPhong.EditValue
