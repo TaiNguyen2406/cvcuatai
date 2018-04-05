@@ -50,14 +50,18 @@ Partial Class frmThuNganHang
         Me.mnuChuyenSangBenThue = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuChuyenCacPhieuDaChon = New DevExpress.XtraBars.BarButtonItem()
         Me.mnuChonBoChonTatCa = New DevExpress.XtraBars.BarButtonItem()
+        Me.mDeNghiSua = New DevExpress.XtraBars.BarButtonItem()
+        Me.mXemLichSuPhieu = New DevExpress.XtraBars.BarButtonItem()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.rcbTakecare = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.gdvThuNH = New DevExpress.XtraGrid.GridControl()
         Me.gdvThuNHCT = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandSTT2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandSTT = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.colSTT = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -84,6 +88,12 @@ Partial Class frmThuNganHang
         Me.BandedGridColumn42 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandDNS = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.colDNS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandLichSuSua = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemPopupContainerEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.pMenuThu = New DevExpress.XtraBars.PopupMenu(Me.components)
@@ -115,8 +125,8 @@ Partial Class frmThuNganHang
         Me.BarManager1.DockControls.Add(Me.BarDockControl3)
         Me.BarManager1.DockControls.Add(Me.BarDockControl4)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbSoTK, Me.btTaiLai, Me.BarButtonItem1, Me.btfilterMaKH, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInUNC, Me.mInUNCTong, Me.BarSubItem1, Me.mInUNCTheoNguoiNhan, Me.mInUNCTheoDoiTuongCongNo, Me.mnuChuyenSangBenThue, Me.mnuChuyenCacPhieuDaChon, Me.mnuChonBoChonTatCa})
-        Me.BarManager1.MaxItemId = 70
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.cbSoTK, Me.btTaiLai, Me.BarButtonItem1, Me.btfilterMaKH, Me.btfilterTuNgay, Me.btfilterDenNgay, Me.mThemPhieuThu, Me.mSuaPhieuThu, Me.btThemPhieuChi, Me.btSuaPhieuChi, Me.btInUNC, Me.mInUNCTong, Me.BarSubItem1, Me.mInUNCTheoNguoiNhan, Me.mInUNCTheoDoiTuongCongNo, Me.mnuChuyenSangBenThue, Me.mnuChuyenCacPhieuDaChon, Me.mnuChonBoChonTatCa, Me.mDeNghiSua, Me.mXemLichSuPhieu})
+        Me.BarManager1.MaxItemId = 72
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rcbSoTK, Me.RepositoryItemCheckEdit4, Me.rcbMaKH, Me.rcbTakecare, Me.rtbTuNgay, Me.rtbDenNgay})
         '
         'Bar1
@@ -280,8 +290,8 @@ Partial Class frmThuNganHang
         '
         'mSuaPhieuThu
         '
-        Me.mSuaPhieuThu.Caption = "Sửa phiếu thu"
-        Me.mSuaPhieuThu.Glyph = Global.BACSOFT.My.Resources.Resources.Edit_18
+        Me.mSuaPhieuThu.Caption = "Xem phiếu thu"
+        Me.mSuaPhieuThu.Glyph = Global.BACSOFT.My.Resources.Resources.Search_18
         Me.mSuaPhieuThu.Id = 58
         Me.mSuaPhieuThu.Name = "mSuaPhieuThu"
         '
@@ -352,6 +362,18 @@ Partial Class frmThuNganHang
         Me.mnuChonBoChonTatCa.Name = "mnuChonBoChonTatCa"
         Me.mnuChonBoChonTatCa.Tag = True
         '
+        'mDeNghiSua
+        '
+        Me.mDeNghiSua.Caption = "Đề nghị sửa"
+        Me.mDeNghiSua.Id = 70
+        Me.mDeNghiSua.Name = "mDeNghiSua"
+        '
+        'mXemLichSuPhieu
+        '
+        Me.mXemLichSuPhieu.Caption = "Xem lịch sử phiếu"
+        Me.mXemLichSuPhieu.Id = 71
+        Me.mXemLichSuPhieu.Name = "mXemLichSuPhieu"
+        '
         'RepositoryItemCheckEdit4
         '
         Me.RepositoryItemCheckEdit4.AutoHeight = False
@@ -406,8 +428,8 @@ Partial Class frmThuNganHang
         Me.gdvThuNHCT.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gdvThuNHCT.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.PowderBlue
         Me.gdvThuNHCT.Appearance.HideSelectionRow.Options.UseBackColor = True
-        Me.gdvThuNHCT.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.GridBand2, Me.GridBand3, Me.GridBand4, Me.GridBand5, Me.GridBand6, Me.GridBand7, Me.GridBand8, Me.GridBand17, Me.GridBand28})
-        Me.gdvThuNHCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn12, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn40, Me.BandedGridColumn39, Me.BandedGridColumn42, Me.BandedGridColumn11, Me.BandedGridColumn13})
+        Me.gdvThuNHCT.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.BandSTT2, Me.BandSTT, Me.GridBand2, Me.GridBand3, Me.GridBand4, Me.GridBand5, Me.GridBand6, Me.GridBand7, Me.GridBand8, Me.GridBand17, Me.GridBand28, Me.BandDNS, Me.BandLichSuSua})
+        Me.gdvThuNHCT.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn12, Me.colSTT, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn36, Me.BandedGridColumn37, Me.BandedGridColumn40, Me.BandedGridColumn39, Me.BandedGridColumn42, Me.BandedGridColumn11, Me.BandedGridColumn13, Me.colDNS, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn17, Me.BandedGridColumn18})
         Me.gdvThuNHCT.GridControl = Me.gdvThuNH
         Me.gdvThuNHCT.GroupPanelText = "Kéo thả cột cần nhóm vào vị trí này"
         Me.gdvThuNHCT.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SoTien", Me.BandedGridColumn7, "{0:N0}")})
@@ -424,14 +446,31 @@ Partial Class frmThuNganHang
         Me.gdvThuNHCT.OptionsView.ShowFooter = True
         Me.gdvThuNHCT.RowHeight = 22
         '
-        'GridBand1
+        'BandSTT2
         '
-        Me.GridBand1.Caption = "STT"
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn12)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand1.MinWidth = 20
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.Width = 72
+        Me.BandSTT2.Caption = "STT"
+        Me.BandSTT2.Columns.Add(Me.BandedGridColumn18)
+        Me.BandSTT2.MinWidth = 20
+        Me.BandSTT2.Name = "BandSTT2"
+        Me.BandSTT2.Width = 39
+        '
+        'BandedGridColumn18
+        '
+        Me.BandedGridColumn18.Caption = "Stt2"
+        Me.BandedGridColumn18.FieldName = "STT2"
+        Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        Me.BandedGridColumn18.OptionsColumn.ShowCaption = False
+        Me.BandedGridColumn18.Visible = True
+        Me.BandedGridColumn18.Width = 39
+        '
+        'BandSTT
+        '
+        Me.BandSTT.Caption = "STT"
+        Me.BandSTT.Columns.Add(Me.BandedGridColumn12)
+        Me.BandSTT.Columns.Add(Me.colSTT)
+        Me.BandSTT.MinWidth = 20
+        Me.BandSTT.Name = "BandSTT"
+        Me.BandSTT.Width = 72
         '
         'BandedGridColumn12
         '
@@ -452,14 +491,14 @@ Partial Class frmThuNganHang
         Me.RepositoryItemCheckEdit1.PictureUnchecked = Global.BACSOFT.My.Resources.Resources.UnCheck
         Me.RepositoryItemCheckEdit1.ValueGrayed = False
         '
-        'BandedGridColumn1
+        'colSTT
         '
-        Me.BandedGridColumn1.Caption = "STT"
-        Me.BandedGridColumn1.FieldName = "STT"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.OptionsColumn.ShowCaption = False
-        Me.BandedGridColumn1.Visible = True
-        Me.BandedGridColumn1.Width = 36
+        Me.colSTT.Caption = "STT"
+        Me.colSTT.FieldName = "STT"
+        Me.colSTT.Name = "colSTT"
+        Me.colSTT.OptionsColumn.ShowCaption = False
+        Me.colSTT.Visible = True
+        Me.colSTT.Width = 36
         '
         'GridBand2
         '
@@ -703,6 +742,68 @@ Partial Class frmThuNganHang
         Me.BandedGridColumn39.Name = "BandedGridColumn39"
         Me.BandedGridColumn39.Width = 95
         '
+        'BandDNS
+        '
+        Me.BandDNS.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandDNS.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandDNS.Caption = "DNS"
+        Me.BandDNS.Columns.Add(Me.colDNS)
+        Me.BandDNS.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.BandDNS.MinWidth = 20
+        Me.BandDNS.Name = "BandDNS"
+        Me.BandDNS.Width = 30
+        '
+        'colDNS
+        '
+        Me.colDNS.AppearanceCell.Options.UseTextOptions = True
+        Me.colDNS.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colDNS.AppearanceHeader.Options.UseTextOptions = True
+        Me.colDNS.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colDNS.Caption = " "
+        Me.colDNS.FieldName = "DeNghiSua"
+        Me.colDNS.Name = "colDNS"
+        Me.colDNS.OptionsColumn.AllowEdit = False
+        Me.colDNS.OptionsColumn.ReadOnly = True
+        Me.colDNS.Visible = True
+        Me.colDNS.Width = 30
+        '
+        'BandLichSuSua
+        '
+        Me.BandLichSuSua.Caption = "Lịch sử sửa"
+        Me.BandLichSuSua.Columns.Add(Me.BandedGridColumn15)
+        Me.BandLichSuSua.Columns.Add(Me.BandedGridColumn16)
+        Me.BandLichSuSua.Columns.Add(Me.BandedGridColumn17)
+        Me.BandLichSuSua.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.BandLichSuSua.MinWidth = 20
+        Me.BandLichSuSua.Name = "BandLichSuSua"
+        Me.BandLichSuSua.Width = 283
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.Caption = "Phiên bản"
+        Me.BandedGridColumn15.FieldName = "PhienBan"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.Visible = True
+        Me.BandedGridColumn15.Width = 65
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.Caption = "TG Sửa"
+        Me.BandedGridColumn16.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm"
+        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumn16.FieldName = "NgaySua"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.Visible = True
+        Me.BandedGridColumn16.Width = 116
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.Caption = "Người sửa"
+        Me.BandedGridColumn17.FieldName = "NguoiSua"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.Visible = True
+        Me.BandedGridColumn17.Width = 102
+        '
         'RepositoryItemPopupContainerEdit2
         '
         Me.RepositoryItemPopupContainerEdit2.AutoHeight = False
@@ -716,7 +817,7 @@ Partial Class frmThuNganHang
         '
         'pMenuThu
         '
-        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenSangBenThue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenCacPhieuDaChon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChonBoChonTatCa)})
+        Me.pMenuThu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.mThemPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mSuaPhieuThu), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenSangBenThue, True), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChuyenCacPhieuDaChon), New DevExpress.XtraBars.LinkPersistInfo(Me.mnuChonBoChonTatCa), New DevExpress.XtraBars.LinkPersistInfo(Me.mDeNghiSua), New DevExpress.XtraBars.LinkPersistInfo(Me.mXemLichSuPhieu)})
         Me.pMenuThu.Manager = Me.BarManager1
         Me.pMenuThu.Name = "pMenuThu"
         '
@@ -780,7 +881,7 @@ Partial Class frmThuNganHang
     Friend WithEvents RepositoryItemPopupContainerEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents gdvThuNHCT As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents colSTT As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -812,16 +913,25 @@ Partial Class frmThuNganHang
     Friend WithEvents mnuChuyenSangBenThue As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuChuyenCacPhieuDaChon As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents mnuChonBoChonTatCa As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents colDNS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents mDeNghiSua As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents mXemLichSuPhieu As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BandedGridColumn18 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn16 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn17 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandSTT2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandSTT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand17 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand28 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-
+    Friend WithEvents BandDNS As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandLichSuSua As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

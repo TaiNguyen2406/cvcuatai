@@ -1,19 +1,16 @@
-﻿Imports BACSOFT.Db.SqlHelper
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.Data.Filtering
-Imports System.Security.AccessControl
-Imports DevExpress
-
-Imports System.Linq
+﻿Imports System.Linq
+Imports BACSOFT.Db.SqlHelper
 Imports BACSOFT.HoaDonGTGT
-
+Imports DevExpress
 
 Public Class frmThuNganHang
     Public _Exit As Boolean = False
     Private _ToDay As DateTime = GetServerTime.Date
     Public _LoadStyle As Boolean = False
     Public _ConLai As Double = 0
+
+    'Duong
+    Private _HSql = ""
 
     Private Sub frmThuNganHang_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         btfilterTuNgay.EditValue = New DateTime(_ToDay.Year, _ToDay.Month, 1)
@@ -38,18 +35,19 @@ Public Class frmThuNganHang
 
     End Sub
 
-
     Private Sub rcbMaKH_ButtonClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles rcbMaKH.ButtonClick
         If e.Button.Index = 1 Then
             btfilterMaKH.EditValue = Nothing
         End If
     End Sub
 
-
-
     Public Sub LoadThuNH()
-
-
+        BandLichSuSua.Visible = False
+        BandSTT2.Visible = False
+        If Me.Parent.Name = "frmLichSuPhieu" Then
+            LoadLog()
+            Exit Sub
+        End If
 
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = " SET DATEFORMAT DMY "
@@ -58,12 +56,15 @@ Public Class frmThuNganHang
         sql &= " (CASE PhieuTC0 WHEN N'000000000' THEN N'' ELSE case when THUNH.MucDich = 109 then N'ĐH ' else N'CG ' end + PhieuTC0 END) PhieuTC0, "
         sql &= " (CASE PhieuTC1 WHEN N'000000000' THEN N'' ELSE case when THUNH.MucDich = 109 then N'NK ' else N'XK ' end + PhieuTC1 END) PhieuTC1, "
         sql &= " (SELECT SoCT FROM CHUNGTU WHERE ID = THUNH.IdChungTu)PhieuNopTien,NHANSU.Ten as NguoiLap"
+        sql &= " , DeNghiSua"
         sql &= " FROM THUNH"
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=THUNH.IDKh"
         sql &= " LEFT JOIN NHANSU ON NHANSU.ID=THUNH.IDUser "
         sql &= " LEFT JOIN tblTienTe ON tblTienTe.ID=THUNH.TienTe"
         sql &= " LEFT JOIN MUCDICHTHUCHI ON MUCDICHTHUCHI.ID=THUNH.MucDich"
-        sql &= " WHERE CONVERT(datetime,CONVERT(nvarchar,THUNH.NgayThangCT,103),103) BETWEEN @TuNgay AND @DenNgay"
+        sql &= " WHERE "
+        _HSql = sql
+        sql &= "CONVERT(datetime,CONVERT(nvarchar,THUNH.NgayThangCT,103),103) BETWEEN @TuNgay AND @DenNgay"
         If Not btfilterMaKH.EditValue Is Nothing Then
             sql &= " AND THUNH.IDKh=" & btfilterMaKH.EditValue
         End If
@@ -97,8 +98,6 @@ Public Class frmThuNganHang
         LoadThuNH()
 
     End Sub
-
-
 
     'Private Sub chkRutGon_CheckedChanged(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles chkRutGon.CheckedChanged
     '    If chkRutGon.Checked = True Then
@@ -148,8 +147,6 @@ Public Class frmThuNganHang
     '    fCNXuatKho.ShowDialog()
     'End Sub
 
-  
-
     Private Sub mThemPhieuThu_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles mThemPhieuThu.ItemClick
         If Not KiemTraQuyenSuDung("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenThem) Then Exit Sub
         ' TrangThai.isAddNew = True
@@ -157,6 +154,7 @@ Public Class frmThuNganHang
         f._TrangThai.isAddNew = True
         f.Tag = Me.Parent.Tag
         f.ThuNH = True
+        f._frmThuNganHang = Me
         f.Text = "Thêm phiếu thu vào tài khoản"
         f.Show()
     End Sub
@@ -169,21 +167,21 @@ Public Class frmThuNganHang
         Dim f As New frmCNThu2
         f.Tag = Me.Parent.Tag
         f._TrangThai.isUpdate = True
+        f._frmThuNganHang = Me
+        f._focusedRowIndex = gdvThuNHCT.FocusedRowHandle
         f.Text = "Cập nhật phiếu thu NH " & gdvThuNHCT.GetFocusedRowCellValue("SoPhieuT").ToString '.Substring(3, 7)
         f.ThuNH = True
         f.PhieuThu = gdvThuNHCT.GetFocusedRowCellValue("SoPhieuT").ToString '.Substring(3, 7)
         f.PhieuThuCT = gdvThuNHCT.GetFocusedRowCellValue("SoPhieu").ToString
         f.ThuNH = True
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then
-            f.btGhi.Enabled = False
-            f.btThem.Enabled = False
-        End If
-        f.Show()
+        'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then
+        f.btGhi.Enabled = False
+        f.btThem.Enabled = False
+        'End If
+        f.ShowDialog()
 
         gdvThuNHCT.FocusedRowHandle = _Index
     End Sub
-
-    
 
     Private Sub rcbSoTK_ButtonClick(sender As System.Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles rcbSoTK.ButtonClick
         If e.Button.Index = 1 Then
@@ -235,8 +233,6 @@ Public Class frmThuNganHang
         Dim sql As String = "SELECT * FROM THUNH WHERE ID = " & f.idChungTu
         Dim r As DataRow = ExecuteSQLDataTable(sql).Rows(0)
 
-
-
         Dim dt1 As DataTable = CType(f.cmbSoTK.Properties.DataSource, DataTable)
         Dim dr1 As DataRow = dt1.NewRow
         dr1("MaSo") = r("TaiKhoanden").ToString.Trim
@@ -275,9 +271,6 @@ Public Class frmThuNganHang
             End If
         End If
 
-
-
-
         f.gdvData.SetFocusedRowCellValue("DienGiai", f.txtTenDoiTuong.Text & " thanh toán tiền hàng")
         f.gdvData.SetFocusedRowCellValue("TaiKhoanNo", "1121")
         f.gdvData.SetFocusedRowCellValue("TaiKhoanCo", "131")
@@ -285,9 +278,7 @@ Public Class frmThuNganHang
         f.gdvData.FocusedColumn = f.gdvData.Columns("DienGiai")
         f.gdvData.ShowEditor()
 
-
         f.ShowDialog()
-
 
         If Not f.idChungTu Is Nothing Then
             gdvThuNHCT.SetFocusedRowCellValue("SoCT", f.tbSoPhieu.EditValue)
@@ -314,7 +305,6 @@ Public Class frmThuNganHang
         Try
             For i As Integer = 0 To arrPhieu.Count - 1
 
-
                 Dim sql As String = "SELECT * FROM THUNH WHERE ID = " & gdvThuNHCT.GetRowCellValue(arrPhieu(i), "ID")
                 Dim r As DataRow = ExecuteSQLDataTable(sql).Rows(0)
 
@@ -326,7 +316,6 @@ Public Class frmThuNganHang
                 AddParameter("@SoPhieuT", r("SoPhieuT"))
                 Dim tt As Object = ExecuteSQLDataTable(sql).Rows(0)(0)
                 If tt <= r("sotien") Then tt = r("sotien")
-
 
                 'chung tu
                 AddParameter("@LoaiCT", ChungTu.LoaiChungTu.NopTienNganHang)
@@ -399,5 +388,85 @@ Public Class frmThuNganHang
         mnuChonBoChonTatCa.Tag = Not mnuChonBoChonTatCa.Tag
     End Sub
 
+    ' Scroll grid và Focus vào dòng index
+    Public Sub ScrollToRow(rowIndexToScroll As Integer)
+        gdvThuNHCT.FocusedRowHandle = rowIndexToScroll
+    End Sub
+
+    Private Sub mDeNghiSua_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mDeNghiSua.ItemClick
+        If CType(gdvThuNHCT.GetFocusedRowCellValue("DeNghiSua"), Boolean) Then
+            ShowCanhBao("Phiếu này đang được đề nghị sửa!")
+            Exit Sub
+        End If
+        Dim dns = New frmDeNghiSua.DENGHISUA_DTO()
+        dns.LoaiPhieu = "CK"
+        dns.SoPhieu = gdvThuNHCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9)
+        dns.TenNguoiLapPhieu = gdvThuNHCT.GetFocusedRowCellValue("NguoiLap").ToString
+        dns.ttcMa = gdvThuNHCT.GetFocusedRowCellValue("ttcMa")
+        dns.SoPhieuT = gdvThuNHCT.GetFocusedRowCellValue("SoPhieuT")
+        dns._TagForm = Me.Parent.Tag
+        Dim f = New frmDeNghiSua
+        f._FormCall = Me
+        f._RowSelectedIndex = gdvThuNHCT.FocusedRowHandle
+        f._DeNghi = dns
+        f._LogData = LuuDuLieuLichSu(gdvThuNHCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9))
+        f.ShowDialog()
+    End Sub
+
+    Private Function LuuDuLieuLichSu(SoPhieu As String) As DataSet
+        _HSql &= " SoPhieu = '" & SoPhieu & "' "
+        Dim ds = New DataSet
+        ds = ExecuteSQLDataSet(_HSql)
+        Return ds
+    End Function
+
+    Private Sub mXemLichSuPhieu_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mXemLichSuPhieu.ItemClick
+        Dim f = New frmLichSuPhieu
+        f._PhieuThuNH = New frmThuNganHang
+        frmLichSuPhieu.SoPhieu = gdvThuNHCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9)
+        f.Text = "Lịch sử phiếu " & gdvThuNHCT.GetFocusedRowCellValue("SoPhieu")
+        f.Tag = Me.Parent.Tag
+        f.ShowDialog()
+    End Sub
+
+    Private Sub LoadLog()
+        Bar1.Visible = False
+        pMenuThu.Dispose()
+        BandSTT.Visible = False
+        BandDNS.Visible = False
+        BandLichSuSua.Visible = True
+        BandSTT2.Visible = True
+        Dim sql = "Select (Select TenNguoiSua from DENGHISUA WHERE DENGHISUA.ID = IDDeNghi) as NguoiSua, CauTrucBang, PhienBan,"
+        sql &= " DuLieu, NgaySua from DeNghiSua_Log Where SoPhieu = '" & frmLichSuPhieu.SoPhieu & "' And TenBang = 'THUNH'"
+        Dim dt = New DataTable
+        Dim ds = New DataSet()
+        dt = ExecuteSQLDataSet(sql).Tables(0)
+        Dim cautrucbang = ""
+        Try
+            cautrucbang = dt.Rows(0)("CauTrucBang").ToString()
+        Catch
+            ShowAlert("Phiếu này chưa phải sửa lần nào!")
+            Exit Sub
+        End Try
+        frmLichSuPhieu.XMLSChemaToDataSet(ds, cautrucbang) 'tao kieu du lieu cho bang
+        ds.Tables(0).Columns.Add("NguoiSua")
+        ds.Tables(0).Columns.Add("PhienBan")
+        ds.Tables(0).Columns("PhienBan").DataType = GetType(Integer)
+        ds.Tables(0).Columns.Add("NgaySua")
+        ds.Tables(0).Columns("NgaySua").DataType = GetType(DateTime)
+        ds.Tables(0).Columns.Add("STT2")
+        ds.Tables(0).Columns("STT2").DataType = GetType(Integer)
+        Dim i = 0
+        For Each row As DataRow In dt.Rows
+            Dim dulieu = row("DuLieu").ToString
+            frmLichSuPhieu.XMLToDataSet(ds, dulieu) 'tao du lieu cho bang
+            ds.Tables(0).Rows(i)("NguoiSua") = row("NguoiSua")
+            ds.Tables(0).Rows(i)("PhienBan") = row("PhienBan")
+            ds.Tables(0).Rows(i)("NgaySua") = row("NgaySua")
+            ds.Tables(0).Rows(i)("STT2") = i + 1
+            i += 1
+        Next
+        gdvThuNH.DataSource = ds.Tables(0)
+    End Sub
 
 End Class

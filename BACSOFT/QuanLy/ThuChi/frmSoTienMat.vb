@@ -51,18 +51,18 @@ Public Class frmSoTienMat
 
         ShowWaiting("Đang tải dữ liệu ...")
         Dim sql As String = " SET DATEFORMAT DMY "
-        sql &= " SELECT (ISNULL((SELECT SUM(SoTien) FROM THU WHERE THU.NgayThangCT<@TuNgay),0) - ISNULL((SELECT SUM(SoTien) FROM Chi WHERE CHI.NgayThangCT<@TuNgay),0))AS DauKy"
+        sql &= " SELECT (ISNULL((SELECT SUM(SoTien*TyGia) FROM THU WHERE THU.NgayThangCT<@TuNgay),0) - ISNULL((SELECT SUM(SoTien*TyGia) FROM Chi WHERE CHI.NgayThangCT<@TuNgay),0))AS DauKy"
         sql &= "   SELECT STT, tb.ID,NgayThangVS,SoPhieu,NgayThangCT,IDKh,DienGiai,"
         sql &= " 	(CASE THUCHI WHEN 0 THEN tb.SoTien ELSE NULL END)TienThu,(CASE THUCHI WHEN 1 THEN tb.SoTien ELSE NULL END)TienChi,0.0 AS ConLai,"
         sql &= " 	tblTienTe.Ten AS TienTe,NguoiGiaoDich,THUCHI,KHACHHANG.ttcMa,MUCDICHTHUCHI.Ten AS MucDich"
 
         sql &= " FROM "
         sql &= " (SELECT 0 AS STT, THU.ID,NgayThangVS,(N'TT ' + THU.SoPhieu) AS SoPhieu,NgayThangCT,THU.IDKh,THU.DienGiai,"
-        sql &= " 	THU.SoTien,TienTe,MucDich,NguoiNop AS NguoiGiaoDich,Convert(bit,0) AS THUCHI,MaTK"
+        sql &= " 	THU.SoTien*isnull(TyGia,1) SoTien,TienTe,MucDich,NguoiNop AS NguoiGiaoDich,Convert(bit,0) AS THUCHI,MaTK"
         sql &= " FROM THU"
         sql &= " UNION ALL "
         sql &= " SELECT 0 AS STT, CHI.ID,NgayThangVS,(N'CT ' + CHI.SoPhieu) AS SoPhieu,NgayThangCT,CHI.IDKh,CHI.DienGiai,"
-        sql &= " 	CHI.SoTien,TienTe,MucDich,NguoiNhan AS NguoiGiaoDich,Convert(bit,1) AS THUCHI,MaTK"
+        sql &= " 	CHI.SoTien*isnull(TyGia,1) SoTien,TienTe,MucDich,NguoiNhan AS NguoiGiaoDich,Convert(bit,1) AS THUCHI,MaTK"
         sql &= " FROM CHI)tb"
         sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=tb.IDKh"
         sql &= " INNER JOIN MUCDICHTHUCHI ON MUCDICHTHUCHI.ID=tb.MucDich"

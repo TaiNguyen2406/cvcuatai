@@ -11,7 +11,8 @@ Public Class frmChiTienMat
     Private _ToDay As DateTime = GetServerTime.Date
     Public _LoadStyle As Boolean = False
     Public _ConLai As Double = 0
-
+    'Duong
+    Private _Hsql = ""
     Private Sub frmChiTienMat_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         btfilterTuNgay.EditValue = New DateTime(_ToDay.Year, _ToDay.Month, 1)
         btfilterDenNgay.EditValue = _ToDay.Date
@@ -48,46 +49,51 @@ Public Class frmChiTienMat
 #End Region
 
     Public Sub LoadChi()
-
-        ShowWaiting("Đang tải dữ liệu ...")
-
-        Dim sql As String = " SET DATEFORMAT DMY " & vbCrLf
-        sql &= " SELECT convert(bit,0)chon, CHI.SoPhieuT, 0 AS STT, CHI.ID,NgayThangVS,(N'CT ' + CHI.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,CHI.DienGiai,CHI.TyGia," & vbCrLf
-        sql &= " 	CHI.SoTien,tblTienTe.Ten AS TienTe,MUCDICHTHUCHI.Ten AS MucDich,NguoiNhan,MUCDICHTHUCHI.ChiPhiMatDi," & vbCrLf
-        sql &= "    (Case PhieuTC0 WHEN '000000000' THEN '' ELSE " & vbCrLf
-        sql &= "        (CASE WHEN MucDich IN (210, 228) THEN N'ĐH '+PhieuTC0 WHEN MucDich IN (200, 224, 244, 235, 230) THEN N'CG '+PhieuTC0 " & vbCrLf
-        sql &= "            WHEN MucDich = 205 THEN (CASE CHI.ChiPhiNhap WHEN 1 THEN N'ĐH '+PhieuTC0 ELSE N'CG '+PhieuTC0 END)" & vbCrLf
-        sql &= "        ELSE PhieuTC0 END) " & vbCrLf
-        sql &= "    END )PhieuTC0," & vbCrLf
-        sql &= "    (Case PhieuTC1 WHEN '000000000' THEN '' ELSE " & vbCrLf
-        sql &= "        (CASE WHEN MucDich IN (210, 228) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 230) THEN N'XK '+PhieuTC1 " & vbCrLf
-        sql &= "            WHEN MucDich = 205 THEN (CASE CHI.ChiPhiNhap WHEN 1 THEN N'NK '+PhieuTC1 ELSE N'XK '+PhieuTC1 END)" & vbCrLf
-        sql &= "        ELSE PhieuTC1 END) " & vbCrLf
-        sql &= "    END )PhieuTC1" & vbCrLf
-        ' sql &= "    (Case PhieuTC1 WHEN '000000000' THEN '' ELSE (CASE WHEN MucDich IN (210, 228, 205) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 205, 230) THEN N'XK '+PhieuTC1 ELSE PhieuTC1 END) END )PhieuTC1,"
-        'sql &= "    (SELECT SoCT FROM CHUNGTU WHERE ID = CHI.IdChungTu)SoPhieuChi, " & vbCrLf
-        'sql &= "    (SELECT TOP 1 a.SoHD FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT WHERE a.LoaiCT = 2 AND a.LoaiCT2 = 5 AND b.GhiChuKhac = CHI.SoPhieuT AND b.ButToan = 1)SoHD,NHANSU.Ten as NguoiLap " & vbCrLf
-        sql &= " ,NHANSU.Ten as NguoiLap " & vbCrLf
-        sql &= " FROM CHI" & vbCrLf
-        sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=CHI.IDKh" & vbCrLf
-        sql &= " LEFT JOIN NHANSU ON NHANSU.ID=CHI.IDUser" & vbCrLf
-        sql &= " LEFT JOIN tblTienTe ON tblTienTe.ID=CHI.TienTe" & vbCrLf
-        sql &= " INNER JOIN MUCDICHTHUCHI ON MUCDICHTHUCHI.ID=CHI.MucDich" & vbCrLf
-        If chkLocChiPhi.Checked Then
-            sql &= " AND MUCDICHTHUCHI.ChiPhiMatDi=1 " & vbCrLf
+        BandLichSuSua.Visible = False
+        BandSTT2.Visible = False
+        If Me.Parent.Name = "frmLichSuPhieu" Then
+            LoadLog()
+            Exit Sub
         End If
-        sql &= " WHERE CONVERT(datetime,CONVERT(nvarchar,CHI.NgayThangCT ,103),103) BETWEEN @TuNgay AND @DenNgay" & vbCrLf
+        ShowWaiting("Đang tải dữ liệu ...")
+        Dim sql As String = " SET DATEFORMAT DMY "
+        sql &= " SELECT CHI.SoPhieuT, 0 AS STT, CHI.ID,NgayThangVS,(N'CT ' + CHI.SoPhieu) AS SoPhieu,NgayThangCT,KHACHHANG.ttcMa,CHI.DienGiai,"
+        sql &= " 	CHI.SoTien,tblTienTe.Ten AS TienTe,MUCDICHTHUCHI.Ten AS MucDich,NguoiNhan,MUCDICHTHUCHI.ChiPhiMatDi,"
+        sql &= "    (Case PhieuTC0 WHEN '000000000' THEN '' ELSE "
+        sql &= "        (CASE WHEN MucDich IN (210, 228) THEN N'ĐH '+PhieuTC0 WHEN MucDich IN (200, 224, 244, 235, 230) THEN N'CG '+PhieuTC0 "
+        sql &= "            WHEN MucDich = 205 THEN (CASE CHI.ChiPhiNhap WHEN 1 THEN N'ĐH '+PhieuTC0 ELSE N'CG '+PhieuTC0 END)"
+        sql &= "        ELSE PhieuTC0 END) "
+        sql &= "    END )PhieuTC0,"
+        sql &= "    (Case PhieuTC1 WHEN '000000000' THEN '' ELSE "
+        sql &= "        (CASE WHEN MucDich IN (210, 228) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 230) THEN N'XK '+PhieuTC1 "
+        sql &= "            WHEN MucDich = 205 THEN (CASE CHI.ChiPhiNhap WHEN 1 THEN N'NK '+PhieuTC1 ELSE N'XK '+PhieuTC1 END)"
+        sql &= "        ELSE PhieuTC1 END) "
+        sql &= "    END )PhieuTC1,"
+        ' sql &= "    (Case PhieuTC1 WHEN '000000000' THEN '' ELSE (CASE WHEN MucDich IN (210, 228, 205) THEN N'NK '+PhieuTC1 WHEN MucDich IN (200, 224, 244, 235, 205, 230) THEN N'XK '+PhieuTC1 ELSE PhieuTC1 END) END )PhieuTC1,"
+        sql &= "    (SELECT SoCT FROM CHUNGTU WHERE ID = CHI.IdChungTu)SoPhieuChi, "
+        sql &= "    (SELECT TOP 1 a.SoHD FROM CHUNGTU a INNER JOIN CHUNGTUCHITIET b ON a.Id = b.Id_CT WHERE a.LoaiCT = 2 AND a.LoaiCT2 = 5 AND b.GhiChuKhac = CHI.SoPhieuT AND b.ButToan = 1)SoHD,NHANSU.Ten as NguoiLap, CHI.DeNghiSua "
+        sql &= " FROM CHI"
+        sql &= " LEFT JOIN KHACHHANG ON KHACHHANG.ID=CHI.IDKh"
+        sql &= " LEFT JOIN NHANSU ON NHANSU.ID=CHI.IDUser"
+        sql &= " LEFT JOIN tblTienTe ON tblTienTe.ID=CHI.TienTe"
+        sql &= " INNER JOIN MUCDICHTHUCHI ON MUCDICHTHUCHI.ID=CHI.MucDich"
+        If chkLocChiPhi.Checked Then
+            sql &= " AND MUCDICHTHUCHI.ChiPhiMatDi=1 "
+        End If
+        sql &= " WHERE "
+        'Duong
+        _Hsql = sql
+        sql &= " CONVERT(datetime,CONVERT(nvarchar,CHI.NgayThangCT ,103),103) BETWEEN @TuNgay And @DenNgay"
         If Not btfilterMaKH.EditValue Is Nothing Then
-            sql &= " AND CHI.IDKh=" & btfilterMaKH.EditValue & vbCrLf
+            sql &= " And CHI.IDKh=" & btfilterMaKH.EditValue
         End If
         If Not cbSoTK.EditValue Is Nothing Then
-            sql &= " AND ltrim(rtrim(CHI.MaTK))='" & cbSoTK.EditValue & "' " & vbCrLf
+            sql &= " And ltrim(rtrim(CHI.MaTK))='" & cbSoTK.EditValue & "' "
         End If
-        sql &= " ORDER BY NgayThangCT,SoPhieu" & vbCrLf
+        sql &= " ORDER BY NgayThangCT,SoPhieu"
 
         AddParameter("@TuNgay", btfilterTuNgay.EditValue)
         AddParameter("@DenNgay", btfilterDenNgay.EditValue)
-
         Dim tb As DataTable = ExecuteSQLDataTable(sql)
 
         If Not tb Is Nothing Then
@@ -106,7 +112,7 @@ Public Class frmChiTienMat
     End Sub
 
     Private Sub btTaiLai_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btTaiLai.ItemClick
-            LoadChi()
+        LoadChi()
     End Sub
 
 
@@ -200,10 +206,10 @@ Public Class frmChiTienMat
         f.Text = "Cập nhật phiếu chi " & gdvChiCT.GetFocusedRowCellValue("SoPhieuT").ToString '.Substring(3, 7)
         f.UNC = False
         f.PhieuChi = gdvChiCT.GetFocusedRowCellValue("SoPhieuT").ToString '.Substring(3, 7)
-        If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then
-            f.btGhi.Enabled = False
-            f.btThem.Enabled = False
-        End If
+        'If Not KiemTraQuyenSuDungKhongCanhBao("Menu", Me.Parent.Tag, DanhMucQuyen.QuyenSua) Then
+        f.btGhi.Enabled = False
+        f.btThem.Enabled = False
+        'End If
 
         f.Show()
         gdvChiCT.FocusedRowHandle = _Index
@@ -391,120 +397,84 @@ Public Class frmChiTienMat
                 End If
                 fCNNhapKho.ShowDialog()
             End If
-
-
-
-        End If
-
-    End Sub
-
-    Private Sub gdvChiCT_RowCellClick(sender As Object, e As XtraGrid.Views.Grid.RowCellClickEventArgs) Handles gdvChiCT.RowCellClick
-        If e.Column.FieldName = "chon" Then
-            gdvChiCT.SetRowCellValue(e.RowHandle, "chon", Not gdvChiCT.GetRowCellValue(e.RowHandle, "chon"))
         End If
     End Sub
 
-    Private Sub mnuChuyenCacPhieuDaChon_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mnuChuyenCacPhieuDaChon.ItemClick
-        gdvChiCT.CloseEditor()
-        gdvChiCT.UpdateCurrentRow()
-        Dim arrPhieu As New List(Of Integer)
-        For i As Integer = 0 To gdvChiCT.RowCount - 1
-            If gdvChiCT.GetRowCellValue(i, "chon") = True Then
-                arrPhieu.Add(i)
-            End If
-        Next
-        If arrPhieu.Count = 0 Then
-            ShowCanhBao("Chưa chọn phiếu nào cả!")
+    Private Sub mDeNghiSua_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mDeNghiSua.ItemClick
+        If CType(gdvChiCT.GetFocusedRowCellValue("DeNghiSua"), Boolean) Then
+            ShowCanhBao("Phiếu này đang được đề nghị sửa!")
             Exit Sub
         End If
-        If Not ShowCauHoi("Chuyển " & arrPhieu.Count & " phiếu đã chọn sang bên thuế ?") Then Exit Sub
+        Dim dns = New frmDeNghiSua.DENGHISUA_DTO()
+        dns.LoaiPhieu = "CT"
+        dns.SoPhieu = gdvChiCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9)
+        dns.TenNguoiLapPhieu = gdvChiCT.GetFocusedRowCellValue("NguoiLap").ToString
+        dns.ttcMa = gdvChiCT.GetFocusedRowCellValue("ttcMa")
+        dns.SoPhieuT = gdvChiCT.GetFocusedRowCellValue("SoPhieuT")
+        dns._TagForm = Me.Parent.Tag
+        Dim f = New frmDeNghiSua
+        f._FormCall = Me
+        f._LogData = LuuDuLieuLichSu(gdvChiCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9))
+        f._RowSelectedIndex = gdvChiCT.FocusedRowHandle
+        f._DeNghi = dns
+        f.ShowDialog()
+    End Sub
 
+    Private Sub mXemLichSuPhieuChi_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mXemLichSuPhieuChi.ItemClick
+        Dim f = New frmLichSuPhieu
+        f._PhieuChiTM = New frmChiTienMat
+        frmLichSuPhieu.SoPhieu = gdvChiCT.GetFocusedRowCellValue("SoPhieu").ToString.Substring(3, 9)
+        f.Text = "Lịch sử phiếu " & gdvChiCT.GetFocusedRowCellValue("SoPhieu")
+        f.Tag = Me.Parent.Tag
+        f.ShowDialog()
+    End Sub
+
+    Private Function LuuDuLieuLichSu(SoPhieu As String) As DataSet
+        _Hsql &= " SoPhieu = '" & SoPhieu & "' "
+        Dim ds = New DataSet
+        ds = ExecuteSQLDataSet(_Hsql)
+        Return ds
+    End Function
+
+    Private Sub LoadLog()
+        Bar1.Visible = False
+        pMenuChi.Dispose()
+        BandSTT.Visible = False
+        BandDNS.Visible = False
+        BandLichSuSua.Visible = True
+        BandSTT2.Visible = True
+
+        Dim sql = "Select (Select TenNguoiSua from DENGHISUA WHERE DENGHISUA.ID = IDDeNghi) as NguoiSua, CauTrucBang, PhienBan,"
+        sql &= " DuLieu, NgaySua from DeNghiSua_Log Where SoPhieu = '" & frmLichSuPhieu.SoPhieu & "' And TenBang = 'CHI'"
+        Dim dt = New DataTable
+        Dim ds = New DataSet()
+        dt = ExecuteSQLDataSet(sql).Tables(0)
+
+        Dim cautrucbang = ""
         Try
-            For i As Integer = 0 To arrPhieu.Count - 1
-
-
-                Dim sql As String = "SELECT * FROM CHI WHERE ID = " & gdvChiCT.GetRowCellValue(arrPhieu(i), "ID")
-                Dim r As DataRow = ExecuteSQLDataTable(sql).Rows(0)
-
-                sql = "SELECT ID,ttcMa,Ten,ttcMasothue,ttcDiachi FROM KHACHHANG WHERE ID = @ID"
-                AddParameter("@ID", r("IDKh"))
-                Dim rKH As DataRow = ExecuteSQLDataTable(sql).Rows(0)
-
-                sql = "SELECT ISNULL((SELECT SUM(sotien) FROM CHI WHERE SoPhieuT =  @SoPhieuT),0)"
-                AddParameter("@SoPhieuT", r("SoPhieuT"))
-                Dim tt As Object = ExecuteSQLDataTable(sql).Rows(0)(0)
-                If tt <= r("sotien") Then tt = r("sotien")
-
-
-                'chung tu
-                AddParameter("@LoaiCT", ChungTu.LoaiChungTu.PhieuChiTienMat)
-                AddParameter("@NgayCT", r("ngaythangCT"))
-                AddParameter("@TienTe", 0)
-                AddParameter("@TyGia", 1)
-                AddParameter("@GhiSo", 0)
-                AddParameter("@IdKH", r("IDKh"))
-                AddParameter("@TenKH", rKH("Ten"))
-                AddParameter("@DiaChi", rKH("ttcDiachi"))
-                AddParameter("@MaSoThue", rKH("ttcMasothue"))
-                AddParameter("@NguoiLienHe", DBNull.Value)
-                AddParameter("@DienGiai", rKH("Ten") & " thanh toán tiền hàng")
-                'AddParameter("@SoTkNganHang", r("taikhoanden"))
-                'AddParameter("@TenTkNganHang", r("nganhangden"))
-                'AddParameter("@SoTkNganHangDoiUng", r("taikhoandi"))
-                'AddParameter("@TenTkNganHangDoiUng", r("nganhangdi"))
-                AddParameter("@ThanhTien", tt)
-
-                AddParameter("@refId", gdvChiCT.GetRowCellValue(arrPhieu(i), "ID"))
-                Dim idHoaDon As Object
-                idHoaDon = doInsert("CHUNGTU")
-                If idHoaDon Is Nothing Then Throw New Exception(LoiNgoaiLe)
-
-                'Hàng tiền
-                AddParameter("@Id_CT", idHoaDon)
-                AddParameter("@DienGiai", rKH("Ten") & " thanh toán tiền hàng")
-                AddParameter("@ThanhTien", tt)
-                AddParameter("@TaiKhoanNo", "331")
-                AddParameter("@TaiKhoanCo", "1111")
-                AddParameter("@ButToan", ChungTu.LoaiButToan.HangTien)
-
-                Dim idHdCT As Object = doInsert("CHUNGTUCHITIET")
-                If idHdCT Is Nothing Then Throw New Exception(LoiNgoaiLe)
-
-                gdvChiCT.SetRowCellValue(arrPhieu(i), "IdCT", idHoaDon)
-
-            Next
-            gdvChiCT.BeginUpdate()
-            For i As Integer = 0 To gdvChiCT.RowCount - 1
-                If gdvChiCT.GetRowCellValue(i, "chon") = True Then
-                    gdvChiCT.SetRowCellValue(i, "chon", False)
-                End If
-            Next
-            gdvChiCT.EndUpdate()
-            mnuChonBoChonTatCa.Tag = False
-            ShowAlert("Đã chuyển thành công " & arrPhieu.Count & " phiếu sang bên thuế!")
-        Catch ex As Exception
-            ShowBaoLoi(ex.Message)
-            LoadChi()
+            cautrucbang = dt.Rows(0)("CauTrucBang").ToString()
+        Catch
+            ShowAlert("Phiếu này chưa phải sửa lần nào!")
+            Exit Sub
         End Try
+        frmLichSuPhieu.XMLSChemaToDataSet(ds, cautrucbang) 'tao kieu du lieu cho bang
+        ds.Tables(0).Columns.Add("NguoiSua")
+        ds.Tables(0).Columns.Add("PhienBan")
+        ds.Tables(0).Columns("PhienBan").DataType = GetType(Integer)
+        ds.Tables(0).Columns.Add("NgaySua")
+        ds.Tables(0).Columns("NgaySua").DataType = GetType(DateTime)
+        ds.Tables(0).Columns.Add("STT2")
+        ds.Tables(0).Columns("STT2").DataType = GetType(Integer)
+        Dim i = 0
+        For Each row As DataRow In dt.Rows
+            Dim dulieu = row("DuLieu").ToString
+            frmLichSuPhieu.XMLToDataSet(ds, dulieu) 'tao du lieu cho bang
+            ds.Tables(0).Rows(i)("NguoiSua") = row("NguoiSua")
+            ds.Tables(0).Rows(i)("PhienBan") = row("PhienBan")
+            ds.Tables(0).Rows(i)("NgaySua") = row("NgaySua")
+            ds.Tables(0).Rows(i)("STT2") = i + 1
+            i += 1
+        Next
+        gdvChi.DataSource = ds.Tables(0)
     End Sub
-
-    Private Sub mnuChonBoChonTatCa_ItemClick(sender As Object, e As XtraBars.ItemClickEventArgs) Handles mnuChonBoChonTatCa.ItemClick
-        Dim arrPhieu As New List(Of String)
-        If mnuChonBoChonTatCa.Tag Then
-            For i As Integer = 0 To gdvChiCT.RowCount - 1
-                If arrPhieu.IndexOf(gdvChiCT.GetRowCellValue(i, "SoPhieuT")) >= 0 Then
-                    gdvChiCT.SetRowCellValue(i, "chon", False)
-                Else
-                    arrPhieu.Add(gdvChiCT.GetRowCellValue(i, "SoPhieuT"))
-                    gdvChiCT.SetRowCellValue(i, "chon", True)
-                End If
-            Next
-        Else
-            For i As Integer = 0 To gdvChiCT.RowCount - 1
-                gdvChiCT.SetRowCellValue(i, "chon", False)
-            Next
-        End If
-        mnuChonBoChonTatCa.Tag = Not mnuChonBoChonTatCa.Tag
-    End Sub
-
 End Class
